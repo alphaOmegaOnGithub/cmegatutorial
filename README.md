@@ -1,2 +1,2 @@
-# cmegatutorial
+# Ciao Mirko questo e' projetto from me e te per imparere a grogrammare e  gestire il codice tramite github 
 a tutorial for learning programming languages and more .... 

@@ -1,0 +1,19 @@
+DOCKER è un servizio in grado di fornire l'accesso ai "container" tramite un OS-level virtualization, ovvero un modello di OS del quale il kernel permette l'esistenza in zone isolate appunto chiamate "container". Tutti i container, a differenza di una VM, condividono i servizi dello stesso OS, consumando così meno risorse. Siccome un container consuma poco un singolo server o VM può runnare più container simultaneamente. 
+
+K8s (KUBERNETES) servizio open-source per automizzare il software deployment, ovvero tutte le attivtà che permettono l'utilizzo di un software, e rendere la gestione di grandi quantità di lavoro sul cloud, quindi di cluster di container ("Pods") automatica. K8s lavora definendo un set di blocchi che collettivamente forniscono meccanismi per mantener e schierare le app. Il suo funzionamento è basato su il concetto master/slave e può essere dviso in coloro che amministrano i "nodi" e quelli che fanno parte del pannello di controllo. 
+
+NODI: i nodi, o minion, sono macchine dove i container sono schierati, ognuno di questi deve avere un container runtime e un metodo di comunicazione col nodo principale per la configurazione del network dei container
+
+Componenti di un nodo:
+- Kubelet: 
+
+PANNELLO DI CONTROLLO: Il master node manipola il control plane del cluster amministrando il lavoro edirezionando le comunicazioni nel sistema. Il pannello di controllo consiste in varie componenti che possono essere runnate su un singolo master node o anche multipli. 
+
+Componenti pannello di controllo:
+- etcd: immagazina i dati di configurazioned dei cluster rappresentando così lo stato di essi.
+- API server: fornisce l’interfaccia interna e esterna di k8s, processa le richieste REST e aggiorna lo stato dell’API degli oggetti in etcd.
+- Scheduler: seleziona il nodo sul quale un pod opera e tiene traccia delle risorse in uso su ogni nodo, controllando che nessuno di essi utilizzi risorse eccessive.
+- Controller: Ciclo di riconciliazione che guida il cluster allo stato desiderato.
+-Controller Manager: processo che amministra un set di core controllers
+
+In poche parole: Docker fornisce i pacchetti (container) su una nave (OS unico al posto di tante “navi” come VM), una volta arrivati al porto (utente) K8s smista e organizza i container (organizzazione e semplificazione dei cluster)

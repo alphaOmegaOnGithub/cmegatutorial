@@ -17,6 +17,7 @@ def fibonacci_of(n):
     toc = time.perf_counter()
     print(f"\nLast number = {fibnum}") # print only last number to make calculations faster
     print(f"\n<<Code executed in {toc - tic:0.5f} seconds>>")
+    print(type(fibnum))
 
 def print_():
     try:

@@ -17,11 +17,16 @@ def fibonacci_of(n):
     toc = time.perf_counter()
     print(f"\nLast number = {fibnum}") # print only last number to make calculations faster
     print(f"\n<<Code executed in {toc - tic:0.5f} seconds>>")
-    print(type(fibnum))
+    type_check = type(fibnum)
+    
+    return type_check
+
+def type_checker(type_check):
+    print(type_check)
 
 def print_():
     try:
-        n = int(input("\n<<How many times do you want to calculate the sequence?>>: "))
+        n = int(input("\n<<How many times do you want to calculate the sequence?>> "))
         fibonacci_of(n - 2) # -2 why 0 & 1 are excluded
         repeat_flag = 1 # checks if you have already executed the code
         request(repeat_flag)
@@ -32,11 +37,14 @@ def print_():
 def request(repeat_flag):
     accept = ""
     if repeat_flag != 0: # the first time you won't be asked
-        accept = str(input("\n<<Do you want to execute the program again? y/n>> -> "))
+        accept = str(input("\n<<Do you want to execute the program again? y/n>> \n<<If you want to check the number's type , type [type]>> "))
     if accept == "y" or accept == "Y" or repeat_flag == 0:
         print_()
     elif accept == "n" or accept == "N" :
         print("\n<<The program won't be executed again.>>")
+    elif accept == "type":
+        type_checker(type_check)
+        request(repeat_flag)
     else:
         print("\n<<Please define one of the two possible statements.>>")
         request(repeat_flag)

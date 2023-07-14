@@ -32,7 +32,8 @@ def plot_time_difference(n):
     plt.xlabel('Number of Fibonacci Calculations')
     plt.ylabel('Time (seconds)')
     plt.title('Time Difference for Fibonacci Calculations')
-    plt.xticks(x)
+   #plt.xticks(x) # x axis text not rotated
+    plt.xticks(rotation = 60, ha = 'left') # x axis text rotated
     plt.grid(True)
     plt.show()
 

@@ -20,14 +20,23 @@ def fibonacci(n):
 
 def plot_time_difference(n):
     times = []
-    chkpoint = int(input("<<Time in between calculations>> : "))
-    for i in range(1, n + 1):
+    try:
+        start = int(input("\n<<From wich number do you want to start the sequence?>> "))
+        if start > n:
+            print("\n<<Your starting nr. should be < or = to your ending nr.>>")
+            plot_time_difference(n)
+        chkpoint = int(input("\n<<Time in between calculations>> "))
+    except:
+        print("\n<<Please insert an [integer]>>")
+        plot_time_difference(n)
+
+    for i in range(start, n + 1):
         if i % chkpoint == 0:
             sequence = fibonacci(i)
             time = timeit.timeit(lambda: fibonacci(i), number=1)
             times.append(time)
 
-    x = range(chkpoint, n + 1, chkpoint)
+    x = range(start, n + 1, chkpoint)
     plt.plot(x, times, marker='o', linestyle='-', color='red')
     plt.xlabel('Number of Fibonacci Calculations')
     plt.ylabel('Time (seconds)')

@@ -1,20 +1,21 @@
 # Prime Numbers 16/07
 
 def prime(n):
-    primes = []
-    if n == 1:
-        primes = [1]
-    if n == 2:
-        primes = [1, 2]
-    if n > 2:
-        primes = [1, 2]
-    for i in range(2, n + 1):
-        for j in range(2, i):
-            if i % j == 0:
-                break
-            primes.append(i)
-            break
-    return primes
+    if n <= 1:
+        return False
+    for i in range(2, int(n ** 0.5) + 1): # n ** 0.5 non ci sarei arrivato, devo ancora capire perchè
+        if n % i == 0:
+            return False # nella mia versione vecchia mettevo break
+    return True
 
-n = int(input("Insert a number "))
-print(prime(n))
+def print_prime_numbers(limit):
+    prime_numbers = []
+    for i in range(2, limit + 1):
+        if prime(i):
+            prime_numbers.append(i)
+    print("Prime numbers to ", limit, ":")
+    print(prime_numbers)
+
+# Main
+limit_num = int(input("Insert a limit number: "))
+print_prime_numbers(limit_num)

@@ -34,4 +34,3 @@ def plot_time_difference(n):
 
 n = int(input("Enter a value for N: "))
 plot_time_difference(n)
-

@@ -1,3 +1,3 @@
-# Ciao Mirko questo e' projetto from me e te 
+# Ciao Mirko questo e' projetto per me e te 
 ##  per imparere a grogrammare e  gestire il codice tramite github 
 a tutorial for learning programming languages and more .... 

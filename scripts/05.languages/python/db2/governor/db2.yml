@@ -1,0 +1,27 @@
+timestamp_file: /database/config/db2inst1/timestamp_file
+force_takeover_window: 300
+startup_time: 600
+loop_wait: 10
+env: prod
+truth_manager: etcd3
+etcd3:
+ scope: etcd
+ ttl: 30
+ endpoint: ['172.20.0.4:2379','172.20.0.5:2379','172.20.0.6:2379']
+ ca_cert:
+ user:
+ password:
+ timeout: 20
+db2:
+ ip: db2_hadr_node1
+ ip_other: db2_hadr_node2
+ db: HADRDB
+ authentication:
+   username: db2inst1
+   password: db2inst1
+public_interface:
+op_timeout:
+ connect: 120
+ start: 180
+ start_as_standby: 180
+ start_as_primary: 180

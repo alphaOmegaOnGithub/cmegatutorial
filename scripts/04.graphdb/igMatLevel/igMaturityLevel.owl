@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#"
+     xml:base="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel">
+        <rdfs:comment xml:lang="en">An ontology on information governance maturity level</rdfs:comment>
+        <rdfs:comment xml:lang="en">Developed by Cataldo Mega. Please direct all comments and questions. cataldo.mega@ipvs.uni-stuttgart.de</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#ARMA_Principles -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#ARMA_Principles"/>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Accountability_prncpls -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Accountability_prncpls">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#ARMA_Principles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Availability_prncpls -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Availability_prncpls">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#ARMA_Principles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#CGOC -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#CGOC"/>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Compliance_prncpls -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Compliance_prncpls">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#ARMA_Principles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#DAM -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#DAM"/>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#DAMA -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#DAMA"/>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Disposition_prncpls -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Disposition_prncpls">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#ARMA_Principles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#EDRM -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#EDRM"/>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Integrity_prncpls -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Integrity_prncpls">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#ARMA_Principles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_1 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_1">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MaturityIndex"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_2">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MaturityIndex"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_3 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_3">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MaturityIndex"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_4 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_4">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MaturityIndex"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_5 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_5">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MaturityIndex"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MaturityIndex -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MaturityIndex"/>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Protection_prncpls -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Protection_prncpls">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#ARMA_Principles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Retention_prncpls -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Retention_prncpls">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#ARMA_Principles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Transparency_prncpls -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Transparency_prncpls">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#ARMA_Principles"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#ARMA_Principles"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#CGOC"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#DAM"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#DAMA"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#EDRM"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MaturityIndex"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Accountability_prncpls"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Availability_prncpls"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Compliance_prncpls"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Disposition_prncpls"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Integrity_prncpls"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Protection_prncpls"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Retention_prncpls"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#Transparency_prncpls"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_1"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_2"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_3"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_4"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cmadmin/ontologies/2023/3/igMLevel#MI_Level_5"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

@@ -1,0 +1,79 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.9.2
+  creationTimestamp: null
+  name: db2clusters.db2.example.com
+spec:
+  group: db2.example.com
+  names:
+    kind: DB2Cluster
+    listKind: DB2ClusterList
+    plural: db2clusters
+    singular: db2cluster
+  scope: Namespaced
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        description: DB2Cluster is the Schema for the db2clusters API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: DB2ClusterSpec defines the desired state of DB2Cluster
+            properties:
+              DBInstance:
+                default: db2inst1
+                description: 'DBInstance: name of db2 instance'
+                type: string
+              DBInstancePassword:
+                default: db2inst1
+                description: 'DBInstancePassword: password of db2 instance'
+                type: string
+              DBName:
+                default: HADRDB
+                description: 'DBName: name of db2 database'
+                type: string
+              EtcdEndpoint:
+                description: 'EtcdEndpoint: endpoints of etcd cluster'
+                type: string
+              Size:
+                description: 'Size: the size of DB2 instances'
+                format: int32
+                maximum: 4
+                minimum: 2
+                type: integer
+              StorageClassforDB:
+                default: default
+                description: 'StorageClassforDB: StorageClass to mount database'
+                type: string
+              StorageClassforHADR:
+                description: 'StorageClassforHADR: StorageClass to mount hadr.cfg
+                  file which can be shared(usually is NFS)'
+                type: string
+            required:
+            - EtcdEndpoint
+            - Size
+            - StorageClassforHADR
+            type: object
+          status:
+            description: DB2ClusterStatus defines the observed state of DB2Cluster
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

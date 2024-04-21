@@ -1,0 +1,77 @@
+version: "3.7"
+services:
+  db2_hadr_primary:
+    build: .
+    container_name: db2_hadr_node1
+    hostname: db2_hadr_node1
+    ports:
+      - 51000
+      - 56000
+    #network_mode: host
+    privileged: true
+    environment:
+      LICENSE: accept
+      BLU: false
+      ENABLE_ORACLE_COMPATIBILITY: false
+      UPDATEAVAIL: NO
+      TO_CREATE_SAMPLEDB: false
+      REPODB: false
+      IS_OSXFS: false
+      PERSISTENT_HOME: true
+      DB2INSTANCE: db2inst1
+      DB2INST1_PASSWORD: db2inst1
+      DBNAME: HADRDB
+      HADR_ENABLED: true
+      ETCD_ENDPOINT: 172.20.0.4:2379
+    volumes:
+      - db2_empty_hadr_h1:/database
+      - db2_empty_hadr_share:/hadr
+    networks:
+      hadr_net:
+        ipv4_address: 172.20.0.7
+  db2_hadr_standby:
+    build: .
+    container_name: db2_hadr_node2
+    hostname: db2_hadr_node2
+    ports:
+      - 51000
+      - 56000
+    #network_mode: host
+    privileged: true
+    environment:
+      LICENSE: accept
+      BLU: false
+      ENABLE_ORACLE_COMPATIBILITY: false
+      UPDATEAVAIL: NO
+      TO_CREATE_SAMPLEDB: false
+      REPODB: false
+      IS_OSXFS: false
+      PERSISTENT_HOME: true
+      DB2INSTANCE: db2inst1
+      DB2INST1_PASSWORD: db2inst1
+      DBNAME: HADRDB
+      HADR_ENABLED: true
+      ETCD_ENDPOINT: 172.20.0.4:2379
+    volumes:
+      - db2_empty_hadr_h2:/database
+      - db2_empty_hadr_share:/hadr
+    networks:
+      hadr_net:
+        ipv4_address: 172.20.0.8
+
+
+volumes:
+  db2_empty_hadr_h1: {}
+  db2_empty_hadr_h2: {}
+  db2_empty_hadr_share: {}
+#networks:
+#  hadr_net:
+#    driver: bridge
+#    ipam:
+#      driver: default
+#      config:
+#        - subnet: "172.20.0.0/16"
+networks:
+  hadr_net:
+    external: true
+

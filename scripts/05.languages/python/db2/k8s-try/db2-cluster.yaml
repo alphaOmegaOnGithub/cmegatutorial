@@ -1,0 +1,114 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+   name: share-hadr
+spec:
+   accessModes:
+     - ReadWriteMany
+   storageClassName: managed-nfs-storage
+   resources:
+     requests:
+       storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db2-svc
+  labels:
+    app: db2
+spec:
+  ports:
+    - port: 50001
+      name: db2
+  selector:
+    app: db2
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db2
+  labels:
+    app: db2
+spec:
+  serviceName: db2-svc
+  selector:
+    matchLabels:
+      app: db2
+  replicas: 3
+  template:
+    metadata:
+      name: db2
+      labels:
+        app: db2
+    spec:
+      containers:
+        - name: db2
+          image: 129.69.209.196:5000/my-db2:v8.18
+          imagePullPolicy: "IfNotPresent"
+          ports:
+          - containerPort: 50000
+          env:
+          - name: REPLICAS
+            value: "3"
+          - name: BLU
+            value: "false"
+          - name: ENABLE_ORACLE_COMPATIBILITY
+            value: "false"
+          - name: UPDATEAVAIL
+            value: "NO"
+          - name: REPODB
+            value: "false"
+          - name: IS_OSXFS
+            value: "false"
+          - name: PERSISTENT_HOME
+            value: "true"
+          - name: DBNAME
+            value: "HADRDB"
+          - name: DB2INST1_PASSWORD
+            value: "db2inst1"
+          - name: LICENSE
+            value: "accept"
+          - name: TO_CREATE_SAMPLEDB
+            value: "false"
+          - name: DB2INSTANCE
+            value: "db2inst1"
+          - name: HADR_ENABLED
+            value: "true"
+          - name: ETCD_ENDPOINT
+            value: "etcd-0.etcd.etcd.svc.cluster.local:2379,etcd-1.etcd.etcd.svc.cluster.local:2379,etcd-2.etcd.etcd.svc.cluster.local:2379"
+          volumeMounts:
+          - name: db2database
+            mountPath: /database
+          - name: hadr-data
+            mountPath: /hadr
+          - name: log-path
+            mountPath: /var/log/governor
+          securityContext:
+            privileged: true
+      volumes:
+        - name: hadr-data
+          persistentVolumeClaim:
+            claimName: 'share-hadr'
+        - name: log-path
+          hostPath:
+            path: /home/xiaomin/log
+      securityContext:
+        fsGroup: 1000
+      #imagePullSecrets:
+      #- name: regcred
+      #affinity:
+      #  podAntiAffinity:
+      #    requiredDuringSchedulingIgnoredDuringExecution:
+      #    - topologyKey: kubernetes.io/hostname
+      #      labelSelector:
+      #        matchLabels:
+      #          app: db2
+  volumeClaimTemplates:
+    - metadata:
+        name: db2database
+      spec:
+        storageClassName: openebs-hostpath
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi

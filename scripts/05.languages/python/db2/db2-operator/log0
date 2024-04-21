@@ -1,0 +1,139 @@
+(*) HADR_ROLE_FOR_SETUP:PRIMARY
+(*) Previous setup has not been detected. Creating the users... 
+(*) Creating users ...
+(*) Creating instance ... 
+DB2 installation is being initialized.
+
+ Total number of tasks to be performed: 4 
+Total estimated time for all tasks to be performed: 309 second(s) 
+
+Task #1 start
+Description: Setting default global profile registry variables 
+Estimated time 1 second(s) 
+Task #1 end 
+
+Task #2 start
+Description: Initializing instance list 
+Estimated time 5 second(s) 
+Task #2 end 
+
+Task #3 start
+Description: Configuring DB2 instances 
+Estimated time 300 second(s) 
+Task #3 end 
+
+Task #4 start
+Description: Updating global profile registry 
+Estimated time 3 second(s) 
+Task #4 end 
+
+The execution completed successfully.
+
+For more information see the DB2 installation log at "/tmp/db2icrt.log.92".
+DBI1446I  The db2icrt command is running.
+
+
+DBI1070I  Program db2icrt completed successfully.
+
+
+(*) Fixing /etc/services file for DB2 ... 
+12/04/2022 16:19:16     0   0   SQL1032N  No start database manager command was issued.
+SQL1032N  No start database manager command was issued.  SQLSTATE=57019
+(*) Cataloging existing databases
+ls: cannot access '/database/data/db2inst1/NODE0000': No such file or directory
+(*) Applying Db2 license ...
+
+LIC1402I  License added successfully.
+
+
+LIC1426I  This product is now licensed for use as outlined in your License Agreement.  USE OF THE PRODUCT CONSTITUTES ACCEPTANCE OF THE TERMS OF THE IBM LICENSE AGREEMENT, LOCATED IN THE FOLLOWING DIRECTORY: "/opt/ibm/db2/V11.5/license/en_US.iso88591"
+(*) Saving the checksum of the current nodelock file ...
+(*) Updating DBM CFG parameters ... 
+DB20000I  The UPDATE DATABASE MANAGER CONFIGURATION command completed 
+successfully.
+DB20000I  The UPDATE DATABASE MANAGER CONFIGURATION command completed 
+successfully.
+DB20000I  The UPDATE DATABASE MANAGER CONFIGURATION command completed 
+successfully.
+No Cgroup memory limit detected, instance memory will follow automatic tuning
+(*) Remounting /database with suid... 
+(*) Nothing appears in the Db2 directory. will skip update/upgrade.
+(*) Code level is the same. No update/upgrade needed.
+
+DB2 State : Operable
+DB2 has not been started
+Starting DB2...
+
+12/04/2022 16:19:30     0   0   SQL1063N  DB2START processing was successful.
+SQL1063N  DB2START processing was successful.
+(*) User chose to create HADRDB database
+(*) Creating database HADRDB ... 
+DB20000I  The CREATE DATABASE command completed successfully.
+DB20000I  The ACTIVATE DATABASE command completed successfully.
+12/04/2022 16:20:46     0   0   SQL1026N  The database manager is already active.
+SQL1026N  The database manager is already active.
+### Enabling LOGARCHMETH1
+
+   Database Connection Information
+
+ Database server        = DB2/LINUXX8664 11.5.7.0
+ SQL authorization ID   = DB2INST1
+ Local database alias   = HADRDB
+
+DB20000I  The UPDATE DATABASE CONFIGURATION command completed successfully.
+SQL1363W  One or more of the parameters submitted for immediate modification 
+were not changed dynamically. For these configuration parameters, the database 
+must be shutdown and reactivated before the configuration parameter changes 
+become effective.
+### Restarting DB2
+12/04/2022 16:20:52     0   0   SQL1064N  DB2STOP processing was successful.
+SQL1064N  DB2STOP processing was successful.
+12/04/2022 16:20:53     0   0   SQL1063N  DB2START processing was successful.
+SQL1063N  DB2START processing was successful.
+### Making backup directory and performing backup
+
+Backup successful. The timestamp for this backup image is : 20221204162056
+
+(*) Applying autoconfiguration for instance ... 
+
+   Database Connection Information
+
+ Database server        = DB2/LINUXX8664 11.5.7.0
+ SQL authorization ID   = DB2INST1
+ Local database alias   = HADRDB
+
+DB20000I  The UPDATE DATABASE CONFIGURATION command completed successfully.
+SQL1363W  One or more of the parameters submitted for immediate modification 
+were not changed dynamically. For these configuration parameters, the database 
+must be shutdown and reactivated before the configuration parameter changes 
+become effective.
+DB20000I  The UPDATE DATABASE CONFIGURATION command completed successfully.
+DB20000I  The UPDATE DATABASE CONFIGURATION command completed successfully.
+SQL1363W  One or more of the parameters submitted for immediate modification 
+were not changed dynamically. For these configuration parameters, the database 
+must be shutdown and reactivated before the configuration parameter changes 
+become effective.
+DB20000I  The SQL command completed successfully.
+12/04/2022 16:21:04     0   0   SQL1064N  DB2STOP processing was successful.
+SQL1064N  DB2STOP processing was successful.
+12/04/2022 16:21:06     0   0   SQL1063N  DB2START processing was successful.
+SQL1063N  DB2START processing was successful.
+(*) Skipping TEXT_SEARCH setup for database HADRDB because TEXT_SEARCH is not configured for the instance ...
+(*) HADR setup phase for instance db2inst1 and database HADRDB...
+(*) Setting up as the PRIMARY Server ...
+(*) Waiting for STANDBY to write in /hadr/hadr.cfg...
+db2-2
+(*) Executing setup_hadr on PRIMARY ... 
+(*) Waiting for the STANDBY host to finish setup before starting HADR ...
+(*) Waiting for the STANDBY host to finish setup before starting HADR ...
+(*) Waiting for the STANDBY host to finish setup before starting HADR ...
+(*) Entering Governor Setup...
+mkdir: cannot create directory ‘governor’: File exists
+(*) Editing sudoers file...
+(*) Generating db2.yml file...
+ssh-keygen: generating new host keys: RSA DSA ECDSA ED25519 
+(*) All databases are now active. 
+(*) Setup has completed.
+(*) Running user-provided scripts ... 
+(*) Running a_setup_governor.sh ...
+(*) Running b_create_table.sh ...

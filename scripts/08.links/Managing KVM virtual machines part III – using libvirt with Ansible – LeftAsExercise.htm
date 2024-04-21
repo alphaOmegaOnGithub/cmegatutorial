@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<title>Managing KVM virtual machines part III – using libvirt with Ansible – LeftAsExercise</title>
+<meta name="robots" content="max-image-preview:large">
+
+<!-- Async WordPress.com Remote Login -->
+<script id="wpcom_remote_login_js">
+var wpcom_remote_login_extra_auth = '';
+function wpcom_remote_login_remove_dom_node_id( element_id ) {
+	var dom_node = document.getElementById( element_id );
+	if ( dom_node ) { dom_node.parentNode.removeChild( dom_node ); }
+}
+function wpcom_remote_login_remove_dom_node_classes( class_name ) {
+	var dom_nodes = document.querySelectorAll( '.' + class_name );
+	for ( var i = 0; i < dom_nodes.length; i++ ) {
+		dom_nodes[ i ].parentNode.removeChild( dom_nodes[ i ] );
+	}
+}
+function wpcom_remote_login_final_cleanup() {
+	wpcom_remote_login_remove_dom_node_classes( "wpcom_remote_login_msg" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_validate" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_js" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_iframe" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_styles" );
+}
+
+// Watch for messages back from the remote login
+window.addEventListener( "message", function( e ) {
+	if ( e.origin === "https://r-login.wordpress.com" ) {
+		var data = {};
+		try {
+			data = JSON.parse( e.data );
+		} catch( e ) {
+			wpcom_remote_login_final_cleanup();
+			return;
+		}
+
+		if ( data.msg === 'LOGIN' ) {
+			// Clean up the login check iframe
+			wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+
+			var id_regex = new RegExp( /^[0-9]+$/ );
+			var token_regex = new RegExp( /^.*|.*|.*$/ );
+			if (
+				token_regex.test( data.token )
+				&& id_regex.test( data.wpcomid )
+			) {
+				// We have everything we need to ask for a login
+				var script = document.createElement( "script" );
+				script.setAttribute( "id", "wpcom_remote_login_validate" );
+				script.src = '/remote-login.php?wpcom_remote_login=validate'
+					+ '&wpcomid=' + data.wpcomid
+					+ '&token=' + encodeURIComponent( data.token )
+					+ '&host=' + window.location.protocol
+					+ '//' + window.location.hostname
+					+ '&postid=2183'
+					+ '&is_singular=1';
+				document.body.appendChild( script );
+			}
+
+			return;
+		}
+
+		// Safari ITP, not logged in, so redirect
+		if ( data.msg === 'LOGIN-REDIRECT' ) {
+			window.location = 'https://wordpress.com/log-in?redirect_to=' + window.location.href;
+			return;
+		}
+
+		// Safari ITP, storage access failed, remove the request
+		if ( data.msg === 'LOGIN-REMOVE' ) {
+			var css_zap = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } @media screen and ( max-width: 782px ) { html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } }';
+			var style_zap = document.createElement( 'style' );
+			style_zap.type = 'text/css';
+			style_zap.appendChild( document.createTextNode( css_zap ) );
+			document.body.appendChild( style_zap );
+
+			var e = document.getElementById( 'wpcom_request_access_iframe' );
+			e.parentNode.removeChild( e );
+
+			document.cookie = 'wordpress_com_login_access=denied; path=/; max-age=31536000';
+
+			return;
+		}
+
+		// Safari ITP
+		if ( data.msg === 'REQUEST_ACCESS' ) {
+			console.log( 'request access: safari' );
+
+			// Check ITP iframe enable/disable knob
+			if ( wpcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
+				return;
+			}
+
+			// If we are in a "private window" there is no ITP.
+			var private_window = false;
+			try {
+				var opendb = window.openDatabase( null, null, null, null );
+			} catch( e ) {
+				private_window = true;
+			}
+
+			if ( private_window ) {
+				console.log( 'private window' );
+				return;
+			}
+
+			var iframe = document.createElement( 'iframe' );
+			iframe.id = 'wpcom_request_access_iframe';
+			iframe.setAttribute( 'scrolling', 'no' );
+			iframe.setAttribute( 'sandbox', 'allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-top-navigation-by-user-activation' );
+			iframe.src = 'https://r-login.wordpress.com/remote-login.php?wpcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&wpcomid=' + encodeURIComponent( data.wpcomid );
+
+			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #wpcom_request_access_iframe { display: block; height: 71px !important; } } #wpcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
+
+			var style = document.createElement( 'style' );
+			style.type = 'text/css';
+			style.id = 'wpcom_request_access_styles';
+			style.appendChild( document.createTextNode( css ) );
+			document.body.appendChild( style );
+
+			document.body.appendChild( iframe );
+		}
+
+		if ( data.msg === 'DONE' ) {
+			wpcom_remote_login_final_cleanup();
+		}
+	}
+}, false );
+
+// Inject the remote login iframe after the page has had a chance to load
+// more critical resources
+window.addEventListener( "DOMContentLoaded", function( e ) {
+	var iframe = document.createElement( "iframe" );
+	iframe.style.display = "none";
+	iframe.setAttribute( "scrolling", "no" );
+	iframe.setAttribute( "id", "wpcom_remote_login_key" );
+	iframe.src = "https://r-login.wordpress.com/remote-login.php"
+		+ "?wpcom_remote_login=key"
+		+ "&origin=aHR0cHM6Ly9sZWZ0YXNleGVyY2lzZS5jb20%3D"
+		+ "&wpcomid=143578097"
+		+ "&time=1710174784";
+	document.body.appendChild( iframe );
+}, false );
+</script>
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://widgets.wp.com/">
+<link rel="dns-prefetch" href="https://wordpress.com/">
+<link rel="dns-prefetch" href="https://fonts-api.wp.com/">
+<link rel="alternate" type="application/rss+xml" title="LeftAsExercise » Feed" href="https://leftasexercise.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="LeftAsExercise » Comments Feed" href="https://leftasexercise.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="LeftAsExercise » Managing KVM virtual machines part III – using libvirt with&nbsp;Ansible Comments Feed" href="https://leftasexercise.com/2020/05/22/managing-kvm-virtual-machines-part-iii-using-libvirt-with-ansible/feed/">
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+	<script>
+window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s0.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1677072837i&ver=6.5-beta2-57713"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83e\udef1\ud83c\udffb\u200d\ud83e\udef2\ud83c\udfff","\ud83e\udef1\ud83c\udffb\u200b\ud83e\udef2\ud83c\udfff")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+</script>
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-0-1" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/Unbenannt_006.css" type="text/css" media="all">
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-2-1" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/style.css" type="text/css" media="all">
+<style id="wp-block-library-inline-css">
+.has-text-align-justify {
+	text-align:justify;
+}
+.wp-block-cover__image-background.has-parallax {
+	background-size: cover;
+}
+</style>
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-4-1" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/Unbenannt.css" type="text/css" media="all">
+<style id="jetpack-sharing-buttons-style-inline-css">
+.jetpack-sharing-buttons__services-list{display:flex;flex-direction:row;flex-wrap:wrap;gap:0;list-style-type:none;margin:5px;padding:0}.jetpack-sharing-buttons__services-list.has-small-icon-size{font-size:12px}.jetpack-sharing-buttons__services-list.has-normal-icon-size{font-size:16px}.jetpack-sharing-buttons__services-list.has-large-icon-size{font-size:24px}.jetpack-sharing-buttons__services-list.has-huge-icon-size{font-size:36px}@media print{.jetpack-sharing-buttons__services-list{display:none!important}}.editor-styles-wrapper .wp-block-jetpack-sharing-buttons{gap:0;padding-inline-start:0}ul.jetpack-sharing-buttons__services-list.has-background{padding:1.25em 2.375em}
+</style>
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-6-1" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/Unbenannt_002.css" type="text/css" media="all">
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-8-1" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/Unbenannt_008.css" type="text/css" media="all">
+<style id="global-styles-inline-css">
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--primary: #DB0042;--wp--preset--color--foreground: #000000;--wp--preset--color--background: #FFFFFF;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--gradient--hard-diagonal: linear-gradient(to bottom right,  49.9%,  50%);--wp--preset--gradient--hard-diagonal-inverted: linear-gradient(to top left,  49.9%,  50%);--wp--preset--gradient--hard-horizontal: linear-gradient(to bottom,  50%,  50%);--wp--preset--gradient--hard-horizontal-inverted: linear-gradient(to top,  50%,  50%);--wp--preset--gradient--diagonal: linear-gradient(to bottom right, , );--wp--preset--gradient--diagonal-inverted: linear-gradient(to top left, , );--wp--preset--gradient--horizontal: linear-gradient(to bottom, , );--wp--preset--gradient--horizontal-inverted: linear-gradient(to top, , );--wp--preset--gradient--stripe: linear-gradient(to bottom, transparent 20%,  20%,  80%, transparent 80%);--wp--preset--font-size--small: 16px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 24px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-size--xs: 14px;--wp--preset--font-size--xl: 36px;--wp--preset--font-size--huge: 48px;--wp--preset--font-family--albert-sans: 'Albert Sans', sans-serif;--wp--preset--font-family--alegreya: Alegreya, serif;--wp--preset--font-family--arvo: Arvo, serif;--wp--preset--font-family--bodoni-moda: 'Bodoni Moda', serif;--wp--preset--font-family--cabin: Cabin, sans-serif;--wp--preset--font-family--chivo: Chivo, sans-serif;--wp--preset--font-family--commissioner: Commissioner, sans-serif;--wp--preset--font-family--cormorant: Cormorant, serif;--wp--preset--font-family--courier-prime: 'Courier Prime', monospace;--wp--preset--font-family--crimson-pro: 'Crimson Pro', serif;--wp--preset--font-family--dm-mono: 'DM Mono', monospace;--wp--preset--font-family--dm-sans: 'DM Sans', sans-serif;--wp--preset--font-family--domine: Domine, serif;--wp--preset--font-family--eb-garamond: 'EB Garamond', serif;--wp--preset--font-family--epilogue: Epilogue, sans-serif;--wp--preset--font-family--figtree: Figtree, sans-serif;--wp--preset--font-family--fira-sans: 'Fira Sans', sans-serif;--wp--preset--font-family--fraunces: Fraunces, serif;--wp--preset--font-family--ibm-plex-mono: 'IBM Plex Mono', monospace;--wp--preset--font-family--ibm-plex-sans: 'IBM Plex Sans', sans-serif;--wp--preset--font-family--inter: Inter, sans-serif;--wp--preset--font-family--josefin-sans: 'Josefin Sans', sans-serif;--wp--preset--font-family--jost: Jost, sans-serif;--wp--preset--font-family--libre-baskerville: 'Libre Baskerville', serif;--wp--preset--font-family--libre-franklin: 'Libre Franklin', sans-serif;--wp--preset--font-family--literata: Literata, serif;--wp--preset--font-family--lora: Lora, serif;--wp--preset--font-family--merriweather: Merriweather, serif;--wp--preset--font-family--montserrat: Montserrat, sans-serif;--wp--preset--font-family--newsreader: Newsreader, serif;--wp--preset--font-family--nunito: Nunito, sans-serif;--wp--preset--font-family--open-sans: 'Open Sans', sans-serif;--wp--preset--font-family--overpass: Overpass, sans-serif;--wp--preset--font-family--petrona: Petrona, serif;--wp--preset--font-family--piazzolla: Piazzolla, serif;--wp--preset--font-family--playfair-display: 'Playfair Display', serif;--wp--preset--font-family--plus-jakarta-sans: 'Plus Jakarta Sans', sans-serif;--wp--preset--font-family--poppins: Poppins, sans-serif;--wp--preset--font-family--raleway: Raleway, sans-serif;--wp--preset--font-family--roboto: Roboto, sans-serif;--wp--preset--font-family--roboto-slab: 'Roboto Slab', serif;--wp--preset--font-family--rubik: Rubik, sans-serif;--wp--preset--font-family--sora: Sora, sans-serif;--wp--preset--font-family--source-sans-3: 'Source Sans 3', sans-serif;--wp--preset--font-family--source-serif-4: 'Source Serif 4', serif;--wp--preset--font-family--space-mono: 'Space Mono', monospace;--wp--preset--font-family--texturina: Texturina, serif;--wp--preset--font-family--work-sans: 'Work Sans', sans-serif;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}.has-albert-sans-font-family{font-family: var(--wp--preset--font-family--albert-sans) !important;}.has-alegreya-font-family{font-family: var(--wp--preset--font-family--alegreya) !important;}.has-arvo-font-family{font-family: var(--wp--preset--font-family--arvo) !important;}.has-bodoni-moda-font-family{font-family: var(--wp--preset--font-family--bodoni-moda) !important;}.has-cabin-font-family{font-family: var(--wp--preset--font-family--cabin) !important;}.has-chivo-font-family{font-family: var(--wp--preset--font-family--chivo) !important;}.has-commissioner-font-family{font-family: var(--wp--preset--font-family--commissioner) !important;}.has-cormorant-font-family{font-family: var(--wp--preset--font-family--cormorant) !important;}.has-courier-prime-font-family{font-family: var(--wp--preset--font-family--courier-prime) !important;}.has-crimson-pro-font-family{font-family: var(--wp--preset--font-family--crimson-pro) !important;}.has-dm-mono-font-family{font-family: var(--wp--preset--font-family--dm-mono) !important;}.has-dm-sans-font-family{font-family: var(--wp--preset--font-family--dm-sans) !important;}.has-domine-font-family{font-family: var(--wp--preset--font-family--domine) !important;}.has-eb-garamond-font-family{font-family: var(--wp--preset--font-family--eb-garamond) !important;}.has-epilogue-font-family{font-family: var(--wp--preset--font-family--epilogue) !important;}.has-figtree-font-family{font-family: var(--wp--preset--font-family--figtree) !important;}.has-fira-sans-font-family{font-family: var(--wp--preset--font-family--fira-sans) !important;}.has-fraunces-font-family{font-family: var(--wp--preset--font-family--fraunces) !important;}.has-ibm-plex-mono-font-family{font-family: var(--wp--preset--font-family--ibm-plex-mono) !important;}.has-ibm-plex-sans-font-family{font-family: var(--wp--preset--font-family--ibm-plex-sans) !important;}.has-inter-font-family{font-family: var(--wp--preset--font-family--inter) !important;}.has-josefin-sans-font-family{font-family: var(--wp--preset--font-family--josefin-sans) !important;}.has-jost-font-family{font-family: var(--wp--preset--font-family--jost) !important;}.has-libre-baskerville-font-family{font-family: var(--wp--preset--font-family--libre-baskerville) !important;}.has-libre-franklin-font-family{font-family: var(--wp--preset--font-family--libre-franklin) !important;}.has-literata-font-family{font-family: var(--wp--preset--font-family--literata) !important;}.has-lora-font-family{font-family: var(--wp--preset--font-family--lora) !important;}.has-merriweather-font-family{font-family: var(--wp--preset--font-family--merriweather) !important;}.has-montserrat-font-family{font-family: var(--wp--preset--font-family--montserrat) !important;}.has-newsreader-font-family{font-family: var(--wp--preset--font-family--newsreader) !important;}.has-nunito-font-family{font-family: var(--wp--preset--font-family--nunito) !important;}.has-open-sans-font-family{font-family: var(--wp--preset--font-family--open-sans) !important;}.has-overpass-font-family{font-family: var(--wp--preset--font-family--overpass) !important;}.has-petrona-font-family{font-family: var(--wp--preset--font-family--petrona) !important;}.has-piazzolla-font-family{font-family: var(--wp--preset--font-family--piazzolla) !important;}.has-playfair-display-font-family{font-family: var(--wp--preset--font-family--playfair-display) !important;}.has-plus-jakarta-sans-font-family{font-family: var(--wp--preset--font-family--plus-jakarta-sans) !important;}.has-poppins-font-family{font-family: var(--wp--preset--font-family--poppins) !important;}.has-raleway-font-family{font-family: var(--wp--preset--font-family--raleway) !important;}.has-roboto-font-family{font-family: var(--wp--preset--font-family--roboto) !important;}.has-roboto-slab-font-family{font-family: var(--wp--preset--font-family--roboto-slab) !important;}.has-rubik-font-family{font-family: var(--wp--preset--font-family--rubik) !important;}.has-sora-font-family{font-family: var(--wp--preset--font-family--sora) !important;}.has-source-sans-3-font-family{font-family: var(--wp--preset--font-family--source-sans-3) !important;}.has-source-serif-4-font-family{font-family: var(--wp--preset--font-family--source-serif-4) !important;}.has-space-mono-font-family{font-family: var(--wp--preset--font-family--space-mono) !important;}.has-texturina-font-family{font-family: var(--wp--preset--font-family--texturina) !important;}.has-work-sans-font-family{font-family: var(--wp--preset--font-family--work-sans) !important;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+</style>
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-10-1" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/verbum-comments.css" type="text/css" media="all">
+<link rel="stylesheet" id="verbum-gutenberg-css-css" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/block-editor.css" media="all">
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-12-1" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/Unbenannt_007.css" type="text/css" media="all">
+<link rel="stylesheet" id="seedlet-fonts-css" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/css.css" media="all">
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-14-1" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/style_002.css" type="text/css" media="all">
+<link crossorigin="anonymous" rel="stylesheet" id="print-css-15-1" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/print.css" type="text/css" media="print">
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-16-1" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/Unbenannt_005.css" type="text/css" media="all">
+<link rel="stylesheet" id="spearhead-fonts-css" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/css2.css" media="all">
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-18-1" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/Unbenannt_004.css" type="text/css" media="all">
+<style id="jetpack-global-styles-frontend-style-inline-css">
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-20-1" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/Unbenannt_003.css" type="text/css" media="all">
+<script id="jetpack_related-posts-js-extra">
+var related_posts_js_options = {"post_heading":"h4"};
+</script>
+<script crossorigin="anonymous" type="text/javascript" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/Unbenannt_002"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/react.min.js" id="react-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_003.js" id="wp-autop-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_014.js" id="wp-blob-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_012.js" id="wp-block-serialization-default-parser-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_008.js" id="wp-hooks-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_017.js" id="wp-deprecated-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_020.js" id="wp-dom-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/react-dom.min.js" id="react-dom-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_010.js" id="wp-escape-html-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_004.js" id="wp-element-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_018.js" id="wp-is-shallow-equal-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_005.js" id="wp-i18n-js"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+</script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_019.js" id="wp-keycodes-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_015.js" id="wp-priority-queue-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_009.js" id="wp-compose-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_013.js" id="wp-private-apis-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_016.js" id="wp-redux-routine-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min.js" id="wp-data-js"></script>
+<script id="wp-data-js-after">
+( function() {
+	var userId = 0;
+	var storageKey = "WP_DATA_USER_" + userId;
+	wp.data
+		.use( wp.data.plugins.persistence, { storageKey: storageKey } );
+} )();
+</script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_006.js" id="wp-html-entities-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_021.js" id="wp-dom-ready-js"></script>
+<script id="wp-dom-ready-js-after">
+wp.galleryBlockV2Enabled = true
+</script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_011.js" id="wp-a11y-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_022.js" id="wp-rich-text-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_002.js" id="wp-shortcode-js"></script>
+<script crossorigin="anonymous" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.min_007.js" id="wp-blocks-js"></script>
+<script id="media-video-jwt-bridge-js-extra">
+var videopressAjax = {"ajaxUrl":"https:\/\/leftasexercise.wordpress.com\/wp-admin\/admin-ajax.php","bridgeUrl":"\/wp-content\/mu-plugins\/jetpack-plugin\/sun\/jetpack_vendor\/automattic\/jetpack-videopress\/build\/lib\/token-bridge.js","post_id":"2183"};
+</script>
+<script id="wpcom-actionbar-placeholder-js-extra">
+var actionbardata = {"siteID":"143578097","postID":"2183","siteURL":"https:\/\/leftasexercise.com","xhrURL":"https:\/\/leftasexercise.com\/wp-admin\/admin-ajax.php","nonce":"5f7262d75c","isLoggedIn":"","statusMessage":"","subsEmailDefault":"instantly","proxyScriptUrl":"https:\/\/s0.wp.com\/wp-content\/js\/wpcom-proxy-request.js?ver=20211021","shortlink":"https:\/\/wp.me\/p9IrdL-zd","i18n":{"followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar"}};
+</script>
+<script crossorigin="anonymous" type="text/javascript" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/Unbenannt_004"></script>
+<script id="rlt-proxy-js-after">
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://leftasexercise.wordpress.com/xmlrpc.php?rsd">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="https://leftasexercise.com/2020/05/22/managing-kvm-virtual-machines-part-iii-using-libvirt-with-ansible/">
+<link rel="shortlink" href="https://wp.me/p9IrdL-zd">
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fleftasexercise.com%2F2020%2F05%2F22%2Fmanaging-kvm-virtual-machines-part-iii-using-libvirt-with-ansible%2F&amp;for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fleftasexercise.com%2F2020%2F05%2F22%2Fmanaging-kvm-virtual-machines-part-iii-using-libvirt-with-ansible%2F&amp;for=wpcom-auto-discovery">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Managing KVM virtual machines part III – using libvirt with Ansible">
+<meta property="og:url" content="https://leftasexercise.com/2020/05/22/managing-kvm-virtual-machines-part-iii-using-libvirt-with-ansible/">
+<meta property="og:description" content="In my previous post, we have seen how the libvirt toolset can be used to directly create virtual volumes, virtual networks and KVM virtual machines. If this is not the first time you visit my post,…">
+<meta property="article:published_time" content="2020-05-22T15:40:05+00:00">
+<meta property="article:modified_time" content="2020-05-18T19:09:34+00:00">
+<meta property="og:site_name" content="LeftAsExercise">
+<meta property="og:image" content="https://leftasexercise.files.wordpress.com/2020/04/ansiblelibvirtkvm.png">
+<meta property="og:image:width" content="782">
+<meta property="og:image:height" content="440">
+<meta property="og:image:alt" content="">
+<meta property="og:locale" content="en_US">
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom">
+<meta name="twitter:text:title" content="Managing KVM virtual machines part III – using libvirt with&nbsp;Ansible">
+<meta name="twitter:image" content="https://leftasexercise.files.wordpress.com/2020/04/ansiblelibvirtkvm.png?w=640">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s0.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48">
+<link rel="icon" type="image/x-icon" href="https://s0.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48">
+<link rel="apple-touch-icon" href="https://s0.wp.com/i/webclip.png">
+<link rel="search" type="application/opensearchdescription+xml" href="https://leftasexercise.com/osd.xml" title="LeftAsExercise">
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com">
+<link rel="pingback" href="https://leftasexercise.com/xmlrpc.php"><meta name="application-name" content="LeftAsExercise"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-task" content="name=Subscribe;action-uri=https://leftasexercise.com/feed/;icon-uri=https://s0.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s0.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s0.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s0.wp.com/i/favicon.ico"><meta name="description" content="In my previous post, we have seen how the libvirt toolset can be used to directly create virtual volumes, virtual networks and KVM virtual machines. If this is not the first time you visit my post, you will know that I am a big fan of automation, so let us investigate today how we can…">
+<link rel="stylesheet" type="text/css" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/shCore.css"><link rel="stylesheet" type="text/css" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/shThemeDefault.css"><script src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/wp-emoji-release.min.js" defer="defer"></script><link rel="stylesheet" id="gravatar-card-css" href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/hovercards.min.css"><link href="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/actionbar.css" type="text/css" rel="stylesheet"></head>
+
+<body class="post-template-default single single-post postid-2183 single-format-standard wp-embed-responsive customizer-styles-applied singular jetpack-reblog-enabled">
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	
+	<header id="masthead" class="site-header header_classes has-title-and-tagline" role="banner">
+		
+
+<div class="site-branding">
+							<p class="site-title"><a href="https://leftasexercise.com/" rel="home">LeftAsExercise</a></p>
+			
+	</div><!-- .site-branding -->
+		<div class="navigation-wrapper">
+	
+	<div class="menu-button-container">
+			</div>
+
+	
+	<div class="menu-button-container is-cart">
+			</div>
+</div>
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+	<section id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+			
+<article id="post-2183" class="post-2183 post type-post status-publish format-standard has-post-thumbnail hentry category-automation category-cloud category-kvm category-linux tag-ansible tag-cloud-init tag-kvm tag-libvirt entry">
+
+	<header class="entry-header default-max-width">
+		<h1 class="entry-title">Managing KVM virtual machines part III – using libvirt with&nbsp;Ansible</h1>				<div class="entry-meta">
+			<span class="posted-on"><a href="https://leftasexercise.com/2020/05/22/managing-kvm-virtual-machines-part-iii-using-libvirt-with-ansible/" rel="bookmark"><time class="entry-date published" datetime="2020-05-22T16:40:05+01:00">May 22 2020</time><time class="updated" datetime="2020-05-18T20:09:34+01:00">May 18, 2020</time></a></span>		</div><!-- .meta-info -->
+			</header>
+
+	
+			<figure class="post-thumbnail">
+				<img width="1058" height="595" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/ansiblelibvirtkvm_005.webp" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" decoding="async" srcset="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/ansiblelibvirtkvm.webp 1058w, Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/ansiblelibvirtkvm_002.webp 150w, Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/ansiblelibvirtkvm_003.webp 300w, Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/ansiblelibvirtkvm_004.webp 768w, Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/ansiblelibvirtkvm_006.webp 1024w" sizes="(max-width: 1058px) 100vw, 1058px" data-attachment-id="2208" data-permalink="https://leftasexercise.com/2020/05/22/managing-kvm-virtual-machines-part-iii-using-libvirt-with-ansible/ansiblelibvirtkvm/" data-orig-file="https://leftasexercise.files.wordpress.com/2020/04/ansiblelibvirtkvm.png" data-orig-size="1058,595" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="AnsibleLibvirtKVM" data-image-description="" data-image-caption="" data-medium-file="https://leftasexercise.files.wordpress.com/2020/04/ansiblelibvirtkvm.png?w=300" data-large-file="https://leftasexercise.files.wordpress.com/2020/04/ansiblelibvirtkvm.png?w=782">			</figure><!-- .post-thumbnail -->
+
+			
+	<div class="entry-content">
+		<p>In my <a href="https://leftasexercise.com/2020/05/18/managing-kvm-virtual-machines-part-ii-the-libvirt-toolkit/">previous post</a>,
+ we have seen how the libvirt toolset can be used to directly create 
+virtual volumes, virtual networks and KVM virtual machines. If this is 
+not the first time you visit my post, you will know that I am a big fan 
+of automation, so let us investigate today how we can use Ansible to 
+bring up KVM domains automatically.</p>
+<h2>Using the Ansible libvirt modules</h2>
+<p>Fortunately, Ansible comes with a couple of libvirt modules that we 
+can use for this purpose. These modules mainly follow the same approach –
+ we initially create objects from an XML template and then can perform 
+additional operations on them, referencing them by name.</p>
+<p>To use these modules, you will have to install a couple of additional
+ libraries on your workstation. First, obviously, you need Ansible, and I
+ suggest that you take a look at my short <a href="https://leftasexercise.com/2019/11/11/automating-provisioning-with-ansible-part-i/">introduction to Ansible</a> if you are new to it and do not have it installed yet. I have used version 2.8.6 for this post.</p>
+<p>Next, Ansible of course uses Python, and there are a couple of Python
+ modules that we need. In the first post on libvirt, I have already 
+shown you how to install the python3-libvirt package. In addition, you 
+will have to run</p>
+<div><div id="highlighter_528059" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash plain">pip3 </code><code class="bash functions">install</code> <code class="bash plain">lxml</code></div></div></td></tr></tbody></table></div></div>
+<p>to install the XML module that we will need.</p>
+<p>Let us start with a volume pool. In order to somehow isolate our 
+volumes from other volumes on the same hypervisor, it is useful to put 
+them into a separate volume pool. The <b>virt_pool</b> module is able to
+ do this for us, given that we provide an XML definition of the pool 
+which we can of course create from a Jinja2 template, using the name of 
+the volume pool and its location on the hard disk as parameter.</p>
+<p>At this point, we have to define where we store the state of our 
+configuration, consisting of the storage pool, but also potentially SSH 
+keys and the XML templates that we use. I have decided to put all this 
+into a directory <i>state</i> in the same directory where the playbook 
+is kept. This avoids polluting system- or user-wide directories, but 
+also implies that when we eventually clean up this directory, we first 
+have to remove the storage pool again in libvirt as we otherwise have a 
+stale reference from the libvirt XML structures in <i>/etc/libvirt</i> into a non-existing directory.</p>
+<p>Once we have a storage pool, we can create a volume. Unfortunately, 
+Ansible does not (at least not at the time of writing this) have a 
+module to handle libvirt volumes, so a bit of scripting is needed. 
+Essentially, we will have to</p>
+<ul>
+<li>Download a base image if not done yet – we can use the <b>get_url</b> module for that purpose</li>
+<li>Check whether our volume already exists (this is needed to make sure that our playbook is idempotent)</li>
+<li>If no, create a new overlay volume using our base image as backing store</li>
+</ul>
+<p>We could of course upload the base image into the libvirt pool, or, 
+alternatively, keep the base image outside of libvirts control and refer
+ to it via its location on the local file system.</p>
+<p>At this point, we have a volume and can start to create a network. 
+Here, we can again use an Ansible module which has idempotency already 
+built into it – <b>virt_net</b>. As before, we need to create an XML 
+description for the network from a Jinja2 template and hand that over to
+ the module to create our network. Once created, we can then refer to it
+ by name and start it.</p>
+<p>Finally, its time to create a virtual machine. Here, the <b>virt</b> 
+module comes in handy. Still, we need an XML description of our domain, 
+and there are several ways to create that. We could of course built an 
+XML file from scratch based on the specification on <a href="http://libvirt.org/">libvirt.org</a>,
+ or simply use the tools explored in the previous post to create a 
+machine manually and then dump the XML file and use it as a template. I 
+strongly recommend to do both – dump the XML file of a virtual machine 
+and then go through it line by line, with the libvirt documentation in a
+ separate window, to see what it does.</p>
+<p>When defining the virtual machine via the virt module, I was running 
+into error messages that did not show up when using the same XML 
+definition with virsh directly, so I decided to also use virsh for that 
+purpose. </p>
+<p>In case you want to try out the code I had at this point, follow the 
+instructions above to install the required modules and then run (there 
+is still an issue with this code, which we will fix in a minute)</p>
+<div><div id="highlighter_305814" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash plain">git clone https:</code><code class="bash plain">//github</code><code class="bash plain">.com</code><code class="bash plain">/christianb93/ansible-samples</code></div><div class="line number2 index1 alt1"><code class="bash functions">cd</code> <code class="bash plain">ansible-samples</code></div><div class="line number3 index2 alt2"><code class="bash functions">cd</code> <code class="bash plain">libvirt</code></div><div class="line number4 index3 alt1"><code class="bash plain">git checkout origin</code><code class="bash plain">/v0</code><code class="bash plain">.1</code></div><div class="line number5 index4 alt2"><code class="bash plain">ansible-playbook site.yaml</code></div></div></td></tr></tbody></table></div></div>
+<p>When you now run <code>virsh list</code>, you should see the newly created domain <i>test-instance</i>, and using <code>virt-viewer</code> or <code>virt-manager</code>,
+ you should be able to see its screen and that it boots up (after 
+waiting a few seconds because there is no device labeled as root device,
+ which is not a problem – the boot process will still continue).</p>
+<p>So now you can log into your machine…but wait a minute, the image 
+that we use (the Ubuntu cloud image) has no root password set. No 
+problem, we will use SSH. So figure out the IP address of your domain 
+using <code>virsh domifaddr test-instance</code>…hmmm…no IP address. 
+Something is still wrong with our machine, its running but there is no 
+way to log into it. And even if we had an IP address, we could not SSH 
+into it because there is SSH key. </p>
+<p>Apparently we are missing something, and in fact, things like getting a DHCP lease and creating an SSH key would be the job of <b>cloud-init</b>. So there is a problem with the cloud-init configuration of our machine, which we will now investigate and fix.</p>
+<h2>Using cloud-init</h2>
+<p>First, we have to diagnose our problem in a bit more detail. To do 
+this, it would of course be beneficial if we could log into our machine.
+ Fortunately, there is a great tool called <i>virt-customize</i> which is part of the <a href="http://libguestfs.org/">libguestfs</a>
+ project and allows you to manipulate a virtual disk image. So let us 
+shut down our machine, add a root password and restart the machine.</p>
+<div><div id="highlighter_857276" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash plain">virsh destroy </code><code class="bash functions">test</code><code class="bash plain">-instance</code></div><div class="line number2 index1 alt1"><code class="bash functions">sudo</code> <code class="bash plain">virt-customize \</code></div><div class="line number3 index2 alt2"><code class="bash spaces">&nbsp;&nbsp;</code><code class="bash plain">-a state</code><code class="bash plain">/pool/test-volume</code> <code class="bash plain">\</code></div><div class="line number4 index3 alt1"><code class="bash spaces">&nbsp;&nbsp;</code><code class="bash plain">--root-password password:secret</code></div><div class="line number5 index4 alt2"><code class="bash plain">virsh start </code><code class="bash functions">test</code><code class="bash plain">-instance</code></div></div></td></tr></tbody></table></div></div>
+<p>After some time, you should now be able to log into the instance as 
+root using the password “secret”, either from the VNC console or via <code>virsh console test-instance</code>.</p>
+<p>Inside the guest, the first thing we can try is to run <code>dhclient</code> to get an IP address. Once this completes, you should see that <i>ens3</i> has an IP address assigned, so our network and the DHCP server works. </p>
+<p>Next let us try to understand why no DHCP address was assigned during
+ the boot process. Usually, this is done by cloud-init, which, in turn, 
+is started by the systemd mechanism. Specifically, cloud-init uses a <a href="https://www.freedesktop.org/software/systemd/man/systemd.generator.html">generator</a>, i.e. a script (<i>/lib/systemd/system-generators/cloud-init-generator</i>)
+ which then dynamically creates unit files and targets. This script (or 
+rather a Jinja2 template used to create it when cloud-init is installed)
+ can be found <a href="https://github.com/canonical/cloud-init/blob/master/systemd/cloud-init-generator.tmpl">here</a>.</p>
+<p>Looking at this script and the logging output in our test instance (located at <i>/run/cloud-init</i>),
+ we can now figure out what has happened. First, the script tries to 
+determine whether cloud-init should be enabled. For that purpose, it 
+uses the following sources of information.</p>
+<ul>
+<li>The kernel command line as stored in <i>/proc/cmdline</i>, where it will search for a parameter <i>cloud-init</i> which is not set in our case</li>
+<li>Marker files in <i>/etc/cloud</i>, which are also not there in our case</li>
+<li>A default as fallback, which is set to “enabled”</li>
+</ul>
+<p>So far so good, cloud-init has figured out that it should be enabled. Next, however, it checks for a <b>data source</b>, i.e. a source of meta-data and user-data. This is done by calling another script called <a href="https://github.com/canonical/cloud-init/blob/master/tools/ds-identify">ds-identify</a>. It is instructive to re-run this script in our virtual machine with an increased log level and take a look at the output.</p>
+<div><div id="highlighter_829616" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash plain">DEBUG=2 </code><code class="bash plain">/usr/lib/cloud-init/ds-identify</code> <code class="bash plain">--force</code></div><div class="line number2 index1 alt1"><code class="bash functions">cat</code> <code class="bash plain">/run/cloud-init/ds-identify</code><code class="bash plain">.log</code></div></div></td></tr></tbody></table></div></div>
+<p>Here we see that the script tries several sources, each modeled as a 
+function. An example is the check for EC2 metadata, which uses a 
+combination of data like DMI serial number or hypervisor IDs with “seed 
+files” which can be used to enforce the use a data source to check 
+whether we are running on EC2.</p>
+<p>For setups like our setup which is not part of a cloud environment, there is a special data source called the <a href="https://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html">no cloud</a> data source. To force cloud-init to use this data source, there are several options.</p>
+<ul>
+<li>Add the switch “ds=nocloud” to the kernel command line</li>
+<li>Fake a DMI product serial number containing “ds=nocloud”</li>
+<li>Add a special marker directory (“seed directory”) to the image</li>
+<li>Attach a disk that contains a file system with label “cidata” or “CIDATA” to the machine</li>
+</ul>
+<p>So the first step to use cloud-config would to actually enable it. We
+ will choose the approach to add a correctly labeled disk image to our 
+machine. To create such a disk, there is a nice tool called <a href="https://git.launchpad.net/cloud-utils/tree/bin/cloud-localds">cloud_localds</a>, but we will do this manually to better understand how it works.</p>
+<p>First, we need to define the cloud-config data that we want to feed 
+to cloud-init by putting it onto the disk. In general, cloud-init 
+expects two pieces of data: meta data, providing information on the 
+instance, and user data, which contains the actual cloud-init 
+configuration.</p>
+<p>For the metadata, we use a file containing only a bare minimum.</p>
+<div><div id="highlighter_327371" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash plain">$ </code><code class="bash functions">cat</code> <code class="bash plain">state</code><code class="bash plain">/meta-data</code></div><div class="line number2 index1 alt1"><code class="bash plain">instance-</code><code class="bash functions">id</code><code class="bash plain">: iid-</code><code class="bash functions">test</code><code class="bash plain">-instance</code></div><div class="line number3 index2 alt2"><code class="bash functions">local</code><code class="bash plain">-</code><code class="bash functions">hostname</code><code class="bash plain">: </code><code class="bash functions">test</code><code class="bash plain">-instance</code></div></div></td></tr></tbody></table></div></div>
+<p>For the metadata, we use the <a href="https://cloudinit.readthedocs.io/en/latest/topics/examples.html">example</a> from the cloud-init documentation as a starting point, which will simply set up a password for the default user.</p>
+<div><div id="highlighter_871460" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash plain">$ </code><code class="bash functions">cat</code> <code class="bash plain">state</code><code class="bash plain">/user-data</code></div><div class="line number2 index1 alt1"><code class="bash comments">#cloud-config</code></div><div class="line number3 index2 alt2"><code class="bash plain">password: password</code></div><div class="line number4 index3 alt1"><code class="bash plain">chpasswd: { expire: False }</code></div><div class="line number5 index4 alt2"><code class="bash plain">ssh_pwauth: True</code></div></div></td></tr></tbody></table></div></div>
+<p>Now we use the genisoimage utility to create an ISO image from this data. Here is the command that we need to run.</p>
+<div><div id="highlighter_342574" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash plain">genisoimage \</code></div><div class="line number2 index1 alt1"><code class="bash spaces">&nbsp;&nbsp;</code><code class="bash plain">-o state</code><code class="bash plain">/cloud-config</code><code class="bash plain">.iso \</code></div><div class="line number3 index2 alt2"><code class="bash spaces">&nbsp;&nbsp;</code><code class="bash plain">-joliet -rock \</code></div><div class="line number4 index3 alt1"><code class="bash spaces">&nbsp;&nbsp;</code><code class="bash plain">-volid cidata \</code></div><div class="line number5 index4 alt2"><code class="bash spaces">&nbsp;&nbsp;</code><code class="bash plain">state</code><code class="bash plain">/user-data</code> <code class="bash plain">\</code></div><div class="line number6 index5 alt1"><code class="bash spaces">&nbsp;&nbsp;</code><code class="bash plain">state</code><code class="bash plain">/meta-data</code></div></div></td></tr></tbody></table></div></div>
+<p>Now open the virt-manager, shut down the machine, navigate to the 
+machine details, and use “Add hardware” to add our new ISO image as a 
+CDROM device. When you now restart the machine, you should be able to 
+log in as user “ubuntu” with the password “password”.</p>
+<p>When playing with this, there is an interesting pitfall. The 
+cloud-init tool actually caches data on disk, and will only process a 
+changed configuration if the instance-ID changes. So if cloud-init runs 
+once, and you then make a change, you need to delete root volume as well
+ to make sure that this cache is not used, otherwise you will run into 
+interesting issues during testing.</p>
+<p>Similar mechanisms need to be kept in mind for the network 
+configuration. When running for the first time, cloud-init will create a
+ network configuration in <i>/etc/netplan</i>. This configuration makes 
+sure that the network is correctly reconfigured when we reboot the 
+machine, but contains the MAC-address of the virtual network interface. 
+So if you destroy and undefine the domain while the disk untouched, and 
+create a new domain (with a new MAC-address) using the same disk, then 
+the network configuration will fail because the MAC-address no longer 
+matches.</p>
+<p>Let us now automate the entire process using Ansible and add some 
+additional configuration data. First, having a password is of course not
+ the most secure approach. Alternatively, we can use the <i>ssh_authorized_keys</i>
+ key in the cloud-config file which accepts a public SSH key (as a 
+string) which will be added as an authorized key to the default user. </p>
+<p>Next the way we have managed our ISO image is not yet ideal. In fact,
+ when we attach the image to a virtual machine, libvirt will assume 
+ownership of the file and later change its owner and group to “root”, so
+ that an ordinary user cannot easily delete it. To fix this, we can 
+create the ISO image as a volume under the control of libvirt (i.e. in 
+our volume pool) so that we can remove or update it using virsh. </p>
+<p>To see all this in action, clean up by removing the virtual machine 
+and the generated ISO file in the state directory (which should work as 
+long as your user is in the kvm group), get back to the directory into 
+which you cloned my repository and run</p>
+<div><div id="highlighter_16936" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash functions">cd</code> <code class="bash plain">libvirt</code></div><div class="line number2 index1 alt1"><code class="bash plain">git checkout master</code></div><div class="line number3 index2 alt2"><code class="bash plain">ansible-playbook site.yaml</code></div><div class="line number4 index3 alt1"><code class="bash comments"># Wait for machine to get an IP</code></div><div class="line number5 index4 alt2"><code class="bash plain">ip=</code><code class="bash string">""</code></div><div class="line number6 index5 alt1"><code class="bash keyword">while</code> <code class="bash plain">[ </code><code class="bash string">"$ip"</code> <code class="bash plain">== </code><code class="bash string">""</code> <code class="bash plain">]; </code><code class="bash keyword">do</code></div><div class="line number7 index6 alt2"><code class="bash spaces">&nbsp;&nbsp;</code><code class="bash functions">sleep</code> <code class="bash plain">5</code></div><div class="line number8 index7 alt1"><code class="bash spaces">&nbsp;&nbsp;</code><code class="bash functions">echo</code> <code class="bash string">"Waiting for IP..."</code></div><div class="line number9 index8 alt2"><code class="bash spaces">&nbsp;&nbsp;</code><code class="bash plain">ip=$(virsh domifaddr \</code></div><div class="line number10 index9 alt1"><code class="bash spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="bash functions">test</code><code class="bash plain">-instance \</code></div><div class="line number11 index10 alt2"><code class="bash spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="bash plain">| </code><code class="bash functions">grep</code> <code class="bash string">"ipv4"</code> <code class="bash plain">\</code></div><div class="line number12 index11 alt1"><code class="bash spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="bash plain">| </code><code class="bash functions">awk</code> <code class="bash string">'{print $4}'</code> <code class="bash plain">\</code></div><div class="line number13 index12 alt2"><code class="bash spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="bash plain">| </code><code class="bash functions">sed</code> <code class="bash string">"s/\/24//"</code><code class="bash plain">)</code></div><div class="line number14 index13 alt1"><code class="bash keyword">done</code></div><div class="line number15 index14 alt2"><code class="bash functions">echo</code> <code class="bash string">"Got IP $ip, waiting another 5 seconds"</code></div><div class="line number16 index15 alt1"><code class="bash functions">sleep</code> <code class="bash plain">5</code></div><div class="line number17 index16 alt2"><code class="bash functions">ssh</code> <code class="bash plain">-i .</code><code class="bash plain">/state/ssh-key</code> <code class="bash plain">ubuntu@$ip</code></div></div></td></tr></tbody></table></div></div>
+<p>This will run the playbook which configures and brings up the 
+machine, wait until the machine has acquired an IP address and then SSH 
+into it using the ubuntu user with the generated SSH key.</p>
+<p>The playbook will also create two scripts and place them in the state directory. The first script – <i>ssh.sh</i> – will exactly do the same as our snippet above, i.e. figure out the IP address and SSH into the machine. The second script – <i>cleanup.sh</i> – removes all created objects, except the downloaded Ubuntu cloud image so that you can start over with a fresh install. </p>
+<p>This completes our post on using Ansible with libvirt. Of course, 
+this does not replace a more sophisticated tool like Vagrant, but for 
+simple setups, it works nicely and avoids the additional dependency on 
+Vagrant. I hope you had some fun – keep on automating!</p>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul data-sharing-events-added="true"><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-2183" class="share-twitter sd-button share-icon" href="https://leftasexercise.com/2020/05/22/managing-kvm-virtual-machines-part-iii-using-libvirt-with-ansible/?share=twitter&amp;nb=1" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-2183" class="share-facebook sd-button share-icon" href="https://leftasexercise.com/2020/05/22/managing-kvm-virtual-machines-part-iii-using-libvirt-with-ansible/?share=facebook&amp;nb=1" target="_blank" title="Click to share on Facebook"><span>Facebook</span></a></li><li class="share-end"></li></ul></div></div></div><div class="sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-loaded" id="like-post-wrapper-143578097-2183-65ef3240a193d" data-src="//widgets.wp.com/likes/index.html?ver=202402081217#blog_id=143578097&amp;post_id=2183&amp;origin=leftasexercise.wordpress.com&amp;obj_id=143578097-2183-65ef3240a193d&amp;domain=leftasexercise.com" data-name="like-post-frame-143578097-2183-65ef3240a193d" data-title="Like or Reblog"><div class="likes-widget-placeholder post-likes-widget-placeholder" style="height: 55px; display: none;"><span class="button"><span>Like</span></span> <span class="loading">Loading...</span></div><iframe class="post-likes-widget jetpack-likes-widget" name="like-post-frame-143578097-2183-65ef3240a193d" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/index.htm" height="55px" width="100%" frameborder="0" scrolling="no" title="Like or Reblog"></iframe><span class="sd-text-color"></span><a class="sd-link-color"></a></div>
+<div id="jp-relatedposts" class="jp-relatedposts" style="display: block;">
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+<div class="jp-relatedposts-items jp-relatedposts-items-minimal jp-relatedposts-grid "><p class="jp-relatedposts-post jp-relatedposts-post0" data-post-id="2251" data-post-format="false"><span class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://leftasexercise.com/2020/05/29/learning-kafka-with-python-installation/?relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=0" title="Learning Kafka with Python &amp;#8211;&amp;nbsp;installation" data-origin="2183" data-position="0">Learning Kafka with Python –&nbsp;installation</a></span><time class="jp-relatedposts-post-date" datetime="May 29, 2020" style="display: block;">May 29, 2020</time><span class="jp-relatedposts-post-context">In "Kafka"</span></p><p class="jp-relatedposts-post jp-relatedposts-post1" data-post-id="2159" data-post-format="false"><span class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://leftasexercise.com/2020/05/18/managing-kvm-virtual-machines-part-ii-the-libvirt-toolkit/?relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=1" title="Managing KVM virtual machines part II &amp;#8211; the libvirt&amp;nbsp;toolkit" data-origin="2183" data-position="1">Managing KVM virtual machines part II – the libvirt&nbsp;toolkit</a></span><time class="jp-relatedposts-post-date" datetime="May 18, 2020" style="display: block;">May 18, 2020</time><span class="jp-relatedposts-post-context">In "KVM"</span></p><p class="jp-relatedposts-post jp-relatedposts-post2" data-post-id="2146" data-post-format="false"><span class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://leftasexercise.com/2020/05/15/managing-kvm-virtual-machines-part-i-vagrant-and-libvirt/?relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=2183&amp;relatedposts_position=2" title="Managing KVM virtual machines  part I &amp;#8211;  Vagrant and&amp;nbsp;libvirt" data-origin="2183" data-position="2">Managing KVM virtual machines  part I –  Vagrant and&nbsp;libvirt</a></span><time class="jp-relatedposts-post-date" datetime="May 15, 2020" style="display: block;">May 15, 2020</time><span class="jp-relatedposts-post-context">In "KVM"</span></p></div></div></div>	</div><!-- .entry-content -->
+
+	<footer class="entry-footer default-max-width">
+		<span class="posted-on"><a href="https://leftasexercise.com/2020/05/22/managing-kvm-virtual-machines-part-iii-using-libvirt-with-ansible/" rel="bookmark"><time class="entry-date published" datetime="2020-05-22T16:40:05+01:00">May 22 2020</time><time class="updated" datetime="2020-05-18T20:09:34+01:00">May 18, 2020</time></a></span>	</footer><!-- .entry-footer -->
+
+		<div class="entry-author author-avatar-show">
+				<div class="author-avatar">
+			<img alt="" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/49c5ed425fe363abaca4a14ccb6510b1b2adbf7815387f5a6808258_003.jpeg" srcset="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/49c5ed425fe363abaca4a14ccb6510b1b2adbf7815387f5a6808258_003.jpeg 1x, Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/49c5ed425fe363abaca4a14ccb6510b1b2adbf7815387f5a680825810fc.jpeg 1.5x, Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/49c5ed425fe363abaca4a14ccb6510b1b2adbf7815387f5a6808258_002.jpeg 2x, Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/49c5ed425fe363abaca4a14ccb6510b1b2adbf7815387f5a6808258_005.jpeg 3x, Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/49c5ed425fe363abaca4a14ccb6510b1b2adbf7815387f5a6808258_004.jpeg 4x" class="avatar avatar-48 wp-hovercard-attachment grav-hashed grav-hijack" height="48" width="48" loading="lazy" decoding="async">		</div><!-- .author-avatar -->
+		
+		<div class="author-heading">
+			<h2 class="author-title">
+				Published by <span class="author-name">christianb93</span>			</h2>
+		</div><!-- .author-heading -->
+
+		<p class="author-bio">
+						<a class="author-link" href="https://leftasexercise.com/author/christianb93/" rel="author">
+				View all posts by christianb93			</a>
+		</p><!-- .author-bio -->
+	</div><!-- .entry-auhtor -->
+	
+</article><!-- #post-${ID} -->
+
+<div id="comments" class="comments-area default-max-width">
+
+			<h2 class="comments-title">
+			1 Comment		</h2><!-- .comments-title -->
+
+		
+		<ol class="comment-list commentlist">
+					<li id="comment-15365" class="pingback even thread-even depth-1">
+			<div class="comment-body">
+				Pingback: <a href="https://leftasexercise.com/2020/05/18/managing-kvm-virtual-machines-part-ii-the-libvirt-toolkit/" class="url" rel="ugc">Managing KVM virtual machines part II – the libvirt toolkit – LeftAsExercise</a> 			</div>
+		</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+			<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://leftasexercise.com/2020/05/22/managing-kvm-virtual-machines-part-iii-using-libvirt-with-ansible/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://leftasexercise.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+
+
+<div id="comment-form__verbum" class="transparent"></div><div class="verbum-form-meta"><input type="hidden" name="comment_post_ID" value="2183" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+
+			<input type="hidden" name="highlander_comment_nonce" id="highlander_comment_nonce" value="533872f792">
+			<input type="hidden" name="verbum_show_subscription_modal" value=""></div><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="0fd791b89c"></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>Δ<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="1710176427328"><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></form>	</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+		</main><!-- #main -->
+	</section><!-- #primary -->
+
+
+	</div><!-- #content -->
+
+	<footer id="colophon" class="site-footer default-max-width" role="contentinfo" aria-label="Footer">
+			
+	<div class="widget-area">
+		<div class="widget-column footer-widget-1">
+		<section id="search-1" class="widget widget_search"><h2 class="widget-title">Search</h2><form role="search" method="get" class="search-form" action="https://leftasexercise.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search …" name="s">
+				</label>
+				<input type="submit" class="search-submit" value="Search">
+			</form></section><section id="text-1" class="widget widget_text"><h2 class="widget-title">About me</h2>			<div class="textwidget"><p>Being
+ a mathematician by education, I enjoy digging into topics from 
+mathematics, computer science and physics – and even more, I enjoy when 
+all this comes together. I hope that some of that curiosity comes across
+ in my posts – have fun.</p>
+</div>
+		</section><section id="archives-3" class="widget widget_archive"><h2 class="widget-title">Archives</h2><nav aria-label="Archives">
+			<ul>
+					<li><a href="https://leftasexercise.com/2024/03/">March 2024</a></li>
+	<li><a href="https://leftasexercise.com/2024/02/">February 2024</a></li>
+	<li><a href="https://leftasexercise.com/2024/01/">January 2024</a></li>
+	<li><a href="https://leftasexercise.com/2023/07/">July 2023</a></li>
+	<li><a href="https://leftasexercise.com/2023/06/">June 2023</a></li>
+	<li><a href="https://leftasexercise.com/2023/05/">May 2023</a></li>
+	<li><a href="https://leftasexercise.com/2023/04/">April 2023</a></li>
+	<li><a href="https://leftasexercise.com/2021/11/">November 2021</a></li>
+	<li><a href="https://leftasexercise.com/2021/10/">October 2021</a></li>
+	<li><a href="https://leftasexercise.com/2021/09/">September 2021</a></li>
+	<li><a href="https://leftasexercise.com/2021/08/">August 2021</a></li>
+	<li><a href="https://leftasexercise.com/2020/08/">August 2020</a></li>
+	<li><a href="https://leftasexercise.com/2020/07/">July 2020</a></li>
+	<li><a href="https://leftasexercise.com/2020/06/">June 2020</a></li>
+	<li><a href="https://leftasexercise.com/2020/05/">May 2020</a></li>
+	<li><a href="https://leftasexercise.com/2020/04/">April 2020</a></li>
+	<li><a href="https://leftasexercise.com/2020/03/">March 2020</a></li>
+	<li><a href="https://leftasexercise.com/2020/02/">February 2020</a></li>
+	<li><a href="https://leftasexercise.com/2020/01/">January 2020</a></li>
+	<li><a href="https://leftasexercise.com/2019/12/">December 2019</a></li>
+	<li><a href="https://leftasexercise.com/2019/11/">November 2019</a></li>
+	<li><a href="https://leftasexercise.com/2019/10/">October 2019</a></li>
+	<li><a href="https://leftasexercise.com/2019/09/">September 2019</a></li>
+	<li><a href="https://leftasexercise.com/2019/08/">August 2019</a></li>
+	<li><a href="https://leftasexercise.com/2019/07/">July 2019</a></li>
+	<li><a href="https://leftasexercise.com/2019/06/">June 2019</a></li>
+	<li><a href="https://leftasexercise.com/2019/05/">May 2019</a></li>
+	<li><a href="https://leftasexercise.com/2019/04/">April 2019</a></li>
+	<li><a href="https://leftasexercise.com/2019/03/">March 2019</a></li>
+	<li><a href="https://leftasexercise.com/2019/02/">February 2019</a></li>
+	<li><a href="https://leftasexercise.com/2019/01/">January 2019</a></li>
+	<li><a href="https://leftasexercise.com/2018/12/">December 2018</a></li>
+	<li><a href="https://leftasexercise.com/2018/11/">November 2018</a></li>
+	<li><a href="https://leftasexercise.com/2018/10/">October 2018</a></li>
+	<li><a href="https://leftasexercise.com/2018/09/">September 2018</a></li>
+	<li><a href="https://leftasexercise.com/2018/08/">August 2018</a></li>
+	<li><a href="https://leftasexercise.com/2018/07/">July 2018</a></li>
+	<li><a href="https://leftasexercise.com/2018/06/">June 2018</a></li>
+	<li><a href="https://leftasexercise.com/2018/05/">May 2018</a></li>
+	<li><a href="https://leftasexercise.com/2018/04/">April 2018</a></li>
+	<li><a href="https://leftasexercise.com/2018/03/">March 2018</a></li>
+			</ul>
+
+			</nav></section><section id="categories-3" class="widget widget_categories"><h2 class="widget-title">Categories</h2><nav aria-label="Categories">
+			<ul>
+					<li class="cat-item cat-item-14067"><a href="https://leftasexercise.com/category/ai/">AI</a>
+</li>
+	<li class="cat-item cat-item-223016359"><a href="https://leftasexercise.com/category/asyncio/">Asyncio</a>
+</li>
+	<li class="cat-item cat-item-44070"><a href="https://leftasexercise.com/category/automation/">Automation</a>
+</li>
+	<li class="cat-item cat-item-64575263"><a href="https://leftasexercise.com/category/blockchain/">Blockchain</a>
+</li>
+	<li class="cat-item cat-item-39104"><a href="https://leftasexercise.com/category/ci/">CI</a>
+</li>
+	<li class="cat-item cat-item-69816"><a href="https://leftasexercise.com/category/cloud/">Cloud</a>
+</li>
+	<li class="cat-item cat-item-25818"><a href="https://leftasexercise.com/category/cryptography/">Cryptography</a>
+</li>
+	<li class="cat-item cat-item-1356648"><a href="https://leftasexercise.com/category/ctos/">ctOS</a>
+</li>
+	<li class="cat-item cat-item-4504191"><a href="https://leftasexercise.com/category/docker/">Docker</a>
+</li>
+	<li class="cat-item cat-item-2812"><a href="https://leftasexercise.com/category/go/">Go</a>
+</li>
+	<li class="cat-item cat-item-207392"><a href="https://leftasexercise.com/category/kafka/">Kafka</a>
+</li>
+	<li class="cat-item cat-item-46713213"><a href="https://leftasexercise.com/category/kubernetes/">Kubernetes</a>
+</li>
+	<li class="cat-item cat-item-75342"><a href="https://leftasexercise.com/category/kvm/">KVM</a>
+</li>
+	<li class="cat-item cat-item-722199991"><a href="https://leftasexercise.com/category/large-language-models/">Large language models</a>
+</li>
+	<li class="cat-item cat-item-610"><a href="https://leftasexercise.com/category/linux/">Linux</a>
+</li>
+	<li class="cat-item cat-item-40978"><a href="https://leftasexercise.com/category/machine-learning/">Machine learning</a>
+</li>
+	<li class="cat-item cat-item-1906131"><a href="https://leftasexercise.com/category/markov-chains/">Markov chains</a>
+</li>
+	<li class="cat-item cat-item-3582"><a href="https://leftasexercise.com/category/mathematics/">Mathematics</a>
+</li>
+	<li class="cat-item cat-item-7426"><a href="https://leftasexercise.com/category/networking/">Networking</a>
+</li>
+	<li class="cat-item cat-item-13108840"><a href="https://leftasexercise.com/category/openstack/">OpenStack</a>
+</li>
+	<li class="cat-item cat-item-594951"><a href="https://leftasexercise.com/category/osdev/">Osdev</a>
+</li>
+	<li class="cat-item cat-item-832"><a href="https://leftasexercise.com/category/python/">Python</a>
+</li>
+	<li class="cat-item cat-item-564406430"><a href="https://leftasexercise.com/category/qiskit/">Qiskit</a>
+</li>
+	<li class="cat-item cat-item-79583"><a href="https://leftasexercise.com/category/quantum-computing/">Quantum computing</a>
+</li>
+	<li class="cat-item cat-item-2130836"><a href="https://leftasexercise.com/category/solidity/">Solidity</a>
+</li>
+	<li class="cat-item cat-item-3386"><a href="https://leftasexercise.com/category/storage/">Storage</a>
+</li>
+	<li class="cat-item cat-item-357000"><a href="https://leftasexercise.com/category/thermodynamics/">Thermodynamics</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="https://leftasexercise.com/category/uncategorized/">Uncategorized</a>
+</li>
+			</ul>
+
+			</nav></section>		</div>
+	</div><!-- .widget-area -->
+
+	
+<div class="site-info">
+				<a class="site-name" href="https://leftasexercise.com/" rel="home">LeftAsExercise</a><span class="comma">,</span>
+		<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+	</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+
+</div><!-- #page -->
+
+<!--  -->
+<script src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/hovercards.min.js" id="grofiles-cards-js"></script>
+<script id="wpgroho-js-extra">
+var WPGroHo = {"my_hash":""};
+</script>
+<script crossorigin="anonymous" type="text/javascript" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/wpgroho.js"></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init(
+					'body',
+					'#wp-admin-bar-my-account',
+					{
+						i18n: {
+							'Edit your profile': 'Edit your profile',
+							'View profile': 'View profile',
+							'Sorry, we are unable to load this Gravatar profile.': 'Sorry, we are unable to load this Gravatar profile.',
+							'Sorry, we are unable to load this Gravatar profile. Please check your internet connection.': 'Sorry, we are unable to load this Gravatar profile. Please check your internet connection.',
+						},
+					}
+				);
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-ccf5414b203ff385451641e4d7ec20b5">
+	</div>
+	</div>
+	<div id="actionbar" class="actnbr-pub-spearhead actnbr-has-follow">
+		<ul>
+								<li class="actnbr-btn actnbr-hidden">
+						<a class="actnbr-action actnbr-actn-comment" href="https://leftasexercise.com/2020/05/22/managing-kvm-virtual-machines-part-iii-using-libvirt-with-ansible/#comments">
+							<svg class="gridicon gridicons-comment" height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M12 16l-5 5v-5H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v9c0 1.1-.9 2-2 2h-7z"></path></g></svg>							<span>Comment						</span>
+						</a>
+					</li>
+									<li class="actnbr-btn actnbr-hidden">
+						<a class="actnbr-action actnbr-actn-reblog" href="">
+							<svg class="gridicon gridicons-reblog" height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M22.086 9.914L20 7.828V18c0 1.105-.895 2-2 2h-7v-2h7V7.828l-2.086 2.086L14.5 8.5 19 4l4.5 4.5-1.414 1.414zM6 16.172V6h7V4H6c-1.105 0-2 .895-2 2v10.172l-2.086-2.086L.5 15.5 5 20l4.5-4.5-1.414-1.414L6 16.172z"></path></g></svg><span>Reblog</span>
+						</a>
+					</li>
+									<li class="actnbr-btn actnbr-hidden">
+								<a class="actnbr-action actnbr-actn-follow " href="">
+			<svg class="gridicon" height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path clip-rule="evenodd" d="m4 4.5h12v6.5h1.5v-6.5-1.5h-1.5-12-1.5v1.5 10.5c0 1.1046.89543 2 2 2h7v-1.5h-7c-.27614 0-.5-.2239-.5-.5zm10.5 2h-9v1.5h9zm-5 3h-4v1.5h4zm3.5 1.5h-1v1h1zm-1-1.5h-1.5v1.5 1 1.5h1.5 1 1.5v-1.5-1-1.5h-1.5zm-2.5 2.5h-4v1.5h4zm6.5 1.25h1.5v2.25h2.25v1.5h-2.25v2.25h-1.5v-2.25h-2.25v-1.5h2.25z" fill-rule="evenodd"></path></svg>
+			<span>Subscribe</span>
+		</a>
+		<a class="actnbr-action actnbr-actn-following  no-display" href="">
+			<svg class="gridicon" height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 4.5H4V15C4 15.2761 4.22386 15.5 4.5 15.5H11.5V17H4.5C3.39543 17 2.5 16.1046 2.5 15V4.5V3H4H16H17.5V4.5V12.5H16V4.5ZM5.5 6.5H14.5V8H5.5V6.5ZM5.5 9.5H9.5V11H5.5V9.5ZM12 11H13V12H12V11ZM10.5 9.5H12H13H14.5V11V12V13.5H13H12H10.5V12V11V9.5ZM5.5 12H9.5V13.5H5.5V12Z" fill="#008A20"></path><path class="following-icon-tick" d="M13.5 16L15.5 18L19 14.5" stroke="#008A20" stroke-width="1.5"></path></svg>
+			<span>Subscribed</span>
+		</a>
+							<div class="actnbr-popover tip tip-top-left actnbr-notice" id="follow-bubble">
+							<div class="tip-arrow"></div>
+							<div class="tip-inner actnbr-follow-bubble">
+															<ul>
+											<li class="actnbr-sitename actnbr-hidden">
+			<a href="https://leftasexercise.com/">
+				<img alt="" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/wpcom-gray-white.png" srcset="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/wpcom-gray-white.png 1x" class="avatar avatar-50" height="50" width="50">				LeftAsExercise			</a>
+		</li>
+										<div class="actnbr-message no-display"></div>
+									<form method="post" action="https://subscribe.wordpress.com" accept-charset="utf-8" style="display: none;">
+																						<div class="actnbr-follow-count">Join 95 other subscribers</div>
+																					<div>
+										<input type="email" name="email" placeholder="Enter your email address" class="actnbr-email-field" aria-label="Enter your email address">
+										</div>
+										<input type="hidden" name="action" value="subscribe">
+										<input type="hidden" name="blog_id" value="143578097">
+										<input type="hidden" name="source" value="https://leftasexercise.com/2020/05/22/managing-kvm-virtual-machines-part-iii-using-libvirt-with-ansible/">
+										<input type="hidden" name="sub-type" value="actionbar-follow">
+										<input type="hidden" id="_wpnonce" name="_wpnonce" value="95527964d0">										<div class="actnbr-button-wrap">
+											<button type="submit" value="Sign me up">
+												Sign me up											</button>
+										</div>
+									</form>
+									<li class="actnbr-login-nudge actnbr-hidden">
+										<div>
+											Already have a WordPress.com account? <a href="https://wordpress.com/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fleftasexercise.com%252F2020%252F05%252F22%252Fmanaging-kvm-virtual-machines-part-iii-using-libvirt-with-ansible%252F">Log in now.</a>										</div>
+									</li>
+								</ul>
+															</div>
+						</div>
+					</li>
+									<li class="actnbr-btn actnbr-hidden no-display" onclick="javascript:__tcfapi( 'showUi' );">
+						<a class="actnbr-action actnbr-actn-privacy" href="#">
+							<svg class="gridicon gridicons-info-outline" height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M13 9h-2V7h2v2zm0 2h-2v6h2v-6zm-1-7c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8m0-2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2z"></path></g></svg>							<span>Privacy						</span>
+						</a>
+					</li>
+							<li class="actnbr-ellipsis actnbr-hidden">
+				<svg class="gridicon gridicons-ellipsis" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M7 12c0 1.104-.896 2-2 2s-2-.896-2-2 .896-2 2-2 2 .896 2 2zm12-2c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-7 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2z"></path></g></svg>				<div class="actnbr-popover tip tip-top-left actnbr-more">
+					<div class="tip-arrow"></div>
+					<div class="tip-inner">
+						<ul>
+									<li class="actnbr-sitename actnbr-hidden">
+			<a href="https://leftasexercise.com/">
+				<img alt="" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/wpcom-gray-white.png" srcset="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/wpcom-gray-white.png 1x" class="avatar avatar-50" height="50" width="50">				LeftAsExercise			</a>
+		</li>
+								<li class="actnbr-folded-customize actnbr-hidden">
+								<a href="https://leftasexercise.wordpress.com/wp-admin/customize.php?url=https%3A%2F%2Fleftasexercise.wordpress.com%2F2020%2F05%2F22%2Fmanaging-kvm-virtual-machines-part-iii-using-libvirt-with-ansible%2F">
+									<svg class="gridicon gridicons-customize" height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M2 6c0-1.505.78-3.08 2-4 0 .845.69 2 2 2 1.657 0 3 1.343 3 3 0 .386-.08.752-.212 1.09.74.594 1.476 1.19 2.19 1.81L8.9 11.98c-.62-.716-1.214-1.454-1.807-2.192C6.753 9.92 6.387 10 6 10c-2.21 0-4-1.79-4-4zm12.152 6.848l1.34-1.34c.607.304 1.283.492 2.008.492 2.485 0 4.5-2.015 4.5-4.5 0-.725-.188-1.4-.493-2.007L18 9l-2-2 3.507-3.507C18.9 3.188 18.225 3 17.5 3 15.015 3 13 5.015 13 7.5c0 .725.188 1.4.493 2.007L3 20l2 2 6.848-6.848c1.885 1.928 3.874 3.753 5.977 5.45l1.425 1.148 1.5-1.5-1.15-1.425c-1.695-2.103-3.52-4.092-5.448-5.977z"></path></g></svg>									<span>Customize</span>
+								</a>
+							</li>
+																<li class="actnbr-folded-follow actnbr-hidden">
+												<a class="actnbr-action actnbr-actn-follow " href="">
+			<svg class="gridicon" height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path clip-rule="evenodd" d="m4 4.5h12v6.5h1.5v-6.5-1.5h-1.5-12-1.5v1.5 10.5c0 1.1046.89543 2 2 2h7v-1.5h-7c-.27614 0-.5-.2239-.5-.5zm10.5 2h-9v1.5h9zm-5 3h-4v1.5h4zm3.5 1.5h-1v1h1zm-1-1.5h-1.5v1.5 1 1.5h1.5 1 1.5v-1.5-1-1.5h-1.5zm-2.5 2.5h-4v1.5h4zm6.5 1.25h1.5v2.25h2.25v1.5h-2.25v2.25h-1.5v-2.25h-2.25v-1.5h2.25z" fill-rule="evenodd"></path></svg>
+			<span>Subscribe</span>
+		</a>
+		<a class="actnbr-action actnbr-actn-following  no-display" href="">
+			<svg class="gridicon" height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 4.5H4V15C4 15.2761 4.22386 15.5 4.5 15.5H11.5V17H4.5C3.39543 17 2.5 16.1046 2.5 15V4.5V3H4H16H17.5V4.5V12.5H16V4.5ZM5.5 6.5H14.5V8H5.5V6.5ZM5.5 9.5H9.5V11H5.5V9.5ZM12 11H13V12H12V11ZM10.5 9.5H12H13H14.5V11V12V13.5H13H12H10.5V12V11V9.5ZM5.5 12H9.5V13.5H5.5V12Z" fill="#008A20"></path><path class="following-icon-tick" d="M13.5 16L15.5 18L19 14.5" stroke="#008A20" stroke-width="1.5"></path></svg>
+			<span>Subscribed</span>
+		</a>
+										</li>
+																	<li class="actnbr-signup actnbr-hidden"><a href="https://wordpress.com/start/">Sign up</a></li>
+									<li class="actnbr-login actnbr-hidden"><a href="https://wordpress.com/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fleftasexercise.com%252F2020%252F05%252F22%252Fmanaging-kvm-virtual-machines-part-iii-using-libvirt-with-ansible%252F">Log in</a></li>
+																	<li class="actnbr-shortlink actnbr-hidden"><a href="https://wp.me/p9IrdL-zd">Copy shortlink</a></li>
+																	<li class="flb-report actnbr-hidden">
+										<a href="http://en.wordpress.com/abuse/?report_url=https://leftasexercise.com/2020/05/22/managing-kvm-virtual-machines-part-iii-using-libvirt-with-ansible/" target="_blank">
+											Report this content										</a>
+									</li>
+																	<li class="actnbr-reader actnbr-hidden">
+										<a href="https://wordpress.com/read/blogs/143578097/posts/2183">
+											View post in Reader										</a>
+									</li>
+																	<li class="actnbr-subs actnbr-hidden">
+										<a href="https://subscribe.wordpress.com/">Manage subscriptions</a>
+									</li>
+																		<li class="actnbr-fold actnbr-hidden"><a href="">Collapse this bar</a></li>
+															</ul>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20240115";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20231122";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/leftasexercise.com\/2020\/05\/22\/managing-kvm-virtual-machines-part-iii-using-libvirt-with-ansible\/":2183};
+	</script>
+				<script crossorigin="anonymous" type="text/javascript" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/Unbenannt_003"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://s0.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://s0.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?m=1363304414i&amp;ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	document.addEventListener( 'is.post-load', function () {
+		SyntaxHighlighter.highlight();
+	} );
+</script>
+<script id="comment-like-js-extra">
+var comment_like_text = {"loading":"Loading...","swipeUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/comment-likes\/js\/lib\/swipe.js?ver=20131008"};
+</script>
+<script id="sharing-js-js-extra">
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+</script>
+<script id="verbum-settings-js-before">
+window.VerbumComments = {"Log in or provide your name and email to leave a reply.":"Log in or provide your name and email to leave a reply.","Log in or provide your name and email to leave a comment.":"Log in or provide your name and email to leave a comment.","Receive web and mobile notifications for posts on this site.":"Receive web and mobile notifications for posts on this site.","Name":"Name","Email (address never made public)":"Email (address never made public)","Website (optional)":"Website (optional)","Leave a reply. (log in optional)":"Leave a reply. (log in optional)","Leave a comment. (log in optional)":"Leave a comment. (log in optional)","Log in to leave a reply.":"Log in to leave a reply.","Log in to leave a comment.":"Log in to leave a comment.","Logged in via %s":"Logged in via %s","Log out":"Log out","Email":"Email","(Address never made public)":"(Address never made public)","Instantly":"Instantly","Daily":"Daily","Reply":"Reply","Comment":"Comment","WordPress":"WordPress","Weekly":"Weekly","Notify me of new posts":"Notify me of new posts","Email me new posts":"Email me new posts","Email me new comments":"Email me new comments","Cancel":"Cancel","Write a comment...":"Write a comment...","Write a reply...":"Write a reply...","Website":"Website","Optional":"Optional","We'll keep you in the loop!":"We'll keep you in the loop!","Loading your comment...":"Loading your comment...","Discover more from":"Discover more from LeftAsExercise","Subscribe now to keep reading and get access to the full archive.":"Subscribe now to keep reading and get access to the full archive.","Continue reading":"Continue reading","Never miss a beat!":"Never miss a beat!","Interested in getting blog post updates? Simply click the button below to stay in the loop!":"Interested in getting blog post updates? Simply click the button below to stay in the loop!","Enter your email address":"Enter your email address","Subscribe":"Subscribe","Comment sent successfully":"Comment sent successfully","Save my name, email, and website in this browser for the next time I comment.":"Save my name, email, and website in this browser for the next time I comment.","siteId":143578097,"postId":2183,"mustLogIn":false,"requireNameEmail":false,"commentRegistration":false,"connectURL":"https:\/\/leftasexercise.wordpress.com\/public.api\/connect\/?action=request&domain=leftasexercise.com","logoutURL":"https:\/\/leftasexercise.wordpress.com\/wp-login.php?action=logout&_wpnonce=79be9fe120","homeURL":"https:\/\/leftasexercise.com\/","subscribeToBlog":true,"subscribeToComment":true,"isJetpackCommentsLoggedIn":false,"jetpackUsername":"","jetpackUserId":0,"jetpackSignature":"","jetpackAvatar":"https:\/\/0.gravatar.com\/avatar\/?s=96&amp;d=identicon&amp;r=G","enableBlocks":true,"enableSubscriptionModal":true,"currentLocale":"en","isJetpackComments":false,"allowedBlocks":["core\/paragraph","core\/list","core\/code","core\/list-item","core\/quote","core\/image","core\/embed","core\/quote","core\/code"],"embedNonce":"dc36c70ad6","verbumBundleUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/jetpack-mu-wpcom-plugin\/sun\/vendor\/automattic\/jetpack-mu-wpcom\/src\/features\/verbum-comments\/dist\/index.js","isRTL":false,"vbeCacheBuster":1705430309}
+</script>
+<script crossorigin="anonymous" type="text/javascript" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/Unbenannt"></script>
+<script id="sharing-js-js-after">
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-twitter' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-twitter' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+						return false;
+					}
+				} );
+			} )();
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-facebook' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-facebook' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+						return false;
+					}
+				} );
+			} )();
+</script>
+	<script>
+	/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);
+	</script>
+	
+	<script type="text/javascript">
+		(function () {
+			var wpcom_reblog = {
+				source: 'toolbar',
+
+				toggle_reblog_box_flair: function (obj_id, post_id) {
+
+					// Go to site selector. This will redirect to their blog if they only have one.
+					const postEndpoint = `https://wordpress.com/post`;
+
+					// Ideally we would use the permalink here, but fortunately this will be replaced with the 
+					// post permalink in the editor.
+					const originalURL = `${ document.location.href }?page_id=${ post_id }`; 
+					
+					const url =
+						postEndpoint +
+						'?url=' +
+						encodeURIComponent( originalURL ) +
+						'&is_post_share=true' +
+						'&v=5';
+
+					const redirect = function () {
+						if (
+							! window.open( url, '_blank' )
+						) {
+							location.href = url;
+						}
+					};
+
+					if ( /Firefox/.test( navigator.userAgent ) ) {
+						setTimeout( redirect, 0 );
+					} else {
+						redirect();
+					}
+				},
+			};
+
+			window.wpcom_reblog = wpcom_reblog;
+		})();
+	</script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>	<iframe src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/master.htm" scrolling="no" id="likes-master" name="likes-master" style="display:none;"></iframe>
+	<div id="likes-other-gravatars" class="wpl-new-layout" role="dialog" aria-hidden="true" tabindex="-1" style="display: none;">
+		<div class="likes-text">
+			<span>%d</span>		</div>
+		<ul class="wpl-avatars sd-like-gravatars"></ul>
+	</div>
+
+		<script src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/w.js" defer="defer"></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'143578097','blog_tz':'1','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'143578097','v':'wpcom','tz':'1','user_id':'0','post':'2183','subd':'leftasexercise'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1mNzc2NTVTamdsd0xoLz9RQkM2K298TXY9bERQMXc2MjhEaVZfb2wwakRoSj0mUkp1THptM1NdbkV1WjZIcU9mVWQmPUIvMlN6Jk8wW3NYVEJ3dWZOWExuWD9rdHhbJU0/VH5BMHo0cjNlQTd0NmpxUnM/VF1kOFZpNjddQXFGK3AsNE5SW2x3WHlyLTgwWmRFQl9CQUszYyVmOTl+al81UUZXSU1GZzEtU2paOGwsQ213Z0t+YlQrMm04SDMuQVN1PXBUZyUvdHNFXSs2dkZLPUhacEROMWh8dFRRQ1U9MzlVUXZTem5NK35OfDNVaXJFdmNOTUo9b3pCQnFOcV85UT9BUD15ak55TzhXLH4tcWx3dURdWXZORzk='}]);
+_stq.push([ 'clickTrackerInit', '143578097', '2183' ]);
+</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+<script>
+(function() {
+	'use strict';
+
+	const fetches = {};
+	const promises = {};
+	const urls = {
+		'verbum': 'https://s0.wp.com/wp-content/mu-plugins/jetpack-mu-wpcom-plugin/sun/vendor/automattic/jetpack-mu-wpcom/src/build/verbum-comments/verbum-comments.js?m=1709633633i&minify=false&ver=4f6d6c9d429afabf057c'
+	};
+	const loaders = {
+		'verbum': () => {
+			fetchExternalScript('verbum');
+			promises['verbum'] = promises['verbum'] || loadWPScript('verbum');
+			return promises['verbum'];
+		},
+		
+	};
+	const scriptExtras = {
+		
+	};
+
+	window.WP_Enqueue_Dynamic_Script = {
+		loadScript: (handle) => {
+			if (!loaders[handle]) {
+				console.error('WP_Enqueue_Dynamic_Script: unregistered script `' + handle + '`.');
+			}
+			return loaders[handle]();
+		}
+	};
+
+	function fetchExternalScript(handle) {
+		if (!urls[handle]) {
+			return Promise.resolve();
+		}
+
+		fetches[handle] = fetches[handle] || fetch(urls[handle], { mode: 'no-cors' });
+		return fetches[handle];
+	}
+
+	function runExtraScript(handle, type, index) {
+		const id = 'wp-enqueue-dynamic-script:' + handle + ':' + type + ':' + (index + 1);
+		const template = document.getElementById(id);
+		if (!template) {
+			return Promise.reject();
+		}
+
+		const script = document.createElement( 'script' );
+		script.innerHTML = template.innerHTML;
+		document.body.appendChild( script );
+		return Promise.resolve();
+	}
+
+	function loadExternalScript(handle) {
+		if (!urls[handle]) {
+			return Promise.resolve();
+		}
+
+		return fetches[handle].then(() => {
+			return new Promise((resolve, reject) => {
+				const script = document.createElement('script');
+				script.onload = () => resolve();
+				script.onerror = (e) => reject(e);
+				script.src = urls[handle];
+				document.body.appendChild(script);
+			});
+		});
+	}
+
+	function loadExtra(handle, pos) {
+		const count = (scriptExtras[handle] && scriptExtras[handle][pos]) || 0;
+		let promise = Promise.resolve();
+
+		for (let i = 0; i < count; i++) {
+			promise = promise.then(() => runExtraScript(handle, pos, i));
+		}
+
+		return promise;
+	}
+
+	function loadWPScript(handle) {
+		return loadExtra(handle, 'before')
+			.then(() => loadExternalScript(handle))
+			.then(() => loadExtra(handle, 'after'));
+	}
+} )();
+</script>
+
+
+
+<p id="a11y-speak-intro-text" class="a11y-speak-intro-text" style="position: absolute;margin: -1px;padding: 0;height: 1px;width: 1px;overflow: hidden;clip: rect(1px, 1px, 1px, 1px);-webkit-clip-path: inset(50%);clip-path: inset(50%);border: 0;word-wrap: normal !important;" hidden="hidden">Notifications</p><div id="a11y-speak-assertive" class="a11y-speak-region" style="position: absolute;margin: -1px;padding: 0;height: 1px;width: 1px;overflow: hidden;clip: rect(1px, 1px, 1px, 1px);-webkit-clip-path: inset(50%);clip-path: inset(50%);border: 0;word-wrap: normal !important;" aria-live="assertive" aria-relevant="additions text" aria-atomic="true"></div><div id="a11y-speak-polite" class="a11y-speak-region" style="position: absolute;margin: -1px;padding: 0;height: 1px;width: 1px;overflow: hidden;clip: rect(1px, 1px, 1px, 1px);-webkit-clip-path: inset(50%);clip-path: inset(50%);border: 0;word-wrap: normal !important;" aria-live="polite" aria-relevant="additions text" aria-atomic="true"></div><div class="comment-likes-overlay" style="display: none;"></div><iframe style="display: none;" scrolling="no" id="wpcom_remote_login_key" src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/remote-login.htm"></iframe><script src="Managing%20KVM%20virtual%20machines%20part%20III%20%E2%80%93%20using%20libvirt%20with%20Ansible%20%E2%80%93%20LeftAsExercise-Dateien/actionbar.js" defer="defer"></script></body></html>

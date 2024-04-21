@@ -1,0 +1,190 @@
+http://www.webgraphviz.com/
+		
+digraph run {
+	run [shape="box",color="blue"]
+	Exit__1 [label="Exit(1)",shape="box",color="red"]
+	ha__run_cycle [shape="box"]
+	keep_daemons_alive [shape="box"]
+	alertDB2 [shape="box",color="orange"]
+	alertHADR [shape="box",color="orange"]
+	db2__stop [shape="box",style="filled",color="#f5b7b1"]
+	LoopA__sleep [shape="box"]
+
+	run -> initial_setup__START
+	initial_setup__EXIT -> LoopA
+	LoopA -> keep_daemons_alive -> ha__run_cycle
+		ha__run_cycle -> LoopA__sleep [label="no_error"]
+		ha__run_cycle -> Etcd__verify_endpoint [label="http_error"]
+			Etcd__verify_endpoint -> LoopA__sleep [label="yes"]
+			Etcd__verify_endpoint -> db2__hadr_connected [label="no"]
+				db2__hadr_connected -> alertHADR [label="yes"]
+					alertHADR -> LoopA__sleep
+				db2__hadr_connected -> db2__is_primary [label="no"]
+					db2__is_primary -> db2__stop [label="yes"]
+						db2__stop -> LoopA__sleep
+					db2__is_primary -> WaitLoop__START [label="no"]
+					WaitLoop__EXIT -> LoopA__sleep
+		ha__run_cycle -> alertDB2 [label="db2_error"]
+		alertDB2 -> Exit__1
+	LoopA__sleep -> LoopA
+
+	subgraph WaitLoop {
+		WaitLoop__START [shape="box"]
+		WaitLoop__EXIT [shape="box"]
+		WaitLoop__sleep [shape="box"]
+		WaitLoop__Etcd__verify_endpoint [label="Etcd__verify_endpoint"]
+
+		WaitLoop__START -> WaitLoop__Etcd__verify_endpoint
+			WaitLoop__Etcd__verify_endpoint -> WaitLoop__sleep [label="no"]
+			WaitLoop__Etcd__verify_endpoint -> WaitLoop__Etcd__leader_exists [label="yes"]
+				WaitLoop__Etcd__leader_exists -> WaitLoop__sleep [label="no"]
+					WaitLoop__sleep -> WaitLoop__Etcd__verify_endpoint
+				WaitLoop__Etcd__leader_exists -> WaitLoop__EXIT [label="yes"]
+	}
+
+	subgraph initial_setup {
+		node [style=filled]
+
+		initial_setup__START [style="filled",shape="box"]
+		initial_setup__EXIT [style="filled",shape="box"]
+		initial_setup__Exit__1 [label="Exit(1)",shape="box",color="red"]
+		initial_setup__Etcd__verify_endpoint [label="Etcd__verify_endpoint"]
+		initial_setup__alertDB2 [label="alertDB2",shape="box",color="orange"]
+		lock_updater [shape="box"]
+		start_daemon_pool__START [shape="box"]
+		start_daemon_pool__EXIT [shape="box"]
+		alertETCD [shape="box",color="orange"]
+
+		initial_setup__START -> initial_setup__loopA -> lock_updater -> init__START
+		init__EXIT -> start_daemon_pool__START
+			start_daemon_pool__START -> start_daemon_pool__EXIT
+		start_daemon_pool__EXIT -> initial_setup__EXIT [label="no error"]
+		start_daemon_pool__EXIT -> initial_setup__alertDB2 [label="db error"]
+			initial_setup__alertDB2 -> initial_setup__Exit__1
+		start_daemon_pool__EXIT -> initial_setup__Etcd__verify_endpoint [label="http error"]
+			initial_setup__Etcd__verify_endpoint -> initial_setup__loopA [label="yes"]
+			initial_setup__Etcd__verify_endpoint -> alertETCD [label="no"]
+				alertETCD -> initial_setup__sleep
+			initial_setup__sleep -> initial_setup__loopA
+
+		subgraph init {
+			init__is_primary [label="is_primary"]
+			init__update_membership [label="update_membership",shape="box"]
+			init_primary__leader_exists [label="leader_exists"]
+			init_primary__update_membership [label="update_membership",shape="box"]
+			init_primary__start_as_primary [label="start_as_primary"]
+			init__START [shape="box"]
+			init__EXIT [shape="box"]
+			init__acquire_lock [label="acquire_leader",shape="box"]
+			init__start_as_standby [label="start_as_standby",shape="box"]
+			init__leader_exists [label="leader_exists"]
+			init__num_members [label="num_members"]
+			init__sleep [shape="box"]
+
+			init__START -> db2__start -> init__is_primary
+				init__is_primary -> init_primary__leader_exists [label="yes"]
+					init_primary__leader_exists -> init_primary__start_as_primary [label="yes"]
+						init_primary__start_as_primary -> init_primary__update_membership [label="success",color="green"]
+							init_primary__update_membership -> init__EXIT
+						init_primary__start_as_primary -> init__start_as_standby [label="fail",color="red"]
+					init_primary__leader_exists -> init__acquire_lock [label="no"]
+						init__acquire_lock -> init_primary__start_as_primary [label="success",color="green"]
+						init__acquire_lock -> init__start_as_standby [label="fail",color="red"]
+				init__is_primary -> init__start_as_standby [label="no"]
+					init__start_as_standby -> init__LoopA -> init__leader_exists
+							init__leader_exists -> init__sleep [label="yes"]
+							init__leader_exists -> init__update_membership [label="no"]
+								init__update_membership -> over_10_mins
+									over_10_mins -> init__EXIT [label="yes"]
+									over_10_mins -> init__num_members [label="no"]
+										init__num_members -> init__EXIT [label="> 1"]
+										init__num_members -> init__sleep [label="<= 1"]
+			init__sleep -> init__LoopA
+
+		}
+	}
+}
+
+digraph run_cycle {
+	run_cycle__is_primary [label="is_primary"]
+	run_cycle__is_leader [label="is_leader"]
+	run_cycle__leader_exists [label="leader_exists"]
+	run_cycle__promote [label="promote",shape="box",style="filled",color=" #d6eaf8"]
+	run_cycle__demote [label="demote",shape="box",style="filled",color="#f5b7b1"]
+	run_cycle__update_membership [label="update_membership",shape="box"]
+	run_cycle__update_lock [label="update_lock",shape="box"]
+
+	run_cycle__Start -> db_state_ok__START
+	db_state_ok__ReturnT -> run_cycle__update_membership [label="yes"]
+		run_cycle__update_membership -> run_cycle__leader_exists
+			run_cycle__leader_exists -> acquire_lock [label="no"]
+				acquire_lock -> run_cycle__is_primary [label="success",color="green"]
+					run_cycle__is_primary -> run_cycle__promote [label="no",color="green"]
+						run_cycle__promote -> run_cycle__Return [color="green"]
+					run_cycle__is_primary -> run_cycle__Return [label="yes",color="green"]
+				acquire_lock -> run_cycle__is_primary [label="fail",color="red"]
+					run_cycle__is_primary -> run_cycle__demote [label="yes",color="red"]
+						run_cycle__demote -> run_cycle__Return [color="red"]
+					run_cycle__is_primary -> run_cycle__Return [label="no",color="red"]
+			run_cycle__leader_exists -> run_cycle__is_leader [label="yes",color="blue"]
+				run_cycle__is_leader -> run_cycle__update_lock -> run_cycle__is_primary [label="yes",color="blue"]
+					run_cycle__is_primary -> run_cycle__promote -> run_cycle__Return [label="yes",color="blue"]
+					run_cycle__is_primary -> run_cycle__Return [label="no",color="blue"]
+				run_cycle__is_leader -> run_cycle__is_primary [label="no"]
+					run_cycle__is_primary -> run_cycle__demote -> run_cycle__Return [label="yes"]
+					run_cycle__is_primary -> run_cycle__Return [label="no"]
+	db_state_ok__ReturnF -> run_cycle__Return [label="no"]
+
+	subgraph db_state_ok {
+		node [style=filled]
+
+		db_state_ok__START [style="filled"]
+		db_state_ok__ReturnT [label="db_state_ok__Return=True",style="filled"]
+		db_state_ok__ReturnF [label="db_state_ok__Return=False",style="filled"]
+		db_state_ok__is_running [label="is_running"]
+		db_state_ok__is_leader [label="is_leader"]
+		db_state_ok__is_primary [label="is_primary"]
+		db_state_ok__only_member [label="only_member"]
+		db_state_ok__demote [label="demote",shape="box",style="filled",color="#f5b7b1"]
+		db_state_ok__start_as_primary [label="start_as_primary",shape="box"]
+		db_state_ok__start_as_standby [label="start_as_standby",shape="box"]
+
+		db_state_ok__START -> is_read_only
+			is_read_only -> db_state_ok__is_running [label="no"]
+				db_state_ok__is_running -> db_active__START [label="yes"]
+					db_active__ReturnT -> db_state_ok__ReturnT
+					db_active__ReturnF -> db_state_ok__is_leader
+						db_state_ok__is_leader -> db_state_ok__start_as_primary [label="yes"]
+							db_state_ok__start_as_primary -> db_state_ok__ReturnF
+						db_state_ok__is_leader -> db_state_ok__start_as_standby [label="no"]
+							db_state_ok__start_as_standby -> db_state_ok__ReturnF
+				db_state_ok__is_running -> db_state_ok__is_leader [label="no"]
+			is_read_only -> db_state_ok__is_primary [label="yes"]
+				db_state_ok__is_primary -> db_state_ok__only_member [label="yes"]
+					db_state_ok__only_member -> db_state_ok__demote [label="no"]
+						db_state_ok__demote -> db_state_ok__ReturnF
+					db_state_ok__only_member -> db_state_ok__ReturnF [label="yes"]
+				db_state_ok__is_primary -> db_state_ok__ReturnF [label="no"]
+
+		subgraph db_active {
+			db_active__is_primary [label="is_primary"]
+			db_active__ping [label="db2ping",shape="box"]
+			db_active__can_connect [label="can_connect"]
+			db_active__ReturnT [label="db_active__Return=True"]
+			db_active__ReturnF [label="db_active__Return=False"]
+
+			db_active__START -> db_active__is_primary
+				db_active__is_primary -> db_active__ping [label="yes"]
+					db_active__ping -> db_active__can_connect [label="yes"]
+						db_active__can_connect -> db_active__ReturnT [label="yes"]
+						db_active__can_connect -> db_active__ReturnF [label="no"]
+					db_active__ping -> db_active__ReturnF [label="no"]
+				db_active__is_primary -> load_state__hadr_state [label="no"]
+					load_state__hadr_state -> db_active__ReturnF [label="None"]
+					load_state__hadr_state -> load_state__hadr_connect_status [label="has value"]
+					load_state__hadr_connect_status -> db_active__ReturnF [label="None"]
+					load_state__hadr_connect_status -> db_active__ReturnT [label="has value"]
+		}
+	}
+}
+

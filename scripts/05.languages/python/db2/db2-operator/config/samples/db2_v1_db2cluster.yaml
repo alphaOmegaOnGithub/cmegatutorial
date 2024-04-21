@@ -1,0 +1,13 @@
+apiVersion: db2.example.com/v1
+kind: DB2Cluster
+metadata:
+  name: db2cluster-sample
+spec:
+  # TODO(user): Add fields here
+  Size: 2
+  EtcdEndpoint: "etcd-0.etcd-test.etcd.svc.cluster.local:2379,etcd-1.etcd-test.etcd.svc.cluster.local:2379,etcd-2.etcd-test.etcd.svc.cluster.local:2379"
+  DBName: "HADRDB"
+  DBInstance: "db2inst1"
+  DBInstancePassword: "db2inst1"
+  StorageClassforHADR: "managed-nfs-storage"
+  StorageClassforDB: "openebs-hostpath"

@@ -1,0 +1,4 @@
+## Append samples you want in your CSV to this file as resources ##
+resources:
+- db2_v1_db2cluster.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples

@@ -1,0 +1,863 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.example.org/cm/igso/2023//igso-frw"
+     xml:base="http://www.example.org/cm/igso/2023//igso-frw"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:igso-frw="http://www.example.org/cm/igso/2023//igso-frw">
+    <owl:Ontology rdf:about="http://www.example.org/cm/igso/2023//igso-frw">
+        <rdfs:comment xml:lang="en">ARMA / IGMM	 - ARMA International is the community of records and  information management and governance professionals. RIM is the combination Records and Information Management. Records management provides a holistic approach to management and disposition of records and information. Information Management provides management based on business value to an organization’s constituents and clients. RIM focus is to link records with business outcomes and processes. IGIM is the Information Governance Implementation Model published and promoted by ARMA. 
+
+ARMA / IGMI	IGMI 
+
+CGOC - IGRM	CGOC (Compliance, Governance and Oversight Council) is a forum of over 3,800 legal, IT, privacy, security, records and information management professionals. Author of - IGRM Information Governance Refence Model.
+
+EDRM - EDRM - EDRM electronic Discovery Refence Model
+
+ISACA-COBIT	
+
+DAM	&quot;Data Asset Management&quot;
+
+DAMA	&quot;The Data Management Association &quot;</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#ARMA_frwrks -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#ARMA_frwrks">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#igFramework"/>
+        <rdfs:comment xml:lang="en">ARMA International is the community of records and  information management and governance professionals. RIM is the combination Records and Information Management.
+
+ARMA International Information Governance Maturity Model
+©ARMA International, 2013 
+
+Note: Records management terms used in the Generally Accepted Recordkeeping Principles® 
+
+Information Governance Maturity Model (IGMM) are defined in the Glossary of  Records and Information Management Terms,3rd Edition (ARMA International, 2007). Data Governance is a subset of IT governance that focuses on establishing processes  and policies around managing data as a corporate asset. More ovber data governance refers to the overall management of the availability, usability, integrity and security 
+of the data employed in an enterprise. And data governance provides the infrastructure,  resources and processes necessary to manage data with the big picture in mind.
+
+Regulatory compliance - Sarbanes-Oxley, etc.: &quot;Where management has outsourced…functions to third party service provider(s), management maintains a responsibility to assess the controls over the outsourced operations.”
+
+The business drivers for managing data as a corporate asset are:
+- Competitiveness
+- Regulatory compliance
+- Realizing the benefit of investments in BI and other Information-based initiatives
+
+Establishment of a modeling strategy which includes:</rdfs:comment>
+        <rdfs:label xml:lang="en">ARMA International</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Accountability_igmm -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Accountability_igmm">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Priciples_igmm"/>
+        <rdfs:comment xml:lang="en">Essential
+A records management program (RMP)  is established.
+The RIM role is assigned.
+Electronic records are part of the RMP.
+RIM is engaged with other officers.                                                                                       
+IG drives information-driven processes.
+Accountabiliy goals are defined.
+Proactive 
+IG professional supervises IG program.
+A senior officer is appommnted RM and responsible for the RMP.
+RMP is an element of the IGP.
+Disposition policies and RM-related issues are revied periodically.
+
+Transformational
+SMgmnt and Governing Board place great emphasis on IG.  
+There is a Chief Information Governanace Officer (CIGO) appointed.
+CIGO and RM are member of the governing body.
+The accountability goals are met.
+The accountability goals are periodically reviewed and revised.</rdfs:comment>
+        <rdfs:label xml:lang="en">Accontability</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Authority_igmi -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Authority_igmi">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#IGMI_arma"/>
+        <rdfs:comment xml:lang="en">Authoritative Frameworks, Privicy Requirements, Standards, Best Practices, Risk Tolerance, Regulations, Organizational Culture</rdfs:comment>
+        <rdfs:label xml:lang="en">Authority</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Availability_igmm -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Availability_igmm">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Priciples_igmm"/>
+        <rdfs:comment xml:lang="en">Essential
+There is a standard for where and how official records and information are stored, protected, and made available.
+
+Record retrieval mechanisms are consistent and contribute to timely records retrieval.
+
+Most of the time, it is easy to determine where to find the authentic and final version of any record.
+
+Legal discovery is a well defined and systematic business process.
+The organization has defined specific goals related to availability.
+
+Proactive
+There are clearly defined policies regarding storage of records and information.
+
+There are clear guidelines and an inventory that identifies and defines the systems and their information assets. Records and information are consistently and readily available when needed.
+
+Appropriate systems and controls are in place for legal discovery. 
+
+Automation is adopted to facilitate the implementation of the hold process.
+
+Transformational
+The senior management and board levels provide support to continually upgrade the processes that affect record availability.
+
+There is an organized training and continuous improvement program.
+
+The organization’s stated goals related to availability have been met.
+
+There is a measurable ROI to the business as a result of records availability</rdfs:comment>
+        <rdfs:label xml:lang="en">Availability</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#CCO_role -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#CCO_role">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Role"/>
+        <rdfs:comment xml:lang="en">Chief Compliance Officer</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#CGOC_frwrks -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#CGOC_frwrks">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#igFramework"/>
+        <rdfs:comment xml:lang="en">CGOC - Information Governance Refence Model (includes EDRM electronic Discovery Refence Model) 
+
+Levels
+L1 Ad Hoc, Manual Unstructured	
+L2 Manual, Structured 
+L3 &quot;Semi-Automated Within Silo&quot;	
+L4 &quot;Automated and Fully Integrated Across Functions&quot;	
+L5 Process Risk or Immaturity or Consequences
+
+Categories
+Legal
+Employees on Hold
+Data on Hold
+Hold Publication
+Evidence Collection
+Evidence Analysis &amp; Cost Controls
+Legal Records
+
+RIM
+&quot;Information Retention and 
+Disposal Obligation&quot;
+Departmental Information Practice
+Realize Information Value
+Data Quality &amp; Data Lineage
+
+Security &amp; Privacy
+Privacy and Data Protection Obligation
+External Intrusion
+Accidental Data Leakage
+Insider Theft of Data
+
+IT
+Data Source Catalog &amp; Stewardship
+System Provisioning
+Cloud Computing
+Active Data Management
+Disposal &amp; Decommissioning
+Legacy Data Management
+Storage Alignment
+Audit</rdfs:comment>
+        <rdfs:label xml:lang="en">IGRM Information Governance Refence Model</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#CISO_role -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#CISO_role">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Role"/>
+        <rdfs:comment xml:lang="en">Chief Information Security Officer</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Capability_igmi -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Capability_igmi">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#IGMI_arma"/>
+        <rdfs:comment xml:lang="en">Information Access, Protection,  Privacy, Information Lifecycle ( Capture, collaboration, version control, retention, storage, holds, eDiscovery, Disposal, Archiving), Search</rdfs:comment>
+        <rdfs:label xml:lang="en">Capability</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Compliance_igmm -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Compliance_igmm">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Priciples_igmm"/>
+        <rdfs:comment xml:lang="en">Essential
+The organization has identified all relevant compliance laws and regulations.
+
+Record creation and capture are systematically carried out in accordance with records management principles.
+
+The organization has a strong code of business conduct which is integrated into its overall information governance structure and recordkeeping policies.
+
+Compliance and the records that demonstrate it are highly valued and measurable.
+
+The hold process is integrated into the organization’s information management and discovery processes for the “most critical” systems.
+
+The organization has defined specific goals related to compliance
+
+Proactive
+The organization has implemented systems to capture and protect records.
+
+Records are linked with the metadata used to demonstrate and measure compliance.
+
+Employees are trained appropriately and audits are conducted regularly.
+
+Records of the audits and training are available for review.
+Lack of compliance is remedied through implementation of defined corrective actions.
+
+The hold process is well-managed with defined roles and a repeatable process that is integrated into the organization’s information management and discovery processes.
+
+Transformational
+
+The importance of compliance and the role of records and information in it are clearly recognized at the senior management and board levels.
+
+Auditing and continuous improvement processes are well-established and monitored by senior management.
+
+The roles and processes for information management and discovery are integrated.
+
+The organization’s stated goals related to compliance have been met.
+
+The organization suffers few or no adverse consequences based on information governance and compliance failures.</rdfs:comment>
+        <rdfs:label xml:lang="en">Compliance</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Controller_role -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Controller_role">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Role"/>
+        <rdfs:comment xml:lang="en">The controller is the natural person or legal entity that determines the purposes and means of the processing of personal data (e.g., when processing an employee’s personal data, the employer is considered to be the controller).
+
+The key responsibility of a controller is to be accountable, i.e., to take actions in line with GDPR, and to be able to explain the compliance with GDPR to data subjects and the Supervisory Authority, as and when required.</rdfs:comment>
+        <rdfs:label xml:lang="en">Controller</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#DAMA_frwrks -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#DAMA_frwrks">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#igFramework"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#DAM_frwrks -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#DAM_frwrks">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#igFramework"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Data_Protection_Officer_role -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Data_Protection_Officer_role">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Role"/>
+        <rdfs:comment xml:lang="en">The Data Protection Officer is a leadership role required by EU GDPR. This role exists within companies that process the personal data of EU citizens. A DPO is responsible for overseeing the data protection approach, strategy, and its implementation. 
+
+The DPO is responsible for GDPR compliance. It is possible that certain companies choose not to appoint a DPO, but assign the responsibility to an existing person in the organisation.</rdfs:comment>
+        <rdfs:label xml:lang="en">Data Protection Officer</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Disposition_igmm -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Disposition_igmm">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Priciples_igmm"/>
+        <rdfs:comment xml:lang="en">Essential
+Official procedures for records disposition and transfer are developed.
+
+Official policy and procedures for suspending disposition have been developed.
+
+Although policies and procedures exist, they are not standardized across the organization.
+
+Individual departments have devised alternative procedures to suit their particular business needs.
+
+The organization has defined specific goals related to disposition
+
+Proactive
+Disposition procedures are understood by all and are consistently applied across the enterprise.
+
+The process for suspending disposition due to legal holds is defined, understood, and used consistently across the organization.
+
+Electronic information is expunged, not just deleted, in accordance with retention policies.
+
+Transformational
+The disposition process covers all records and information in all media.
+
+Disposition is assisted by technology and is integrated into all applications, data warehouses, and repositories.
+
+Disposition processes are consistently applied and effective.
+
+Processes for disposition are regularly evaluated and improved.
+
+The organization’s stated goals related to disposition have been met.</rdfs:comment>
+        <rdfs:label xml:lang="en">Disposition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#EDRM_frwrks -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#EDRM_frwrks">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#igFramework"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Employee -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Employee">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#IGIM_arma -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#IGIM_arma">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#ARMA_frwrks"/>
+        <rdfs:comment xml:lang="en">IGIM is the Information Governance Implementation Model published and promoted by ARMA.</rdfs:comment>
+        <rdfs:label xml:lang="en">IGIM - Information Governance Implementation Model</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#IGMI_arma -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#IGMI_arma">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#ARMA_frwrks"/>
+        <rdfs:comment xml:lang="en">CGOC (Compliance, Governance and Oversight Council) is a forum of over 3,800 legal, IT, privacy, security, records and information management professionals</rdfs:comment>
+        <rdfs:label xml:lang="en">IGMI - Information Governance Maturity Index</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#IGMM_arma -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#IGMM_arma">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#ARMA_frwrks"/>
+        <rdfs:comment xml:lang="en">Records management provides a holistic approach to management and disposition of records and information. Information Management provides management based on business value to an organization’s constituents and clients. RIM focus is to link records with business outcomes and processes.
+
+&quot;GARP Principles&quot;
+Accountability
+Transparency
+Integrity
+Protection
+Compliance
+Availability
+Retention
+Disposition</rdfs:comment>
+        <rdfs:label xml:lang="en">ARMA Principles</rdfs:label>
+        <rdfs:label xml:lang="en">IGMM - Information Governance Maturity Model</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#ISACA_frwrks -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#ISACA_frwrks">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#igFramework"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Infrastructure_igmi -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Infrastructure_igmi">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#IGMI_arma"/>
+        <rdfs:comment xml:lang="en">Application, Software, Content Services, APIs, SLA, Licensing, Network, Connectivity, Hosting, Cloud, Servers, Information Security</rdfs:comment>
+        <rdfs:label xml:lang="en">Infrastructure</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Integrity_igmm -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Integrity_igmm">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Priciples_igmm"/>
+        <rdfs:comment xml:lang="en">Essential
+The organization has a formal process to ensure that the required level of authenticity and chain of custody can be applied to its systems and processes.
+
+Appropriate data elements to demonstrate compliance with the policy are captured.
+The organization has defined specific goals related to integrity
+
+Proactive
+There is a clear definition of metadata requirements for all systems, business applications, and paper records that are needed to ensure the authenticity of records.
+
+Metadata requirements include security and signature requirements and chain of custody as needed to demonstrate authenticity.
+
+The metadata definition process is an integral part of the records management practice in the organization.
+
+
+Transformational
+
+There is a formal, defined process for introducing new record-generating systems and the capture of their metadata and other authenticity requirements, including chain of custody.
+
+This level is easily and regularly audited.
+
+The organization’s stated goals related to integrity have been met. The organization can consistently and confidently demonstrate the accuracy and authenticity of its records.</rdfs:comment>
+        <rdfs:label xml:lang="en">Integrity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#M-Level_arma -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#M-Level_arma">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#ARMA_frwrks"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#ML1_igmm -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#ML1_igmm">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#M-Level_arma"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#ML2_igmm -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#ML2_igmm">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#M-Level_arma"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#ML3_igmm -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#ML3_igmm">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#M-Level_arma"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#ML5_igmm -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#ML5_igmm">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#M-Level_arma"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Ml4_igmm -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Ml4_igmm">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#M-Level_arma"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Person -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Person">
+        <owl:equivalentClass rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Subject"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Priciples_igmm -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Priciples_igmm">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#IGMM_arma"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Process_igmi -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Process_igmi">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#IGMI_arma"/>
+        <rdfs:comment xml:lang="en">Metrics, Policies, Procedures, Rules,  Roles, Benchmarking, Accountability.</rdfs:comment>
+        <rdfs:label xml:lang="en">Process</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Processor_role -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Processor_role">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Role"/>
+        <rdfs:comment xml:lang="en">A natural person or legal entity that processes personal data on behalf of the controller (e.g., a call centres acting on behalf of its client) is considered to be a processor. At times, a processor is also called a third party.
+
+The key responsibility of the processor is to ensure that conditions specified in the Data Processing Agreement signed with the controller are always met, and that obligations stated in GDPR are complied with.</rdfs:comment>
+        <rdfs:label xml:lang="en">Processor</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Protection_igmm -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Protection_igmm">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Priciples_igmm"/>
+        <rdfs:comment xml:lang="en">Essential
+
+The organization has a formal written policy for protecting records and centralized access controls.
+Confidentiality and privacy are well defined.
+The importance of chain of custody is defined, when appropriate.
+Training for employees is available.
+Records and information audits are only conducted in regulated areas of the business. Audits in other areas may be conducted, but are left to the discretion of each function area
+The organization has defined specific goals related to record protection.
+
+Proactive
+The organization has implemented systems that provide for the protection of the information.
+
+Employee training is formalized and well documented.
+Auditing of compliance and protection is conducted on   regular basis.
+
+
+Transformational
+
+Executives and/or senior management and the board place
+great value in the protection of information.&quot;
+
+Audit information is regularly examined and continuous improvement is undertaken.
+
+The organization’s stated goals related to record protection have been met.
+
+Inappropriate or inadvertent information disclosure or loss incidents are rare.</rdfs:comment>
+        <rdfs:label xml:lang="en">Protection</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Responsibility -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Responsibility"/>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Retention_igmm -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Retention_igmm">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Priciples_igmm"/>
+        <rdfs:comment xml:lang="en">Essential
+A formal retention schedule that is tied to rules and regulations is consistently applied throughout the organization.
+
+The organization’s employees are knowledgeable about the retention schedule and they understand their personal responsibilities for records retention.
+
+The organization has defined specific goals related to retention.
+
+Proactive
+Employees understand how to classify records appropriately.
+
+Employees understand how to classify records appropriately.
+
+Retention schedules are reviewed on a regular basis, and there is a 
+process to adjust retention schedules as needed.
+
+Records retention is a major corporate concern.
+
+Transformational
+Retention is an important item at the senior management and board levels.
+
+Retention is looked at holistically and is applied to all  
+Information in an organization, not just to official records.
+
+The organization’s stated goals related to retention have been met.
+
+The organization’s stated goals related to retention have been met.</rdfs:comment>
+        <rdfs:label xml:lang="en">Retention</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Role -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Role"/>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#SteeringCommittee_igmi -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#SteeringCommittee_igmi">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#IGMI_arma"/>
+        <rdfs:comment xml:lang="en">Information Governance Leasership, Information Management, Business Units, Technology, Legal, Risk&amp;Compliance, Privacy, Security</rdfs:comment>
+        <rdfs:label xml:lang="en">SteerinCommittee</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Structure_igmi -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Structure_igmi">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#IGMI_arma"/>
+        <rdfs:comment xml:lang="en">Information Architecture, Technology Architecture, Taxonomy, Metadata,</rdfs:comment>
+        <rdfs:label xml:lang="en">Structure</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Subject -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Subject">
+        <rdfs:label xml:lang="en">Subject</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#SupervisoryAuthority_role -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#SupervisoryAuthority_role">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Role"/>
+        <rdfs:comment xml:lang="en">A Supervisory Authority is a public authority in an EU country responsible for monitoring compliance with GDPR. An EU country within the European Union is also referred to as a member state. A Supervisory Authority is typically a Privacy Commission or equivalent in a member state. It may have a different name in each country. For example, in the UK it is called the Information Commissioners Office. See here a list of Supervisory Authorities in all EU member states.
+
+The key role of the Supervisory Authority is to advise companies about GDPR, conduct audits on compliance with GDPR, address complaints from data subjects, and issue fines when companies are deliberately not complying with GDPR.
+
+A Supervisory Authority is also referred to as a Data Protection Authority by some experts. So, you should remember that both terms mean the same thing.</rdfs:comment>
+        <rdfs:label xml:lang="en">Supervisory Authority</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Support_igmi -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Support_igmi">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#IGMI_arma"/>
+        <rdfs:comment xml:lang="en">Change Management, Project Management, Communication, Organizational Learning, Training, Help desk, DAQs</rdfs:comment>
+        <rdfs:label xml:lang="en">Support</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Transparency_igmm -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Transparency_igmm">
+        <rdfs:subClassOf rdf:resource="http://www.example.org/cm/igso/2023//igso-frw#Priciples_igmm"/>
+        <rdfs:comment xml:lang="en">Essential
+Transparency in recordkeeping is taken seriously and information is readily and systematically available when needed.
+
+There is a written policy regarding transparency.
+
+Employees are educated on the importance of Transparency and the 
+specifics of the organization’s commitment to transparency.
+
+The organization has defined specific goals related to Transparency
+
+Proactive
+Transparency is an essential part of the corporate culture and is emphasized in training.
+
+The organization monitors compliance on a regular basis.
+
+Transformational
+The organization’s senior management considers transparency as a key component of information governance.
+
+The organization’s stated goals related to transparency have been met.
+
+The organization # has implemented a continuous improvement process to ensure transparency is maintained over time.
+
+Software tools that are in place assist in transparency.
+
+Requestors, courts, and other legitimately interested parties are consistently satisfied with the transparency of the processes and the response</rdfs:comment>
+        <rdfs:label xml:lang="en">Transparency</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#igFramework -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#igFramework"/>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#igmiMaturityIndex -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#igmiMaturityIndex">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Essential"/>
+                    <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#InDevelopment"/>
+                    <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#NonExistent"/>
+                    <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Proactive"/>
+                    <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Transformational"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#igmmMaturityLevel -->
+
+    <owl:Class rdf:about="http://www.example.org/cm/igso/2023//igso-frw#igmmMaturityLevel">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Essential"/>
+                    <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#InDevelopment"/>
+                    <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#NonExistent"/>
+                    <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Proactive"/>
+                    <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Transformational"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Essential -->
+
+    <owl:NamedIndividual rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Essential"/>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#InDevelopment -->
+
+    <owl:NamedIndividual rdf:about="http://www.example.org/cm/igso/2023//igso-frw#InDevelopment"/>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#NonExistent -->
+
+    <owl:NamedIndividual rdf:about="http://www.example.org/cm/igso/2023//igso-frw#NonExistent"/>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Proactive -->
+
+    <owl:NamedIndividual rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Proactive"/>
+    
+
+
+    <!-- http://www.example.org/cm/igso/2023//igso-frw#Transformational -->
+
+    <owl:NamedIndividual rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Transformational"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#ARMA_frwrks"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#CGOC_frwrks"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#DAMA_frwrks"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#DAM_frwrks"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#EDRM_frwrks"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#ISACA_frwrks"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Accountability_igmm"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Availability_igmm"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Compliance_igmm"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Disposition_igmm"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Integrity_igmm"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Protection_igmm"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Retention_igmm"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Transparency_igmm"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Authority_igmi"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Capability_igmi"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Infrastructure_igmi"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Process_igmi"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#SteeringCommittee_igmi"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Structure_igmi"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Support_igmi"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#CCO_role"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#CISO_role"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Controller_role"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Data_Protection_Officer_role"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Processor_role"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#SupervisoryAuthority_role"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#CCO_role"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#CISO_role"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Employee"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#IGMI_arma"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#IGMM_arma"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#M-Level_arma"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#ML1_igmm"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#ML2_igmm"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#ML3_igmm"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#ML5_igmm"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Ml4_igmm"/>
+            <rdf:Description rdf:about="http://www.example.org/cm/igso/2023//igso-frw#Priciples_igmm"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->
+

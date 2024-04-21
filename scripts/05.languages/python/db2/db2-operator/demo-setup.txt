@@ -1,0 +1,33 @@
+Script started on 2022-11-09 16:39:00+01:00 [TERM="xterm" TTY="/dev/pts/3" COLUMNS="129" LINES="38"]
+]0;xiaomin@pcss22task2vm0: ~/postgres/gitlab/stateful-db-k8s-services/DB2/db2-operatorxiaomin@pcss22task2vm0:db2-operator$ 
+]0;xiaomin@pcss22task2vm0: ~/postgres/gitlab/stateful-db-k8s-services/DB2/db2-operatorxiaomin@pcss22task2vm0:db2-operator$ 
+]0;xiaomin@pcss22task2vm0: ~/postgres/gitlab/stateful-db-k8s-services/DB2/db2-operatorxiaomin@pcss22task2vm0:db2-operator$ 
+]0;xiaomin@pcss22task2vm0: ~/postgres/gitlab/stateful-db-k8s-services/DB2/db2-operatorxiaomin@pcss22task2vm0:db2-operator$ 
+]0;xiaomin@pcss22task2vm0: ~/postgres/gitlab/stateful-db-k8s-services/DB2/db2-operatorxiaomin@pcss22task2vm0:db2-operator$ 
+]0;xiaomin@pcss22task2vm0: ~/postgres/gitlab/stateful-db-k8s-services/DB2/db2-operatorxiaomin@pcss22task2vm0:db2-operator$ make deploy IMG="129.69.209.196:5000/db2-operator:latest"                                                         129.69.209.196:5000                   make deploy IMG="129.69.209.196:5000/db2-operator:latest"
+test -s /home/xiaomin/postgres/gitlab/stateful-db-k8s-services/DB2/db2-operator/bin/controller-gen || GOBIN=/home/xiaomin/postgres/gitlab/stateful-db-k8s-services/DB2/db2-operator/bin go install sigs.k8s.io/controller-tools/cmd/controller-gen@v0.9.2
+/home/xiaomin/postgres/gitlab/stateful-db-k8s-services/DB2/db2-operator/bin/controller-gen rbac:roleName=manager-role crd webhook paths="./..." output:crd:artifacts:config=config/crd/bases
+cd config/manager && /home/xiaomin/postgres/gitlab/stateful-db-k8s-services/DB2/db2-operator/bin/kustomize edit set image controller=129.69.209.196:5000/db2-operator:latest
+/home/xiaomin/postgres/gitlab/stateful-db-k8s-services/DB2/db2-operator/bin/kustomize build config/default | kubectl apply -f -
+namespace/db2-operator-system created
+customresourcedefinition.apiextensions.k8s.io/db2clusters.db2.example.com created
+serviceaccount/db2-operator-controller-manager created
+role.rbac.authorization.k8s.io/db2-operator-leader-election-role created
+clusterrole.rbac.authorization.k8s.io/db2-operator-manager-role created
+clusterrole.rbac.authorization.k8s.io/db2-operator-metrics-reader created
+clusterrole.rbac.authorization.k8s.io/db2-operator-proxy-role created
+rolebinding.rbac.authorization.k8s.io/db2-operator-leader-election-rolebinding created
+clusterrolebinding.rbac.authorization.k8s.io/db2-operator-manager-rolebinding created
+clusterrolebinding.rbac.authorization.k8s.io/db2-operator-proxy-rolebinding created
+configmap/db2-operator-manager-config created
+service/db2-operator-controller-manager-metrics-service created
+deployment.apps/db2-operator-controller-manager created
+]0;xiaomin@pcss22task2vm0: ~/postgres/gitlab/stateful-db-k8s-services/DB2/db2-operatorxiaomin@pcss22task2vm0:db2-operator$ make deploy IMG="129.69.209.196:5000/db2-operator:latest"[3Pkubectl -n db2operator exec -it db2-new-2 -- /bin/bash[11Pdelete pod db2-new-1exec -it db2-new-2 -- /bin/bash[11Pdelete pod db2-new-0exec -it db2-new-2 -- /bin/bash                                           db2-operator-system get all
+NAME                                                   READY   STATUS    RESTARTS   AGE
+pod/db2-operator-controller-manager-8699866d4f-hm6rj   2/2     Running   0          17s
+
+NAME                                                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/db2-operator-controller-manager-metrics-service   ClusterIP   10.110.40.199   <none>        8443/TCP   17s
+
+NAME                                              READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/db2-operator-controller-mana

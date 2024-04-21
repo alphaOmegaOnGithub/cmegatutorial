@@ -1,0 +1,49 @@
+# This playbook extends the previous one by adding tasks to deploy Nginx and PostgreSQL services. Nginx is deployed as a web server listening on port 80, and PostgreSQL is deployed with a predefined password. Ensure to replace 'controller' with the actual name of your controller node in your Ansible inventory file. You can run this playbook using the same command as before: 
+## ansible-playbook -i <inventory_file> setup_swarm_cluster.yaml
+# This will set up the Docker Swarm cluster and deploy the Nginx and PostgreSQL services on it.
+#
+
+
+
+
+---
+- name: Setup Docker Swarm Cluster and Deploy Services
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        update_cache: yes
+
+    - name: Install Docker Compose
+      apt:
+        name: docker-compose
+        update_cache: yes
+
+    - name: Ensure Docker service is started and enabled
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Initialize Docker Swarm on the Controller Node
+      command: docker swarm init --advertise-addr "{{ ansible_host }}"
+      when: inventory_hostname == 'controller'
+
+    - name: Retrieve Docker Swarm join-token
+      command: docker swarm join-token -q worker
+      register: swarm_token
+      when: inventory_hostname == 'controller'
+
+    - name: Join Worker Nodes to Docker Swarm
+      command: docker swarm join --token "{{ swarm_token.stdout }}" "{{ hostvars['controller'].ansible_host }}"
+      when: inventory_hostname != 'controller' and swarm_token is defined
+
+    - name: Deploy Nginx Service
+      command: docker service create --name nginx -p 80:80 nginx
+      when: inventory_hostname == 'controller'
+
+    - name: Deploy PostgreSQL Service
+      command: docker service create --name postgres -e POSTGRES_PASSWORD=mysecretpassword postgres:latest
+      when: inventory_hostname == 'controller'

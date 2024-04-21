@@ -1,0 +1,1286 @@
+Script started on 2022-08-09 14:52:24+02:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="80" LINES="24"]
+]0;schneiti@astplsm01: ~schneiti@astplsm01:~$ add-apt-repository cloud-archive:yoga
+Error: must run as root
+]0;schneiti@astplsm01: ~schneiti@astplsm01:~$ [Ksudo -i
+[sudo] password for schneiti: 
+]0;root@astplsm01: ~root@astplsm01:~# add-apt-repository cloud-archive:yoga
+ Ubuntu Cloud Archive for OpenStack Yoga
+ More info: https://wiki.ubuntu.com/OpenStack/CloudArchive
+Press [ENTER] to continue or Ctrl-c to cancel adding it.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following NEW packages will be installed:
+  ubuntu-cloud-keyring
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 5688 B of archives.
+After this operation, 22.5 kB of additional disk space will be used.
+Get:1 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal-updates/main amd64 ubuntu-cloud-keyring all 2020.02.11.4 [5688 B]
+Fetched 5688 B in 0s (38.9 kB/s)
+Selecting previously unselected package ubuntu-cloud-keyring.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 88719 files and directories currently installed.)
+Preparing to unpack .../ubuntu-cloud-keyring_2020.02.11.4_all.deb ...
+Unpacking ubuntu-cloud-keyring (2020.02.11.4) ...
+Setting up ubuntu-cloud-keyring (2020.02.11.4) ...
+0% [Working]            Hit:1 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal InRelease
+0% [Working]            Hit:2 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal-updates InRelease
+            Hit:3 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal-backports InRelease
+            Hit:4 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal-security InRelease
+            Get:5 http://vminst1.informatik.uni-stuttgart.de/ubuntu/repos/partner focal InRelease [12.1 kB]
+            Ign:6 http://vminst1.informatik.uni-stuttgart.de/ubuntu/repos/ipvs focal InRelease
+0% [Working]            Hit:7 http://vminst1.informatik.uni-stuttgart.de/ubuntu/repos/ipvs focal Release
+0% [Working]            Ign:8 http://vminst1.informatik.uni-stuttgart.de/ubuntu/repos/ipvs focal Release.gpg
+0% [Working]0% [Connecting to ubuntu-cloud.archive.canonical.com (91.189.91.38)]                                                                    0% [Waiting for headers]                        Get:9 http://ubuntu-cloud.archive.canonical.com/ubuntu focal-updates/yoga InRelease [7631 B]
+0% [9 InRelease 7631 B/7631 B 100%]                                   0% [Working]0% [Working]0% [Working]0% [Working]28% [Working]             Get:10 http://ubuntu-cloud.archive.canonical.com/ubuntu focal-updates/yoga/main amd64 Packages [172 kB]
+30% [10 Packages 5462 B/172 kB 3%]                                  100% [Working]100% [10 Packages store 0 B]                            100% [Working]              Fetched 192 kB in 1s (150 kB/s)
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 2%Reading package lists... 2%Reading package lists... 4%Reading package lists... 4%Reading package lists... 6%Reading package lists... 6%Reading package lists... 6%Reading package lists... 6%Reading package lists... 6%Reading package lists... 6%Reading package lists... 6%Reading package lists... 6%Reading package lists... 31%Reading package lists... 31%Reading package lists... 44%Reading package lists... 44%Reading package lists... 58%Reading package lists... 58%Reading package lists... 58%Reading package lists... 58%Reading package lists... 58%Reading package lists... 58%Reading package lists... 59%Reading package lists... 59%Reading package lists... 64%Reading package lists... 64%Reading package lists... 66%Reading package lists... 66%Reading package lists... 69%Reading package lists... 69%Reading package lists... 73%Reading package lists... 73%Reading package lists... 73%Reading package lists... 73%Reading package lists... 74%Reading package lists... 74%Reading package lists... 77%Reading package lists... 77%Reading package lists... 79%Reading package lists... 79%Reading package lists... 80%Reading package lists... 80%Reading package lists... 80%Reading package lists... 80%Reading package lists... 80%Reading package lists... 80%Reading package lists... 80%Reading package lists... 80%Reading package lists... 80%Reading package lists... 80%Reading package lists... 80%Reading package lists... 80%Reading package lists... 80%Reading package lists... 80%Reading package lists... 80%Reading package lists... 80%Reading package lists... 81%Reading package lists... 81%Reading package lists... 81%Reading package lists... 81%Reading package lists... 85%Reading package lists... 85%Reading package lists... 86%Reading package lists... 86%Reading package lists... 89%Reading package lists... 89%Reading package lists... 93%Reading package lists... 93%Reading package lists... 93%Reading package lists... 93%Reading package lists... 94%Reading package lists... 94%Reading package lists... 96%Reading package lists... 96%Reading package lists... 98%Reading package lists... 98%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+N: Skipping acquire of configured file 'main/binary-i386/Packages' as repository 'http://ubuntu-cloud.archive.canonical.com/ubuntu focal-updates/yoga InRelease' doesn't support architecture 'i386'
+]0;root@astplsm01: ~root@astplsm01:~# [K[K]0;root@astplsm01: ~root@astplsm01:~# cat /etc/os-release
+NAME="Ubuntu"
+VERSION="20.04.4 LTS (Focal Fossa)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 20.04.4 LTS"
+VERSION_ID="20.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
+]0;root@astplsm01: ~root@astplsm01:~# cat /etc/i n e ne
+netconfig            network/             networks             
+netplan/             networkd-dispatcher/ newt/                
+]0;root@astplsm01: ~root@astplsm01:~# cat /etc/net
+netconfig            network/             networks             
+netplan/             networkd-dispatcher/ 
+]0;root@astplsm01: ~root@astplsm01:~# cat /etc/network/i
+if-down.d/      if-pre-up.d/    interfaces      interfaces.fai  
+if-post-down.d/ if-up.d/        interfaces.d/   
+]0;root@astplsm01: ~root@astplsm01:~# cat /etc/network/interfaces
+#
+#  Config file for astplsm01
+#
+auto eno1np0
+iface eno1np0 inet static
+   address 129.69.209.168/24
+   gateway 129.69.209.254
+
+auto eno2np1
+iface eno2np1 inet manual
+   up ip link set dev $IFACE up
+   down ip link set dev $IFACE down
+]0;root@astplsm01: ~root@astplsm01:~# [K^C
+]0;root@astplsm01: ~root@astplsm01:~# ^C
+]0;root@astplsm01: ~root@astplsm01:~# nano /etc/hosts
+[?2004h[?1049h[22;0;0t[1;24r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[22;42H(B[0;7m[ Reading... ](B[m[22;41H(B[0;7m[ Read 7 lines ](B[m[H(B[0;7m  GNU nano 4.8                               /etc/hosts                                         [1;95H(B[m[23d(B[0;7m^G(B[m Get Help     (B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut Text     (B[0;7m^J(B[m Justify[81G(B[0;7m^C(B[m Cur Pos[24d(B[0;7m^X(B[m Exit[24;17H(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste Text   (B[0;7m^T(B[m To Spell     (B[0;7m^_(B[m Go To Line[22d[2d[39;49m(B[m127.0.0.1[17Glocalhost[3d::1[3;17Hlocalhost ip6-localhost ip6-loopback[4dff02::1[4;17Hip6-allnodes[5dff02::2[5;17Hip6-allrouters[7d[36m# Following entries are specific to your environment[8d[39m(B[m129.69.209.168 astplsm01.informatik.uni-stuttgart.de astplsm01[2d[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[5d[?12l[?25h[?25l[6d[?12l[?25h[?25l[7d[?12l[?25h[?25l[8d[?12l[?25h[?25l1[?12l[?25h[?25l2[?12l[?25h[?25l9[?12l[?25h[?25l.[?12l[?25h[?25l6[?12l[?25h[?25l9[?12l[?25h[?25l.[?12l[?25h[?25l2[?12l[?25h[?25l0[?12l[?25h[?25l9[?12l[?25h[?25l.[?12l[?25h[?25l1[?12l[?25h[?25l6[?12l[?25h[?25l8[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25lp[?12l[?25h[?25l[22d[K[8;21H[?12l[?25h[?25ls[?12l[?25h[?25lm[?12l[?25h[?25l0[?12l[?25h[?25l1[?12l[?25h[?25l.[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lf[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lk[?12l[?25h[?25l.[?12l[?25h[?25lu[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l-[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25lu[?12l[?25h[?25lt[?12l[?25h[?25lt[?12l[?25h[?25lg[?12l[?25h[?25la[?12l[?25h[?25lr[?12l[?25h[?25lt[?12l[?25h[?25l.[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25ls[?12l[?25h[?25lm[?12l[?25h[?25l0[?12l[?25h[?25l1[?12l[?25h[?25l[1;87H(B[0;7mModified(B[m[8;64H[?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25lg[?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25ll[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25l[23;17H        (B[0;7mM-D(B[m DOS Format          (B[0;7mM-A(B[m Append[14X[23;73H(B[0;7mM-B(B[m Backup File[K[24;2H(B[0;7mC(B[m Cancel[17G        (B[0;7mM-M(B[m Mac Format    [49G(B[0;7mM-P(B[m Prepend             (B[0;7m^T(B[m To Files[K[22d(B[0;7mFile Name to Write: /etc/hosts                                                                  [22;1H(B[m[22;31H[?12l[?25h[?25l[22;41H[1K (B[0;7m[ Writing... ](B[m[K[1;87H(B[0;7m        (B[m[22;40H(B[0;7m[ Wrote 7 lines ](B[m[23;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut Text     (B[0;7m^J(B[m Justify      (B[0;7m^C(B[m Cur Pos[24;2H(B[0;7mX(B[m Exit  [17G(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste Text   (B[0;7m^T(B[m To Spell     (B[0;7m^_(B[m Go To Line[22d[8;74H[?12l[?25h[?25l[22d[J[24d[?12l[?25h[24;1H[?1049l[23;0;0t[?1l>[?2004l]0;root@astplsm01: ~root@astplsm01:~# cat /etc/hosts
+127.0.0.1	localhost
+::1		localhost ip6-localhost ip6-loopback
+ff02::1		ip6-allnodes
+ff02::2		ip6-allrouters
+
+# Following entries are specific to your environment
+129.69.209.168 astplsm01.informatik.uni-stuttgart.de astplsm01 controller
+]0;root@astplsm01: ~root@astplsm01:~# ^C
+]0;root@astplsm01: ~root@astplsm01:~# ping controller
+PING astplsm01.informatik.uni-stuttgart.de (129.69.209.168) 56(84) bytes of data.
+64 bytes from astplsm01.informatik.uni-stuttgart.de (129.69.209.168): icmp_seq=1 ttl=64 time=0.073 ms
+64 bytes from astplsm01.informatik.uni-stuttgart.de (129.69.209.168): icmp_seq=2 ttl=64 time=0.022 ms
+64 bytes from astplsm01.informatik.uni-stuttgart.de (129.69.209.168): icmp_seq=3 ttl=64 time=0.022 ms
+^C
+--- astplsm01.informatik.uni-stuttgart.de ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2038ms
+rtt min/avg/max/mdev = 0.022/0.039/0.073/0.024 ms
+]0;root@astplsm01: ~root@astplsm01:~# apt install mariadb-server python3-pymysql
+Reading package lists... 0%Reading package lists... 100%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
+Reading state information... 0%Reading state information... 0%Reading state information... Done
+The following additional packages will be installed:
+  galera-3 libcgi-fast-perl libcgi-pm-perl libconfig-inifiles-perl libdbd-mysql-perl
+  libdbi-perl libencode-locale-perl libfcgi-perl libhtml-parser-perl libhtml-tagset-perl
+  libhtml-template-perl libhttp-date-perl libhttp-message-perl libio-html-perl
+  liblwp-mediatypes-perl libsnappy1v5 libterm-readkey-perl libtimedate-perl liburi-perl
+  mariadb-client-10.3 mariadb-client-core-10.3 mariadb-common mariadb-server-10.3
+  mariadb-server-core-10.3 socat
+Suggested packages:
+  libclone-perl libmldbm-perl libnet-daemon-perl libsql-statement-perl libdata-dump-perl
+  libipc-sharedcache-perl libwww-perl mariadb-test tinyca python-pymysql-doc
+The following NEW packages will be installed:
+  galera-3 libcgi-fast-perl libcgi-pm-perl libconfig-inifiles-perl libdbd-mysql-perl
+  libdbi-perl libencode-locale-perl libfcgi-perl libhtml-parser-perl libhtml-tagset-perl
+  libhtml-template-perl libhttp-date-perl libhttp-message-perl libio-html-perl
+  liblwp-mediatypes-perl libsnappy1v5 libterm-readkey-perl libtimedate-perl liburi-perl
+  mariadb-client-10.3 mariadb-client-core-10.3 mariadb-common mariadb-server
+  mariadb-server-10.3 mariadb-server-core-10.3 python3-pymysql socat
+0 upgraded, 27 newly installed, 0 to remove and 6 not upgraded.
+Need to get 20.0 MB of archives.
+After this operation, 166 MB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+[33m0% [Working][0m            Get:1 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal-updates/universe amd64 mariadb-common all 1:10.3.34-0ubuntu0.20.04.1 [15.9 kB]
+[33m0% [1 mariadb-common 15.9 kB/15.9 kB 100%] [Waiting for headers][0m[33m                                                                1% [Waiting for headers][0m                        Get:2 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/universe amd64 galera-3 amd64 25.3.29-1 [898 kB]
+[33m1% [2 galera-3 12.3 kB/898 kB 1%] [Waiting for headers][0m                                                       Get:3 http://ubuntu-cloud.archive.canonical.com/ubuntu focal-updates/yoga/main amd64 python3-pymysql all 1.0.2-1ubuntu1~cloud0 [38.1 kB]
+[33m3% [2 galera-3 632 kB/898 kB 70%] [3 python3-pymysql 14.2 kB/38.1 kB 37%][0m[33m                                                                         5% [Waiting for headers] [3 python3-pymysql 14.2 kB/38.1 kB 37%][0m                                                                Get:4 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal-updates/main amd64 libdbi-perl amd64 1.643-1ubuntu0.1 [730 kB]
+[33m5% [4 libdbi-perl 65.5 kB/730 kB 9%] [3 python3-pymysql 14.2 kB/38.1 kB 37%][0m[33m                                                                            9% [Waiting for headers] [3 python3-pymysql 14.2 kB/38.1 kB 37%][0m                                                                Get:5 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libconfig-inifiles-perl all 3.000002-1 [40.6 kB]
+[33m9% [5 libconfig-inifiles-perl 40.6 kB/40.6 kB 100%] [3 python3-pymysql 14.2 kB/38.1 kB 37%][0m[33m                                                                                           10% [3 python3-pymysql 14.2 kB/38.1 kB 37%][0m                                           Get:6 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libsnappy1v5 amd64 1.1.8-1build1 [16.7 kB]
+[33m10% [6 libsnappy1v5 16.7 kB/16.7 kB 100%] [3 python3-pymysql 14.2 kB/38.1 kB 37%][0m[33m                                                                                 11% [3 python3-pymysql 14.2 kB/38.1 kB 37%][0m                                           Get:7 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal-updates/universe amd64 mariadb-client-core-10.3 amd64 1:10.3.34-0ubuntu0.20.04.1 [5853 kB]
+[33m11% [7 mariadb-client-core-10.3 4096 B/5853 kB 0%] [3 python3-pymysql 14.2 kB/38.1 kB 37%][0m[33m                                                                                          31% [7 mariadb-client-core-10.3 4955 kB/5853 kB 85%][0m[33m                                                    36% [Waiting for headers][0m                         Get:8 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal-updates/universe amd64 mariadb-client-10.3 amd64 1:10.3.34-0ubuntu0.20.04.1 [1130 kB]
+[33m36% [8 mariadb-client-10.3 0 B/1130 kB 0%][0m[33m                                          41% [Waiting for headers][0m                         Get:9 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal-updates/universe amd64 mariadb-server-core-10.3 amd64 1:10.3.34-0ubuntu0.20.04.1 [6026 kB]
+[33m41% [9 mariadb-server-core-10.3 30.6 kB/6026 kB 1%][0m[33m                                                   66% [Waiting for headers][0m                         Get:10 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 socat amd64 1.7.3.3-2 [323 kB]
+[33m66% [10 socat 33.6 kB/323 kB 10%][0m[33m                                 68% [Waiting for headers][0m                         Get:11 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal-updates/universe amd64 mariadb-server-10.3 amd64 1:10.3.34-0ubuntu0.20.04.1 [4204 kB]
+[33m68% [11 mariadb-server-10.3 12.3 kB/4204 kB 0%][0m[33m                                               85% [Waiting for headers][0m                         Get:12 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libhtml-tagset-perl all 3.20-4 [12.5 kB]
+[33m85% [12 libhtml-tagset-perl 12.5 kB/12.5 kB 100%][0m[33m                                                 86% [Working][0m             Get:13 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 liburi-perl all 1.76-2 [77.5 kB]
+[33m86% [13 liburi-perl 15.8 kB/77.5 kB 20%][0m[33m                                        87% [Waiting for headers][0m                         Get:14 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libhtml-parser-perl amd64 3.72-5 [86.3 kB]
+[33m87% [14 libhtml-parser-perl 65.5 kB/86.3 kB 76%][0m[33m                                                88% [Waiting for headers][0m                         Get:15 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libcgi-pm-perl all 4.46-1 [186 kB]
+[33m88% [15 libcgi-pm-perl 48.1 kB/186 kB 26%][0m[33m                                          90% [Waiting for headers][0m                         Get:16 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libfcgi-perl amd64 0.79-1 [33.1 kB]
+[33m90% [16 libfcgi-perl 33.1 kB/33.1 kB 100%][0m[33m                                          90% [Working][0m             Get:17 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libcgi-fast-perl all 1:2.15-1 [10.5 kB]
+[33m90% [17 libcgi-fast-perl 0 B/10.5 kB 0%][0m[33m                                        91% [Working][0m             Get:18 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/universe amd64 libdbd-mysql-perl amd64 4.050-3 [82.8 kB]
+[33m91% [18 libdbd-mysql-perl 14.4 kB/82.8 kB 17%][0m[33m                                              92% [Waiting for headers][0m                         Get:19 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libencode-locale-perl all 1.05-1 [12.3 kB]
+[33m92% [19 libencode-locale-perl 12.3 kB/12.3 kB 100%][0m[33m                                                   93% [Waiting for headers][0m                         Get:20 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libhtml-template-perl all 2.97-1 [59.0 kB]
+[33m93% [20 libhtml-template-perl 49.9 kB/59.0 kB 85%][0m[33m                                                  94% [Waiting for headers][0m                         Get:21 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libtimedate-perl all 2.3200-1 [34.0 kB]
+[33m94% [21 libtimedate-perl 34.0 kB/34.0 kB 100%][0m[33m                                              95% [Working][0m             Get:22 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libhttp-date-perl all 6.05-1 [9920 B]
+[33m95% [22 libhttp-date-perl 9920 B/9920 B 100%][0m[33m                                             96% [Waiting for headers][0m                         Get:23 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libio-html-perl all 1.001-1 [14.9 kB]
+[33m96% [23 libio-html-perl 11.9 kB/14.9 kB 80%][0m[33m                                            97% [Working][0m             Get:24 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 liblwp-mediatypes-perl all 6.04-1 [19.5 kB]
+[33m97% [24 liblwp-mediatypes-perl 16.4 kB/19.5 kB 84%][0m[33m                                                   97% [Working][0m             Get:25 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libhttp-message-perl all 6.22-1 [76.1 kB]
+[33m97% [25 libhttp-message-perl 8192 B/76.1 kB 11%][0m[33m                                                98% [Working][0m             Get:26 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libterm-readkey-perl amd64 2.38-1build1 [24.6 kB]
+[33m98% [26 libterm-readkey-perl 8192 B/24.6 kB 33%][0m[33m                                                99% [Working][0m             Get:27 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal-updates/universe amd64 mariadb-server all 1:10.3.34-0ubuntu0.20.04.1 [12.7 kB]
+[33m99% [27 mariadb-server 6993 B/12.7 kB 55%][0m[33m                                          100% [Working][0m              Fetched 20.0 MB in 1s (30.3 MB/s)
+Preconfiguring packages ...
+
+7[0;23r8[1ASelecting previously unselected package mariadb-common.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 88725 files and directories currently installed.)
+Preparing to unpack .../0-mariadb-common_1%3a10.3.34-0ubuntu0.20.04.1_all.deb ...
+7[24;0f[42m[30mProgress: [  0%][49m[39m [..........................................................................] 8Unpacking mariadb-common (1:10.3.34-0ubuntu0.20.04.1) ...
+7[24;0f[42m[30mProgress: [  2%][49m[39m [#.........................................................................] 8Selecting previously unselected package galera-3.
+Preparing to unpack .../1-galera-3_25.3.29-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [  3%][49m[39m [##........................................................................] 8Unpacking galera-3 (25.3.29-1) ...
+7[24;0f[42m[30mProgress: [  4%][49m[39m [##........................................................................] 8Selecting previously unselected package libdbi-perl:amd64.
+Preparing to unpack .../2-libdbi-perl_1.643-1ubuntu0.1_amd64.deb ...
+7[24;0f[42m[30mProgress: [  5%][49m[39m [###.......................................................................] 8Unpacking libdbi-perl:amd64 (1.643-1ubuntu0.1) ...
+7[24;0f[42m[30mProgress: [  6%][49m[39m [####......................................................................] 8Selecting previously unselected package libconfig-inifiles-perl.
+Preparing to unpack .../3-libconfig-inifiles-perl_3.000002-1_all.deb ...
+7[24;0f[42m[30mProgress: [  6%][49m[39m [####......................................................................] 8Unpacking libconfig-inifiles-perl (3.000002-1) ...
+7[24;0f[42m[30mProgress: [  7%][49m[39m [#####.....................................................................] 8Selecting previously unselected package libsnappy1v5:amd64.
+Preparing to unpack .../4-libsnappy1v5_1.1.8-1build1_amd64.deb ...
+7[24;0f[42m[30mProgress: [  8%][49m[39m [######....................................................................] 8Unpacking libsnappy1v5:amd64 (1.1.8-1build1) ...
+7[24;0f[42m[30mProgress: [  9%][49m[39m [######....................................................................] 8Selecting previously unselected package mariadb-client-core-10.3.
+Preparing to unpack .../5-mariadb-client-core-10.3_1%3a10.3.34-0ubuntu0.20.04.1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 10%][49m[39m [#######...................................................................] 8Unpacking mariadb-client-core-10.3 (1:10.3.34-0ubuntu0.20.04.1) ...
+7[24;0f[42m[30mProgress: [ 11%][49m[39m [########..................................................................] 8Selecting previously unselected package mariadb-client-10.3.
+Preparing to unpack .../6-mariadb-client-10.3_1%3a10.3.34-0ubuntu0.20.04.1_amd64.deb ...
+Unpacking mariadb-client-10.3 (1:10.3.34-0ubuntu0.20.04.1) ...
+7[24;0f[42m[30mProgress: [ 13%][49m[39m [#########.................................................................] 8Selecting previously unselected package mariadb-server-core-10.3.
+Preparing to unpack .../7-mariadb-server-core-10.3_1%3a10.3.34-0ubuntu0.20.04.1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 14%][49m[39m [##########................................................................] 8Unpacking mariadb-server-core-10.3 (1:10.3.34-0ubuntu0.20.04.1) ...
+7[24;0f[42m[30mProgress: [ 15%][49m[39m [##########................................................................] 8Selecting previously unselected package socat.
+Preparing to unpack .../8-socat_1.7.3.3-2_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 16%][49m[39m [###########...............................................................] 8Unpacking socat (1.7.3.3-2) ...
+7[24;0f[42m[30mProgress: [ 17%][49m[39m [############..............................................................] 8Setting up mariadb-common (1:10.3.34-0ubuntu0.20.04.1) ...
+7[24;0f[42m[30mProgress: [ 17%][49m[39m [############..............................................................] 8update-alternatives: using /etc/mysql/mariadb.cnf to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+7[24;0f[42m[30mProgress: [ 18%][49m[39m [#############.............................................................] 8Selecting previously unselected package mariadb-server-10.3.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 89095 files and directories currently installed.)
+Preparing to unpack .../00-mariadb-server-10.3_1%3a10.3.34-0ubuntu0.20.04.1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 19%][49m[39m [##############............................................................] 8Unpacking mariadb-server-10.3 (1:10.3.34-0ubuntu0.20.04.1) ...
+7[24;0f[42m[30mProgress: [ 20%][49m[39m [##############............................................................] 8Selecting previously unselected package libhtml-tagset-perl.
+Preparing to unpack .../01-libhtml-tagset-perl_3.20-4_all.deb ...
+7[24;0f[42m[30mProgress: [ 21%][49m[39m [###############...........................................................] 8Unpacking libhtml-tagset-perl (3.20-4) ...
+7[24;0f[42m[30mProgress: [ 22%][49m[39m [################..........................................................] 8Selecting previously unselected package liburi-perl.
+Preparing to unpack .../02-liburi-perl_1.76-2_all.deb ...
+Unpacking liburi-perl (1.76-2) ...
+7[24;0f[42m[30mProgress: [ 24%][49m[39m [#################.........................................................] 8Selecting previously unselected package libhtml-parser-perl.
+Preparing to unpack .../03-libhtml-parser-perl_3.72-5_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 25%][49m[39m [##################........................................................] 8Unpacking libhtml-parser-perl (3.72-5) ...
+7[24;0f[42m[30mProgress: [ 26%][49m[39m [###################.......................................................] 8Selecting previously unselected package libcgi-pm-perl.
+Preparing to unpack .../04-libcgi-pm-perl_4.46-1_all.deb ...
+7[24;0f[42m[30mProgress: [ 27%][49m[39m [###################.......................................................] 8Unpacking libcgi-pm-perl (4.46-1) ...
+7[24;0f[42m[30mProgress: [ 28%][49m[39m [####################......................................................] 8Selecting previously unselected package libfcgi-perl.
+Preparing to unpack .../05-libfcgi-perl_0.79-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 28%][49m[39m [#####################.....................................................] 8Unpacking libfcgi-perl (0.79-1) ...
+7[24;0f[42m[30mProgress: [ 29%][49m[39m [#####################.....................................................] 8Selecting previously unselected package libcgi-fast-perl.
+Preparing to unpack .../06-libcgi-fast-perl_1%3a2.15-1_all.deb ...
+7[24;0f[42m[30mProgress: [ 30%][49m[39m [######################....................................................] 8Unpacking libcgi-fast-perl (1:2.15-1) ...
+7[24;0f[42m[30mProgress: [ 31%][49m[39m [#######################...................................................] 8Selecting previously unselected package libdbd-mysql-perl:amd64.
+Preparing to unpack .../07-libdbd-mysql-perl_4.050-3_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 32%][49m[39m [#######################...................................................] 8Unpacking libdbd-mysql-perl:amd64 (4.050-3) ...
+7[24;0f[42m[30mProgress: [ 33%][49m[39m [########################..................................................] 8Selecting previously unselected package libencode-locale-perl.
+Preparing to unpack .../08-libencode-locale-perl_1.05-1_all.deb ...
+Unpacking libencode-locale-perl (1.05-1) ...
+7[24;0f[42m[30mProgress: [ 35%][49m[39m [#########################.................................................] 8Selecting previously unselected package libhtml-template-perl.
+Preparing to unpack .../09-libhtml-template-perl_2.97-1_all.deb ...
+7[24;0f[42m[30mProgress: [ 36%][49m[39m [##########################................................................] 8Unpacking libhtml-template-perl (2.97-1) ...
+7[24;0f[42m[30mProgress: [ 37%][49m[39m [###########################...............................................] 8Selecting previously unselected package libtimedate-perl.
+Preparing to unpack .../10-libtimedate-perl_2.3200-1_all.deb ...
+7[24;0f[42m[30mProgress: [ 38%][49m[39m [###########################...............................................] 8Unpacking libtimedate-perl (2.3200-1) ...
+7[24;0f[42m[30mProgress: [ 39%][49m[39m [############################..............................................] 8Selecting previously unselected package libhttp-date-perl.
+Preparing to unpack .../11-libhttp-date-perl_6.05-1_all.deb ...
+7[24;0f[42m[30mProgress: [ 39%][49m[39m [#############################.............................................] 8Unpacking libhttp-date-perl (6.05-1) ...
+7[24;0f[42m[30mProgress: [ 40%][49m[39m [#############################.............................................] 8Selecting previously unselected package libio-html-perl.
+Preparing to unpack .../12-libio-html-perl_1.001-1_all.deb ...
+7[24;0f[42m[30mProgress: [ 41%][49m[39m [##############################............................................] 8Unpacking libio-html-perl (1.001-1) ...
+7[24;0f[42m[30mProgress: [ 42%][49m[39m [###############################...........................................] 8Selecting previously unselected package liblwp-mediatypes-perl.
+Preparing to unpack .../13-liblwp-mediatypes-perl_6.04-1_all.deb ...
+7[24;0f[42m[30mProgress: [ 43%][49m[39m [###############################...........................................] 8Unpacking liblwp-mediatypes-perl (6.04-1) ...
+7[24;0f[42m[30mProgress: [ 44%][49m[39m [################################..........................................] 8Selecting previously unselected package libhttp-message-perl.
+Preparing to unpack .../14-libhttp-message-perl_6.22-1_all.deb ...
+Unpacking libhttp-message-perl (6.22-1) ...
+7[24;0f[42m[30mProgress: [ 46%][49m[39m [#################################.........................................] 8Selecting previously unselected package libterm-readkey-perl.
+Preparing to unpack .../15-libterm-readkey-perl_2.38-1build1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 47%][49m[39m [##################################........................................] 8Unpacking libterm-readkey-perl (2.38-1build1) ...
+7[24;0f[42m[30mProgress: [ 48%][49m[39m [###################################.......................................] 8Selecting previously unselected package mariadb-server.
+Preparing to unpack .../16-mariadb-server_1%3a10.3.34-0ubuntu0.20.04.1_all.deb ...
+7[24;0f[42m[30mProgress: [ 49%][49m[39m [###################################.......................................] 8Unpacking mariadb-server (1:10.3.34-0ubuntu0.20.04.1) ...
+7[24;0f[42m[30mProgress: [ 50%][49m[39m [####################################......................................] 8Selecting previously unselected package python3-pymysql.
+Preparing to unpack .../17-python3-pymysql_1.0.2-1ubuntu1~cloud0_all.deb ...
+7[24;0f[42m[30mProgress: [ 50%][49m[39m [#####################################.....................................] 8Unpacking python3-pymysql (1.0.2-1ubuntu1~cloud0) ...
+7[24;0f[42m[30mProgress: [ 51%][49m[39m [######################################....................................] 8Setting up libconfig-inifiles-perl (3.000002-1) ...
+7[24;0f[42m[30mProgress: [ 52%][49m[39m [######################################....................................] 87[24;0f[42m[30mProgress: [ 53%][49m[39m [#######################################...................................] 8Setting up libhtml-tagset-perl (3.20-4) ...
+7[24;0f[42m[30mProgress: [ 54%][49m[39m [########################################..................................] 87[24;0f[42m[30mProgress: [ 55%][49m[39m [########################################..................................] 8Setting up liblwp-mediatypes-perl (6.04-1) ...
+7[24;0f[42m[30mProgress: [ 57%][49m[39m [##########################################................................] 8Setting up libencode-locale-perl (1.05-1) ...
+7[24;0f[42m[30mProgress: [ 58%][49m[39m [##########################################................................] 87[24;0f[42m[30mProgress: [ 59%][49m[39m [###########################################...............................] 8Setting up libsnappy1v5:amd64 (1.1.8-1build1) ...
+7[24;0f[42m[30mProgress: [ 60%][49m[39m [############################################..............................] 87[24;0f[42m[30mProgress: [ 61%][49m[39m [############################################..............................] 8Setting up socat (1.7.3.3-2) ...
+7[24;0f[42m[30mProgress: [ 61%][49m[39m [#############################################.............................] 87[24;0f[42m[30mProgress: [ 62%][49m[39m [##############################################............................] 8Setting up mariadb-server-core-10.3 (1:10.3.34-0ubuntu0.20.04.1) ...
+7[24;0f[42m[30mProgress: [ 63%][49m[39m [##############################################............................] 87[24;0f[42m[30mProgress: [ 64%][49m[39m [###############################################...........................] 8Setting up libio-html-perl (1.001-1) ...
+7[24;0f[42m[30mProgress: [ 65%][49m[39m [################################################..........................] 87[24;0f[42m[30mProgress: [ 66%][49m[39m [################################################..........................] 8Setting up python3-pymysql (1.0.2-1ubuntu1~cloud0) ...
+7[24;0f[42m[30mProgress: [ 68%][49m[39m [##################################################........................] 8Setting up galera-3 (25.3.29-1) ...
+7[24;0f[42m[30mProgress: [ 69%][49m[39m [##################################################........................] 87[24;0f[42m[30mProgress: [ 70%][49m[39m [###################################################.......................] 8Setting up libtimedate-perl (2.3200-1) ...
+7[24;0f[42m[30mProgress: [ 71%][49m[39m [####################################################......................] 87[24;0f[42m[30mProgress: [ 72%][49m[39m [####################################################......................] 8Setting up mariadb-client-core-10.3 (1:10.3.34-0ubuntu0.20.04.1) ...
+7[24;0f[42m[30mProgress: [ 72%][49m[39m [#####################################################.....................] 87[24;0f[42m[30mProgress: [ 73%][49m[39m [######################################################....................] 8Setting up libfcgi-perl (0.79-1) ...
+7[24;0f[42m[30mProgress: [ 74%][49m[39m [######################################################....................] 87[24;0f[42m[30mProgress: [ 75%][49m[39m [#######################################################...................] 8Setting up libterm-readkey-perl (2.38-1build1) ...
+7[24;0f[42m[30mProgress: [ 76%][49m[39m [########################################################..................] 87[24;0f[42m[30mProgress: [ 77%][49m[39m [#########################################################.................] 8Setting up liburi-perl (1.76-2) ...
+7[24;0f[42m[30mProgress: [ 79%][49m[39m [##########################################################................] 8Setting up libdbi-perl:amd64 (1.643-1ubuntu0.1) ...
+7[24;0f[42m[30mProgress: [ 80%][49m[39m [###########################################################...............] 87[24;0f[42m[30mProgress: [ 81%][49m[39m [###########################################################...............] 8Setting up libhttp-date-perl (6.05-1) ...
+7[24;0f[42m[30mProgress: [ 82%][49m[39m [############################################################..............] 87[24;0f[42m[30mProgress: [ 83%][49m[39m [#############################################################.............] 8Setting up mariadb-client-10.3 (1:10.3.34-0ubuntu0.20.04.1) ...
+7[24;0f[42m[30mProgress: [ 83%][49m[39m [#############################################################.............] 87[24;0f[42m[30mProgress: [ 84%][49m[39m [##############################################################............] 8Setting up libdbd-mysql-perl:amd64 (4.050-3) ...
+7[24;0f[42m[30mProgress: [ 85%][49m[39m [###############################################################...........] 87[24;0f[42m[30mProgress: [ 86%][49m[39m [###############################################################...........] 8Setting up libhtml-parser-perl (3.72-5) ...
+7[24;0f[42m[30mProgress: [ 87%][49m[39m [################################################################..........] 87[24;0f[42m[30mProgress: [ 88%][49m[39m [#################################################################.........] 8Setting up mariadb-server-10.3 (1:10.3.34-0ubuntu0.20.04.1) ...
+Created symlink /etc/systemd/system/mysql.service → /lib/systemd/system/mariadb.service.
+Created symlink /etc/systemd/system/mysqld.service → /lib/systemd/system/mariadb.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/mariadb.service → /lib/systemd/system/mariadb.service.
+7[24;0f[42m[30mProgress: [ 90%][49m[39m [##################################################################........] 8Setting up libhttp-message-perl (6.22-1) ...
+7[24;0f[42m[30mProgress: [ 91%][49m[39m [###################################################################.......] 87[24;0f[42m[30mProgress: [ 92%][49m[39m [###################################################################.......] 8Setting up libcgi-pm-perl (4.46-1) ...
+7[24;0f[42m[30mProgress: [ 93%][49m[39m [####################################################################......] 87[24;0f[42m[30mProgress: [ 94%][49m[39m [#####################################################################.....] 8Setting up libhtml-template-perl (2.97-1) ...
+7[24;0f[42m[30mProgress: [ 94%][49m[39m [#####################################################################.....] 87[24;0f[42m[30mProgress: [ 95%][49m[39m [######################################################################....] 8Setting up mariadb-server (1:10.3.34-0ubuntu0.20.04.1) ...
+7[24;0f[42m[30mProgress: [ 96%][49m[39m [#######################################################################...] 87[24;0f[42m[30mProgress: [ 97%][49m[39m [#######################################################################...] 8Setting up libcgi-fast-perl (1:2.15-1) ...
+7[24;0f[42m[30mProgress: [ 98%][49m[39m [########################################################################..] 87[24;0f[42m[30mProgress: [ 99%][49m[39m [#########################################################################.] 8Processing triggers for systemd (245.4-4ubuntu3.17) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.9) ...
+
+7[0;24r8[1A[J]0;root@astplsm01: ~root@astplsm01:~# [Kcd /etc/mysql/mariadb.conf.d/
+]0;root@astplsm01: /etc/mysql/mariadb.conf.droot@astplsm01:/etc/mysql/mariadb.conf.d# ls
+50-client.cnf  50-mysql-clients.cnf  50-mysqld_safe.cnf  50-server.cnf
+]0;root@astplsm01: /etc/mysql/mariadb.conf.droot@astplsm01:/etc/mysql/mariadb.conf.d# touch 99-openstack.cnf
+]0;root@astplsm01: /etc/mysql/mariadb.conf.droot@astplsm01:/etc/mysql/mariadb.conf.d# nano 09  99-openstack.cnf 
+[?2004h[?1049h[22;0;0t[1;24r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[22;42H(B[0;7m[ Reading... ](B[m[22;41H(B[0;7m[ Read 0 lines ](B[m[H(B[0;7m  GNU nano 4.8                            99-openstack.cnf                                      [1;95H(B[m[23d(B[0;7m^G(B[m Get Help     (B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut Text     (B[0;7m^J(B[m Justify[81G(B[0;7m^C(B[m Cur Pos[24d(B[0;7m^X(B[m Exit[24;17H(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste Text   (B[0;7m^T(B[m To Spell     (B[0;7m^_(B[m Go To Line[22d[2d[39;49m(B[m[?12l[?25h[?25l[1;87H(B[0;7mModified[22d(B[m[K[1;95H[2d(B[0;1m[32m[mysqld][3d[39m(B[mbind-address = 10.0.0.11[5ddefault-storage-engine = innodb[6dinnodb_file_per_table = on[7dmax_connections = 4096[8dcollation-server = utf8_general_ci[9dcharacter-set-server = utf8[?12l[?25h[?25l[A[?12l[?25h[?25l[7;23H[?12l[?25h[?25l[A= on[?12l[?25h[?25l[An[?12l[?25h[?25l[A[?12l[?25h[?25l[3;25H[?12l[?25h[?25l[2;9H[?12l[?25h[?25l[3;25H[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l129.69.209.168[?12l[?25h[?25l[23;17H        (B[0;7mM-D(B[m DOS Format          (B[0;7mM-A(B[m Append[14X[23;73H(B[0;7mM-B(B[m Backup File[K[24;2H(B[0;7mC(B[m Cancel[17G        (B[0;7mM-M(B[m Mac Format    [49G(B[0;7mM-P(B[m Prepend             (B[0;7m^T(B[m To Files[K[22d(B[0;7mFile Name to Write: 99-openstack.cnf                                                            [22;1H(B[m[22;37H[?12l[?25h[?25l    [1K (B[0;7m[ Writing... ](B[m[K[1;87H(B[0;7m        (B[m[22;40H(B[0;7m[ Wrote 8 lines ](B[m[23;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut Text     (B[0;7m^J(B[m Justify      (B[0;7m^C(B[m Cur Pos[24;2H(B[0;7mX(B[m Exit  [17G(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste Text   (B[0;7m^T(B[m To Spell     (B[0;7m^_(B[m Go To Line[22d[3;30H[?12l[?25h[?25l[22d[J[24d[?12l[?25h[24;1H[?1049l[23;0;0t[?1l>[?2004l]0;root@astplsm01: /etc/mysql/mariadb.conf.droot@astplsm01:/etc/mysql/mariadb.conf.d# cat 99-openstack.cnf 
+[mysqld]
+bind-address = 129.69.209.168
+
+default-storage-engine = innodb
+innodb_file_per_table = on
+max_connections = 4096
+collation-server = utf8_general_ci
+character-set-server = utf8
+]0;root@astplsm01: /etc/mysql/mariadb.conf.droot@astplsm01:/etc/mysql/mariadb.conf.d# ^C
+]0;root@astplsm01: /etc/mysql/mariadb.conf.droot@astplsm01:/etc/mysql/mariadb.conf.d# ^C
+]0;root@astplsm01: /etc/mysql/mariadb.conf.droot@astplsm01:/etc/mysql/mariadb.conf.d# service mysql restart
+]0;root@astplsm01: /etc/mysql/mariadb.conf.droot@astplsm01:/etc/mysql/mariadb.conf.d# mysql_secure_installation
+
+NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+
+In order to log into MariaDB to secure it, we'll need the current
+password for the root user.  If you've just installed MariaDB, and
+you haven't set the root password yet, the password will be blank,
+so you should just press enter here.
+
+Enter current password for root (enter for none): 
+OK, successfully used password, moving on...
+
+Setting the root password ensures that nobody can log into the MariaDB
+root user without the proper authorisation.
+
+Set root password? [Y/n] Y
+New password: 
+Re-enter new password: 
+Password updated successfully!
+Reloading privilege tables..
+ ... Success!
+
+
+By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them.  This is intended only for testing, and to make the installation
+go a bit smoother.  You should remove them before moving into a
+production environment.
+
+Remove anonymous users? [Y/n] n
+ ... skipping.
+
+Normally, root should only be allowed to connect from 'localhost'.  This
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] n
+ ... skipping.
+
+By default, MariaDB comes with a database named 'test' that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] Y
+ - Dropping test database...
+ ... Success!
+ - Removing privileges on test database...
+ ... Success!
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] Y
+ ... Success!
+
+Cleaning up...
+
+All done!  If you've completed all of the above steps, your MariaDB
+installation should now be secure.
+
+Thanks for using MariaDB!
+]0;root@astplsm01: /etc/mysql/mariadb.conf.droot@astplsm01:/etc/mysql/mariadb.conf.d# 5mvQr9b       apt install rabbitmq-server                           cd ~
+]0;root@astplsm01: ~root@astplsm01:~# [Kapt install rabbitmq-server
+Reading package lists... 0%Reading package lists... 100%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
+Reading state information... 0%Reading state information... 0%Reading state information... Done
+The following additional packages will be installed:
+  erlang-asn1 erlang-base erlang-crypto erlang-eldap erlang-ftp erlang-inets erlang-mnesia
+  erlang-os-mon erlang-parsetools erlang-public-key erlang-runtime-tools erlang-snmp
+  erlang-ssl erlang-syntax-tools erlang-tftp erlang-tools erlang-xmerl libsctp1 locales-all
+Suggested packages:
+  erlang erlang-manpages erlang-doc lksctp-tools
+The following NEW packages will be installed:
+  erlang-asn1 erlang-base erlang-crypto erlang-eldap erlang-ftp erlang-inets erlang-mnesia
+  erlang-os-mon erlang-parsetools erlang-public-key erlang-runtime-tools erlang-snmp
+  erlang-ssl erlang-syntax-tools erlang-tftp erlang-tools erlang-xmerl libsctp1 locales-all
+  rabbitmq-server
+0 upgraded, 20 newly installed, 0 to remove and 6 not upgraded.
+Need to get 38.1 MB of archives.
+After this operation, 276 MB of additional disk space will be used.
+Do you want to continue? [Y/n] > Y
+[33m0% [Working][0m            Get:1 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-base amd64 1:22.2.7+dfsg-1 [8063 kB]
+[33m0% [1 erlang-base 0 B/8063 kB 0%][0m[33m                                 18% [Working][0m             Get:2 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-asn1 amd64 1:22.2.7+dfsg-1 [712 kB]
+[33m18% [2 erlang-asn1 61.4 kB/712 kB 9%][0m[33m                                     20% [Waiting for headers][0m                         Get:3 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-crypto amd64 1:22.2.7+dfsg-1 [137 kB]
+[33m20% [3 erlang-crypto 6055 B/137 kB 4%][0m[33m                                      22% [Waiting for headers][0m                         Get:4 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-public-key amd64 1:22.2.7+dfsg-1 [567 kB]
+[33m22% [4 erlang-public-key 57.3 kB/567 kB 10%][0m[33m                                            24% [Waiting for headers][0m                         Get:5 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-mnesia amd64 1:22.2.7+dfsg-1 [716 kB]
+[33m24% [5 erlang-mnesia 22.8 kB/716 kB 3%][0m[33m                                       26% [Waiting for headers][0m                         Get:6 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-runtime-tools amd64 1:22.2.7+dfsg-1 [182 kB]
+[33m26% [6 erlang-runtime-tools 27.6 kB/182 kB 15%][0m[33m                                               28% [Waiting for headers][0m                         Get:7 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-ssl amd64 1:22.2.7+dfsg-1 [1103 kB]
+[33m28% [7 erlang-ssl 0 B/1103 kB 0%][0m[33m                                 31% [Waiting for headers][0m                         Get:8 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-eldap amd64 1:22.2.7+dfsg-1 [99.7 kB]
+[33m31% [8 erlang-eldap 52.6 kB/99.7 kB 53%][0m[33m                                        32% [Waiting for headers][0m                         Get:9 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-ftp amd64 1:22.2.7+dfsg-1 [68.8 kB]
+[33m32% [9 erlang-ftp 18.2 kB/68.8 kB 27%][0m[33m                                      33% [Waiting for headers][0m                         Get:10 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-tftp amd64 1:22.2.7+dfsg-1 [84.6 kB]
+[33m34% [10 erlang-tftp 14.8 kB/84.6 kB 17%][0m[33m                                        35% [Waiting for headers][0m                         Get:11 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-inets amd64 1:22.2.7+dfsg-1 [577 kB]
+[33m35% [11 erlang-inets 57.3 kB/577 kB 10%][0m[33m                                        37% [Waiting for headers][0m                         Get:12 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-snmp amd64 1:22.2.7+dfsg-1 [1538 kB]
+[33m37% [12 erlang-snmp 7825 B/1538 kB 1%][0m[33m                                      41% [Waiting for headers][0m                         Get:13 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-os-mon amd64 1:22.2.7+dfsg-1 [81.2 kB]
+[33m41% [13 erlang-os-mon 42.2 kB/81.2 kB 52%][0m[33m                                          42% [Waiting for headers][0m                         Get:14 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-parsetools amd64 1:22.2.7+dfsg-1 [151 kB]
+[33m42% [14 erlang-parsetools 26.3 kB/151 kB 17%][0m[33m                                             44% [Working][0m             Get:15 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-syntax-tools amd64 1:22.2.7+dfsg-1 [344 kB]
+[33m44% [15 erlang-syntax-tools 6559 B/344 kB 2%][0m[33m                                             45% [Waiting for headers][0m                         Get:16 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-tools amd64 1:22.2.7+dfsg-1 [499 kB]
+[33m45% [16 erlang-tools 47.5 kB/499 kB 10%][0m[33m                                        47% [Waiting for headers][0m                         Get:17 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 erlang-xmerl amd64 1:22.2.7+dfsg-1 [1113 kB]
+[33m47% [17 erlang-xmerl 15.3 kB/1113 kB 1%][0m[33m                                        51% [Waiting for headers][0m                         Get:18 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 libsctp1 amd64 1.0.18+dfsg-1 [7876 B]
+[33m51% [18 libsctp1 7876 B/7876 B 100%][0m[33m                                    52% [Waiting for headers][0m                         Get:19 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal-updates/main amd64 locales-all amd64 2.31-0ubuntu9.9 [10.5 MB]
+[33m52% [19 locales-all 8365 B/10.5 MB 0%][0m[33m                                      75% [Waiting for headers][0m                         Get:20 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal-updates/main amd64 rabbitmq-server all 3.8.2-0ubuntu1.3 [11.5 MB]
+[33m75% [20 rabbitmq-server 29.5 kB/11.5 MB 0%][0m[33m                                           100% [Working][0m              Fetched 38.1 MB in 1s (48.5 MB/s)
+
+7[0;23r8[1ASelecting previously unselected package erlang-base.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 89547 files and directories currently installed.)
+Preparing to unpack .../00-erlang-base_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [  0%][49m[39m [..........................................................................] 87[24;0f[42m[30mProgress: [  1%][49m[39m [..........................................................................] 8Unpacking erlang-base (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [  2%][49m[39m [#.........................................................................] 8Selecting previously unselected package erlang-asn1.
+Preparing to unpack .../01-erlang-asn1_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [  4%][49m[39m [##........................................................................] 8Unpacking erlang-asn1 (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [  5%][49m[39m [###.......................................................................] 8Selecting previously unselected package erlang-crypto.
+Preparing to unpack .../02-erlang-crypto_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [  6%][49m[39m [####......................................................................] 8Unpacking erlang-crypto (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [  7%][49m[39m [#####.....................................................................] 8Selecting previously unselected package erlang-public-key.
+Preparing to unpack .../03-erlang-public-key_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [  9%][49m[39m [######....................................................................] 8Unpacking erlang-public-key (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 10%][49m[39m [#######...................................................................] 8Selecting previously unselected package erlang-mnesia.
+Preparing to unpack .../04-erlang-mnesia_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 11%][49m[39m [########..................................................................] 8Unpacking erlang-mnesia (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 12%][49m[39m [#########.................................................................] 8Selecting previously unselected package erlang-runtime-tools.
+Preparing to unpack .../05-erlang-runtime-tools_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 14%][49m[39m [##########................................................................] 8Unpacking erlang-runtime-tools (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 15%][49m[39m [##########................................................................] 8Selecting previously unselected package erlang-ssl.
+Preparing to unpack .../06-erlang-ssl_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 16%][49m[39m [###########...............................................................] 8Unpacking erlang-ssl (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 17%][49m[39m [############..............................................................] 8Selecting previously unselected package erlang-eldap.
+Preparing to unpack .../07-erlang-eldap_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 19%][49m[39m [#############.............................................................] 8Unpacking erlang-eldap (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 20%][49m[39m [##############............................................................] 8Selecting previously unselected package erlang-ftp.
+Preparing to unpack .../08-erlang-ftp_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 21%][49m[39m [###############...........................................................] 8Unpacking erlang-ftp (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 22%][49m[39m [################..........................................................] 8Selecting previously unselected package erlang-tftp.
+Preparing to unpack .../09-erlang-tftp_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 23%][49m[39m [#################.........................................................] 8Unpacking erlang-tftp (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 25%][49m[39m [##################........................................................] 8Selecting previously unselected package erlang-inets.
+Preparing to unpack .../10-erlang-inets_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 26%][49m[39m [###################.......................................................] 8Unpacking erlang-inets (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 27%][49m[39m [####################......................................................] 8Selecting previously unselected package erlang-snmp.
+Preparing to unpack .../11-erlang-snmp_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 28%][49m[39m [#####################.....................................................] 8Unpacking erlang-snmp (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 30%][49m[39m [#####################.....................................................] 8Selecting previously unselected package erlang-os-mon.
+Preparing to unpack .../12-erlang-os-mon_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 31%][49m[39m [######################....................................................] 8Unpacking erlang-os-mon (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 32%][49m[39m [#######################...................................................] 8Selecting previously unselected package erlang-parsetools.
+Preparing to unpack .../13-erlang-parsetools_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 33%][49m[39m [########################..................................................] 8Unpacking erlang-parsetools (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 35%][49m[39m [#########################.................................................] 8Selecting previously unselected package erlang-syntax-tools.
+Preparing to unpack .../14-erlang-syntax-tools_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 36%][49m[39m [##########################................................................] 8Unpacking erlang-syntax-tools (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 37%][49m[39m [###########################...............................................] 8Selecting previously unselected package erlang-tools.
+Preparing to unpack .../15-erlang-tools_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 38%][49m[39m [############################..............................................] 8Unpacking erlang-tools (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 40%][49m[39m [#############################.............................................] 8Selecting previously unselected package erlang-xmerl.
+Preparing to unpack .../16-erlang-xmerl_1%3a22.2.7+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 41%][49m[39m [##############################............................................] 8Unpacking erlang-xmerl (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 42%][49m[39m [###############################...........................................] 8Selecting previously unselected package libsctp1:amd64.
+Preparing to unpack .../17-libsctp1_1.0.18+dfsg-1_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 43%][49m[39m [###############################...........................................] 8Unpacking libsctp1:amd64 (1.0.18+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 44%][49m[39m [################################..........................................] 8Selecting previously unselected package locales-all.
+Preparing to unpack .../18-locales-all_2.31-0ubuntu9.9_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 46%][49m[39m [#################################.........................................] 8Unpacking locales-all (2.31-0ubuntu9.9) ...
+7[24;0f[42m[30mProgress: [ 47%][49m[39m [##################################........................................] 8Selecting previously unselected package rabbitmq-server.
+Preparing to unpack .../19-rabbitmq-server_3.8.2-0ubuntu1.3_all.deb ...
+7[24;0f[42m[30mProgress: [ 48%][49m[39m [###################################.......................................] 8Unpacking rabbitmq-server (3.8.2-0ubuntu1.3) ...
+7[24;0f[42m[30mProgress: [ 49%][49m[39m [####################################......................................] 8Setting up erlang-base (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 51%][49m[39m [#####################################.....................................] 8Created symlink /etc/systemd/system/multi-user.target.wants/epmd.service → /lib/systemd/system/epmd.service.
+Created symlink /etc/systemd/system/sockets.target.wants/epmd.socket → /lib/systemd/system/epmd.socket.
+Searching for services which depend on erlang and should be started... none found.
+7[24;0f[42m[30mProgress: [ 52%][49m[39m [######################################....................................] 8Setting up erlang-xmerl (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 53%][49m[39m [#######################################...................................] 87[24;0f[42m[30mProgress: [ 54%][49m[39m [########################################..................................] 8Setting up erlang-syntax-tools (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 56%][49m[39m [#########################################.................................] 87[24;0f[42m[30mProgress: [ 57%][49m[39m [##########################################................................] 8Setting up locales-all (2.31-0ubuntu9.9) ...
+7[24;0f[42m[30mProgress: [ 58%][49m[39m [##########################################................................] 87[24;0f[42m[30mProgress: [ 59%][49m[39m [###########################################...............................] 8Setting up erlang-parsetools (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 60%][49m[39m [############################################..............................] 87[24;0f[42m[30mProgress: [ 62%][49m[39m [#############################################.............................] 8Setting up erlang-asn1 (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 63%][49m[39m [##############################################............................] 87[24;0f[42m[30mProgress: [ 64%][49m[39m [###############################################...........................] 8Setting up erlang-tftp (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 65%][49m[39m [################################################..........................] 87[24;0f[42m[30mProgress: [ 67%][49m[39m [#################################################.........................] 8Setting up libsctp1:amd64 (1.0.18+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 68%][49m[39m [##################################################........................] 87[24;0f[42m[30mProgress: [ 69%][49m[39m [###################################################.......................] 8Setting up erlang-mnesia (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 70%][49m[39m [####################################################......................] 87[24;0f[42m[30mProgress: [ 72%][49m[39m [####################################################......................] 8Setting up erlang-crypto (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 73%][49m[39m [#####################################################.....................] 87[24;0f[42m[30mProgress: [ 74%][49m[39m [######################################################....................] 8Setting up erlang-runtime-tools (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 75%][49m[39m [#######################################################...................] 87[24;0f[42m[30mProgress: [ 77%][49m[39m [########################################################..................] 8Setting up erlang-tools (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 78%][49m[39m [#########################################################.................] 87[24;0f[42m[30mProgress: [ 79%][49m[39m [##########################################################................] 8Setting up erlang-snmp (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 80%][49m[39m [###########################################################...............] 87[24;0f[42m[30mProgress: [ 81%][49m[39m [############################################################..............] 8Setting up erlang-public-key (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 83%][49m[39m [#############################################################.............] 87[24;0f[42m[30mProgress: [ 84%][49m[39m [##############################################################............] 8Setting up erlang-ssl (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 85%][49m[39m [###############################################################...........] 87[24;0f[42m[30mProgress: [ 86%][49m[39m [###############################################################...........] 8Setting up erlang-os-mon (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 88%][49m[39m [################################################################..........] 87[24;0f[42m[30mProgress: [ 89%][49m[39m [#################################################################.........] 8Setting up erlang-eldap (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 90%][49m[39m [##################################################################........] 87[24;0f[42m[30mProgress: [ 91%][49m[39m [###################################################################.......] 8Setting up erlang-ftp (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 93%][49m[39m [####################################################################......] 87[24;0f[42m[30mProgress: [ 94%][49m[39m [#####################################################################.....] 8Setting up erlang-inets (1:22.2.7+dfsg-1) ...
+7[24;0f[42m[30mProgress: [ 95%][49m[39m [######################################################################....] 87[24;0f[42m[30mProgress: [ 96%][49m[39m [#######################################################################...] 8Setting up rabbitmq-server (3.8.2-0ubuntu1.3) ...
+7[24;0f[42m[30mProgress: [ 98%][49m[39m [########################################################################..] 8Adding group `rabbitmq' (GID 122) ...
+Done.
+Adding system user `rabbitmq' (UID 118) ...
+Adding new user `rabbitmq' (UID 118) with group `rabbitmq' ...
+Not creating home directory `/var/lib/rabbitmq'.
+Created symlink /etc/systemd/system/multi-user.target.wants/rabbitmq-server.service → /lib/systemd/system/rabbitmq-server.service.
+7[24;0f[42m[30mProgress: [ 99%][49m[39m [#########################################################################.] 8Processing triggers for systemd (245.4-4ubuntu3.17) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.9) ...
+
+7[0;24r8[1A[J]0;root@astplsm01: ~root@astplsm01:~# [Krabbitmqctl add_user openstack RABBIT_PASS           DefaultRoute setting: no
+Error (argument validation): too many arguments.
+Arguments given:
+	add_user openstack DefaultRoute setting: no
+
+[1mUsage[0m
+
+rabbitmqctl [--node <node>] [--longnames] [--quiet] add_user <username> <password>
+]0;root@astplsm01: ~root@astplsm01:~# [Krabbitmqctl add_user openstack DefaultRoute setting: no                        5mvQr9b
+Adding user "openstack" ...
+]0;root@astplsm01: ~root@astplsm01:~# [Krabbitmqctl set_permissions openstack ".*" ".*" ".*"
+Setting permissions for user "openstack" in vhost "/" ...
+]0;root@astplsm01: ~root@astplsm01:~# [Kapt install memcached python-memcache
+Reading package lists... 0%Reading package lists... 100%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
+Reading state information... 0%Reading state information... 0%Reading state information... Done
+Package python-memcache is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or
+is only available from another source
+
+[1;31mE: [0mPackage 'python-memcache' has no installation candidate[0m
+]0;root@astplsm01: ~root@astplsm01:~# [Kapt install memcached python3-memcache
+Reading package lists... 0%Reading package lists... 100%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
+Reading state information... 0%Reading state information... 0%Reading state information... Done
+Suggested packages:
+  libanyevent-perl libcache-memcached-perl libmemcached libyaml-perl
+The following NEW packages will be installed:
+  memcached python3-memcache
+0 upgraded, 2 newly installed, 0 to remove and 6 not upgraded.
+Need to get 146 kB of archives.
+After this operation, 421 kB of additional disk space will be used.
+[33m0% [Working][0m            Get:1 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal-updates/main amd64 memcached amd64 1.5.22-2ubuntu0.2 [128 kB]
+[33m7% [1 memcached 12.3 kB/128 kB 10%][0m[33m                                   80% [Working][0m             Get:2 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/main amd64 python3-memcache all 1.59-4 [17.7 kB]
+[33m90% [2 python3-memcache 17.7 kB/17.7 kB 100%][0m[33m                                             100% [Working][0m              Fetched 146 kB in 0s (2636 kB/s)
+
+7[0;23r8[1ASelecting previously unselected package memcached.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 98008 files and directories currently installed.)
+Preparing to unpack .../memcached_1.5.22-2ubuntu0.2_amd64.deb ...
+7[24;0f[42m[30mProgress: [  0%][49m[39m [..........................................................................] 87[24;0f[42m[30mProgress: [ 11%][49m[39m [########..................................................................] 8Unpacking memcached (1.5.22-2ubuntu0.2) ...
+7[24;0f[42m[30mProgress: [ 22%][49m[39m [################..........................................................] 8Selecting previously unselected package python3-memcache.
+Preparing to unpack .../python3-memcache_1.59-4_all.deb ...
+7[24;0f[42m[30mProgress: [ 33%][49m[39m [########################..................................................] 8Unpacking python3-memcache (1.59-4) ...
+7[24;0f[42m[30mProgress: [ 44%][49m[39m [################################..........................................] 8Setting up python3-memcache (1.59-4) ...
+7[24;0f[42m[30mProgress: [ 56%][49m[39m [#########################################.................................] 87[24;0f[42m[30mProgress: [ 67%][49m[39m [#################################################.........................] 8Setting up memcached (1.5.22-2ubuntu0.2) ...
+7[24;0f[42m[30mProgress: [ 78%][49m[39m [#########################################################.................] 8Created symlink /etc/systemd/system/multi-user.target.wants/memcached.service → /lib/systemd/system/memcached.service.
+7[24;0f[42m[30mProgress: [ 89%][49m[39m [#################################################################.........] 8Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for systemd (245.4-4ubuntu3.17) ...
+
+7[0;24r8[1A[J]0;root@astplsm01: ~root@astplsm01:~# [Knano /etc/memcached.conf 
+[?2004h[?1049h[22;0;0t[1;24r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[22;42H(B[0;7m[ Reading... ](B[m[22;40H(B[0;7m[ Read 50 lines ](B[m[H(B[0;7m  GNU nano 4.8                          /etc/memcached.conf                                     [1;95H(B[m[23d(B[0;7m^G(B[m Get Help     (B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut Text     (B[0;7m^J(B[m Justify[81G(B[0;7m^C(B[m Cur Pos[24d(B[0;7m^X(B[m Exit[24;17H(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste Text   (B[0;7m^T(B[m To Spell     (B[0;7m^_(B[m Go To Line[22d[2d[39;49m[36m# memcached default config file[3d# 2003 - Jay Bonci [35m<jaybonci@debian.org>[4d[36m# This configuration file is read by the start-memcached script provided as[5d# part of the Debian GNU/Linux distribution.[7d# Run memcached as a daemon. This command is implied, and is not needed for the[8d# daemon to run. See the README.Debian that comes with this package for more[9d# information.[10d[39m(B[m-d[12d[36m# Log memcached's output to /var/log/memcached[13d[39m(B[mlogfile /var/log/memcached.log[15d[36m# Be verbose[16d# -v[18d# Be even more verbose (print client commands as well)[19d# -vv[21d# Start with a cap of 64 megs of memory. It's reasonable, and the daemon default[2d[39m(B[m[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[5d[?12l[?25h[?25l[6d[?12l[?25h[?25l[7d[?12l[?25h[?25l[8d[?12l[?25h[?25l[9d[?12l[?25h[?25l[10d[?12l[?25h[?25l[11d[?12l[?25h[?25l[12d[?12l[?25h[?25l[13d[?12l[?25h[?25l[14d[?12l[?25h[?25l[15d[?12l[?25h[?25l[16d[?12l[?25h[?25l[17d[?12l[?25h[?25l[18d[?12l[?25h[?25l[19d[?12l[?25h[?25l[20d[?12l[?25h[?25l[21d[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m# Note that the daemon will grow to this size, but does not start out holding this much[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m# memory[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H-m 64[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m# Default connection port is 11211[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H-p 11211[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[K[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Run the daemon as root. The start-memcached will default to running as root if no[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# -u command is present in this config file[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H-u memcache[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Specify which IP address to listen on. The default is to listen on all IP addresses[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# This parameter is one of the only security measures that memcached has, so make sure[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# it's listening on a firewalled interface.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H-l 127.0.0.1[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Limit the number of simultaneous incoming connections. The daemon default is 1024[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# -c 1024[39m(B[m[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l-[?12l[?25h[?25ll[?12l[?25h[?25l [?12l[?25h[?25l[1;87H(B[0;7mModified(B[m[18;4H[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l0.0.1[K-l [?12l[?25h[?25l.0.1[K[?12l[?25h[?25l0.1[K[?12l[?25h[?25l.1[K[?12l[?25h[?25l1[K[?12l[?25h[?25l [?12l[?25h[?25l129.69.209.168[?12l[?25h[?25l[19d[?12l[?25h[?25l[20;18H[?12l[?25h[?25l[21;10H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Lock down all paged memory. Consult with the README and homepage before you do this[21;18H[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# -k[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Return error when memory is exhausted (rather than removing items)[21;18H[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# -M[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Maximize core file limit[21;18H[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# -r[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Use a pidfile[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H-P /var/run/memcached/memcached.pid[21;18H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[20;18H[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[17;5H[?12l[?25h[?25l[16;18H[?12l[?25h[?25l[A[?12l[?25h[?25l[14;5H[?12l[?25h[?25l[13;18H[?12l[?25h[?25l[A[?12l[?25h[?25l[11;5H[?12l[?25h[?25l[10;18H[?12l[?25h[?25l[A[?12l[?25h[?25l[8;10H[?12l[?25h[?25l[7;18H[?12l[?25h[?25l[A[?12l[?25h[?25l[5;18H[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H-u memcache[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# -u command is present in this config file[2;18H[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m# Run the daemon as root. The start-memcached will default to running as root if no[2;18H[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H-p 11211[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m# Default connection port is 11211[2;18H[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H-m 64[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m# memory[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# Note that the daemon will grow to this size, but does not start out holding this much[2;18H[39m(B[m[?12l[?25h[?25l[23;17H        (B[0;7mM-D(B[m DOS Format          (B[0;7mM-A(B[m Append[14X[23;73H(B[0;7mM-B(B[m Backup File[K[24;2H(B[0;7mC(B[m Cancel[17G        (B[0;7mM-M(B[m Mac Format    [49G(B[0;7mM-P(B[m Prepend             (B[0;7m^T(B[m To Files[K[22d(B[0;7mFile Name to Write: /etc/memcached.conf                                                         [22;1H(B[m[22;40H[?12l[?25h[?25l [1K (B[0;7m[ Writing... ](B[m[K[1;87H(B[0;7m        (B[m[22;40H(B[0;7m[ Wrote 50 lines ](B[m[23;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut Text     (B[0;7m^J(B[m Justify      (B[0;7m^C(B[m Cur Pos[24;2H(B[0;7mX(B[m Exit  [17G(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste Text   (B[0;7m^T(B[m To Spell     (B[0;7m^_(B[m Go To Line[22d[2;18H[?12l[?25h[?25l[22d[J[24d[?12l[?25h[24;1H[?1049l[23;0;0t[?1l>[?2004l]0;root@astplsm01: ~root@astplsm01:~# [Kcat /etc/memcached.conf 
+# memcached default config file
+# 2003 - Jay Bonci <jaybonci@debian.org>
+# This configuration file is read by the start-memcached script provided as
+# part of the Debian GNU/Linux distribution.
+
+# Run memcached as a daemon. This command is implied, and is not needed for the
+# daemon to run. See the README.Debian that comes with this package for more
+# information.
+-d
+
+# Log memcached's output to /var/log/memcached
+logfile /var/log/memcached.log
+
+# Be verbose
+# -v
+
+# Be even more verbose (print client commands as well)
+# -vv
+
+# Start with a cap of 64 megs of memory. It's reasonable, and the daemon default
+# Note that the daemon will grow to this size, but does not start out holding this much
+# memory
+-m 64
+
+# Default connection port is 11211
+-p 11211
+
+# Run the daemon as root. The start-memcached will default to running as root if no
+# -u command is present in this config file
+-u memcache
+
+# Specify which IP address to listen on. The default is to listen on all IP addresses
+# This parameter is one of the only security measures that memcached has, so make sure
+# it's listening on a firewalled interface.
+-l 129.69.209.168
+
+# Limit the number of simultaneous incoming connections. The daemon default is 1024
+# -c 1024
+
+# Lock down all paged memory. Consult with the README and homepage before you do this
+# -k
+
+# Return error when memory is exhausted (rather than removing items)
+# -M
+
+# Maximize core file limit
+# -r
+
+# Use a pidfile
+-P /var/run/memcached/memcached.pid
+]0;root@astplsm01: ~root@astplsm01:~# [K^C
+]0;root@astplsm01: ~root@astplsm01:~# service memcached restart
+]0;root@astplsm01: ~root@astplsm01:~# [Kservice memcached restart
+]0;root@astplsm01: ~root@astplsm01:~# [Kapt install etcd
+Reading package lists... 0%Reading package lists... 100%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
+Reading state information... 0%Reading state information... 0%Reading state information... Done
+The following additional packages will be installed:
+  etcd-client etcd-server pipexec
+The following NEW packages will be installed:
+  etcd etcd-client etcd-server pipexec
+0 upgraded, 4 newly installed, 0 to remove and 6 not upgraded.
+Need to get 10.5 MB of archives.
+After this operation, 38.9 MB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+[33m0% [Working][0m            Get:1 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/universe amd64 pipexec amd64 2.5.5-2 [17.5 kB]
+[33m0% [1 pipexec 17.5 kB/17.5 kB 100%][0m[33m                                   5% [Working][0m            Get:2 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/universe amd64 etcd-client amd64 3.2.26+dfsg-6 [4563 kB]
+[33m5% [2 etcd-client 8192 B/4563 kB 0%][0m[33m                                    45% [Waiting for headers][0m                         Get:3 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/universe amd64 etcd-server amd64 3.2.26+dfsg-6 [5867 kB]
+[33m45% [3 etcd-server 6203 B/5867 kB 0%][0m[33m                                     95% [Waiting for headers][0m                         Get:4 http://vminst1.informatik.uni-stuttgart.de/ubuntu focal/universe amd64 etcd all 3.2.26+dfsg-6 [2520 B]
+[33m95% [4 etcd 2520 B/2520 B 100%][0m[33m                               100% [Working][0m              Fetched 10.5 MB in 0s (46.0 MB/s)
+
+7[0;23r8[1ASelecting previously unselected package pipexec.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 98042 files and directories currently installed.)
+Preparing to unpack .../pipexec_2.5.5-2_amd64.deb ...
+7[24;0f[42m[30mProgress: [  0%][49m[39m [..........................................................................] 87[24;0f[42m[30mProgress: [  6%][49m[39m [####......................................................................] 8Unpacking pipexec (2.5.5-2) ...
+7[24;0f[42m[30mProgress: [ 12%][49m[39m [########..................................................................] 8Selecting previously unselected package etcd-client.
+Preparing to unpack .../etcd-client_3.2.26+dfsg-6_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 18%][49m[39m [#############.............................................................] 8Unpacking etcd-client (3.2.26+dfsg-6) ...
+7[24;0f[42m[30mProgress: [ 24%][49m[39m [#################.........................................................] 8Selecting previously unselected package etcd-server.
+Preparing to unpack .../etcd-server_3.2.26+dfsg-6_amd64.deb ...
+7[24;0f[42m[30mProgress: [ 29%][49m[39m [#####################.....................................................] 8Unpacking etcd-server (3.2.26+dfsg-6) ...
+7[24;0f[42m[30mProgress: [ 35%][49m[39m [##########################................................................] 8Selecting previously unselected package etcd.
+Preparing to unpack .../etcd_3.2.26+dfsg-6_all.deb ...
+7[24;0f[42m[30mProgress: [ 41%][49m[39m [##############################............................................] 8Unpacking etcd (3.2.26+dfsg-6) ...
+7[24;0f[42m[30mProgress: [ 47%][49m[39m [##################################........................................] 8Setting up pipexec (2.5.5-2) ...
+7[24;0f[42m[30mProgress: [ 53%][49m[39m [#######################################...................................] 87[24;0f[42m[30mProgress: [ 59%][49m[39m [###########################################...............................] 8Setting up etcd-client (3.2.26+dfsg-6) ...
+7[24;0f[42m[30mProgress: [ 65%][49m[39m [###############################################...........................] 87[24;0f[42m[30mProgress: [ 71%][49m[39m [####################################################......................] 8Setting up etcd-server (3.2.26+dfsg-6) ...
+7[24;0f[42m[30mProgress: [ 76%][49m[39m [########################################################..................] 8Adding system user `etcd' (UID 120) ...
+Adding new group `etcd' (GID 124) ...
+Adding new user `etcd' (UID 120) with group `etcd' ...
+Creating home directory `/var/lib/etcd/' ...
+Created symlink /etc/systemd/system/etcd2.service → /lib/systemd/system/etcd.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/etcd.service → /lib/systemd/system/etcd.service.
+7[24;0f[42m[30mProgress: [ 82%][49m[39m [############################################################..............] 8Setting up etcd (3.2.26+dfsg-6) ...
+7[24;0f[42m[30mProgress: [ 88%][49m[39m [#################################################################.........] 87[24;0f[42m[30mProgress: [ 94%][49m[39m [#####################################################################.....] 8Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for systemd (245.4-4ubuntu3.17) ...
+
+7[0;24r8[1A[J]0;root@astplsm01: ~root@astplsm01:~# nano /etc/default/etcd 
+[?2004h[?1049h[22;0;0t[1;24r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[22;42H(B[0;7m[ Reading... ](B[m[22;40H(B[0;7m[ Read 311 lines ](B[m[H(B[0;7m  GNU nano 4.8                           /etc/default/etcd                                      [1;95H(B[m[23d(B[0;7m^G(B[m Get Help     (B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut Text     (B[0;7m^J(B[m Justify[81G(B[0;7m^C(B[m Cur Pos[24d(B[0;7m^X(B[m Exit[24;17H(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste Text   (B[0;7m^T(B[m To Spell     (B[0;7m^_(B[m Go To Line[22d[2d[39;49m[36m## etcd(1) daemon options[3d## See "/usr/share/doc/etcd-server/op-guide/configuration.md.gz"[5d### Member flags[7d##### --name[8d## Human-readable name for this member.[9d## This value is referenced as this node's own entries listed in the[10d## `--initial-cluster` flag (e.g., `default=http://localhost:2380`). This[11d## needs to match the key used in the flag if using static bootstrapping. When[12d## using discovery, each member must have a unique name. `Hostname` or[13d## `machine-id` can be a good choice.[14d## default: "default"[15d# ETCD_NAME="default"[17d##### --data-dir[18d## Path to the data directory.[19d## default: "${name}.etcd"[20d# ETCD_DATA_DIR="/var/lib/etcd/default"[2d[39m(B[m[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[5d[?12l[?25h[?25l[6d[?12l[?25h[?25l[7d[?12l[?25h[?25l[8d[?12l[?25h[?25l[9d[?12l[?25h[?25l[10d[?12l[?25h[?25l[11d[?12l[?25h[?25l[12d[?12l[?25h[?25l[13d[?12l[?25h[?25l[14d[?12l[?25h[?25l[15d[?12l[?25h[?25l[16d[?12l[?25h[?25l[17d[?12l[?25h[?25l[18d[?12l[?25h[?25l[19d[?12l[?25h[?25l[20d[?12l[?25h[?25l[21d[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m##### --wal-dir[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m## Path to the dedicated wal directory. If this flag is set, etcd will write[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m## the WAL files to the walDir rather than the dataDir. This allows a[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m## dedicated disk to be used, and helps avoid io competition between logging[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m## and other IO operations.[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m## default: ""[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_WAL_DIR[39m(B[m[K[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --snapshot-count[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Number of committed transactions to trigger a snapshot to disk.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: "100000"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_SNAPSHOT_COUNT="100000"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --heartbeat-interval[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Time (in milliseconds) of a heartbeat interval.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: "100"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_HEARTBEAT_INTERVAL="100"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --election-timeout[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Time (in milliseconds) for an election to timeout. See[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## /usr/share/doc/etcd-server/tuning.md.gz for details.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: "1000"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_ELECTION_TIMEOUT="1000"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --listen-peer-urls[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## List of URLs to listen on for peer traffic. This flag tells the etcd to[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## accept incoming requests from its peers on the specified scheme://IP:port[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## combinations. Scheme can be either http or https.If 0.0.0.0 is specified as[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## the IP, etcd listens to the given port on all interfaces. If an IP address is[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## given as well as a port, etcd will listen on the given port and interface.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Multiple URLs may be used to specify a number of addresses and ports to listen[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## on. The etcd will respond to requests from any of the listed addresses and[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## ports.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: "http://localhost:2380"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## example: "http://10.0.0.1:2380"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## invalid example: "http://example.com:2380" (domain name is invalid for binding)[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_LISTEN_PEER_URLS="http://localhost:2380"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --listen-client-urls[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## List of URLs to listen on for client traffic. This flag tells the etcd to[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## accept incoming requests from the clients on the specified scheme://IP:port[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## combinations. Scheme can be either http or https. If 0.0.0.0 is specified as[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## the IP, etcd listens to the given port on all interfaces. If an IP address is[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## given as well as a port, etcd will listen on the given port and interface.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Multiple URLs may be used to specify a number of addresses and ports to listen[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## on. The etcd will respond to requests from any of the listed addresses and[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## ports.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: "http://localhost:2379"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## example: "http://10.0.0.1:2379"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## invalid example: "http://example.com:2379" (domain name is invalid for binding)[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_LISTEN_CLIENT_URLS="http://localhost:2379"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --max-snapshots[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Maximum number of snapshot files to retain (0 is unlimited)[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## The default for users on Windows is unlimited, and manual purging down to 5[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## (or some preference for safety) is recommended.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: 5[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_MAX_SNAPSHOTS="5"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --max-wals[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Maximum number of wal files to retain (0 is unlimited)[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## The default for users on Windows is unlimited, and manual purging down to 5[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## (or some preference for safety) is recommended.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: 5[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_MAX_WALS="5"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --cors[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Comma-separated white list of origins for CORS (cross-origin resource[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## sharing).[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_CORS[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m### Clustering flags[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# `--initial` prefix flags are used in bootstrapping (static bootstrap,[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# discovery-service bootstrap or runtime reconfiguration) a new member, and[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ignored when restarting an existing member.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# `--discovery` prefix flags need to be set when using discovery service.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --initial-advertise-peer-urls[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## List of this member's peer URLs to advertise to the rest of the cluster.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## These addresses are used for communicating etcd data around the cluster. At[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## least one must be routable to all cluster members. These URLs can contain[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## domain names.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: "http://localhost:2380"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## example: "http://example.com:2380, http://10.0.0.1:2380"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_INITIAL_ADVERTISE_PEER_URLS="http://localhost:2380"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --initial-cluster[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Initial cluster configuration for bootstrapping.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## The key is the value of the `--name` flag for each node provided. The[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default uses `default` for the key because this is the default for the[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## `--name` flag.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: "default=http://localhost:2380"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_INITIAL_CLUSTER="default=http://localhost:2380"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --initial-cluster-state[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Initial cluster state ("new" or "existing"). Set to `new` for all members[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## present during initial static or DNS bootstrapping. If this option is set to[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## `existing`, etcd will attempt to join the existing cluster. If the wrong value[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## is set, etcd will attempt to start but fail safely.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: "new"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_INITIAL_CLUSTER_STATE="new"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --initial-cluster-token[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Initial cluster token for the etcd cluster during bootstrap.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: "etcd-cluster"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --advertise-client-urls[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## List of this member's client URLs to advertise to the rest of the cluster.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## These URLs can contain domain names.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Be careful if advertising URLs such as http://localhost:2379 from a cluster[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## member and are using the proxy feature of etcd. This will cause loops, because[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## the proxy will be forwarding requests to itself until its resources (memory,[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## file descriptors) are eventually depleted.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: "http://localhost:2379"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## example: "http://example.com:2379, http://10.0.0.1:2379"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_ADVERTISE_CLIENT_URLS="http://localhost:2379"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --discovery[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Discovery URL used to bootstrap the cluster.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_DISCOVERY[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --discovery-srv[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## DNS srv domain used to bootstrap the cluster.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_DISCOVERY_SRV[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --discovery-fallback[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Expected behavior ("exit" or "proxy") when discovery services fails. "proxy"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## supports v2 API only.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: "proxy"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_DISCOVERY_FALLBACK="proxy"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --discovery-proxy[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## HTTP proxy to use for traffic to discovery service.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_DISCOVERY_PROXY[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --strict-reconfig-check[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Reject reconfiguration requests that would cause quorum loss.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: false[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_STRICT_RECONFIG_CHECK[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --auto-compaction-retention[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Auto compaction retention for mvcc key value store in hour. 0 means disable[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## auto compaction.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: 0[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_AUTO_COMPACTION_RETENTION="0"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --enable-v2[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Accept etcd V2 client requests[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: true[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_ENABLE_V2="true"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m### Proxy flags[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# `--proxy` prefix flags configures etcd to run in proxy mode. "proxy" supports[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# v2 API only.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --proxy[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Proxy mode setting ("off", "readonly" or "on").[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: "off"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_PROXY="off"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --proxy-failure-wait[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Time (in milliseconds) an endpoint will be held in a failed state before[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## being reconsidered for proxied requests.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: 5000[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_PROXY_FAILURE_WAIT="5000"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --proxy-refresh-interval[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Time (in milliseconds) of the endpoints refresh interval.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: 30000[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_PROXY_REFRESH_INTERVAL="30000"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --proxy-dial-timeout[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Time (in milliseconds) for a dial to timeout or 0 to disable the timeout[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: 1000[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_PROXY_DIAL_TIMEOUT="1000"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --proxy-write-timeout[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Time (in milliseconds) for a write to timeout or 0 to disable the timeout.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: 5000[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_PROXY_WRITE_TIMEOUT="5000"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --proxy-read-timeout[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Time (in milliseconds) for a read to timeout or 0 to disable the timeout.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Don't change this value if using watches because use long polling requests.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: 0[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_PROXY_READ_TIMEOUT="0"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m### Security flags[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# The security flags help to build a secure etcd cluster.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --ca-file (**DEPRECATED**)[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Path to the client server TLS CA file. `--ca-file ca.crt` could be replaced[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## by `--trusted-ca-file ca.crt --client-cert-auth` and etcd will perform the[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## same.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_CA_FILE[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --cert-file[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Path to the client server TLS cert file.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_CERT_FILE[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --key-file[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Path to the client server TLS key file.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_KEY_FILE[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --client-cert-auth[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Enable client cert authentication.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: false[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_CLIENT_CERT_AUTH[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --trusted-ca-file[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Path to the client server TLS trusted CA key file.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_TRUSTED_CA_FILE[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --auto-tls[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Client TLS using generated certificates[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: false[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_AUTO_TLS[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --peer-ca-file (**DEPRECATED**)[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Path to the peer server TLS CA file. `--peer-ca-file ca.crt` could be[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## replaced by `--peer-trusted-ca-file ca.crt --peer-client-cert-auth` and etcd[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## will perform the same.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_PEER_CA_FILE[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --peer-cert-file[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Path to the peer server TLS cert file.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_PEER_CERT_FILE[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --peer-key-file[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Path to the peer server TLS key file.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_PEER_KEY_FILE[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --peer-client-cert-auth[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Enable peer client cert authentication.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: false[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_PEER_CLIENT_CERT_AUTH[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --peer-trusted-ca-file[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Path to the peer server TLS trusted CA file.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_PEER_TRUSTED_CA_FILE[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --peer-auto-tls[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Peer TLS using generated certificates[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: false[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_PEER_AUTO_TLS[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m### Logging flags[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --debug[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Drop the default log level to DEBUG for all subpackages.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: false (INFO for all packages)[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_DEBUG[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --log-package-levels[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Set individual etcd subpackages to specific log levels. An example being[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## `etcdserver=WARNING,security=DEBUG`[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: none (INFO for all packages)[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_LOG_PACKAGE_LEVELS[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m### Unsafe flags[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Please be CAUTIOUS when using unsafe flags because it will break the guarantees given by the [39m(B[0;7m>[21;1H(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# For example, it may panic if other members in the cluster are still alive.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Follow the instructions when using these flags.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m##### --force-new-cluster[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## Force to create a new one-member cluster. It commits configuration changes[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## forcing to remove all existing members in the cluster and add itself. It needs[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## to be set to restore a backup.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m## default: false[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ETCD_FORCE_NEW_CLUSTER[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_DEBUG[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: false (INFO for all packages)[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Drop the default log level to DEBUG for all subpackages.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --debug[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m### Logging flags[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_PEER_AUTO_TLS[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: false[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Peer TLS using generated certificates[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m##### --peer-auto-tls[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m# ETCD_PEER_TRUSTED_CA_FILE[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Path to the peer server TLS trusted CA file.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --peer-trusted-ca-file[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_PEER_CLIENT_CERT_AUTH[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: false[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## Enable peer client cert authentication.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --peer-client-cert-auth[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_PEER_KEY_FILE[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## Path to the peer server TLS key file.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --peer-key-file[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_PEER_CERT_FILE[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Path to the peer server TLS cert file.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --peer-cert-file[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_PEER_CA_FILE[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## will perform the same.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## replaced by `--peer-trusted-ca-file ca.crt --peer-client-cert-auth` and etcd[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## Path to the peer server TLS CA file. `--peer-ca-file ca.crt` could be[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --peer-ca-file (**DEPRECATED**)[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_AUTO_TLS[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: false[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## Client TLS using generated certificates[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --auto-tls[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_TRUSTED_CA_FILE[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## Path to the client server TLS trusted CA key file.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --trusted-ca-file[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_CLIENT_CERT_AUTH[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: false[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## Enable client cert authentication.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --client-cert-auth[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_KEY_FILE[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Path to the client server TLS key file.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --key-file[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_CERT_FILE[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Path to the client server TLS cert file.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --cert-file[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_CA_FILE[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## same.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## by `--trusted-ca-file ca.crt --client-cert-auth` and etcd will perform the[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## Path to the client server TLS CA file. `--ca-file ca.crt` could be replaced[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --ca-file (**DEPRECATED**)[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# The security flags help to build a secure etcd cluster.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m### Security flags[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_PROXY_READ_TIMEOUT="0"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: 0[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Don't change this value if using watches because use long polling requests.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## Time (in milliseconds) for a read to timeout or 0 to disable the timeout.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --proxy-read-timeout[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_PROXY_WRITE_TIMEOUT="5000"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: 5000[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## Time (in milliseconds) for a write to timeout or 0 to disable the timeout.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --proxy-write-timeout[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_PROXY_DIAL_TIMEOUT="1000"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: 1000[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Time (in milliseconds) for a dial to timeout or 0 to disable the timeout[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --proxy-dial-timeout[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_PROXY_REFRESH_INTERVAL="30000"[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## default: 30000[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Time (in milliseconds) of the endpoints refresh interval.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m##### --proxy-refresh-interval[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_PROXY_FAILURE_WAIT="5000"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: 5000[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## being reconsidered for proxied requests.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Time (in milliseconds) an endpoint will be held in a failed state before[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m##### --proxy-failure-wait[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_PROXY="off"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: "off"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Proxy mode setting ("off", "readonly" or "on").[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m##### --proxy[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# v2 API only.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# `--proxy` prefix flags configures etcd to run in proxy mode. "proxy" supports[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m### Proxy flags[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_ENABLE_V2="true"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: true[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Accept etcd V2 client requests[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m##### --enable-v2[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_AUTO_COMPACTION_RETENTION="0"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: 0[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## auto compaction.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## Auto compaction retention for mvcc key value store in hour. 0 means disable[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --auto-compaction-retention[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_STRICT_RECONFIG_CHECK[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: false[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## Reject reconfiguration requests that would cause quorum loss.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --strict-reconfig-check[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m# ETCD_DISCOVERY_PROXY[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## HTTP proxy to use for traffic to discovery service.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --discovery-proxy[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_DISCOVERY_FALLBACK="proxy"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: "proxy"[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## supports v2 API only.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## Expected behavior ("exit" or "proxy") when discovery services fails. "proxy"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --discovery-fallback[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_DISCOVERY_SRV[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## DNS srv domain used to bootstrap the cluster.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m##### --discovery-srv[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_DISCOVERY[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Discovery URL used to bootstrap the cluster.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m##### --discovery[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_ADVERTISE_CLIENT_URLS="http://localhost:2379"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## example: "http://example.com:2379, http://10.0.0.1:2379"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: "http://localhost:2379"[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## file descriptors) are eventually depleted.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## the proxy will be forwarding requests to itself until its resources (memory,[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## member and are using the proxy feature of etcd. This will cause loops, because[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Be careful if advertising URLs such as http://localhost:2379 from a cluster[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## These URLs can contain domain names.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## List of this member's client URLs to advertise to the rest of the cluster.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m##### --advertise-client-urls[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: "etcd-cluster"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Initial cluster token for the etcd cluster during bootstrap.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m##### --initial-cluster-token[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_INITIAL_CLUSTER_STATE="new"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: "new"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## is set, etcd will attempt to start but fail safely.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## `existing`, etcd will attempt to join the existing cluster. If the wrong value[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## present during initial static or DNS bootstrapping. If this option is set to[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Initial cluster state ("new" or "existing"). Set to `new` for all members[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --initial-cluster-state[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_INITIAL_CLUSTER="default=http://localhost:2380"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: "default=http://localhost:2380"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## `--name` flag.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default uses `default` for the key because this is the default for the[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## The key is the value of the `--name` flag for each node provided. The[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Initial cluster configuration for bootstrapping.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m##### --initial-cluster[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_INITIAL_ADVERTISE_PEER_URLS="http://localhost:2380"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## example: "http://example.com:2380, http://10.0.0.1:2380"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: "http://localhost:2380"[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## domain names.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## least one must be routable to all cluster members. These URLs can contain[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## These addresses are used for communicating etcd data around the cluster. At[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## List of this member's peer URLs to advertise to the rest of the cluster.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --initial-advertise-peer-urls[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# `--discovery` prefix flags need to be set when using discovery service.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ignored when restarting an existing member.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# discovery-service bootstrap or runtime reconfiguration) a new member, and[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# `--initial` prefix flags are used in bootstrapping (static bootstrap,[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m### Clustering flags[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_CORS[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## default: none[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## sharing).[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Comma-separated white list of origins for CORS (cross-origin resource[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --cors[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_MAX_WALS="5"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: 5[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## (or some preference for safety) is recommended.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## The default for users on Windows is unlimited, and manual purging down to 5[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Maximum number of wal files to retain (0 is unlimited)[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m##### --max-wals[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m# ETCD_MAX_SNAPSHOTS="5"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: 5[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## (or some preference for safety) is recommended.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## The default for users on Windows is unlimited, and manual purging down to 5[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## Maximum number of snapshot files to retain (0 is unlimited)[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --max-snapshots[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_LISTEN_CLIENT_URLS="http://localhost:2379"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## invalid example: "http://example.com:2379" (domain name is invalid for binding)[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## example: "http://10.0.0.1:2379"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: "http://localhost:2379"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## ports.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## on. The etcd will respond to requests from any of the listed addresses and[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Multiple URLs may be used to specify a number of addresses and ports to listen[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## given as well as a port, etcd will listen on the given port and interface.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## the IP, etcd listens to the given port on all interfaces. If an IP address is[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## combinations. Scheme can be either http or https. If 0.0.0.0 is specified as[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## accept incoming requests from the clients on the specified scheme://IP:port[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## List of URLs to listen on for client traffic. This flag tells the etcd to[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m##### --listen-client-urls[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_LISTEN_PEER_URLS="http://localhost:2380"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## invalid example: "http://example.com:2380" (domain name is invalid for binding)[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## example: "http://10.0.0.1:2380"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: "http://localhost:2380"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## ports.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## on. The etcd will respond to requests from any of the listed addresses and[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Multiple URLs may be used to specify a number of addresses and ports to listen[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## given as well as a port, etcd will listen on the given port and interface.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## the IP, etcd listens to the given port on all interfaces. If an IP address is[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## combinations. Scheme can be either http or https.If 0.0.0.0 is specified as[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## accept incoming requests from its peers on the specified scheme://IP:port[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## List of URLs to listen on for peer traffic. This flag tells the etcd to[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --listen-peer-urls[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_ELECTION_TIMEOUT="1000"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: "1000"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## /usr/share/doc/etcd-server/tuning.md.gz for details.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Time (in milliseconds) for an election to timeout. See[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --election-timeout[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_HEARTBEAT_INTERVAL="100"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: "100"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Time (in milliseconds) of a heartbeat interval.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --heartbeat-interval[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_SNAPSHOT_COUNT="100000"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: "100000"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Number of committed transactions to trigger a snapshot to disk.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --snapshot-count[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_WAL_DIR[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## default: ""[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## and other IO operations.[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## dedicated disk to be used, and helps avoid io competition between logging[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## the WAL files to the walDir rather than the dataDir. This allows a[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Path to the dedicated wal directory. If this flag is set, etcd will write[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --wal-dir[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_DATA_DIR="/var/lib/etcd/default"[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## default: "${name}.etcd"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Path to the data directory.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --data-dir[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# ETCD_NAME="default"[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## default: "default"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## `machine-id` can be a good choice.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## using discovery, each member must have a unique name. `Hostname` or[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## needs to match the key used in the flag if using static bootstrapping. When[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## `--initial-cluster` flag (e.g., `default=http://localhost:2380`). This[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m## This value is referenced as this node's own entries listed in the[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## Human-readable name for this member.[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m##### --name[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m### Member flags[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## See "/usr/share/doc/etcd-server/op-guide/configuration.md.gz"[39m(B[m[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m## etcd(1) daemon options[39m(B[m[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[1;87H(B[0;7mModified(B[m[4;22r[4;1HM[1;24r[5;1H[?12l[?25h[?25l[4;21r[4;1HM[1;24r[6;1H[?12l[?25h[?25l[A[?12l[?25h[?25l[4;21r[4;1H[8T[1;24r[5;1HETCD_NAME="controller"[6dETCD_DATA_DIR="/var/lib/etcd"[7dETCD_INITIAL_CLUSTER_STATE="new"[8dETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster-01"[9dETCD_INITIAL_CLUSTER="controller=http://10.0.0.11:2380"[10dETCD_INITIAL_ADVERTISE_PEER_URLS="http://10.0.0.11:2380"[11dETCD_ADVERTISE_CLIENT_URLS="http://10.0.0.11:2379"[12dETCD_LISTEN_PEER_URLS="http://0.0.0.0:2380"[13dETCD_LISTEN_CLIENT_URLS="http://10.0.0.11:2379"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l129.69.209.168:2379"[47G[?12l[?25h[?25l[A[?12l[?25h[?25l[A1:2[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l/[?12l[?25h[?25l/[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l129.69.209.168:2379"[50G[?12l[?25h[?25l[A[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l129.69.209.168:2380"[56G[?12l[?25h[?25l[A[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l129.69.209.168:2380"[55G[?12l[?25h[?25l[23;17H        (B[0;7mM-D(B[m DOS Format          (B[0;7mM-A(B[m Append[14X[23;73H(B[0;7mM-B(B[m Backup File[K[24;2H(B[0;7mC(B[m Cancel[17G        (B[0;7mM-M(B[m Mac Format    [49G(B[0;7mM-P(B[m Prepend             (B[0;7m^T(B[m To Files[K[22d(B[0;7mFile Name to Write: /etc/default/etcd                                                           [22;1H(B[m[22;38H[?12l[?25h[?25l   [1K (B[0;7m[ Writing... ](B[m[K[1;87H(B[0;7m        (B[m[22;39H(B[0;7m[ Wrote 321 lines ](B[m[23;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut Text     (B[0;7m^J(B[m Justify      (B[0;7m^C(B[m Cur Pos[24;2H(B[0;7mX(B[m Exit  [17G(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste Text   (B[0;7m^T(B[m To Spell     (B[0;7m^_(B[m Go To Line[22d[9;55H[?12l[?25h[?25l[22d[J[24d[?12l[?25h[24;1H[?1049l[23;0;0t[?1l>[?2004l]0;root@astplsm01: ~root@astplsm01:~# [Kcat /etc/default/etcd 
+## etcd(1) daemon options
+## See "/usr/share/doc/etcd-server/op-guide/configuration.md.gz"
+
+ETCD_NAME="controller"
+ETCD_DATA_DIR="/var/lib/etcd"
+ETCD_INITIAL_CLUSTER_STATE="new"
+ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster-01"
+ETCD_INITIAL_CLUSTER="controller=http://129.69.209.168:2380"
+ETCD_INITIAL_ADVERTISE_PEER_URLS="http://129.69.209.168:2380"
+ETCD_ADVERTISE_CLIENT_URLS="http://129.69.209.168:2379"
+ETCD_LISTEN_PEER_URLS="http://0.0.0.0:2380"
+ETCD_LISTEN_CLIENT_URLS="http://129.69.209.168:2379"
+
+### Member flags
+
+##### --name
+## Human-readable name for this member.
+## This value is referenced as this node's own entries listed in the
+## `--initial-cluster` flag (e.g., `default=http://localhost:2380`). This
+## needs to match the key used in the flag if using static bootstrapping. When
+## using discovery, each member must have a unique name. `Hostname` or
+## `machine-id` can be a good choice.
+## default: "default"
+# ETCD_NAME="default"
+
+##### --data-dir
+## Path to the data directory.
+## default: "${name}.etcd"
+# ETCD_DATA_DIR="/var/lib/etcd/default"
+
+##### --wal-dir
+## Path to the dedicated wal directory. If this flag is set, etcd will write
+## the WAL files to the walDir rather than the dataDir. This allows a
+## dedicated disk to be used, and helps avoid io competition between logging
+## and other IO operations.
+## default: ""
+# ETCD_WAL_DIR
+
+##### --snapshot-count
+## Number of committed transactions to trigger a snapshot to disk.
+## default: "100000"
+# ETCD_SNAPSHOT_COUNT="100000"
+
+##### --heartbeat-interval
+## Time (in milliseconds) of a heartbeat interval.
+## default: "100"
+# ETCD_HEARTBEAT_INTERVAL="100"
+
+##### --election-timeout
+## Time (in milliseconds) for an election to timeout. See
+## /usr/share/doc/etcd-server/tuning.md.gz for details.
+## default: "1000"
+# ETCD_ELECTION_TIMEOUT="1000"
+
+##### --listen-peer-urls
+## List of URLs to listen on for peer traffic. This flag tells the etcd to
+## accept incoming requests from its peers on the specified scheme://IP:port
+## combinations. Scheme can be either http or https.If 0.0.0.0 is specified as
+## the IP, etcd listens to the given port on all interfaces. If an IP address is
+## given as well as a port, etcd will listen on the given port and interface.
+## Multiple URLs may be used to specify a number of addresses and ports to listen
+## on. The etcd will respond to requests from any of the listed addresses and
+## ports.
+## default: "http://localhost:2380"
+## example: "http://10.0.0.1:2380"
+## invalid example: "http://example.com:2380" (domain name is invalid for binding)
+# ETCD_LISTEN_PEER_URLS="http://localhost:2380"
+
+##### --listen-client-urls
+## List of URLs to listen on for client traffic. This flag tells the etcd to
+## accept incoming requests from the clients on the specified scheme://IP:port
+## combinations. Scheme can be either http or https. If 0.0.0.0 is specified as
+## the IP, etcd listens to the given port on all interfaces. If an IP address is
+## given as well as a port, etcd will listen on the given port and interface.
+## Multiple URLs may be used to specify a number of addresses and ports to listen
+## on. The etcd will respond to requests from any of the listed addresses and
+## ports.
+## default: "http://localhost:2379"
+## example: "http://10.0.0.1:2379"
+## invalid example: "http://example.com:2379" (domain name is invalid for binding)
+# ETCD_LISTEN_CLIENT_URLS="http://localhost:2379"
+
+##### --max-snapshots
+## Maximum number of snapshot files to retain (0 is unlimited)
+## The default for users on Windows is unlimited, and manual purging down to 5
+## (or some preference for safety) is recommended.
+## default: 5
+# ETCD_MAX_SNAPSHOTS="5"
+
+##### --max-wals
+## Maximum number of wal files to retain (0 is unlimited)
+## The default for users on Windows is unlimited, and manual purging down to 5
+## (or some preference for safety) is recommended.
+## default: 5
+# ETCD_MAX_WALS="5"
+
+##### --cors
+## Comma-separated white list of origins for CORS (cross-origin resource
+## sharing).
+## default: none
+# ETCD_CORS
+
+### Clustering flags
+
+# `--initial` prefix flags are used in bootstrapping (static bootstrap,
+# discovery-service bootstrap or runtime reconfiguration) a new member, and
+# ignored when restarting an existing member.
+
+# `--discovery` prefix flags need to be set when using discovery service.
+
+##### --initial-advertise-peer-urls
+
+## List of this member's peer URLs to advertise to the rest of the cluster.
+## These addresses are used for communicating etcd data around the cluster. At
+## least one must be routable to all cluster members. These URLs can contain
+## domain names.
+## default: "http://localhost:2380"
+## example: "http://example.com:2380, http://10.0.0.1:2380"
+# ETCD_INITIAL_ADVERTISE_PEER_URLS="http://localhost:2380"
+
+##### --initial-cluster
+## Initial cluster configuration for bootstrapping.
+## The key is the value of the `--name` flag for each node provided. The
+## default uses `default` for the key because this is the default for the
+## `--name` flag.
+## default: "default=http://localhost:2380"
+# ETCD_INITIAL_CLUSTER="default=http://localhost:2380"
+
+##### --initial-cluster-state
+## Initial cluster state ("new" or "existing"). Set to `new` for all members
+## present during initial static or DNS bootstrapping. If this option is set to
+## `existing`, etcd will attempt to join the existing cluster. If the wrong value
+## is set, etcd will attempt to start but fail safely.
+## default: "new"
+# ETCD_INITIAL_CLUSTER_STATE="new"
+
+##### --initial-cluster-token
+## Initial cluster token for the etcd cluster during bootstrap.
+## default: "etcd-cluster"
+# ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
+
+##### --advertise-client-urls
+## List of this member's client URLs to advertise to the rest of the cluster.
+## These URLs can contain domain names.
+## Be careful if advertising URLs such as http://localhost:2379 from a cluster
+## member and are using the proxy feature of etcd. This will cause loops, because
+## the proxy will be forwarding requests to itself until its resources (memory,
+## file descriptors) are eventually depleted.
+## default: "http://localhost:2379"
+## example: "http://example.com:2379, http://10.0.0.1:2379"
+# ETCD_ADVERTISE_CLIENT_URLS="http://localhost:2379"
+
+##### --discovery
+## Discovery URL used to bootstrap the cluster.
+## default: none
+# ETCD_DISCOVERY
+
+##### --discovery-srv
+## DNS srv domain used to bootstrap the cluster.
+## default: none
+# ETCD_DISCOVERY_SRV
+
+##### --discovery-fallback
+## Expected behavior ("exit" or "proxy") when discovery services fails. "proxy"
+## supports v2 API only.
+## default: "proxy"
+# ETCD_DISCOVERY_FALLBACK="proxy"
+
+##### --discovery-proxy
+## HTTP proxy to use for traffic to discovery service.
+## default: none
+# ETCD_DISCOVERY_PROXY
+
+##### --strict-reconfig-check
+## Reject reconfiguration requests that would cause quorum loss.
+## default: false
+# ETCD_STRICT_RECONFIG_CHECK
+
+##### --auto-compaction-retention
+## Auto compaction retention for mvcc key value store in hour. 0 means disable
+## auto compaction.
+## default: 0
+# ETCD_AUTO_COMPACTION_RETENTION="0"
+
+
+##### --enable-v2
+## Accept etcd V2 client requests
+## default: true
+# ETCD_ENABLE_V2="true"
+
+### Proxy flags
+
+# `--proxy` prefix flags configures etcd to run in proxy mode. "proxy" supports
+# v2 API only.
+
+##### --proxy
+## Proxy mode setting ("off", "readonly" or "on").
+## default: "off"
+# ETCD_PROXY="off"
+
+##### --proxy-failure-wait
+## Time (in milliseconds) an endpoint will be held in a failed state before
+## being reconsidered for proxied requests.
+## default: 5000
+# ETCD_PROXY_FAILURE_WAIT="5000"
+
+##### --proxy-refresh-interval
+## Time (in milliseconds) of the endpoints refresh interval.
+## default: 30000
+# ETCD_PROXY_REFRESH_INTERVAL="30000"
+
+##### --proxy-dial-timeout
+## Time (in milliseconds) for a dial to timeout or 0 to disable the timeout
+## default: 1000
+# ETCD_PROXY_DIAL_TIMEOUT="1000"
+
+##### --proxy-write-timeout
+## Time (in milliseconds) for a write to timeout or 0 to disable the timeout.
+## default: 5000
+# ETCD_PROXY_WRITE_TIMEOUT="5000"
+
+##### --proxy-read-timeout
+## Time (in milliseconds) for a read to timeout or 0 to disable the timeout.
+## Don't change this value if using watches because use long polling requests.
+## default: 0
+# ETCD_PROXY_READ_TIMEOUT="0"
+
+### Security flags
+
+# The security flags help to build a secure etcd cluster.
+
+##### --ca-file (**DEPRECATED**)
+## Path to the client server TLS CA file. `--ca-file ca.crt` could be replaced
+## by `--trusted-ca-file ca.crt --client-cert-auth` and etcd will perform the
+## same.
+## default: none
+# ETCD_CA_FILE
+
+##### --cert-file
+## Path to the client server TLS cert file.
+## default: none
+# ETCD_CERT_FILE
+
+##### --key-file
+## Path to the client server TLS key file.
+## default: none
+# ETCD_KEY_FILE
+
+##### --client-cert-auth
+## Enable client cert authentication.
+## default: false
+# ETCD_CLIENT_CERT_AUTH
+
+##### --trusted-ca-file
+## Path to the client server TLS trusted CA key file.
+## default: none
+# ETCD_TRUSTED_CA_FILE
+
+##### --auto-tls
+## Client TLS using generated certificates
+## default: false
+# ETCD_AUTO_TLS
+
+##### --peer-ca-file (**DEPRECATED**)
+## Path to the peer server TLS CA file. `--peer-ca-file ca.crt` could be
+## replaced by `--peer-trusted-ca-file ca.crt --peer-client-cert-auth` and etcd
+## will perform the same.
+## default: none
+# ETCD_PEER_CA_FILE
+
+##### --peer-cert-file
+## Path to the peer server TLS cert file.
+## default: none
+# ETCD_PEER_CERT_FILE
+
+##### --peer-key-file
+## Path to the peer server TLS key file.
+## default: none
+# ETCD_PEER_KEY_FILE
+
+##### --peer-client-cert-auth
+## Enable peer client cert authentication.
+## default: false
+# ETCD_PEER_CLIENT_CERT_AUTH
+
+##### --peer-trusted-ca-file
+## Path to the peer server TLS trusted CA file.
+## default: none
+# ETCD_PEER_TRUSTED_CA_FILE
+
+##### --peer-auto-tls
+## Peer TLS using generated certificates
+## default: false
+# ETCD_PEER_AUTO_TLS
+
+### Logging flags
+
+##### --debug
+## Drop the default log level to DEBUG for all subpackages.
+## default: false (INFO for all packages)
+# ETCD_DEBUG
+
+##### --log-package-levels
+## Set individual etcd subpackages to specific log levels. An example being
+## `etcdserver=WARNING,security=DEBUG`
+## default: none (INFO for all packages)
+# ETCD_LOG_PACKAGE_LEVELS
+
+
+### Unsafe flags
+
+# Please be CAUTIOUS when using unsafe flags because it will break the guarantees given by the consensus protocol.
+# For example, it may panic if other members in the cluster are still alive.
+# Follow the instructions when using these flags.
+
+##### --force-new-cluster
+## Force to create a new one-member cluster. It commits configuration changes
+## forcing to remove all existing members in the cluster and add itself. It needs
+## to be set to restore a backup.
+## default: false
+# ETCD_FORCE_NEW_CLUSTER
+]0;root@astplsm01: ~root@astplsm01:~# ^C
+]0;root@astplsm01: ~root@astplsm01:~# systemctl enable etcd
+Synchronizing state of etcd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable etcd
+]0;root@astplsm01: ~root@astplsm01:~# systemctl restart etcd
+]0;root@astplsm01: ~root@astplsm01:~# r exit
+logout
+]0;schneiti@astplsm01: ~schneiti@astplsm01:~$ exit
+exit
+
+Script done on 2022-08-09 15:13:31+02:00 [COMMAND_EXIT_CODE="0"]

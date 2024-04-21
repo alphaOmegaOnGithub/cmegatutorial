@@ -1,0 +1,303 @@
+    1  ip a
+    2  sudo -i
+    3  exit
+    4  cd +
+    5  cd ~
+    6  ssssss
+    7  ls
+    8  cat log_1.txt
+    9  exit
+   10  ls
+   11  exit
+   12  ls
+   13  exit
+   14  l
+   15  ls
+   16  cd ..
+   17  cd ~
+   18  exit
+   19  ip a
+   20  exit
+   21  cd ~
+   22  exit
+   23  sudo -i
+   24  ls
+   25  exit
+   26  ls
+   27  script log_1.txt
+   28  ls
+   29  cat test.txt 
+   30  echo "test"
+   31  cat test.txt 
+   32  script
+   33  ls
+   34  cat typescript 
+   35  script
+   36  ls typescript 
+   37  cat typescript 
+   38  ls
+   39  script
+   40  cat typescript 
+   41  touch log_1.txt 
+   42  script log_1.txt 
+   43  cat log_1.txt 
+   44  less log_1.txt 
+   45  script log_1.txt 
+   46  less log_1.txt 
+   47  ls
+   48  rm log_1.txt 
+   49  rm test.txt 
+   50  rm typescript 
+   51  ls
+   52  touch test.txt
+   53  script test.txt
+   54  cd ~
+   55  ls
+   56  nano log_1.txt 
+   57  script test.txt
+   58  cd ~
+   59  ls
+   60  less test.txt 
+   61  script
+   62  less test.txt
+   63  nano typescript 
+   64  ip a
+   65  sudo -i
+   66  sudo -i
+   67  su schneiti
+   68  add-apt-repository cloud-archive:yoga
+   69  sudo -i
+   70  exit
+   71  sudo -i
+   72  exit
+   73  lsblk
+   74  mysql
+   75  sudo -i
+   76  exit
+   77  sudo -i
+   78  exit
+   79  ls
+   80  rm test.txt 
+   81  rm typescript 
+   82  openssl rand -hex 8
+   83  openssl rand -hex 2
+   84  openssl rand -hex 5
+   85  ls
+   86  script 09_08_22_os_install.txt
+   87  less 09_08_22_os_install.txt 
+   88  pwd
+   89  ip a
+   90  ls
+   91  script 09_08_22_os_install_keystone.txt 
+   92  ip a
+   93  script 09_08_22_os_install_glance.txt
+   94  less 09_08_22_os_install_glance.txt 
+   95  ip a
+   96  script 09_08_22_os_install_placement.txt
+   97  ip a
+   98  mysql
+   99  sudo -i
+  100  exit
+  101  scrip 09_08_22_os_install_nova.txt
+  102  script 09_08_22_os_install_nova.txt
+  103  sudo -i
+  104  exit
+  105  ip a
+  106  brctl show
+  107  ls
+  108  script 10_08_22_os_install_neutron.txt
+  109  less 10_08_22_os_install_neutron.txt 
+  110  sudo -i
+  111  exit
+  112  apt list --upgradable
+  113  script 11_08_22_os_install_neutron.txt 
+  114  ip a
+  115  exirt
+  116  exit
+  117  ip a
+  118  sudo -i
+  119  exit
+  120  exit
+  121  sudo -i
+  122  exit
+  123  sudo -i
+  124  exit
+  125  sudo -i
+  126  exit
+  127  ip a
+  128  ls
+  129  systemctl status nova
+  130  systemctl status keystone
+  131  script 17_08_22_os_configure_management_network.txt
+  132  sudo -i
+  133  cd ~
+  134  script 17_08_22_os_adapat_network_routes.txt
+  135  script 17_08_22_os_cinder.txt
+  136  script 17_08_22_os_horizon.txt
+  137  script 18_08_22_os_horizon.txt
+  138  sudo -i
+  139  cd ~
+  140  su asadmin
+  141  pwd
+  142  cd ..
+  143  ls
+  144  cd ..
+  145  ls
+  146  cd usr
+  147  ls
+  148  cd share
+  149  nano /etc/apache2/apache2.conf 
+  150  sudo -i
+  151  ls
+  152  sudo -i
+  153  nano /etc/neutron/ml2/ml2_conf.ini
+  154  cd /etc/neutron
+  155  ls
+  156  cd plugins
+  157  ls
+  158  cd 
+  159  ls
+  160  cat 20_08_22_os_self-service-networks.txt 
+  161  sudo -i
+  162  exit
+  163  sudo -i
+  164  exit
+  165  apt install neutron-server neutron-plugin-ml2   neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent   neutron-metadata-agent
+  166  sudo -i
+  167  cd ~
+  168  script 20_08_22_os_self-service-networks.txt
+  169  ls /etc/apache2/sites-available/
+  170  ls /etc/apache2/sites-enabled/
+  171  sudo -i
+  172  ls
+  173  sudo -i
+  174  sudo -o
+  175  sudo -i
+  176  ping 192.168.221.151
+  177  ping 192.168.221.15
+  178  192.168.221.151
+  179  ping 192.168.221.151 
+  180  ip netns
+  181  openstack port list --router floating-ip-router
+  182  . a
+  183  sudo -i
+  184  exit
+  185  ls /etc/keystone/
+  186  sudo -i
+  187  lsblk
+  188  sudo -i
+  189  sudo -oi
+  190  sudo -i
+  191  nano /etc/hosts
+  192  nano /etc/default/etcd 
+  193  sudo -i
+  194  sudo .i
+  195  sudo -i
+  196  ip a
+  197  ping tpl43
+  198  ping controller
+  199  ping tpl143
+  200  cat /etc/resolv.conf
+  201  nano /etc/network/interfaces
+  202  ip a
+  203  sudo -i
+  204  grep MemTotal /proc/meminfo
+  205  sudo -i
+  206  lsbkl
+  207  lsblk
+  208  cd /etc/cinder
+  209  ls
+  210  sudo -i
+  211  lsblk
+  212  virish show vg_data01
+  213  virsh show vg_data01
+  214  vgdisplay vg_data01
+  215  sudo -o
+  216  sudo -i
+  217  nova hypervisor-stats
+  218  sudo -i
+  219  ls
+  220  sudo -i
+  221  service apache2 restart
+  222  sudo -i
+  223  apt list --upgradable
+  224  apt list --updates
+  225  apt list --updatable
+  226  apt list --ugrapdeable
+  227  apt list --ugradeable
+  228  apt list --upgradable
+  229  * Wie fest Anforderungen?
+  230  ==> Einarbeitungsphase: Anschauen und kleine Mini-Demos erstellen (Flink, DataLake usw.) 
+  231  - Generell flexibel: Grundlegendes System als Ziel und am Ende weniger fertiges Produkt wichtig
+  232  * Scrum:
+  233  * Ansprechpartner?
+  234  * Vorlesungsfreie Zeit?
+  235  ==> Einarbeitungsphase: Anschauen und kleine Mini-Demos erstellen (Flink, DataLake usw.) 
+  236  - Generell flexibel: Grundlegendes System als Ziel und am Ende weniger fertiges Produkt wichtig
+  237  * Scrum:
+  238  * Ansprechpartner?
+  239  * Vorlesungsfreie Zeit?
+  240  sudo -i
+  241  cd /usr/share/horizon/
+  242  ls
+  243  cd openstack_das
+  244  cd openstack_dashboard/
+  245  ls
+  246  cd local
+  247  ls
+  248  nano local_settings.py
+  249  ls
+  250  cd ..
+  251  ls
+  252  cd ..
+  253  ls
+  254  cd horizon/
+  255  ls
+  256  cd static
+  257  ls
+  258  cd auth
+  259  ls
+  260  cd login/
+  261  ls
+  262  nano login.regular.mock.html 
+  263  ls
+  264  cd ..
+  265  ls
+  266  cd ..
+  267  ls
+  268  cd ..
+  269  ls
+  270  cd template
+  271  cd templates
+  272  ls
+  273  cd auth/
+  274  ls
+  275  nano login.html
+  276  sudo -i
+  277  ls
+  278  sudo -oi
+  279  sudo -i
+  280  docker container list
+  281  sudi -i
+  282  sudo -i
+  283  ls
+  284  sudo -i
+  285  ls
+  286  pwd
+  287  sudo -i
+  288  ls
+  289  sudo -i
+  290  sudo .i
+  291  sudo -i
+  292  ip a
+  293  systemctl neutron
+  294  systemctl status neutron*
+  295  nano /etc/network/interfaces
+  296  ls
+  297  sudo -i
+  298  ping 192.168.221.199
+  299  ping 192.168.221.158
+  300  nano /var/log/libvirt/qemu/instance-00000048.log 
+  301  sudo -i
+  302  history
+  303  history > /tmp/sm01.tim.hist.log

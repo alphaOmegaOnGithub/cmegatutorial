@@ -1,0 +1,1000 @@
+  235  systemctl status nova-api
+  236  systemctl status service nova-scheduler
+  237  service nova-scheduler restart
+  238  systemctl status service nova-scheduler
+  239  systemctl status nova-scheduler
+  240  less /var/log/nova/nova-scheduler.log 
+  241  nano /etc/nova/nova.conf
+  242  service nova-scheduler restart
+  243  systemctl status nova-scheduler
+  244  service nova-api restart
+  245  service nova-scheduler restart
+  246  service nova-conductor restart
+  247  service nova-novncproxy restart
+  248  service nova-compute restart
+  249  systemctl status nova-api
+  250  systemctl status nova*
+  251  openstack compute service list --service nova-compute
+  252  su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
+  253  . admin-openrc
+  254  openstack compute service list
+  255  openstack catalog list
+  256  nova-status upgrade check
+  257  exit
+  258  mysql -u root -p
+  259  . admin-openrc 
+  260  openstack user create --domain default --password-prompt neutron
+  261  openstack role add --project service --user neutron admin
+  262  openstack user create --domain default --password-prompt neutron
+  263  openstack role add --project service --user neutron admin
+  264  openstack service create --name neutron   --description "OpenStack Networking" network
+  265  openstack endpoint create --region RegionOne   network public http://controller:9696
+  266  openstack endpoint create --region RegionOne   network internal http://controller:9696
+  267  openstack endpoint create --region RegionOne   network admin http://controller:9696
+  268  ip a
+  269  ls
+  270  apt install neutron-server neutron-plugin-ml2   neutron-linuxbridge-agent neutron-dhcp-agent   neutron-metadata-agent
+  271  ip a
+  272  nano /etc/neutron/neutron.conf
+  273  ip a
+  274  nano /etc/neutron/plugins/ml2/ml2_conf.ini 
+  275  ip a
+  276  exit
+  277  ip a
+  278  nano /etc/neutron/plugins/ml2/linuxbridge_agent.ini 
+  279  net.bridge.bridge-nf-call-iptables
+  280  sysctl net.bridge.bridge-nf-call-iptables
+  281  sysctl net.bridge.bridge-nf-call-ip6tables
+  282  nano /etc/neutron/dhcp_agent.ini 
+  283  nano /etc/neutron/metadata_agent.ini 
+  284  su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
+  285    --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
+  286  service nova-api restart
+  287  ip a
+  288  systemctl nova-api
+  289  systemctl status nova-api
+  290  service neutron-server restart
+  291  systemctl neutron-server
+  292  systemctl status neutron-server
+  293  ip a
+  294  service neutron-linuxbridge-agent restart
+  295  systemctl status neutron-linuxbridge
+  296  systemctl status neutron-linuxbridge-agent
+  297  ip a
+  298  service neutron-dhcp-agent restart
+  299  systemctl status neutron-dhcp-agent
+  300  ip a
+  301  service neutron-metadata-agent restart
+  302  systemctl status neutron-metadata-agent 
+  303  ip a
+  304  nano /etc/neutron/neutron.conf
+  305  service nova-compute restart
+  306  systemctl status nova-compute
+  307  ip a
+  308  service neutron-linuxbridge-agent restart
+  309  systemctl status neutron-linuxbridge-agent
+  310  ip a
+  311  less /var/log/neutron/neutron-dhcp-agent.log 
+  312  less /var/log/neutron/neutron-linuxbridge-agent.log 
+  313  less /var/log/neutron/neutron-metadata-agent.log 
+  314  ip a
+  315  exit
+  316  ip addr
+  317  nslookup astplsm01
+  318  nslookup asflex12
+  319  nslookup 129.69.209.168
+  320  nslookup astplsm02
+  321  ip addr
+  322  systemctl status neutron*
+  323  systemctl stop neutron-server
+  324  systemctl status neutron-server
+  325  clear
+  326  systemctl status neutron-server
+  327  systemctl stop neutron-linuxbridge-agent
+  328  systemctl stop neutron*
+  329  clear
+  330  systemctl status neutron*
+  331  systemctl status neutron-metadata-agent.service 
+  332  systemctl status neutron-dhcp-agent.service 
+  333  systemctl status neutron-dhcp-agent
+  334  systemctl status service neutron-l3-agent
+  335  systemctl status neutron-l3-agent
+  336  systemctl status neutron-metadata-agent
+  337  ip addr
+  338  less /etc/network/interfaces
+  339  tcpdump -i eno2np1
+  340  id addr
+  341  id add
+  342  ip add
+  343  tcpdump eno2np1
+  344  tcpdump -i eno2np1
+  345  nslookup astplsm01
+  346  ip addr
+  347  apt-get clean all
+  348  apt-get update
+  349  cd /etc/network
+  350  ls
+  351  cp -p interfaces interfaces.220816
+  352  vi interfaces
+  353  less /etc/apt/
+  354  ls
+  355  cd /etc/apt/
+  356  ls
+  357  less sources.list
+  358  cd sources.list.d/
+  359  ls
+  360  less cloudarchive-yoga.list 
+  361  apt-get clean all
+  362  apt-get update
+  363  apt-get upgrade
+  364  apt-get update
+  365  apt-get upgrade
+  366  ps -ef |grep -v root
+  367  sync; reboot; exit; exit
+  368  systemctl | grep fail
+  369  ip addr
+  370  ping 192.168.209.143
+  371  ping 192.168.209.144
+  372  ping 192.168.209.143
+  373  ping 192.168.209.144
+  374  cat /etc/network/interfaces
+  375  ping 192.168.209.142
+  376  less /etc/network/interfaces
+  377  ping 192.168.209.142
+  378  ping 192.168.209.143
+  379  ping 192.168.209.144
+  380  ip a
+  381  cat /etc/hosts
+  382  nano /etc/hosts
+  383  ping -c 4 192.168.209.143
+  384  cat /etc/hosts
+  385  ping controller
+  386  nano /etc/mysql/mariadb.conf.d/99-openstack.cnf 
+  387  cat /etc/mysql/mariadb.conf.d/99-openstack.cnf 
+  388  service mysql restart
+  389  systemctl status mysql 
+  390  systemctl status rabbitmq-server
+  391  nano /etc/memcached.conf 
+  392  cat /etc/memcached.conf 
+  393  service memcached restart
+  394  systemctl status memcached
+  395  nano /etc/default/etcd
+  396  cat /etc/default/etcd
+  397  systemctl enable etcd
+  398  systemctl restart etcd
+  399  systemctl status etcd
+  400  cat /etc/hosts
+  401  service apache2 restart
+  402  . admin-openrc 
+  403  unset OS_AUTH_URL OS_PASSWORD
+  404  openstack --os-auth-url http://controller:5000/v3   --os-project-domain-name Default --os-user-domain-name Default   --os-project-name admin --os-username admin token issue
+  405  service glance-api restart
+  406  glance image-list
+  407  . admin-openrc 
+  408  glance image-list
+  409  placement-status upgrade check
+  410  systemctl status nova-api
+  411  nano /etc/nova/nova.conf 
+  412  service nova-api restart
+  413  service nova-scheduler restart
+  414  service nova-conductor restart
+  415  service nova-novncproxy restart
+  416  service nova-compute restart
+  417  systemctl status nova-*
+  418  nova-status upgrade check
+  419  ping -c 4 openstack.org
+  420  ping -c 4 google.com
+  421  ip a
+  422  nano /etc/neutron/plugins/ml2/linuxbridge_agent.ini 
+  423  service nova-api restart
+  424  ip a
+  425  systemctl status nova-api
+  426  service nova-api restart
+  427  ip a
+  428  nano /etc/neutron/plugins/ml2/linuxbridge_agent.ini 
+  429  net.bridge.bridge-nf-call-iptables
+  430  systemctl net.bridge.bridge-nf-call-iptables
+  431  sysctl net.bridge.bridge-nf-call-iptables
+  432  sysctl status net.bridge.bridge-nf-call-iptables
+  433  sysctl status net.bridge.bridge-nf-call-ip6tables
+  434  sysctl net.bridge.bridge-nf-call-ip6tables
+  435  service neutron-server restart
+  436  ip a
+  437  systemctl status neutron-server
+  438  service neutron-linuxbridge-agent restart
+  439  systemctl status neutron-linuxbridge-agent
+  440  ip a
+  441  service neutron-dhcp-agent restart
+  442  systemctl status neutron-dhcp-agent
+  443  service neutron-metadata-agent restart
+  444  systemctl neutron-metadata-agent
+  445  systemctl status neutron-metadata-agent
+  446  ip a
+  447  openstack network agent list
+  448  systemctl status neutron-linuxbridge-agent
+  449  ip a
+  450  service neutron-linuxbridge-agent restart
+  451  systemctl status neutron-linuxbridge-agent
+  452  ip a
+  453  sysctl net.bridge.bridge-nf-call-iptables
+  454  sysctl net.bridge.bridge-nf-call-ip6tables
+  455  ip a
+  456  openstack network agent list
+  457  nano /var/log/neutron/neutron-linuxbridge-agent.log
+  458  nano /etc/neutron/plugins/ml2/linuxbridge_agent.ini 
+  459  service neutron-linuxbridge-agent restart
+  460  systemctl status neutron-linuxbridge-agent
+  461  openstack network agent list
+  462  ip a
+  463  nano /var/log/neutron/neutron-linuxbridge-agent.log
+  464  ip a
+  465  cat /etc/hosts
+  466  ip a
+  467  . admin-openrc 
+  468  openstack network create  --share --external   --provider-physical-network provider   --provider-network-type flat provider
+  469  ip a
+  470  cat /etc/resolv.conf
+  471  openstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.249 --dns-nameserver 129.69.211.1 --gateway 192.168.221.255 --subnet-range 192.168.221.128/25 provider
+  472  openstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.249 --dns-nameserver 129.69.211.1 --gateway 192.168.221.1 --subnet-range 192.168.221.128/25 provider
+  473  ip a
+  474  openstack flavor create --id 0 --vcpus 1 --ram 64 --disk 1 m1.nano
+  475  . demo-openrc
+  476  ssh-keygen -q -N ""
+  477  ls
+  478  openstack keypair create --public-key ~/.ssh/id_rsa.pub mykey
+  479  openstack keypair list
+  480  openstack security group rule create --proto icmp default
+  481  openstack security group rule create --proto tcp --dst-port 22 default
+  482  openstack flavor list
+  483  openstack image list
+  484  openstack network list
+  485  openstack security group list
+  486  openstack server create --flavor m1.nano --image cirros --nic net-id=7b1c71d4-7a01-4f0e-a965-b7d23f2302ce security-group default --key-name mykey provider-instance
+  487  openstack server create --flavor m1.nano --image cirros --nic net-id=7b1c71d4-7a01-4f0e-a965-b7d23f2302ce --security-group default --key-name mykey provider-instance
+  488  openstack server list
+  489  openstack console url show provider-instance
+  490  ssh cirros@192.168.221.209
+  491  ping 192.168.221.209
+  492  openstack server show provider-instance
+  493  su schneiti
+  494  exit
+  495  ip route show
+  496  ip route list
+  497  ip route add 192.168.221.128/25 dev eno2np1.139
+  498  route -n
+  499  openstack server show provider-instance
+  500  . demo-openrc 
+  501  openstack server show provider-instance
+  502  ping 192.168.221.209
+  503  route -n
+  504  openstack network show provider
+  505  openstack network list
+  506  openstack subnetwork list
+  507  openstack network trunk list
+  508  openstack network agent show
+  509  ip a
+  510  openstack network list
+  511  openstack network show provider
+  512  openstack subnet show bc79f4df-76be-4b67-9ddf-480df07959be
+  513  route -n
+  514  openstack server list
+  515  openstack server stop provider-instance
+  516  openstack server list
+  517  openstack server delete provider-instance
+  518  openstack subnet list
+  519  openstack subnet delete provider
+  520  openstack network delete provider
+  521  openstack network list
+  522  openstack network show provider
+  523  openstack network
+  524  . admin-openrc 
+  525  openstack network delete provider
+  526  openstack subnet list
+  527  openstack network create  --share --external   --provider-physical-network provider \
+  528  openstack network create --share --external --provider-physical-network provider --provider-network-type flat provider
+  529  nano /etc/resolv.conf
+  530  cat /etc/resolv.conf
+  531  openstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver 129.69.211.1 --gateway 192.168.221.1 --subnet-range 192.168.221.128/25 provider
+  532  . demo-openrc 
+  533  openstack server create --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance
+  534  openstack server list
+  535  ping 192.168.221.247
+  536  openstack network list
+  537  openstack network snhow provider
+  538  openstack network show provider
+  539  openstack server list
+  540  ssh cirros@203.0.113.103
+  541  ip a
+  542  ping 192.168.221.247
+  543  openstack securitygroup list
+  544  openstack security group list
+  545  openstack security group show default
+  546  openstack security group rule create --proto icmp default
+  547  openstack security group rule create --proto tcp --dst-port 22 default
+  548  . demo-openrc 
+  549  openstack security group rule create --proto icmp default
+  550  openstack security group rule create --proto tcp --dst-port 22 default
+  551  opensack server list
+  552  openstack server list
+  553  . admin-openrc 
+  554  openstack server list
+  555  openstack network list
+  556  . demo-openrc 
+  557  openstack network list
+  558  openstack network show pro
+  559  openstack network show provider
+  560  openstack server show provider-instance
+  561  openstack console url show provider-instance
+  562  ip a
+  563  openstack console url show provider-instance
+  564  openstack subnet list
+  565  openstack subnet show provider
+  566  openstack subnet
+  567  ip a
+  568  openstack subnet list
+  569  openstack subnet show provider
+  570  nano /etc/neutron/plugins/ml2/ml2_conf.ini 
+  571  openstack security group show default
+  572  openstack network show provider
+  573  openstack network 
+  574  openstack network show provider
+  575  openstack server list
+  576  openstack server stop provider-instance
+  577  ip a
+  578  openstack server delete provider-instance
+  579  openstack network delete provider
+  580  . admin-openrc 
+  581  openstack network delete provider
+  582  openstack network list
+  583  openstack network create --share --external --provider-physical-network provider --provider-network-type flat provider --disable-port-security
+  584  openstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver 129.69.211.1 --subnet-range 192.168.221.128/25 provider
+  585  openstack server create --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance
+  586  . demo-openrc 
+  587  openstack server create --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance
+  588  openstack server list
+  589  openstack network list
+  590  openstack server delete provider-instance
+  591  openstack server create --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance
+  592  openstack server list
+  593  nano /var/log/nova/nova-compute.log
+  594  openstack subnet list
+  595  openstack subnet show provider
+  596  openstack server delete provider
+  597  . demo-openrc 
+  598  openstack server list
+  599  openstack server delete provider-instance
+  600  openstack server create --flavor m1.nano --image cirros --key-name mykey provider-instance
+  601  openstack server list
+  602  ping 192.168.221.170
+  603  route -n
+  604  openstack console url show provider-instance
+  605  openstack server list
+  606  openstack server stop provider-instance
+  607  openstack server delete provider-instnace
+  608  openstack server delete provider-instance
+  609  . admin-openrc 
+  610  openstack network delete provider
+  611  openstack network create --share --external --provider-physical-network provider --provider-network-type flat provider 
+  612  openstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver 129.69.211.1 --gateway 192.168.221.254 --subnet-range 192.168.221.128/25 provider
+  613  . demo-openrc 
+  614  openstack server create --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance
+  615  openstack server list
+  616  ping 192.168.221.213
+  617  openstack server show
+  618  openstack console url show provider-instance
+  619  openstack server create --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance2
+  620  openstack server list
+  621  ip a
+  622  openstack console url show provider-instance2
+  623  ping 192.168.221.254
+  624  route -n
+  625  route del -net 192.168.221.128 gw 0.0.0.0 netmask 255.255.255.128 dev eno2np1.139
+  626  route -n
+  627  ping 192.168.221.254
+  628  ssh cirros@192.168.221.248
+  629  openstack server list
+  630  ping google.com
+  631  exit
+  632  mysql
+  633  . admin-openrc 
+  634  openstack user create --domain default --password-prompt cinder
+  635  openstack role add --project service --user cinder admin
+  636  openstack service create --name cinderv3   --description "OpenStack Block Storage" volumev3
+  637  openstack endpoint create --region RegionOne   volumev3 public http://controller:8776/v3/%\(project_id\)s
+  638  openstack endpoint create --region RegionOne   volumev3 internal http://controller:8776/v3/%\(project_id\)s
+  639  openstack endpoint create --region RegionOne   volumev3 admin http://controller:8776/v3/%\(project_id\)s
+  640  apt install cinder-api cinder-scheduler
+  641  nano /etc/cinder/cinder.conf 
+  642  su -s /bin/sh -c "cinder-manage db sync" cinder
+  643  nano /etc/cinder/cinder.conf 
+  644  nano /etc/nova/nova.conf
+  645  service nova-api restart
+  646  service cinder-scheduler restart
+  647  service apache2 restart1
+  648  nano /etc/cinder/cinder.conf 
+  649  lsblk
+  650  exit
+  651  git clone https://opendev.org/openstack/horizon -b stable/yoga --depth=1
+  652  cd horizon
+  653  sudo pip install -c https://opendev.org/openstack/requirements/raw/branch/stable/<release>/upper-constraints.txt .
+  654  pip install -c https://opendev.org/openstack/requirements/raw/branch/stable/<release>/upper-constraints.txt .
+  655  pip3 install -c https://opendev.org/openstack/requirements/raw/branch/stable/<release>/upper-constraints.txt .
+  656  pip3 install -c https://opendev.org/openstack/requirements/raw/branch/stable/yoga/upper-constraints.txt .
+  657  pip install -c https://opendev.org/openstack/requirements/raw/branch/stable/yoga/upper-constraints.txt .
+  658  pip3 install -c https://opendev.org/openstack/requirements/raw/branch/stable/yoga/upper-constraints.txt .
+  659  ls
+  660  pip3 install -c lower-constraints.txt .
+  661  cd openstack_dashboard/local/
+  662  ls
+  663  cpy local_settings.py.example local_settings.py
+  664  cp local_settings.py.example local_settings.py
+  665  ls
+  666  nano local_settings.py
+  667  ls
+  668  cd ..
+  669  ls
+  670  cd ..
+  671  ls
+  672  ./manage.py collectstatic
+  673  ./manage.py compress
+  674  nano ./openstack_dashboard/local/local_settings.py
+  675  sudo apt install apache2 libapache2-mod-wsgi
+  676  ./manage.py make_web_conf --wsgi
+  677  ./manage.py make_web_conf --apache > /etc/apache2/sites-available/horizon.conf
+  678  cd ~
+  679  nano /etc/apache2/sites-available/
+  680  cd /etc/apache2/sites-available/
+  681  ls
+  682  nano horizon.conf 
+  683  a2ensite horizon
+  684  systemctl reload apache2
+  685  service apache2 restart
+  686  ip a
+  687  systemctl status apache2
+  688  cd /etc/apache2/sites-enabled/
+  689  ls
+  690  nano horizon.conf
+  691  dis2ensite horizon
+  692  a2dissite horizon
+  693  cd ..
+  694  ls
+  695  nano ./sites-available/horizon.conf 
+  696  a2ensite horizon
+  697  systemctl reload apache2
+  698  nano ./sites-available/horizon.conf 
+  699  a2dissite horizon
+  700  systemctl reload apache2
+  701  cd ~
+  702  ls
+  703  cd horizon/
+  704  ls
+  705  nano ./openstack_dashboard/local/local_settings.py
+  706  ./manage.py make_web_conf --wsgi
+  707  ./manage.py make_web_conf --wsgi --force
+  708  ./manage.py make_web_conf --apache > /etc/apache2/sites-available/horizon.conf
+  709  nano /etc/apache2/sites-available/horizon.conf 
+  710  sudo a2ensite horizon
+  711  systemctl reload apache2
+  712  system restart apache2
+  713  sudo service apache2 restart
+  714  pwd
+  715  nano /var/log/apache2/openstack_dashboard-error.log 
+  716  nano /var/log/apache2/openstack_dashboard-access.log 
+  717  nano /var/log/apache2/error.log
+  718  nano /etc/apache2/sites-available/horizon.conf 
+  719  nano ./openstack_dashboard/local/local_settings.py
+  720  less /var/log/syslog
+  721  nano /var/log/syslog
+  722  a2ensite horizon
+  723  nano ./openstack_dashboard/local/local_settings.py
+  724  ./manage.py collectstatic
+  725  ./manage.py compress
+  726  nano /etc/apache2/sites-available/horizon.conf 
+  727  ./manage.py make_web_conf --wsgi
+  728  ./manage.py make_web_conf --wsgi --force
+  729  ./manage.py make_web_conf --apache > /etc/apache2/sites-available/horizon.conf
+  730  a2dissite horizon
+  731  systemctl reload apache2
+  732  nano /etc/apache2/sites-available/horizon.conf 
+  733  a2ensite horizon
+  734  systemctl reload apache2
+  735  apache2cts -S
+  736  cd /etc/apache2
+  737  ls
+  738  cd sites-available/
+  739  grep DocumentRoot
+  740  grep . -e "DocumentRoot"
+  741  grep -e "DocumentRoot" . 
+  742  ls
+  743  nano keystone.conf 
+  744  exit
+  745  openstack server show provider-instance
+  746  . admin-openrc 
+  747  openstack server show provider-instance
+  748  . demo-openrc 
+  749  openstack server show provider-instance
+  750  ip a
+  751  nano /var/log/neutron/neutron-dhcp-agent.log
+  752  nano /var/log/neutron/neutron-server.log
+  753  nano /var/log/neutron/neutron-linuxbridge-agent.log
+  754  ip a
+  755  brctl show
+  756  ip a
+  757  openstack server show
+  758  openstack server show provider-instance
+  759  ssh cirros@192.168.221.209
+  760  route -n
+  761  su tim
+  762  su schneiti
+  763  pwd
+  764  ls
+  765  cd ..
+  766  ls
+  767  cd home
+  768  ls
+  769  nano /etc/apache2/apache2.conf 
+  770  a2endmod rewrite
+  771  systemctl restart apache2
+  772  systemctl status apache2
+  773  nano /etc/apache2/apache2.conf 
+  774  a2ensite horizon
+  775  systemctl restart apache2
+  776  systemctl status apache2
+  777  systemctl restart apache2
+  778  nano /var/log/apache2/error.log
+  779  nano /var/log/apache2/openstack_dashboard-error.log 
+  780  systemctl status apache2
+  781  nano /etc/apache2/apache2.conf 
+  782  a2ensite horizon
+  783  systemctl restart apache2
+  784  systemctl status apache2
+  785  cd /var/www/html/
+  786  ls
+  787  cat index.html 
+  788  nano /etc/apache2/apache2.conf 
+  789  systemctl restart apache2
+  790  cd ~
+  791  cd horizon/
+  792  ls
+  793  cd local
+  794  ls
+  795  cd openstack_dashboard/
+  796  ls
+  797  cd static/
+  798  ls
+  799  cd ..
+  800  sudo apt install apache2 libapache2-mod-wsgi
+  801  cd ..
+  802  pwd
+  803  su tim
+  804  su schneiti
+  805  ls /usr/share
+  806  ls /usr/share/keystone
+  807  ls
+  808  cp horizon /usr/share/
+  809  cd usr/share/horizon
+  810  ls
+  811  cd horizon
+  812  ls
+  813  cd ..
+  814  cp horizon /usr/share/ -R
+  815  ls
+  816  cd horizon/
+  817  ls
+  818  cd ..
+  819  ls /usr/share
+  820  cd /usr/share/horizon/
+  821  ls
+  822  ./manage.py make_web_conf --wsgi
+  823  ./manage.py make_web_conf --wsgi --force
+  824  ./manage.py make_web_conf --apache > /etc/apache2/sites-available/horizon.conf
+  825  nano /etc/apache2/sites-available/
+  826  nano /etc/apache2/sites-available/horizon.conf 
+  827  a2ensite horizon
+  828  a2dissite horizon
+  829  nano /etc/apache2/sites-available/horizon.conf 
+  830  a2ensite horizon
+  831  systemctl reload apache2
+  832  systemctl status apache2
+  833  nano /etc/apache2/sites-enabled/horizon.conf 
+  834  nano /var/log/apache2/error.log
+  835  nano /var/log/apache2/openstack_dashboard-error.log 
+  836  nano /var/log/apache2/openstack_dashboard-access.log 
+  837  nano /etc/apache2/sites-available/000-default.conf 
+  838  a2enmod rewrite
+  839  systemctl restart apache2
+  840  a2dissite horizon
+  841  systemctl reload apache2
+  842  cd ~
+  843  ls
+  844  apt install openstack-dashboard
+  845  sudo pip install -c https://git.openstack.org/cgit/openstack/requirements/plain/upper-constraints.txt?h=stable/yoga -r https://raw.githubusercontent.com/openstack/horizon/stable/yoga/requirements.txt
+  846  sudo pip3 install -c https://git.openstack.org/cgit/openstack/requirements/plain/upper-constraints.txt?h=stable/yoga -r https://raw.githubusercontent.com/openstack/horizon/stable/yoga/requirements.txt
+  847  ip a
+  848  apt install openstack-dashboard
+  849  nano /etc/openstack-dashboard/local_settings.py 
+  850  nano /etc/apache2/conf-available/openstack-dashboard.conf 
+  851  systemctl reload apache2.service
+  852  systemctl status apache
+  853  systemctl status apache2
+  854  ls /etc/apache2/sites-enabled/
+  855  . admin-openrc 
+  856  unset OS_AUTH_URL OS_PASSWORD
+  857  openstack --os-auth-url http://controller:5000/v3   --os-project-domain-name Default --os-user-domain-name Default   --os-project-name admin --os-username admin token issue
+  858  service apache2 restart
+  859  openstack --os-auth-url http://controller:5000/v3   --os-project-domain-name Default --os-user-domain-name Default   --os-project-name admin --os-username admin token issue
+  860  nano /etc/apache2/apache2.conf 
+  861  keystone-manage bootstrap --bootstrap-password ADMIN_PASS   --bootstrap-admin-url http://controller:5000/v3/   --bootstrap-internal-url http://controller:5000/v3/   --bootstrap-public-url http://controller:5000/v3/ keystone-manage bootstrap --bootstrap-password 5mvQr9b   --bootstrap-admin-url http://controller:5000/v3/   --bootstrap-internal-url http://controller:5000/v3/   --bootstrap-public-url http://controller:5000/v3/ \
+  862  keystone-manage bootstrap --bootstrap-password 5mvQr9b  --bootstrap-admin-url http://controller:5000/v3/  --bootstrap-internal-url http://controller:5000/v3/ --bootstrap-public-url http://controller:5000/v3/ --bootstrap-region-id RegionOne
+  863  service apache2 restart
+  864  openstack --os-auth-url http://controller:5000/v3   --os-project-domain-name Default --os-user-domain-name Default   --os-project-name admin --os-username admin token issue
+  865  a2ensite keystone
+  866  a2ensite placement
+  867  a2ensite placement-api.conf 
+  868  systemctl reload apache2
+  869  openstack --os-auth-url http://controller:5000/v3   --os-project-domain-name Default --os-user-domain-name Default   --os-project-name admin --os-username admin token issue
+  870  . demo-openrc 
+  871  . admin-openrc 
+  872  placement-status upgrade check
+  873  openstack --os-placement-api-version 1.2 resource class list --sort-column name
+  874  openstack --os-placement-api-version 1.6 trait list --sort-column name
+  875  a2ensite horizon
+  876  systemctl reload apache2
+  877  nano /etc/apache2/sites-enabled/
+  878  ls /etc/apache2/sites-enabled/
+  879  nano /etc/apache2/sites-enabled/horizon.conf 
+  880  nano /etc/apache2/conf-enabled/
+  881  ls /etc/apache2/conf-enabled/
+  882  ls /etc/apache2/conf-available/
+  883  a2ensite openstack-dashboard.conf
+  884  a2ensite openstack-dashboard
+  885  a2enconf openstack-dashboard
+  886  systemctl reload apache2
+  887  nano /var/log/apache2/error.log
+  888  nano /usr/lib/python3/dist-packages/openstack_dashboard/local/local_settings.py
+  889  nano /etc/apache2/conf-available/openstack-dashboard.conf 
+  890  a2disconfig horizon
+  891  a2disconf horizon
+  892  a2disconf openstack-dashboard 
+  893  systemctl reload apache2
+  894  a2enconf openstack-dashboard 
+  895  systemctl reload apache2
+  896  nano /var/log/apache2/openstack_dashboard-error.log 
+  897  nano /var/log/apache2/error.log
+  898  cd /var/lib/openstack-dashboard/
+  899  ls
+  900  chown -R www-date:www-data secret-key
+  901  ls -l
+  902  usermod -a -R secret-key www-data
+  903  usermod -a -R secret-key/ www-data
+  904  ls secret
+  905  ls secret-key/
+  906  setfacl -Rdm 'u:www-data:r-X' /var/lib/openstack-dashboard
+  907  ls -l
+  908  groups
+  909  groups -l
+  910  groups --help
+  911  froups -a
+  912  groups -a
+  913  groups luser
+  914  groups www-data
+  915  a2disconf openstack-dashboard 
+  916  systemctl reload apache2
+  917  a2enconf openstack-dashboard 
+  918  systemctl reload apache2
+  919  nano /var/log/apache2/error.log
+  920  ls
+  921  cd ..
+  922  ls -l
+  923  compgen -u
+  924  compgen -g
+  925  cd var/lib/
+  926  cd /var/lib/
+  927  ls
+  928  chown -R www-data:www-data openstack-dashboard/
+  929  ls -l
+  930  a2disconf openstack-dashboard 
+  931  systemctl reload apache2
+  932  a2enconf openstack-dashboard 
+  933  systemctl reload apache2
+  934  cd openstack-dashboard/
+  935  ls -l
+  936  nano /var/log/apache2/error.log
+  937  ls
+  938  ls -l
+  939  cd secret-key/
+  940  ls
+  941  cd ..
+  942  nano /var/log/apache2/error.log
+  943  chown -R www-data:www-data  secret-key
+  944  ls -l
+  945  systemctl reload apache2.service 
+  946  nano /var/log/apache2/error.log
+  947  cd /var/www/html/nano secret-key/
+  948  ls
+  949  nano secret
+  950  nano secret_key
+  951  ls -l
+  952  chmod g+rw secret
+  953  chmod g+rw secret_key
+  954  ls -l
+  955  chmod o+rw secret_key
+  956  ls -l
+  957  systemctl reload apache2.service 
+  958  nano /var/log/apache2/error.log
+  959  chmod 0600 secret_key
+  960  ls -l
+  961  systemctl reload apaache2
+  962  systemctl reload apache2
+  963  nano /var/log/apache2/error.log
+  964  sudo apt-get install -f
+  965  systemctl reload apache2
+  966  nano /var/log/apache2/error.log
+  967  chown -R www-data:www-data  secret-key
+  968  ls -l
+  969  systemctl reload apache2
+  970  nano /var/log/apache2/error.log
+  971  ps aux | egrep '(apache|httpd)'
+  972  ps axo user,group,comm | egrep '(apache|httpd)'
+  973  chown -R horizon:horizon  secret-key
+  974  ls -l
+  975  chown -R horizon:horizon secret-key
+  976  ls -l
+  977  chown horizon:horizon secret-key
+  978  ls -l
+  979  chown horizon:horizon secret-key
+  980  ls -l
+  981  chown -R www-data:www-data  secret-key
+  982  ls -l
+  983  chown -R horizon:horizon  secret-key
+  984  cd ..
+  985  chown -R horizon:horizon openstack-dashboard/
+  986  ls -l
+  987  systemctl reload apache2
+  988  nano /var/log/apache2/error.log
+  989  cd openstack-dashboard/
+  990  ls
+  991  cd static
+  992  l
+  993  ls
+  994  cd ..
+  995  nano /etc/openstack-dashboard/
+  996  cd /etc/openstack-dashboard/
+  997  ls
+  998  nano local_settings.py 
+  999  systemctl reload apache2.service 
+ 1000  nano local_settings.py 
+ 1001  systemctl reload apache2.service 
+ 1002  cd ..
+ 1003  cd ~
+ 1004  cat demo-openrc 
+ 1005  nano /var/log/apache2/error.log
+ 1006  nano var/log/apache2/keystone.log
+ 1007  nano /var/log/apache2/keystone.log
+ 1008  nano /var/log/apache2/keystone_access.log
+ 1009  ip a
+ 1010  cat demo-openrc 
+ 1011  nano /etc/openstack-dashboard/local_settings.py 
+ 1012  systemctl reload apache2
+ 1013  nano /var/log/apache2/openstack_dashboard-
+ 1014  nano /var/log/apache2/openstack_dashboard-error.log 
+ 1015  nano /var/log/apache2/error.log
+ 1016  nano /etc/openstack-dashboard/local_settings.py 
+ 1017  systemctl reload apache2
+ 1018  a2disconf openstack-dashboard 
+ 1019  systemctl reload apache2
+ 1020  cd /etc/apache2/
+ 1021  ls
+ 1022  cd sites-avA
+ 1023  cd sites-available/
+ 1024  ls
+ 1025  nano horizon.conf 
+ 1026  cd. 
+ 1027  cd ..
+ 1028  ls sites-enabled/
+ 1029  nano sites-enabled/horizon.conf 
+ 1030  nano conf-available/openstack-dashboard.conf 
+ 1031  nano sites-available/horizon.conf 
+ 1032  a2dissite horizon.conf 
+ 1033  systemctl reload apache2
+ 1034  a2ensite horizon.conf 
+ 1035  systemctl reload apache2
+ 1036  cd /usr/share/horizon/
+ 1037  ls
+ 1038  nano openstack_dashboard/local/local_settings.py
+ 1039  ./manage.py make_web_conf --wsgi
+ 1040  ./manage.py make_web_conf --wsgi --force
+ 1041  ./manage.py make_web_conf --apache --processes 10 > /etc/apache2/sites-available/horizon.conf
+ 1042  nano /etc/apache2/sites-available/horizon.conf 
+ 1043  nano openstack_dashboard/local/local_settings.py
+ 1044  ./manage.py collectstatic
+ 1045  ./manage.py compress
+ 1046  ./manage.py make_web_conf --wsgi
+ 1047  ./manage.py make_web_conf --wsgi --force
+ 1048  ./manage.py make_web_conf --apache --processes 10 > /etc/apache2/sites-available/horizon.conf
+ 1049  sudo a2ensite horizon
+ 1050  sudo a2dissite horizon
+ 1051  systemctl reload apache2
+ 1052  sudo a2ensite horizon
+ 1053  systemctl reload apache2
+ 1054  nano /etc/apache2/sites-enabled/horizon.conf 
+ 1055  service apache2 restart
+ 1056  cd /usr/share/openstack-dashboard/
+ 1057  ls
+ 1058  ./manage.py collectstatic
+ 1059  ./manage.py compress
+ 1060  nano /etc/neutron/plugins/ml2/ml2_conf.ini 
+ 1061  nano /var/log/neutron/neutron-linuxbridge-agent.log
+ 1062  nano /etc/neutron/plugins/ml2/linuxbridge_agent.ini 
+ 1063  service neutron-linuxbridge-agent restart
+ 1064  service neutron-server restart
+ 1065  service neutron-dhcp-agent restart
+ 1066  service neutron-l3-agent restart
+ 1067  nano /etc/neutron/plugins/ml2/linuxbridge_agent.ini 
+ 1068  openstack network delete selfservice
+ 1069  . admin-openrc 
+ 1070  openstack network delete selfservice
+ 1071  openstack router delete router
+ 1072  openstack port list
+ 1073  ip netns
+ 1074  openstack port list --router router
+ 1075  ping 192.168.221.141
+ 1076  . demo-openrc 
+ 1077  openstack network list
+ 1078  openstack server create --flavor m1.nano --image cirros
+ 1079  openstack server create --flavor m1.nano --image cirros --nic net-id=SELFSERVICE_NET_ID --security-group default --key-name mykey selfservice-instance
+ 1080  openstack server create --flavor m1.nano --image cirros --nic net-id=65d5e0bf-b5a1-46fc-ae37-2ff983c8fade --security-group default --key-name mykey selfservice-instance
+ 1081  openstack server list
+ 1082  openstack floating ip create provider
+ 1083  openstack server add floating ip selfservice-instance 192.168.221.184
+ 1084  openstack server list
+ 1085  ssh cirros@203.0.113.104
+ 1086  ssh cirros@192.168.221.184
+ 1087  openstack console url show selfservice-instance
+ 1088  openstack router list
+ 1089  openstack router show router
+ 1090  ping -c 4 192.168.221.141
+ 1091  ping 172.16.1.1
+ 1092  openstack floating ip list
+ 1093  ping 192.168.221.184
+ 1094  openstack server list
+ 1095  openstack router show router
+ 1096  openstack router
+ 1097  openstack router show
+ 1098  openstack router show  router
+ 1099  | ID                                   | Floating IP Address | Fixed IP Address | Port                                 | Floating Network                     | Project                          |
+ 1100  +--------------------------------------+---------------------+------------------+--------------------------------------+--------------------------------------+----------------------------------+
+ 1101  | c0b382ea-2d32-44ac-9f78-bc76322cd822 | 192.168.221.184     | 172.16.1.176     | 458eeb84-f290-4c34-a0b1-dfab62fe818e | 446316ce-5d96-473b-8517-2a7468d2e132 | 60d090e9f52e46f9bb19363b484115a6 |
+ 1102  +--------------------------------------+---------------------+------------------+--------------------------------------+--------------------------------------+----------------------------------+
+ 1103  openstack floating ip
+ 1104  openstack floating ip list
+ 1105  openstack network list
+ 1106  openstack subnet list
+ 1107  ping 192.168.221.141
+ 1108  openstack router list
+ 1109  openstack router show
+ 1110  openstack router show router
+ 1111  openstack server list
+ 1112  exit
+ 1113  less /var/log/neutron/neutron-linuxbridge-agent.log
+ 1114  less /var/log/neutron/neutron-server.log
+ 1115  grep /var/log/neutron/neutron-server.log -e "ERROR" | less
+ 1116  grep /var/log/neutron/neutron-linuxbridge-agent.log -e "ERROR" | less
+ 1117  grep /var/log/neutron/neutron-metadata-agent.log -e "ERROR" | less
+ 1118  grep /var/log/neutron/neutron-dhcp-agent.log -e "ERROR" | less
+ 1119  grep /var/log/neutron/neutron-linuxbridge-cleanup.log -e "ERROR" | less
+ 1120  less /var/log/neutron/neutron-dhcp-agent.log
+ 1121  exit
+ 1122  apt install neutron-server neutron-plugin-ml2   neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent   neutron-metadata-agent
+ 1123  ipa 
+ 1124  ip a
+ 1125  apt install neutron-l3-agent-neutron-dhcp-agent
+ 1126  apt install neutron-l3-agent
+ 1127  apt install neutron-dhcp-agent
+ 1128  apt purge openstack-dashboard
+ 1129  ls /etc/apache2/sites-enabled/
+ 1130  apt install neutron-l3-agent
+ 1131  nano /etc/neutron/neutron.conf 
+ 1132  nano /etc/neutron/plugins/ml2/ml2_conf.ini 
+ 1133  nano /etc/neutron/plugins/ml2/linuxbridge_agent.ini 
+ 1134  nano /etc/neutron/l3_agent.ini 
+ 1135  nano /etc/neutron/dhcp_agent.ini 
+ 1136  su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
+ 1137    --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
+ 1138  service nova-api restart
+ 1139  service neutron-server restart
+ 1140  ip a
+ 1141  service neutron-linuxbridge-agent restart
+ 1142  service neutron-dhcp-agent restart
+ 1143  service neutron-metadata-agent restart
+ 1144  service neutron-l3-agent restart
+ 1145  systemctl status neutron-l3-agent.service 
+ 1146  ip a
+ 1147  systemctl status neutron-dhcp-agent.service 
+ 1148  openstack network agent list
+ 1149  . a
+ 1150  . admin-openrc 
+ 1151  openstack network agent list
+ 1152  . demo-openrc 
+ 1153  openstack network create selfservice
+ 1154  openstack network list
+ 1155  nano /etc/neutron/plugins/ml2/ml2_conf.ini 
+ 1156  nano /etc/neutron/plugins/ml2/linuxbridge_agent.ini 
+ 1157  service nova-api restart
+ 1158  service neutron-server restart
+ 1159  service neutron-linuxbridge-agent restart
+ 1160  service neutron-dhcp-agent restart
+ 1161  service neutron-metadata-agent restart
+ 1162  service neutron-l3-agent restart
+ 1163  openstack network agent list
+ 1164  . admin-openrc 
+ 1165  openstack network agent list
+ 1166  . demo-openrc
+ 1167  openstack network create selfservice
+ 1168  . admin-openrc 
+ 1169  openstack network create selfservice
+ 1170  . demo-openrc 
+ 1171  openstack network create selfservice
+ 1172  nano /var/log/syslog
+ 1173  nano /etc/neutron/plugins/ml2/linuxbridge_agent.ini 
+ 1174  service nova-api restart
+ 1175  service neutron-server restart
+ 1176  service neutron-linuxbridge-agent restart
+ 1177  service neutron-dhcp-agent restart
+ 1178  service neutron-metadata-agent restart
+ 1179  service neutron-l3-agent restart
+ 1180  systemctl status neutron-l3-agent.service 
+ 1181  openstack network agent list
+ 1182  . admin-openrc 
+ 1183  openstack network agent list
+ 1184  . demo-openrc 
+ 1185  openstack network create selfservice
+ 1186  nano /var/log/neutron/neutron-server.log
+ 1187  nano /etc/neutron/plugins/ml2/ml2_conf.ini 
+ 1188  systemctl restart neutron-server
+ 1189  . demo-openrc 
+ 1190  openstack network create selfservice
+ 1191  cat /etc/resolv.conf 
+ 1192  openstack subnet create --network selfservice --dns-nameserver 129.69.211.1 --gateway 172.16.1.1  --subnet-range 172.16.1.0/24 selfservice
+ 1193  openstack router create router
+ 1194  openstack router add subnet router selfservice
+ 1195  openstack router set router --external-gateway provider
+ 1196  . admin-openrc
+ 1197  ip netns
+ 1198  openstack port list --router router
+ 1199  ping -c 4 192.168.221.141
+ 1200  . demo-openrc 
+ 1201  openstack router add subnet router selfservice
+ 1202  openstack router set router --external-gateway provider
+ 1203  openstack router list
+ 1204  openstack network list
+ 1205  openstack netowrk show selfservice
+ 1206  openstack netowrk show 
+ 1207  openstack network show selfservice
+ 1208  openstack subnet show 9337ae62-e21d-4b1b-9166-83ad8bedce8f
+ 1209  ip netns
+ 1210  openstack port list --router router
+ 1211  openstack port list
+ 1212  openstack por
+ 1213  openstack port
+ 1214  openstack port enable 056409f9-c7fa-44a5-82c8-91c8ed46501c
+ 1215  openstack port set --enable 056409f9-c7fa-44a5-82c8-91c8ed46501c
+ 1216  openstack port list
+ 1217  openstack port show 056409f9-c7fa-44a5-82c8-91c8ed46501c
+ 1218  openstack port set 056409f9-c7fa-44a5-82c8-91c8ed46501c --data-plane-status ACTIVE
+ 1219  openstack port set --data-plane-status ACTIVE 056409f9-c7fa-44a5-82c8-91c8ed46501c
+ 1220  nano /etc/neutron/plugins/ml2/ml2_conf.ini
+ 1221  systemctl restart neutron-server.service
+ 1222  systemctl restart  neutron-l3-agent.service
+ 1223  openstack port list
+ 1224  openstack subnet show 9337ae62-e21d-4b1b-9166-83ad8bedce8f
+ 1225  ip a
+ 1226  openstack port list
+ 1227  nano /var/log/neutron/neutron-server.log
+ 1228  less /var/log/neutron/neutron-server.log
+ 1229  openstack port list --router
+ 1230  openstack port list --router router
+ 1231  su tim
+ 1232  su schneiti
+ 1233  history 
+ 1234  history > root.tim.hist.log

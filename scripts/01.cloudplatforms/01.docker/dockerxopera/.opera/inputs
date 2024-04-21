@@ -1,0 +1,9 @@
+{
+  "host_ip": "192.168.138.66",
+  "linux_distro": "ubuntu",
+  "linux_release": "yammy",
+  "minio_credentials": {
+    "access_key": "test",
+    "secret_key": "test"
+  }
+}

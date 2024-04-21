@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        
+        
+            <title>Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers</title>
+        
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+            <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+        
+
+        
+        
+    <link
+  rel="preload"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/themes/prism.min.css"
+/>
+<noscript>
+  <link
+    rel="stylesheet"
+    href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/themes/prism.min.css"
+  />
+</noscript>
+<link
+  rel="preload"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/plugins/unescaped-markup/prism-unescaped-markup.min.css"
+/>
+<noscript>
+  <link
+    rel="stylesheet"
+    href="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/plugins/unescaped-markup/prism-unescaped-markup.min.css"
+  />
+</noscript>
+
+<script
+  defer
+  src="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/components/prism-core.min.js"
+></script>
+<script
+  defer
+  src="https://cdn.freecodecamp.org/news-assets/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"
+></script>
+
+
+
+        
+        <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/news/assets/css/global-26e2f3cde9.css" />
+        <link rel="stylesheet" type="text/css" href="/news/assets/css/screen-7317b1a7bd.css" />
+        <link rel="stylesheet" type="text/css" href="/news/assets/css/search-bar-124f5f949c.css" />
+
+        
+        <script defer src="https://cdn.freecodecamp.org/news-assets/algolia/algoliasearch-3-33-0/algoliasearch.min.js"></script>
+        <script defer src="https://cdn.freecodecamp.org/news-assets/algolia/autocomplete-0-36-0/autocomplete.min.js"></script>
+
+        
+        <script defer src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/dayjs.min.js"></script>
+        <script defer src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/localizedFormat.min.js"></script>
+        <script defer src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/relativeTime.min.js"></script>
+
+        
+        
+            <script defer src="https://cdn.freecodecamp.org/news-assets/dayjs/1.10.4/locale/en.min.js"></script>
+        
+
+        
+        <script>let client,index;document.addEventListener("DOMContentLoaded",(()=>{client=algoliasearch("QMJYL5WYTI","89770b24481654192d7a5c402c6ad9a0"),index=client.initIndex("news")})),document.addEventListener("DOMContentLoaded",(()=>{const e=window.screen.width,t=window.screen.height,n=e>=767&&t>=768?8:5,o=document.getElementById("search-form"),s=document.getElementById("search-input"),a=document.getElementById("dropdown-container");let i,d,c;s.addEventListener("input",(e=>{i=e.target.value})),o.addEventListener("submit",(e=>{e.preventDefault(),function(){if(d=document.getElementsByClassName("aa-cursor")[0],d&&i){const e=d.querySelector("a").href;window.location.assign(e)}else!d&&i&&c&&window.location.assign(`https://www.freecodecamp.org/news/search?query=${i}`)}()}));const l=autocomplete("#search-input",{hint:!1,keyboardShortcuts:["s",191],openOnFocus:!0,appendTo:a,debug:!0},[{source:autocomplete.sources.hits(index,{hitsPerPage:n}),debounce:250,templates:{suggestion:e=>(c=!0,`\n            <a href="${e.url}">\n              <div class="algolia-result">\n                <span>${e._highlightResult.title.value}</span>\n              </div>\n            </a>\n          `),empty:()=>(c=!1,'\n            <div class="aa-suggestion footer-suggestion no-hits-footer">\n              <div class="algolia-result">\n                <span>\n                  No tutorials found\n                </span>\n              </div>\n            </div>\n          '),footer:e=>{if(!e.isEmpty)return`\n              <div class="aa-suggestion footer-suggestion">\n                <a id="algolia-footer-selector" href="https://www.freecodecamp.org/news/search?query=${i}">\n                  <div class="algolia-result algolia-footer">\n                    See all results for ${i}\n                  </div>\n                </a>\n              </div>\n            `}}}]).on("autocomplete:selected",((e,t,n,o)=>{d=t?t.url:`https://www.freecodecamp.org/news/search?query=${i}`,"click"!==o.selectionMethod&&"tabKey"!==o.selectionMethod&&c&&window.location.assign(d)}));document.addEventListener("click",(e=>{e.target!==s&&l.autocomplete.close()}))})),document.addEventListener("DOMContentLoaded",(()=>{dayjs.extend(dayjs_plugin_localizedFormat),dayjs.extend(dayjs_plugin_relativeTime),dayjs.locale("en")}));const isAuthenticated=document.cookie.split(";").some((e=>e.trim().startsWith("jwt_access_token="))),isDonor=document.cookie.split(";").some((e=>e.trim().startsWith("isDonor=true")));</script>
+
+        
+        
+    
+        <script
+            data-ad-client="ca-pub-9482786369113753"
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+            crossorigin="anonymous"
+            async
+        ></script>
+    
+
+
+        
+        
+        
+
+        
+        
+
+        <link rel="icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon.ico" type="image/png">
+        
+        
+            <link rel="canonical" href="https://www.freecodecamp.org/news/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882/">
+        
+        <meta name="referrer" content="no-referrer-when-downgrade">
+
+        
+
+        
+    <meta name="description" content="Why are banks paying me big bucks for something as simple as Kubernetes? When anybody — anybody can learn in under three hours? If you doubt me, I challenge you to give it a try! By the end of this article, you will be able to run a Microservice based">
+
+    
+    <meta property="og:site_name" content="freeCodeCamp.org">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers">
+    
+        <meta property="og:description" content="Why are banks paying me big bucks for something as simple as Kubernetes? When anybody — anybody can learn in under three hours? If you doubt me, I challenge you to give it a try! By the end of this article, you will be able to run a Microservice based">
+    
+    <meta property="og:url" content="https://www.freecodecamp.org/news/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882/">
+    <meta property="og:image" content="https://cdn-media-1.freecodecamp.org/images/1*0ju9JOPACF90yXSi-s2gwQ.jpeg">
+    <meta property="article:published_time" content="2018-04-14T19:10:07.000Z">
+    <meta property="article:modified_time" content="2019-10-03T14:12:18.000Z">
+    
+        <meta property="article:tag" content="Kubernetes">
+    
+        <meta property="article:tag" content="Docker">
+    
+        <meta property="article:tag" content="Java">
+    
+        <meta property="article:tag" content="DevOps">
+    
+        <meta property="article:tag" content="Web Development">
+    
+    <meta property="article:publisher" content="https://www.facebook.com/freecodecamp">
+    
+
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers">
+    
+        <meta name="twitter:description" content="Why are banks paying me big bucks for something as simple as Kubernetes? When anybody — anybody can learn in under three hours? If you doubt me, I challenge you to give it a try! By the end of this article, you will be able to run a Microservice based">
+    
+    <meta name="twitter:url" content="https://www.freecodecamp.org/news/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882/">
+    <meta name="twitter:image" content="https://cdn-media-1.freecodecamp.org/images/1*0ju9JOPACF90yXSi-s2gwQ.jpeg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Rinor Maloku">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Kubernetes, Docker, Java, DevOps, Web Development">
+    <meta name="twitter:site" content="@freecodecamp">
+    
+        <meta name="twitter:creator" content="@rinormaloku">
+    
+
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="533">
+
+
+        
+    <script type="application/ld+json">{
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"publisher": {
+		"@type": "Organization",
+		"name": "freeCodeCamp.org",
+		"url": "https://www.freecodecamp.org/news/",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg",
+			"width": 2100,
+			"height": 240
+		}
+	},
+	"image": {
+		"@type": "ImageObject",
+		"url": "https://cdn-media-1.freecodecamp.org/images/1*0ju9JOPACF90yXSi-s2gwQ.jpeg",
+		"width": 800,
+		"height": 533
+	},
+	"url": "https://www.freecodecamp.org/news/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882/",
+	"mainEntityOfPage": {
+		"@type": "WebPage",
+		"@id": "https://www.freecodecamp.org/news/"
+	},
+	"datePublished": "2018-04-14T19:10:07.000Z",
+	"dateModified": "2019-10-03T14:12:18.000Z",
+	"keywords": "Kubernetes, Docker, Java, DevOps, Web Development",
+	"description": "Why are banks paying me big bucks for something as simple as Kubernetes? When\nanybody — anybody can learn in under three hours?\n\nIf you doubt me, I challenge you to give it a try! By the end of this article,\nyou will be able to run a Microservice based application on a Kubernetes\nCluster. And I guarantee this because it’s how I introduce our clients to\nKubernetes.\n\nWhat does this guide do differently from the other resources, Rinor?\n\nQuite a lot! Most guides start with the simple stuff: Kubernet",
+	"headline": "Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers",
+	"author": {
+		"@type": "Person",
+		"name": "Rinor Maloku",
+		"url": "https://www.freecodecamp.org/news/author/rinormaloku/",
+		"sameAs": [
+			"https://rinormaloku.com",
+			"https://twitter.com/rinormaloku"
+		],
+		"image": {
+			"@type": "ImageObject",
+			"url": "https://www.freecodecamp.org/news/content/images/2022/05/rinor-close.png",
+			"width": 504,
+			"height": 483
+		}
+	}
+}</script>
+
+
+        <meta name="generator" content="Eleventy">
+        <link rel="alternate" type="application/rss+xml" title="freeCodeCamp.org" href="https://www.freecodecamp.org/news/rss/">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+<!-- dataLayer setup -->
+<script>
+window.dataLayer = window.dataLayer || [];
+</script>
+<!-- End dataLayer setup -->
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5D6RKKP');</script>
+<!-- End Google Tag Manager -->
+
+
+<meta name="google-site-verification" content="b4tITLzEeeZGEpvD4mGNf3khKM4fvqejQaz9SYBQP8E" />
+
+        
+    </head>
+    
+    
+        <body class="home-template">
+    
+        <div class="site-wrapper">
+            <nav class="site-nav nav-padding">
+    <div class="site-nav-left">
+        
+<form id="search-form" data-test-label="search-bar">
+    <div role="search" class="searchbox__wrapper">
+        <label class="fcc_sr_only" for='search-input'>
+            Search
+        </label>
+        <input type="search" placeholder="
+    Search 10,800+ tutorials
+" id="search-input" />
+        <button type="submit" class="ais-SearchBox-submit">
+            <svg class="ais-SearchBox-submitIcon" xmlns="https://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 40 40">
+    <path d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z" />
+</svg>
+
+            <span class="fcc_sr_only">Submit your search query</span>
+        </button>
+        <div id='dropdown-container'></div>
+    </div>
+</form>
+
+    </div>
+    <div class="site-nav-middle">
+        <a class="site-nav-logo" href="https://www.freecodecamp.org/news" data-test-label="site-nav-logo"><img src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg" alt="freeCodeCamp.org" /></a>
+    </div>
+    <div class="site-nav-right">
+        <div class="nav-group">
+            <a
+                class="nav-forum"
+                id="nav-forum"
+                rel="noopener noreferrer"
+                href="https://forum.freecodecamp.org/"
+                target="_blank"
+                data-test-label="forum-button"
+            >Forum</a>
+            <a
+                class="toggle-button-nav"
+                id="nav-donate"
+                rel="noopener noreferrer"
+                href="https://www.freecodecamp.org/donate/"
+                target="_blank"
+                data-test-label="donate-button"
+            >Donate</a>
+        </div>
+    </div>
+</nav>
+
+
+            
+            <a class="banner" id="banner" data-test-label="banner" rel="noopener noreferrer" target="_blank">
+    <p id="banner-text"></p>
+</a>
+
+
+    
+    <script>document.addEventListener("DOMContentLoaded",(()=>{const e=document.getElementById("banner"),t=document.getElementById("banner-text");isAuthenticated?(t.innerHTML="Support our charity and our mission. <span>Donate to freeCodeCamp.org</span>.",e.href="https://www.freecodecamp.org/donate",e.setAttribute("text-variation","authenticated")):isDonor?(t.innerHTML="Thank you for supporting freeCodeCamp through <span>your donations</span>.",e.href="https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/",e.setAttribute("text-variation","donor")):(t.innerHTML="Learn to code — <span>free 3,000-hour curriculum</span>",e.href="https://www.freecodecamp.org/",e.setAttribute("text-variation","default"))}));</script>
+
+
+            <div id="error-message"></div>
+
+            
+    <main id="site-main" class="post-template site-main outer">
+        <div class="inner ad-layout">
+            <article class="post-full post ">
+                <header class="post-full-header">
+                    <section class="post-full-meta">
+                        <time class="post-full-meta-date" datetime="Sat Apr 14 2018 19:10:07 GMT+0000 (Coordinated Universal Time)">
+                            April 14, 2018
+                        </time>
+                        
+                            <span class="date-divider">/</span>
+                            <a  dir="ltr" href="/news/tag/kubernetes/">
+                                #Kubernetes
+                            </a>
+                        
+                    </section>
+                    <h1 class="post-full-title">Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers</h1>
+                </header>
+                <div class="post-full-author-header" data-test-label="author-header-no-bio">
+                    
+                        
+                            
+    
+    
+    
+
+    <section class="author-card" data-test-label="author-card">
+        
+            
+    <img
+      srcset="https://www.freecodecamp.org/news/content/images/size/w60/2022/05/rinor-close.png 60w"
+      sizes="60px"
+      src="https://www.freecodecamp.org/news/content/images/size/w60/2022/05/rinor-close.png"
+      class="author-profile-image"
+      alt="Rinor Maloku"
+      width="504"
+      height="483"
+      onerror="this.style.display='none'"
+      
+      data-test-label="profile-image"
+    />
+  
+        
+
+        <section class="author-card-content author-card-content-no-bio">
+            <span class="author-card-name">
+                <a href="/news/author/rinormaloku/" data-test-label="profile-link">
+                    
+                        Rinor Maloku
+                    
+                </a>
+            </span>
+            
+        </section>
+    </section>
+
+                        
+                    
+                </div>
+                
+                    <figure class="post-full-image">
+                        
+    <picture>
+      <source
+        media="(max-width: 700px)"
+        sizes="1px"
+        srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w"
+      />
+      <source 
+        media="(min-width: 701px)"
+        sizes="(max-width: 800px) 400px, (max-width: 1170px) 700px, 1400px"
+        srcset="https://cdn-media-1.freecodecamp.org/images/1*0ju9JOPACF90yXSi-s2gwQ.jpeg"
+      />
+      <img
+        onerror="this.style.display='none'"
+        src="https://cdn-media-1.freecodecamp.org/images/1*0ju9JOPACF90yXSi-s2gwQ.jpeg"
+        alt="Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers",
+        width="800"
+        height="533"
+      >
+    </picture>
+  
+                    </figure>
+                
+                <section class="post-full-content">
+                    <div class="post-and-sidebar">
+                        <section class="post-content " data-test-label="post-content">
+                            
+<p>Why are banks paying me big bucks for something as simple as Kubernetes? When anybody — anybody can learn in under three hours?</p><p>If you doubt me, I challenge you to give it a try! By the end of this article, you will be able to run a Microservice based application on a Kubernetes Cluster. And I guarantee this because it’s how I introduce our clients to Kubernetes.</p><p><em>What does this guide do differently from the other resources, Rinor?</em></p><p>Quite a lot! Most guides start with the simple stuff: Kubernetes concepts and and kubectl commands. These guides assume the reader knows about application development, Microservices, and Docker containers.</p><p>In this Article we will go from :</p><ol><li>Running a Microservice based application on your computer.</li><li>Building container images for each service of the Microservice application.</li><li>Introduction to Kubernetes. Deploying a Microservice based application into a Kubernetes Managed Cluster.</li></ol><p>The gradual build up provides the depth required for a mere mortal being to grasp the <em>simplicity</em> of Kubernetes. Yes Kubernetes is simple when you know the context it is used in. Without further ado lets see what we will build.</p><h3 id="application-demo">Application Demo</h3><p>The application has one functionality. It takes one sentence as input. Using Text Analysis, calculates the emotion of the sentence.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/Rl5B3SRE5U5IiIM-8-1HnZdnwMx1TzegzV3D" class="kg-image" alt="Rl5B3SRE5U5IiIM-8-1HnZdnwMx1TzegzV3D" width="513" height="256" loading="lazy"><figcaption>Fig. 1. Sentiment Analysis Web App</figcaption></figure><p>From the technical perspective, the application consists of three microservices. Each has one specific functionality:</p><ul><li><strong>SA-Frontend:</strong> a Nginx web server that <strong>serves our ReactJS </strong>static<strong> </strong>files.</li><li><strong>SA-WebApp: </strong>a Java Web Application that <strong>handles requests </strong>from the frontend.</li><li><strong>SA-Logic: </strong>a python application that <strong>performs Sentiment Analysis</strong>.</li></ul><p>It’s important to know that Microservices don’t live in isolation, they enable “separation of concerns” but they still <strong>have to </strong>interact with each other.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/JwIBwPsTfBmelKgSrCCkEZuTzC5Ty1pZi3K7" class="kg-image" alt="JwIBwPsTfBmelKgSrCCkEZuTzC5Ty1pZi3K7" width="600" height="551" loading="lazy"><figcaption>Fig. 2. Data flow in the Sentiment Analysis WebApp</figcaption></figure><p>This interaction is best illustrated by showing how the data flows between them:</p><ol><li>A client application requests the index.html (which in turn requests bundled scripts of ReactJS application)</li><li>The user interacting with the application triggers requests to the Spring WebApp.</li><li>Spring WebApp forwards the requests for sentiment analysis to the Python app.</li><li>Python Application calculates the sentiment and returns the result as a response.</li><li>The Spring WebApp returns the response to the React app. (Which then represents the information to the user.)</li></ol><p>The code for all of these applications can be found in <a href="https://github.com/rinormaloku/k8s-mastery" rel="noopener">this repository.</a> I recommend cloning it immediately because we are going to build amazing things together.</p><h3 id="1-running-a-microservice-based-application-on-your-computer">1. Running a Microservice based application on your computer</h3><p>We need to start up all three services. Let’s get started with the most attractive one, the front-end application.</p><h4 id="setting-up-react-for-local-development">Setting up React for Local Development</h4><p>To start the React application you need to have NodeJS and NPM installed on your computer. After installing those navigate with your Terminal to the directory <strong>sa-frontend. </strong>Type the following command:</p><pre><code class="language-bash">npm install</code></pre><p>This downloads all the Javascript dependencies of the React application and places them in the folder <strong>node_modules. </strong>(Dependencies are defined in the package.json file). After all dependencies are resolved execute the next command:</p><pre><code class="language-bash">npm start</code></pre><p>That’s it! We started our react application and by default you can access it on <strong>localhost:3000. </strong>Feel free to modify the code and see the effects immediately on the browser. That is made possible using <strong>Hot Module Replacement. </strong>This makes front end development a breeze!</p><h4 id="making-our-react-app-production-ready">Making Our React App Production Ready</h4><p>For production we need to build our application into static files and serve them using a web server.</p><p>To build the React application navigate in your terminal to the <strong>sa-frontend </strong>directory. Then execute the following command:</p><pre><code class="language-bash">npm run build</code></pre><p>This generates a folder named <strong>build</strong> in your project tree. This folder contains all the static files needed for our ReactJS application.</p><h4 id="serving-static-files-with-nginx">Serving static files with Nginx</h4><p>Install and start the Nginx WebServer (<a href="https://www.nginx.com/resources/wiki/start/topics/tutorials/install/" rel="noopener">how to</a>). Then move the contents of the sa-frontend/build folder to [<em>your_nginx_installation_dir</em>]/<strong>html.</strong></p><p>This way the generated index.html file will be accessible in [<em>your_nginx_installation_dir</em>]/html/index.html. T<strong>his is the default file that Nginx serves</strong>.</p><p>By default the Nginx WebServer listens on port 80. You can specify a different port by updating server.listen property in the file [<em>your_nginx_installation_dir</em>]/conf/nginx.conf.</p><p>Open your browser and hit the endpoint localhost:80, see the ReactJS application appear.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/EOcacd0QABnXiFAXVHPpWcD9scHzvr7jq0Fp" class="kg-image" alt="EOcacd0QABnXiFAXVHPpWcD9scHzvr7jq0Fp" width="800" height="530" loading="lazy"><figcaption>Fig. 3. React app served from Nginx</figcaption></figure><p>Typing in the field: “Type your sentence.” and pressing the button Send will fail with a 404 error (You can check it in your browser console). But why that? Let’s inspect the code.</p><h4 id="inspecting-the-code">Inspecting the Code</h4><p>In the file <strong>App.js </strong>we can see that pressing the Send button triggers the analyzeSentence method. The code for this method is shown below. (Each line that is commented with #Number will be explained below the script):</p><pre><code class="language-js">analyzeSentence() {
+    fetch('http://localhost:8080/sentiment', {  // #1
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+                       sentence: this.textField.getValue()})// #2
+    })
+        .then(response =&gt; response.json())
+        .then(data =&gt; this.setState(data));  // #3
+}</code></pre><p>#1: URL at which a POST call is made. (An application should be listening for calls at that URL).</p><p>#2: The Request body sent to that application as displayed below:</p><pre><code>{
+    sentence: “I like yogobella!”
+}</code></pre><p>#3: The response updates the component state. This triggers a re-render of the component. If we received the data, (i.e. the JSON object containing the typed sentence and the polarity) we would display the component polarityComponent because the condition would be fulfilled and we would define the component:</p><pre><code class="language-js">const polarityComponent = this.state.polarity !== undefined ?
+    &lt;Polarity sentence={this.state.sentence} 
+              polarity={this.state.polarity}/&gt; :
+    null;</code></pre><p>Everything seems correct. But what are we missing? If you guessed that we didn’t set up anything to listen on localhost:8080, then you are correct! We must start our Spring Web application to listen on that port!</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/KNFf142A66wPteChS7IQmcZA8ohQTZRA8U7E" class="kg-image" alt="KNFf142A66wPteChS7IQmcZA8ohQTZRA8U7E" width="695" height="376" loading="lazy"><figcaption>Fig. 4. Microservice Spring WebApp missing</figcaption></figure><h4 id="setting-up-the-spring-web-application">Setting up the Spring Web Application</h4><p>To start up the Spring application you need to have JDK8 and Maven installed. (their environment variables need to be set up as well). After installing those you can continue to the next part.</p><h4 id="packaging-the-application-into-a-jar">Packaging the Application into a Jar</h4><p>Navigate in your Terminal to the directory <strong>sa-webapp </strong>and type the following command:</p><pre><code>mvn install</code></pre><p>This will generate a folder named <strong>target,</strong> in the directory <strong>sa-webapp. </strong>In the folder <strong>target</strong> we have our Java application packaged as a jar: ‘<strong>sentiment-analysis-web-0.0.1-SNAPSHOT.jar</strong>’</p><h4 id="starting-our-java-application">Starting our Java Application</h4><p>Navigate to the target directory and start the application with the command:</p><pre><code class="language-bash">java -jar sentiment-analysis-web-0.0.1-SNAPSHOT.jar</code></pre><p>Darn.. We got an error. Our application fails on startup and our only lead is the exception in the stack trace:</p><pre><code class="language-bash">Error creating bean with name 'sentimentController': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'sa.logic.api.url' in value "${sa.logic.api.url}"</code></pre><p>The important information here is the placeholder sa.logic.api.url in the <strong>SentimentController</strong>. Let’s check that out!</p><h3 id="inspecting-the-code-1">Inspecting the Code</h3><pre><code class="language-java">@CrossOrigin(origins = "*")
+@RestController
+public class SentimentController {
+
+    @Value("${sa.logic.api.url}")    // #1
+    private String saLogicApiUrl;
+    
+    @PostMapping("/sentiment")
+    public SentimentDto sentimentAnalysis(
+        @RequestBody SentenceDto sentenceDto) 
+    {
+        RestTemplate restTemplate = new RestTemplate();
+        
+        return restTemplate.postForEntity(
+                saLogicApiUrl + "/analyse/sentiment",    // #2
+                sentenceDto, SentimentDto.class)
+                .getBody();
+    }
+}</code></pre><ol><li>The <strong>SentimentController</strong> has a field named saLogicApiUrl. The field get’s defined by the property <code>sa.logic.api.url</code> .</li><li>The String saLogicApiUrl is concatenated with the value “/analyse/sentiment”. Together they form the URL to make the request for Sentiment Analysis.</li></ol><p><strong>Defining the Property</strong></p><p>In Spring the default property source is <strong>application.properties.</strong> (Located in <em>sa-webapp/src/main/resources</em>). But that’s not the only means to define a property, it can be done with the earlier command as well:</p><pre><code class="language-bash">java -jar sentiment-analysis-web-0.0.1-SNAPSHOT.jar 
+     --sa.logic.api.url=WHAT.IS.THE.SA.LOGIC.API.URL</code></pre><p>The property should be initialized with the value that defines where our Python application is running, this way we will let our Spring Web Application know where to forward messages on run time.</p><p>To make things simpler let’s decide that we will run the python application on <code>localhost:5000.</code> Lets just not forget it!</p><p>Run the below command and we are ready to move to the last service the python application.</p><pre><code>java -jar sentiment-analysis-web-0.0.1-SNAPSHOT.jar 
+     --sa.logic.api.url=http://localhost:5000</code></pre><figure class="kg-card kg-image-card"><img src="https://cdn-media-1.freecodecamp.org/images/gRyXOa3fibWNB7s1DJiu31nB0ziy38FjCWe5" class="kg-image" alt="gRyXOa3fibWNB7s1DJiu31nB0ziy38FjCWe5" width="695" height="552" loading="lazy"></figure><h4 id="setting-up-the-python-application">Setting up the Python Application</h4><p>To start the Python application, we need to have Python3 and Pip installed. (Their environment variables need to be set up as well).</p><h4 id="installing-dependencies">Installing Dependencies</h4><p>Navigate in the Terminal to the directory <strong>sa-logic/sa </strong>(<a href="https://github.com/rinormaloku/k8s-mastery" rel="noopener">repo</a>)<strong> </strong>and type the following command:</p><pre><code class="language-bash">python -m pip install -r requirements.txt
+python -m textblob.download_corpora</code></pre><h4 id="starting-the-app">Starting the app</h4><p>After using Pip to install the dependencies we are ready to start the application by executing the following command:</p><pre><code class="language-bash">python sentiment_analysis.py
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)</code></pre><p>This means that our application is running and listening for HTTP Requests on port 5000 on localhost.</p><h4 id="inspecting-the-code-2">Inspecting the Code</h4><p>Let’s investigate the code to understand what is happening in the <strong>SA Logic </strong>python application.</p><pre><code class="language-py">from textblob import TextBlob
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)                                   #1
+
+@app.route("/analyse/sentiment", methods=['POST'])      #2
+def analyse_sentiment():
+    sentence = request.get_json()['sentence']           #3
+    polarity = TextBlob(sentence).sentences[0].polarity #4
+    return jsonify(                                     #5
+        sentence=sentence,
+        polarity=polarity
+    )
+    
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)                #6</code></pre><ol><li>Instantiate a Flask object.</li><li>Defines the path at which a POST request can be made.</li><li>Extract the “sentence” property from the request body.</li><li>Instantiate an anonymous TextBlob object and get the polarity from the first sentence. (We have only one).</li><li>Return the response with the body containing the sentence and the polarity to the caller.</li><li>Run the flask object <strong>app </strong>to listen for requests on 0.0.0.0:5000 (calls to localhost:5000 will reach this app aswell).</li></ol><p><strong>The services are set up to communicate with each other. Re-open the frontend in localhost:80 and give them a try before continuing on!</strong></p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/Wfr68VDVe8eOlB0Z9sM8sunj60L7UZD1Hu9v" class="kg-image" alt="Wfr68VDVe8eOlB0Z9sM8sunj60L7UZD1Hu9v" width="695" height="552" loading="lazy"><figcaption>Fig. 6. Microservice architecture completed</figcaption></figure><p>In the next section, we will go over how to start the services in Docker Containers, as it is a prerequisite to being able to run them in a Kubernetes Cluster.</p><h3 id="2-building-container-images-for-each-service">2. Building container images for each service</h3><p>Kubernetes is a container orchestrator. Understandably we need containers to be able to orchestrate them. But what are containers? This is best answered from the Documentation at docker.</p><blockquote><em>A container image is a lightweight, stand-alone, executable package of a piece of software that includes everything needed to run it: code, runtime, system tools, system libraries, settings. Available for both Linux and Windows based apps, containerized software will always run the same, regardless of the environment.</em></blockquote><p>It means that containers can run on any computer — even in the production server — <strong>with no differences</strong>.</p><p>For illustration purposes let’s compare how our React Application would be served using a Virtual Machine vs. a Container.</p><h4 id="serving-react-static-files-from-a-vm">Serving React static files from a VM</h4><p>The cons of using a Virtual Machine:</p><ol><li>Resource inefficient, each VM has the overhead of a fully-fledged OS.</li><li>It is platform dependent. What worked on your computer might not work on the production server.</li><li>Heavyweight and slow scaling when compared to Containers.</li></ol><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/vP3JZyOygXDzTh7I650wZHtHWkv56ioduUJS" class="kg-image" alt="vP3JZyOygXDzTh7I650wZHtHWkv56ioduUJS" width="558" height="424" loading="lazy"><figcaption>Fig. 7. Nginx web server with static files on a VM</figcaption></figure><h4 id="serving-react-static-files-from-a-container">Serving React static files from a Container</h4><p>The pros of using a Container.</p><ol><li>Resource efficient, use the Host OS with the help of Docker.</li><li>Platform independent. The container that you run on your computer will work anywhere.</li><li>Lightweight using image layers.</li></ol><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/6I9ZEnnQNMqeTCK8kRWoOjDucfLCJqjAUGWd" class="kg-image" alt="6I9ZEnnQNMqeTCK8kRWoOjDucfLCJqjAUGWd" width="558" height="436" loading="lazy"><figcaption>Fig. 8. Nginx web server serving static files in a Container</figcaption></figure><p>Those are the most prominent features and benefits of using containers. For more information continue reading on the <a href="https://www.docker.com/what-container" rel="noopener">Docker documentation</a>.</p><h4 id="building-the-container-image-for-the-react-app-docker-intro-">Building the container image for the React App (Docker intro)</h4><p>The basic building block for a Docker container is the .dockerfile. The <strong>Dockerfile</strong> starts with a base container image and follows up with a sequence of instructions on how to build a new container image that meets the needs of your application.</p><p>Before we get started defining the Dockerfile, let’s remember the steps we took to serve the react static files using nginx:</p><ol><li>Build the static files (npm run build)</li><li>Startup the nginx server</li><li>Copy the contents of the <strong>build</strong> folder from your sa-frontend project to nginx<strong>/</strong>html.</li></ol><p>In the next section, you will notice parallels on how creating a Container is similar to what we did during local React setup.</p><h4 id="defining-the-dockerfile-for-sa-frontend">Defining the Dockerfile for SA-Frontend</h4><p>The instructions in the Dockerfile for the SA-Frontend is only a two-step task. That is because the Nginx Team provided us with <a href="https://hub.docker.com/_/nginx/" rel="noopener">a base image</a> for Nginx, which we will use to build on top of. The two steps are:</p><ol><li>Start from the base <strong>Nginx Image</strong></li><li>Copy the <strong>sa-frontend/build</strong> directory to the containers nginx<strong>/</strong>html directory.</li></ol><p>Converted into a Dockerfile it looks like:</p><pre><code class="language-docker">FROM nginx
+COPY build /usr/share/nginx/html</code></pre><p>Isn’t it amazing, it’s even humanly readable, let’s recapitulate:</p><p>Start from the nginx image. (Whatever the guys did over there). Copy the <strong>build </strong>directory to the <strong>nginx/html</strong> directory in the image. That’s it!</p><p>You may be wondering, how did I know where to copy the build files? i.e. <code>/usr/share/nginx/html</code>. Quite simple: It was documented in the nginx <a href="https://hub.docker.com/_/nginx/" rel="noopener">image</a> in Docker Hub.</p><h4 id="building-and-pushing-the-container">Building and Pushing the container</h4><p>Before we can push our image, we need a Container Registry to host our images. Docker Hub is a free cloud container service that we will use for this demonstration. You have three tasks before continuing:</p><ol><li><a href="https://www.docker.com/community-edition" rel="noopener">Install Docker CE</a></li><li>Register to the Docker Hub.</li><li>Login by executing the below command in your Terminal:</li></ol><pre><code class="language-bash">docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"</code></pre><p>After completing the above tasks navigate to the directory <strong>sa-frontend.</strong> Then execute the below command (replace $DOCKER_USER_ID with your docker hub username. For e.g. rinormaloku/sentiment-analysis-frontend)</p><pre><code>docker build -f Dockerfile -t $DOCKER_USER_ID/sentiment-analysis-frontend .</code></pre><p>We can drop <code>-f Dockerfile</code> because we are already in the directory containing the Dockerfile.</p><p>To push the image, use the docker push command:</p><pre><code>docker push $DOCKER_USER_ID/sentiment-analysis-frontend</code></pre><p>Verify in your docker hub repository that the image was pushed successfully.</p><h4 id="running-the-container">Running the container</h4><p>Now the image in <code>$DOCKER_USER_ID/sentiment-analysis-frontend</code> can be pulled and run by anyone:</p><pre><code class="language-bash">docker pull $DOCKER_USER_ID/sentiment-analysis-frontend
+docker run -d -p 80:80 $DOCKER_USER_ID/sentiment-analysis-frontend</code></pre><p>Our Docker container is running!</p><p>Before we continue lets elaborate the 80:80 which I find confusing:</p><ul><li>The first 80 is the port of the host (i.e. my computer)</li><li>The second 80 stands for the container port to which the calls should be forwarded.</li></ul><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/uUv5pZc6QErqJVcacC0vU-QEvjDjVF1VlQ9l" class="kg-image" alt="uUv5pZc6QErqJVcacC0vU-QEvjDjVF1VlQ9l" width="484" height="447" loading="lazy"><figcaption>Fig. 9. Port Mapping of Host to Container</figcaption></figure><p>It maps from &lt;hostPort&gt; to &lt;containerPort&gt;. Meaning that calls to host port 80 should be mapped to the port 80 of the container, as shown in figure 9.</p><p>Because the port was run in the host (your computer) in port 80 it should be accessible on the localhost:80. If you do not have native docker support, you can open the application in &lt;docker-machine ip&gt;:80. To find your docker-machine ip ex<code>ecute docker-mach</code>ine ip</p><p>Give it a try! You should be able to access the react application in that endpoint.</p><h4 id="the-dockerignore">The Dockerignore</h4><p>We saw earlier that building the image for SA-Frontend was slow, pardon me, <strong>Extremely slow</strong>. That was the case because of the <strong>build context </strong>that had to be sent to the Docker Deamon. In more detail, the <strong>build context</strong> directory is defined by the last argument in the docker build command (the trailing dot), which specifies the build context. And in our case, it included the following folders:</p><pre><code class="language-bash">sa-frontend:
+|   .dockerignore
+|   Dockerfile
+|   package.json
+|   README.md
++---build
++---node_modules
++---public
+\---src</code></pre><p>But the only data we need is in the <strong>build</strong> folder. Uploading anything else will be a waste of time. We can improve our build time by dropping the other directories. That’s where <code>.dockerignore</code> comes into play. For you it will be familiar because it’s like <code>.gitignore</code>, i.e. add all directories that you want to ignore in the <code>.dockerignore</code> file, as shown below:</p><pre><code class="language-bash">node_modules
+src
+public</code></pre><p>The <code>.dockerignore</code> file should be in the same folder as the Dockerfile. Now building the image takes only seconds.</p><p>Let’s continue with the Java Application.</p><h4 id="building-the-container-image-for-the-java-application">Building the container image for the Java Application</h4><p>Guess what! You learned almost everything about creating container images! That’s why this part is extremely short.</p><p>Open the Dockerfile in <strong>sa-webapp</strong>, and you will find only two new keywords:</p><pre><code class="language-docker">ENV SA_LOGIC_API_URL http://localhost:5000
+…
+EXPOSE 8080</code></pre><p>The keyword <strong>ENV</strong> declares an Environment Variable inside the docker container. This will enable us to provide the URL for the Sentiment Analysis API when starting the Container.</p><p>Additionally, the keyword <strong>EXPOSE</strong> exposes a port that we want to access later on. <strong>But hey!!!</strong> We didn’t do that in the Dockerfile in SA-Frontend, good catch! This is for documentation purposes only, in other words it will serve as information to the person reading the Dockerfile.</p><p>You should be familiar with building and pushing the container image. If any difficulties arise read the README.md file in <strong>sa-webapp</strong> directory.</p><h4 id="building-the-container-image-for-the-python-application">Building the container image for the Python Application</h4><p>In the Dockerfile in <strong>sa-logic</strong> there are no new keywords. Now you can call yourself a Docker-Master ?.</p><p>For building and pushing the container image read the the README.md in <strong>sa-logic </strong>directory.</p><h4 id="testing-the-container-ized-application">Testing the Container-ized Application</h4><p>Can you trust something that you didn’t test? Neither can I. Let’s give these containers a test.</p><ol><li>Run the <strong>sa-logic</strong> container and configure to listen on port 5050:</li></ol><pre><code>docker run -d -p 5050:5000 $DOCKER_USER_ID/sentiment-analysis-logic</code></pre><p>2. Run <strong>sa-webapp container </strong>and configure to listen on port 8080, and additionally we need to change the port in which the python app listens by overriding the environment variable SA_LOGIC_API_URL.</p><pre><code>$ docker run -d -p 8080:8080 -e SA_LOGIC_API_URL='http://&lt;container_ip or docker machine ip&gt;:5000' $DOCKER_USER_ID/sentiment-analysis-web-app</code></pre><p>Checkout the <a href="https://github.com/rinormaloku/k8s-mastery/blob/master/sa-webapp/README.md" rel="noopener">README</a> on how to get the container ip or docker machine ip.</p><p>3. Run <strong>sa-frontend</strong> container:</p><pre><code class="language-bash">docker run -d -p 80:80 $DOCKER_USER_ID/sentiment-analysis-frontend</code></pre><p>We are done. Open your browser on <strong>localhost:80.</strong></p><p><strong>Attention:</strong> If you changed the port for the sa-webapp, or if you are using docker-machine ip, you need to update App.js file in <strong>sa-frontend</strong> in the method analyzeSentence to fetch from the new IP or Port. Afterwards you need to build, and use the updated image.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/gdDm95hkRv-AnNmuHUFDIONucxEWcvXN1p34" class="kg-image" alt="gdDm95hkRv-AnNmuHUFDIONucxEWcvXN1p34" width="500" height="375" loading="lazy"><figcaption>Fig. 10. Microservices running in Containers</figcaption></figure><h4 id="brain-teaser-why-kubernetes">Brain Teaser — Why Kubernetes?</h4><p>In this section, we learned about the Dockerfile, how to use it to build an image, and the commands to push it to the Docker registry. Additionally, we investigated how to reduce the number of files sent to the build context by ignoring useless files. And in the end, we got the application running from containers. So why Kubernetes? We will investigate deeper into that in the next article, but I want to leave you a brainteaser.</p><ul><li>Our Sentiment Analysis web app became a world hit and we suddenly have a million requests per minute to analyze sentiments and we experience huge load on <strong>sa-webapp</strong> and <strong>sa-logic</strong>. How can we scale the containers?</li></ul><h3 id="introduction-to-kubernetes">Introduction to Kubernetes</h3><p>I promise and I am not exaggerating that by the end of the article you will ask yourself “Why don’t we call it Supernetes?”.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/6z5-sOpVzRF1YeB2kQzrXakp2kBiGDBlMx4t" class="kg-image" alt="6z5-sOpVzRF1YeB2kQzrXakp2kBiGDBlMx4t" width="320" height="320" loading="lazy"><figcaption>Fig. 11. Supernetes</figcaption></figure><p>If you followed this article from the beginning we covered so much ground and so much knowledge. You might worry that this will be the hardest part, but, it is the simplest. The only reason why learning Kubernetes is daunting is because of the “everything else” and we covered that one so well.</p><h3 id="what-is-kubernetes">What is Kubernetes</h3><p>After we started our Microservices from containers we had one question, let’s elaborate it further in a Q&amp;A format:<br><strong>Q:</strong> How do we scale containers?<br><strong>A:</strong> We spin up another one.<br><strong>Q:</strong> How do we share the load between them? What if the Server is already used to the maximum and we need another server for our container? How do we calculate the best hardware utilization?<br><strong>A:</strong> Ahm… Ermm… (Let me google).<br><strong>Q:</strong> Rolling out updates without breaking anything? And if we do, how can we go back to the working version.</p><p>Kubernetes solves all these questions (and more!). My attempt to reduce Kubernetes in one sentence would be: “Kubernetes is a Container Orchestrator, that abstracts the underlying infrastructure. (Where the containers are run)”.</p><p>We have a faint idea about Container Orchestration. We will see it in practice in the continuation of this article, but it’s the first time that we are reading about “abstracts the underlying infrastructure”. So let’s take a close-up shot, at this one.</p><h4 id="abstracting-the-underlying-infrastructure">Abstracting the underlying infrastructure</h4><p>Kubernetes abstracts the underlying infrastructure by providing us with a simple API to which we can send requests. Those requests prompt Kubernetes to meet them at its best of capabilities. For example, it is as simple as requesting “Kubernetes spin up 4 containers of the image x”. Then Kubernetes will find under-utilized nodes in which it will spin up the new containers (see Fig. 12.).</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/oRhjNBu9XyT74V6dxJVs1YJhgoC2eMU8TsCX" class="kg-image" alt="oRhjNBu9XyT74V6dxJVs1YJhgoC2eMU8TsCX" width="800" height="494" loading="lazy"><figcaption>Fig. 12. Request to the API Server</figcaption></figure><p>What does this mean for the developer? That he doesn’t have to care about the number of nodes, where containers are started and how they communicate. He doesn’t deal with hardware optimization or worry about nodes going down (and they will go down <em>Murphy’s Law</em>), because new nodes can be added to the Kubernetes cluster. In the meantime Kubernetes will spin up the containers in the other nodes that are still running. It does this at the best possible capabilities.</p><p>In figure 12 we can see a couple of new things:</p><ul><li><strong>API Server</strong>: Our only way to interact with the Cluster. Be it starting or stopping another container (err *pods) or checking current state, logs, etc.</li><li><strong>Kubelet</strong>: monitors the containers (err *pods) inside a node and communicates with the master node.</li><li><strong>*Pods</strong>: Initially just think of pods as containers.</li></ul><p>And we will stop here, as diving deeper will just loosen our focus and we can always do that later, there are useful resources to learn from, like the official documentation (the hard way) or reading the amazing book <a href="https://www.amazon.com/Kubernetes-Action-Marko-Luksa/dp/1617293725" rel="noopener">Kubernetes in Action</a>, by <a href="https://twitter.com/markoluksa" rel="noopener">Marko Lukša</a>.</p><h4 id="standardizing-the-cloud-service-providers">Standardizing the Cloud Service Providers</h4><p>Another strong point that Kubernetes drives home, is that it standardizes the Cloud Service Providers (CSPs). This is a bold statement, but let’s elaborate with an example:</p><p>– An expert in Azure, Google Cloud Platform or some other CSP ends up working on a project in an entirely new CSP, and he has no experience working with it. This can have many consequences, to name a few: he can miss the deadline; the company might need to hire more resources, and so on.</p><p>In contrast, with Kubernetes this isn’t a problem at all. Because you would be executing the same commands to the API Server no matter what CSP. You on a declarative manner request from the API Server <strong>what you want. </strong>Kubernetes abstracts away and implements the <strong>how </strong>for the CSP in question.</p><p>Give it a second to sink in — this is extremely powerful feature. For the company it means that they are not tied up to a CSP. They calculate their expenses on another CSP, and they move on. They still will have the expertise, they still will have the resources, and they can do that for <em>cheaper!</em></p><p>All that said, in the next section we will put Kubernetes in Practice.</p><h3 id="kubernetes-in-practice-pods">Kubernetes in Practice — Pods</h3><p>We set up the Microservices to run in containers and it was a cumbersome process, but it worked. We also mentioned that this solution is not scalable or resilient and that Kubernetes resolves these issues. In continuation of this article, we will migrate our services toward the end result as shown in figure 13, where the Containers are orchestrated by Kubernetes.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/mrA3VBYh2pbG7qH9wnsMj-QxRxZ2MAqA5oTt" class="kg-image" alt="mrA3VBYh2pbG7qH9wnsMj-QxRxZ2MAqA5oTt" width="724" height="930" loading="lazy"><figcaption>Fig. 13. Microservices running in a Kubernetes Managed Cluster</figcaption></figure><p>In this article, we will use Minikube for debugging locally, though everything that will be presented works as well in Azure and in Google Cloud Platform.</p><h3 id="installing-and-starting-minikube">Installing and Starting Minikube</h3><p>Follow official documentation for installing <a href="https://kubernetes.io/docs/tasks/tools/install-minikube/" rel="noopener">Minikube</a>. During Minikube installation, you will also install <strong>Kubectl. </strong>This is a client to make requests to the Kubernetes API Server.</p><p>To start Minikube execute the command <code>minikube start</code> and after it is completed, execute kubectl get nodes and you should get the following output</p><pre><code>kubectl get nodes
+NAME       STATUS    ROLES     AGE       VERSION
+minikube   Ready     &lt;none&gt;    11m       v1.9.0</code></pre><p>Minikube provides us with a Kubernetes Cluster that has only one node, but remember we do not care how many Nodes there are, Kubernetes abstracts that away, and for us to learn Kubernetes that is of no importance. In the next section, we will start with our first Kubernetes resource [DRUM ROLLS] <strong>the Pod</strong>.</p><h4 id="pods">Pods</h4><p>I love containers, and by now you love containers too. So why did Kubernetes decide to give us Pods as the smallest deployable compute unit? What does a pod do? Pods can be composed of one or even a group of containers that share the same execution environment.</p><p>But do we really need to run two containers in one pod? Erm.. Usually, you run only one container and that’s what we will do in our examples. But for cases when for e.g. two containers need to share volumes, or they communicate with each other using inter-process communication or are otherwise tightly coupled, then that’s made possible using <strong>Pods</strong>. Another feature that Pods make possible is that we are not tied to Docker containers, if desired we can use other technologies for e.g. <a href="https://coreos.com/rkt/" rel="noopener">Rkt</a>.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/DiiFgshSEsYe9Rj2AHAUtJUI90CVH53VdioW" class="kg-image" alt="DiiFgshSEsYe9Rj2AHAUtJUI90CVH53VdioW" width="800" height="416" loading="lazy"><figcaption><strong>Fig. 14. Pod properties</strong></figcaption></figure><p>To summarize, the main properties of Pods are (also shown in figure 14):</p><ol><li>Each pod has a unique IP address in the Kubernetes cluster</li><li>Pod can have multiple containers. The containers share the same port space, as such they can communicate via localhost (understandably they cannot use the same port), and communicating with containers of the other pods has to be done in conjunction with the pod ip.</li><li>Containers in a pod share the same volume*, same ip, port space, IPC namespace.</li></ol><p>*Containers have their own isolated filesystems, though they are able to share data using the Kubernetes resource <strong>Volumes.</strong></p><p>This is more than enough information for us to continue, but to satisfy your curiosity check out the <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod/" rel="noopener">official documentation</a>.</p><h3 id="pod-definition">Pod definition</h3><p>Below we have the manifest file for our first pod <strong>sa-frontend</strong>, and then below we explain all the points.</p><pre><code class="language-bash">apiVersion: v1
+kind: Pod                                            # 1
+metadata:
+  name: sa-frontend                                  # 2
+spec:                                                # 3
+  containers:
+    - image: rinormaloku/sentiment-analysis-frontend # 4
+      name: sa-frontend                              # 5
+      ports:
+        - containerPort: 80                          # 6</code></pre><ol><li><strong>Kind: </strong>specifies the kind of the Kubernetes Resource that we want to create. In our case, a <strong>Pod</strong>.</li><li><strong>Name:</strong> defines the name for the resource. We named it <strong>sa-frontend</strong>.</li><li><strong>Spec </strong>is the object that defines the desired state for the resource. The most important property of a Pods Spec is the Array of containers.</li><li><strong>Image </strong>is the container image we want to start in this pod.</li><li><strong>Name</strong> is the unique name for a container in a pod.</li><li><strong>Container Port:</strong>is the port at which the container is listening. This is just an indicator for the reader (dropping the port doesn’t restrict access).</li></ol><h3 id="creating-the-sa-frontend-pod">Creating the SA Frontend pod</h3><p>You can find the file for the above pod definition in <code>resource-manifests/<strong>sa-frontend-pod.yaml.</strong></code> You either navigate in your terminal to that folder or you would have to provide the full location in the command line. Then execute the command:</p><pre><code class="language-yaml">kubectl create -f sa-frontend-pod.yaml
+pod "sa-frontend" created</code></pre><p>To check if the Pod is running execute the following command:</p><pre><code class="language-bash">kubectl get pods
+NAME                          READY     STATUS    RESTARTS   AGE
+sa-frontend                   1/1       Running   0          7s</code></pre><p>If it is still in <strong>ContainerCreating</strong> you can execute the above command with the argument <code>--watch</code> to update the information when the Pod is in Running State.</p><h4 id="accessing-the-application-externally">Accessing the application externally</h4><p>To access the application externally we create a Kubernetes resource of type <strong>Service</strong>, that will be our next article, which is the proper implementation, but for quick debugging we have another option, and that is port-forwarding:</p><pre><code class="language-bash">kubectl port-forward sa-frontend 88:80
+Forwarding from 127.0.0.1:88 -&gt; 80</code></pre><p>Open your browser in <strong>127.0.0.1:88</strong> and you will get to the react application.</p><h4 id="the-wrong-way-to-scale-up">The wrong way to scale up</h4><p>We said that one of the Kubernetes main features was scalability, to prove this let’s get another pod running. To do so create another pod resource, with the following definition:</p><pre><code class="language-yaml">apiVersion: v1
+kind: Pod                                            
+metadata:
+  name: sa-frontend2      # The only change
+spec:                                                
+  containers:
+    - image: rinormaloku/sentiment-analysis-frontend 
+      name: sa-frontend                              
+      ports:
+        - containerPort: 80</code></pre><p>Create the new pod by executing the following command:</p><pre><code class="language-bash">kubectl create -f sa-frontend-pod2.yaml
+pod "sa-frontend2" created</code></pre><p>Verify that the second pod is running by executing:</p><pre><code class="language-bash">kubectl get pods
+NAME                          READY     STATUS    RESTARTS   AGE
+sa-frontend                   1/1       Running   0          7s
+sa-frontend2                  1/1       Running   0          7s</code></pre><p>Now we have two pods running!</p><p><strong>Attention:</strong> this is not the final solution, and it has many flaws. We will improve this in the section for another Kubernetes resource <strong>Deployments</strong>.</p><h4 id="pod-summary">Pod Summary</h4><p>The Nginx web server with the static files is running inside two different pods. Now we have two questions:</p><ul><li>How do we expose it externally to make it accessible via URL, and</li><li>How do we load balance between them?</li></ul><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/I4Xjozhym548e8iBKMcPJ5DnUXZojwrnmQpT" class="kg-image" alt="I4Xjozhym548e8iBKMcPJ5DnUXZojwrnmQpT" width="599" height="260" loading="lazy"><figcaption>Fig. 15. Load balancing between pods</figcaption></figure><p>Kubernetes provides us the <strong>Services</strong> resource. Let’s jump right into it, in the next section.</p><h3 id="kubernetes-in-practice-services">Kubernetes in Practice — Services</h3><p>The Kubernetes <strong>Service</strong> resource acts as the entry point to a set of pods that provide the same functional service. This resource does the heavy lifting, of discovering services and load balancing between them as shown in figure 16.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/vUV2hIHJnOtiiMKgw9GiExUShzlYB3hwUeWu" class="kg-image" alt="vUV2hIHJnOtiiMKgw9GiExUShzlYB3hwUeWu" width="800" height="259" loading="lazy"><figcaption>Fig. 16. Kubernetes Service maintaining IP addresses</figcaption></figure><p>In our Kubernetes cluster, we will have pods with different functional services. (The frontend, the Spring WebApp and the Flask Python application). So the question arises how does a service know which pods to target? I.e. how does it generate the list of the endpoints for the pods?</p><p>This is done using <strong>Labels</strong>, and it is a two-step process:</p><ol><li>Applying a label to all the pods that we want our Service to target and</li><li>Applying a “selector” to our service so that defines which labeled pods to target.</li></ol><p>This is much simpler visually:</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/q-Eg301b9pZA7xpZ1hc2Tqj59cDQ2H18iRKp" class="kg-image" alt="q-Eg301b9pZA7xpZ1hc2Tqj59cDQ2H18iRKp" width="800" height="370" loading="lazy"><figcaption>Fig. 17. Pods with labels and their manifests</figcaption></figure><p>We can see that pods are labeled with “app: sa-frontend” and the service is targeting pods with that label.</p><h4 id="labels">Labels</h4><p>Labels provide a simple method for organizing your Kubernetes Resources. They represent a key-value pair and can be applied to every resource. Modify the manifests for the pods to match the example shown earlier in figure 17.</p><p>Save the files after completing the changes, and apply them with the following command:</p><pre><code class="language-bash">kubectl apply -f sa-frontend-pod.yaml
+Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply
+pod "sa-frontend" configured
+kubectl apply -f sa-frontend-pod2.yaml 
+Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply
+pod "sa-frontend2" configured</code></pre><p>We got a warning (apply instead of create, roger that). In the second line, we see that the pods “sa-frontend” and “sa-frontend2” are configured. We can verify that the pods were labeled by filtering the pods that we want to display:</p><pre><code class="language-bash">kubectl get pod -l app=sa-frontend
+NAME           READY     STATUS    RESTARTS   AGE
+sa-frontend    1/1       Running   0          2h
+sa-frontend2   1/1       Running   0          2h</code></pre><p>Another way to verify that our pods are labeled is by appending the flag <code>--show-labels</code> to the above command. This will display all the labels for each pod.<br>Great! Our pods are labeled and we are ready to target them with our Service. Lets get started defining the Service of type LoadBalancer shown in Fig. 18.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/xXXbN86FdMJitJZ0ueRT1DwBecqO4u681uVY" class="kg-image" alt="xXXbN86FdMJitJZ0ueRT1DwBecqO4u681uVY" width="600" height="229" loading="lazy"><figcaption>Fig. 18. Load balancing with the LoadBalancer Service</figcaption></figure><h3 id="service-definition">Service definition</h3><p>The YAML definition of the Loadbalancer Service is shown below:</p><pre><code class="language-yaml">apiVersion: v1
+kind: Service              # 1
+metadata:
+  name: sa-frontend-lb
+spec:
+  type: LoadBalancer       # 2
+  ports:
+  - port: 80               # 3
+    protocol: TCP          # 4
+    targetPort: 80         # 5
+  selector:                # 6
+    app: sa-frontend       # 7</code></pre><ol><li><strong>Kind: </strong>A service.</li><li><strong>Type: </strong>Specification type, we choose LoadBalancer because we want to balance the load between the pods.</li><li><strong>Port: </strong>Specifies the port in which the service gets requests.</li><li><strong>Protocol:</strong> Defines the communication.</li><li><strong>TargetPort:</strong> The port at which incomming requests are forwarded.</li><li><strong>Selector:</strong> Object that contains properties for selecting pods.</li><li><strong>app:</strong> sa-frontend Defines which pods to target, only pods that are labeled with “app: sa-frontend”</li></ol><p>To create the service execute the following command:</p><pre><code>kubectl create -f service-sa-frontend-lb.yaml
+service "sa-frontend-lb" created</code></pre><p>You can check out the state of the service by executing the following command:</p><pre><code>kubectl get svc
+NAME             TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+sa-frontend-lb   LoadBalancer   10.101.244.40   &lt;pending&gt;     80:30708/TCP   7m</code></pre><p>The <strong>External-IP </strong>is in pending state (and don’t wait, as it’s not going to change). This is only because we are using <strong>Minikube</strong>. If we would have executed this in a cloud provider like Azure or GCP, we would get a Public IP, which makes our services worldwide accessible.</p><p>Despite that, Minikube doesn’t let us hanging it provides a useful command for local debugging, execute the following command:</p><pre><code class="language-bash">minikube service sa-frontend-lb
+Opening kubernetes service default/sa-frontend-lb in default browser...</code></pre><p>This opens your browser pointing to the services IP. After the Service receives the request, it will forward the call to one of the pods (which one doesn’t matter). This abstraction enables us to see and act with the numerous pods as one unit, using the Service as an entry point.</p><h4 id="service-summary">Service Summary</h4><p>In this section, we covered labeling resources, using those as selectors in Services, and we defined and created a LoadBalancer service. This fulfills our requirements to scale the application (just add new labeled pods) and to Load balance between the pods, using the service as an entry point.</p><h3 id="kubernetes-in-practice-deployments">Kubernetes in Practice — Deployments</h3><p>Kubernetes Deployments help us with one constant in the life of every application, and that is <strong>change</strong>. Moreover, the only applications that do not change are the ones that are already dead, and while not, new requirements will come in, more code will be shipped, it will be packaged, and deployed. And on each step of this process, mistakes can be made.</p><p>The Deployment resource automates the process of moving from one version of the application to the next, with zero downtime and in case of failures, it enables us to quickly roll back to the previous version.</p><h4 id="deployments-in-practice">Deployments in Practice</h4><p>Currently, we have <strong>two pods</strong> and <strong>a service</strong> exposing them and load balancing between them (see Fig. 19.). We mentioned that deploying the pods separately is far from perfect. It requires separately managing each (create, update, delete and monitoring their health). Quick updates and fast rollbacks are out of the question! This is not acceptable and the <strong>Deployments </strong>Kubernetes resource solves each of these issues.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/81V1N8qcLyWZi4t69mWSgYbQWjQrqRD2Ye3W" class="kg-image" alt="81V1N8qcLyWZi4t69mWSgYbQWjQrqRD2Ye3W" width="800" height="268" loading="lazy"><figcaption>Fig. 19. Current state</figcaption></figure><p>Before we continue let’s state what we want to achieve, as it will provide us with the overview that enables us to understand the manifest definition for the deployment resource. What we want is:</p><ol><li>Two pods of the image rinormaloku/sentiment-analysis-frontend</li><li>Zero Downtime deployments,</li><li>Pods labeled with <code><strong>app:</strong> sa-frontend</code> so that the services get discovered by the Service <strong>sa-frontend-lb.</strong></li></ol><p>In the next section, we will translate the requirements into a Deployment definition.</p><h3 id="deployment-definition">Deployment definition</h3><p>The YAML resource definition that achieves all the above-mentioned points:</p><pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment                                          # 1
+metadata:
+  name: sa-frontend
+spec:
+  selector:                                               # 2
+    matchLabels:
+      app: sa-frontend                                    
+  replicas: 2                                             # 3
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate                                   # 4
+    rollingUpdate: 
+      maxUnavailable: 1                                   # 5
+      maxSurge: 1                                         # 6
+  template:                                               # 7
+    metadata:
+      labels:
+        app: sa-frontend                                  # 8
+    spec:
+      containers:
+        - image: rinormaloku/sentiment-analysis-frontend
+          imagePullPolicy: Always                         # 9
+          name: sa-frontend
+          ports:
+            - containerPort: 80</code></pre><ol><li><strong>Kind: </strong>A deployment.</li><li><strong>Selector: </strong>Pods matching the selector will be taken under the management of this deployment.</li><li><strong>Replicas </strong>is a property of the deployments Spec object that defines how many pods we want to run. So only 2.</li><li><strong>Type </strong>specifies the strategy used in this deployment when moving from the current version to the next. The strategy <strong>RollingUpdate</strong> ensures Zero Downtime deployments.</li><li><strong>MaxUnavailable </strong>is a property of the RollingUpdate object that specifies the maximum unavailable pods allowed (compared to the desired state) when doing a rolling update. For our deployment which has 2 replicas this means that after terminating one Pod, we would still have one pod running, this way keeping our application accessible.</li><li><strong>MaxSurge </strong>is another property of the RollingUpdate object that defines the maximum amount of pods added to a deployment (compared to the desired state). For our deployment, this means that when moving to a new version we can add one pod, which adds up to 3 pods at the same time.</li><li><strong>Template: </strong>specifies the pod template that the Deployment will use to create new pods. Most likely the resemblance with Pods struck you immediately.</li><li><code><strong>app:</strong> sa-frontend</code> the label to use for the pods created by this template.</li><li><strong>ImagePullPolicy</strong> when set to <strong>Always</strong>, it<strong> </strong>will pull the container images on each redeployment.</li></ol><p>Honestly, that wall of text got even me confused, let’s just get started with the example:</p><pre><code class="language-bash">kubectl apply -f sa-frontend-deployment.yaml
+deployment "sa-frontend" created</code></pre><p>As always let’s verify that everything went as planned:</p><pre><code class="language-bash">kubectl get pods
+NAME                           READY     STATUS    RESTARTS   AGE
+sa-frontend                    1/1       Running   0          2d
+sa-frontend-5d5987746c-ml6m4   1/1       Running   0          1m
+sa-frontend-5d5987746c-mzsgg   1/1       Running   0          1m
+sa-frontend2                   1/1       Running   0          2d</code></pre><p>We got 4 running pods, two pods created by the Deployment and the other two are the ones we created manually. Delete the ones we created manually using the command <code>kubectl delete pod &lt;pod-name&gt;</code>.</p><p><strong>Exercise:</strong> Delete one of the pods of the deployment as well and see what happens. Think for the reason before reading the explanation below.</p><p><strong>Explanation: </strong>Deleting one pod made the Deployment notice that the current state (1 pod running) is different from the desired state (2 pods running) so it started another pod.</p><p>So what was so good about Deployments, besides keeping the desired state? Let’s get started with the benefits.</p><h4 id="benefit-1-rolling-a-zero-downtime-deployment">Benefit #1: Rolling a Zero-Downtime deployment</h4><p>Our Product manager came to us with a new requirement, our clients want to have a green button in the frontend. The developers shipped their code and provided us with the only thing we need, the container image <code>rinormaloku/sentiment-analysis-frontend:green</code>. Now it’s our turn, we the DevOps have to roll a Zero-Downtime deployment, Will the hard work pay off? Let’s see that!</p><p>Edit the file <code>sa-frontend-deployment.yaml</code> by changing the container image to refer to the new image: <code>rinormaloku/sentiment-analysis-frontend:green</code>. Save the changes as <code>sa-frontend-deployment-green.yaml</code> and execute the following command:</p><pre><code class="language-bash">kubectl apply -f sa-frontend-deployment-green.yaml --record
+deployment "sa-frontend" configured</code></pre><p>We can check the status of the rollout using the following command:</p><pre><code class="language-bash">kubectl rollout status deployment sa-frontend
+Waiting for rollout to finish: 1 old replicas are pending termination...
+Waiting for rollout to finish: 1 old replicas are pending termination...
+Waiting for rollout to finish: 1 old replicas are pending termination...
+Waiting for rollout to finish: 1 old replicas are pending termination...
+Waiting for rollout to finish: 1 old replicas are pending termination...
+Waiting for rollout to finish: 1 of 2 updated replicas are available...
+deployment "sa-frontend" successfully rolled out</code></pre><p>According to the output the deployment was rolled out. It was done in such a fashion that the replicas were replaced one by one. Meaning that our application was always on. Before we move on let’s verify that the update is live.</p><h4 id="verifying-the-deployment">Verifying the deployment</h4><p>Let’s see the update live on our browsers. Execute the same command that we used before <code>minikube service sa-frontend-lb</code>, which opens up the browser. We can see that the button was updated.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/aRxOGkn2bSeCWdsuMPFAPRgbR7ZTQ59RX3uw" class="kg-image" alt="aRxOGkn2bSeCWdsuMPFAPRgbR7ZTQ59RX3uw" width="506" height="209" loading="lazy"><figcaption>Fig. 20. The Green button</figcaption></figure><h4 id="behind-the-scenes-of-the-rollingupdate-">Behind the scenes of “The RollingUpdate”</h4><p>After we applied the new deployment, Kubernetes compares the new state with the old one. In our case, the new state requests two pods with the image <code>rinormaloku/sentiment-analysis-frontend:green.</code> This is different from the current state running so it kicks in the <strong>RollingUpdate</strong>.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/I86XgWQFhpFLolvA8v0eHmZSKGilmlTaevTa" class="kg-image" alt="I86XgWQFhpFLolvA8v0eHmZSKGilmlTaevTa" width="524" height="195" loading="lazy"><figcaption>Fig. 21. RollingUpdate replacing pods</figcaption></figure><p>The RollingUpdate acts according to the rules we specified, those being “<strong>maxUnavailable: </strong>1″ and “<strong>maxSurge:</strong> 1″. This means that the deployment can terminate only one pod, and can start only one new pod. This process is repeated until all pods are replaced (see Fig. 21).</p><p>Let’s continue with the benefit number 2.</p><p><strong>Disclaimer:</strong><em> For entertainment purposes, the next part is written as a novella.</em></p><h4 id="benefit-2-rolling-back-to-a-previous-state">Benefit #2: Rolling back to a previous state</h4><p>The Product Manager runs into your office and he is having a <strong>crisis!</strong></p><p>“The application has a critical bug, in PRODUCTION!! Revert back to the previous version immediately” — yells the product manager.</p><p>He sees the coolness in you, not twitching one eye. You turn to your beloved terminal and type:</p><pre><code class="language-bash">kubectl rollout history deployment sa-frontend
+deployments "sa-frontend"
+REVISION  CHANGE-CAUSE
+1         &lt;none&gt;         
+2         kubectl.exe apply --filename=sa-frontend-deployment-green.yaml --record=true</code></pre><p>You take a short look at the previous deployments. “The last version is buggy, meanwhile the previous version worked perfectly?” — you ask the Product Manager.</p><p>“Yes, are you even listening to me!” — screams the product manager.</p><p>You ignore him, you know what you have to do, you start typing:</p><pre><code class="language-bash">kubectl rollout undo deployment sa-frontend --to-revision=1
+deployment "sa-frontend" rolled back</code></pre><p>You refresh the page and the change is undone!</p><p>The product managers jaw drops open.</p><p>You saved the day!</p><p><em>The end!</em></p><p>Yeah… it was a boring novella. Before Kubernetes existed it was so much better, we had more drama, higher intensity, and that for a longer period of time. Ohh good old times!</p><p>Most of the commands are self-explanatory, besides one detail that you had to work out yourself. Why the first revision has a <strong>CHANGE-CAUSE </strong>of &lt;none&gt; meanwhile the second revision <strong>has a CHANGE-</strong>CAUS<em>E of “kubectl.exe apply –filename=sa-frontend-deployment-gree<strong>n</strong>.yaml –recor</em>d=true“.</p><p>If you concluded that it’s because of the <code>--record</code> flag that we used when we applied the new image then you are totally correct!</p><p>In the next section, we will use the concepts learned thus far to complete the whole architecture.</p><h3 id="kubernetes-and-everything-else-in-practice">Kubernetes and everything else in Practice</h3><p>We learned all the resources that we need to complete the architecture that’s why this part is going to be quick. In figure 22 we have greyed out everything that we still have to do. Lets start from the bottom: <strong>Deploying the sa-logic deployment</strong>.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/CwBGmdNtPUeZwsTSL9inGx8xikkNEejnEeVQ" class="kg-image" alt="CwBGmdNtPUeZwsTSL9inGx8xikkNEejnEeVQ" width="724" height="930" loading="lazy"><figcaption>Fig. 22. Current Application State</figcaption></figure><h4 id="deployment-sa-logic">Deployment SA-Logic</h4><p>Navigate in your terminal to the folder resource-manifests and execute the following command:</p><pre><code class="language-bash">kubectl apply -f sa-logic-deployment.yaml --record
+deployment "sa-logic" created</code></pre><p>The deployment SA-Logic created three pods. (Running the container of our python application). It labeled them with <code><strong>app:</strong> sa-logic.</code> This labeling enables us to target them using a selector from the SA-Logic service. Please take time to open the file <code>sa-logic-deployment.yaml</code> and check out the contents.</p><p>It’s the same concepts used all over again, let’s jump right into the next resource: <strong>the service SA-Logic</strong>.</p><h4 id="service-sa-logic">Service SA Logic</h4><p>Lets elaborate why we need this Service. Our Java application (running in the pods of SA — WebApp deployment) depends on the sentiment analysis done by the Python Application. But now, in contrast to when we were running everything locally, we don’t have one single python application listening to one port, we have 2 pods and if needed we could have more.</p><p>That’s why we need a <strong>Service</strong> that “acts as the entry point to a set of pods that provide the same functional service”. This means that we can use the Service SA-Logic as the entry point to all the SA-Logic pods.</p><p>Let’s do that:</p><pre><code>kubectl apply -f service-sa-logic.yaml
+service "sa-logic" created</code></pre><p><strong>Updated Application State: </strong>We have 2 pods (containing the Python Application) running and we have the SA-Logic service acting as an entry point that we will use in the SA-WebApp pods.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://cdn-media-1.freecodecamp.org/images/fYibPnq4frpa7jf4aq9Htc3sT0OxtgOTZ52x" class="kg-image" alt="fYibPnq4frpa7jf4aq9Htc3sT0OxtgOTZ52x" width="724" height="930" loading="lazy"><figcaption>Fig. 23. Updated Application State</figcaption></figure><p>Now we need to deploy the SA-WebApp pods, using a deployment resource.</p><h4 id="deployment-sa-webapp">Deployment SA-WebApp</h4><p>We are getting the hang out of deployments, though this one has one more feature. If you open the file <code>sa-web-app-deployment.yaml</code> you will find this part new:</p><pre><code class="language-yaml">- image: rinormaloku/sentiment-analysis-web-app
+  imagePullPolicy: Always
+  name: sa-web-app
+  env:
+    - name: SA_LOGIC_API_URL
+      value: "http://sa-logic"
+  ports:
+    - containerPort: 8080</code></pre><p>The first thing that interests us is what does the <strong>env </strong>property do? And we surmise that it is declaring the environment variable SA_LOGIC_API_URL with the value “<a href="http://sa-logic/" rel="noopener">http://sa-logic</a>” inside our pods. But why are we initializing it to <a href="http://sa-logic/" rel="noopener"><strong>http://sa-logic</strong></a>, what is <strong>sa-logic</strong>?</p><p>Lets get introduced to <strong>kube-dns</strong>.</p><h4 id="kube-dns">KUBE-DNS</h4><p>Kubernetes has a special pod the <strong>kube-dns</strong>. And by default, all Pods use it as the DNS Server. One important property of <strong>kube-dns </strong>is that it creates a DNS record for each created service.</p><p>This means that when we created the service <strong>sa-logic </strong>it got an IP address. Its name was added as a record (in conjunction with the IP) in kube-dns. This enables all the pods to translate the <strong>sa-logic </strong>to the SA-Logic services IP address.</p><p>Good, now we can continue with:</p><h4 id="deployment-sa-webapp-continued-">Deployment SA WebApp (continued)</h4><p>Execute the command:</p><pre><code class="language-bash">kubectl apply -f sa-web-app-deployment.yaml --record
+deployment "sa-web-app" created</code></pre><p>Done. We are left to expose the SA-WebApp pods externally using a LoadBalancer Service. This enables our react application to make http requests to the service which acts as an entry point to the SA-WebApp pods.</p><h4 id="service-sa-webapp">Service SA-WebApp</h4><p>Open the file <code>service-sa-web-app-lb.yaml</code>, as you can see everything is familiar to you.<br>So without further adoexecute the command:</p><pre><code class="language-bash">kubectl apply -f service-sa-web-app-lb.yaml
+service "sa-web-app-lb" created</code></pre><p>The architecture is complete. But we have one single dissonance. When we deployed the SA-Frontend pods our container image was pointing to our SA-WebApp in <a href="http://localhost:8080/sentiment" rel="noopener">http://localhost:8080/sentiment</a>. But now we need to update it to point to the IP Address of the SA-WebApp Loadbalancer. (Which acts as an entry point to the SA-WebApp pods).</p><p>Fixing this dissonance provides us with the opportunity to succinctly encompass once more everything from code to deployment. (It’s even more effective if you do this alone instead of following the guide below). Let’s get started:</p><ol><li>Get the SA-WebApp Loadbalancer IP by executing the following command:</li></ol><pre><code class="language-bash">minikube service list
+|-------------|----------------------|-----------------------------|
+|  NAMESPACE  |         NAME         |             URL             |
+|-------------|----------------------|-----------------------------|
+| default     | kubernetes           | No node port                |
+| default     | sa-frontend-lb       | http://192.168.99.100:30708 |
+| default     | sa-logic             | No node port                |
+| default     | sa-web-app-lb        | http://192.168.99.100:31691 |
+| kube-system | kube-dns             | No node port                |
+| kube-system | kubernetes-dashboard | http://192.168.99.100:30000 |
+|-------------|----------------------|-----------------------------|</code></pre><p>2. Use the SA-WebApp LoadBalancer IP in the file <code>sa-frontend/src/App.js</code>, as shown below:</p><pre><code class="language-js">analyzeSentence() {
+        fetch('http://192.168.99.100:31691/sentiment', { /* shortened for brevity */})
+            .then(response =&gt; response.json())
+            .then(data =&gt; this.setState(data));
+    }</code></pre><p>3. Build the static files <code>npm run build</code> (you need to navigate to the folder <strong>sa-frontend</strong>)</p><p>4. Build the container image:</p><pre><code class="language-bash">docker build -f Dockerfile -t $DOCKER_USER_ID/sentiment-analysis-frontend:minikube .</code></pre><p>5. Push the image to Docker hub.</p><pre><code class="language-bash">docker push $DOCKER_USER_ID/sentiment-analysis-frontend:minikube</code></pre><p>6. Edit the sa-frontend-deployment.yaml to use the new image and</p><p>7. Execute the command kubectl apply -f sa-frontend-deployment.yaml</p><p>Refresh the browser or if you closed the window execute <code>minikube service sa-frontend-lb</code>. Give it a try by typing a sentence!</p><figure class="kg-card kg-image-card"><img src="https://cdn-media-1.freecodecamp.org/images/GkLNiTbXMvnaTdwnH0DjS-Lhq7mizlAnl9Mm" class="kg-image" alt="GkLNiTbXMvnaTdwnH0DjS-Lhq7mizlAnl9Mm" width="724" height="930" loading="lazy"></figure><h3 id="article-summary">Article summary</h3><p>Kubernetes is beneficial for the team, for the project, simplifies deployments, scalability, resilience, it enables us to consume any underlying infrastructure and you know what? From now on, let’s call it Supernetes!</p><p>What we covered in this series:</p><ul><li>Building / Packaging / Running ReactJS, Java and Python Applications</li><li>Docker Containers; how to define and build them using Dockerfiles,</li><li>Container Registries; we used the Docker Hub as a repository for our containers.</li><li>We covered the most important parts of Kubernetes.</li><li>Pods</li><li>Services</li><li>Deployments</li><li>New concepts like Zero-Downtime deployments</li><li>Creating scalable apps</li><li>And in the process, we migrated the whole microservice application to a Kubernetes Cluster.</li></ul><p>I am Rinor Maloku and I want to thank you for joining me on this voyage. Since you read this far I know that you loved this article and would be interested in more. I write articles that go into this depth of detail for new technologies every 3 months. You can always expect an example application, hands-on practice, and a guide that provides you with the right tools and knowledge to tackle any real-world project.</p><p>To stay in touch and not miss any of my articles subscribe to my <a href="https://tinyletter.com/rinormaloku" rel="noopener">newsletter</a>, follow me on <a href="https://twitter.com/rinormaloku" rel="noopener">Twitter</a>, and check out my page <a href="https://rinormaloku.com/" rel="noopener">rinormaloku.com</a>.</p>
+
+                        </section>
+                        
+                            <div class="sidebar">
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                                    <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                                
+                            </div>
+                        
+                    </div>
+                    <hr />
+                    
+                        <div class="post-full-author-header" data-test-label="author-header-with-bio">
+                            
+                                
+    
+    
+    
+
+    <section class="author-card" data-test-label="author-card">
+        
+            
+    <img
+      srcset="https://www.freecodecamp.org/news/content/images/size/w60/2022/05/rinor-close.png 60w"
+      sizes="60px"
+      src="https://www.freecodecamp.org/news/content/images/size/w60/2022/05/rinor-close.png"
+      class="author-profile-image"
+      alt="Rinor Maloku"
+      width="504"
+      height="483"
+      onerror="this.style.display='none'"
+      loading="lazy"
+      data-test-label="profile-image"
+    />
+  
+        
+
+        <section class="author-card-content ">
+            <span class="author-card-name">
+                <a href="/news/author/rinormaloku/" data-test-label="profile-link">
+                    
+                        Rinor Maloku
+                    
+                </a>
+            </span>
+            
+                
+                    <p data-test-label="author-bio">Rinor Maloku is an engineer working on application-aware networking solutions at Solo.io. He co-authored the book &quot;Istio in Action&quot; published by Manning. 
+
+Ex: Red Hatter</p>
+                
+            
+        </section>
+    </section>
+
+                            
+                        </div>
+                        <hr />
+                    
+
+                    
+                    
+                        
+    
+
+
+<p data-test-label="social-row-cta" class="social-row">
+    If you read this far, thank the author to show them you care. <button id="tweet-btn" class="cta-button" data-test-label="tweet-button">Say Thanks</button>
+</p>
+
+
+    
+    <script>document.addEventListener("DOMContentLoaded",(()=>{const t=document.getElementById("tweet-btn"),e=window.location,n="Learn%20Kubernetes%20in%20Under%203%20Hours%3A%20A%20Detailed%20Guide%20to%20Orchestrating%20Containers".replace(/&#39;/g,"%27"),o="",r="@rinormaloku",i=Boolean("");let a;if(i&&(o||r)){const t={originalPostAuthor:"",currentPostAuthor:"Rinor Maloku"};a=encodeURIComponent(`Thank you ${o||t.originalPostAuthor} for writing this helpful article, and ${r||t.currentPostAuthor} for translating it.`)}else!i&&r&&(a=encodeURIComponent(`Thank you ${r} for writing this helpful article.`));const s=`window.open(\n    '${a?`https://twitter.com/intent/tweet?text=${a}%0A%0A${n}%0A%0A${e}`:`https://twitter.com/intent/tweet?text=${n}%0A%0A${e}`}',\n    'share-twitter',\n    'width=550, height=235'\n  ); return false;`;t.setAttribute("onclick",s)}));</script>
+
+
+                        
+
+<div class="learn-cta-row" data-test-label="learn-cta-row">
+    <p>
+        Learn to code for free. freeCodeCamp's open source curriculum has helped more than 40,000 people get jobs as developers. <a href="https://www.freecodecamp.org/learn/" class="cta-button" id="learn-to-code-cta" rel="noopener noreferrer" target="_blank">Get started</a>
+    </p>
+</div>
+
+                    
+                </section>
+                
+                    <div class="banner-ad bottom">
+                        <div class="ad-wrapper" data-test-label="ad-wrapper">
+    
+    <div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+    <ins
+        class="adsbygoogle"
+        style="display: block; height: 280px;"
+        data-ad-client="ca-pub-9482786369113753"
+        data-ad-slot="5720086888"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+    ></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+                    </div>
+                
+            </article>
+        </div>
+    </main>
+
+
+            
+
+
+<footer class="site-footer">
+    <div class="footer-top">
+        <div class="footer-desc-col">
+            <p data-test-label="tax-exempt-status">freeCodeCamp is a donor-supported tax-exempt 501(c)(3) charity organization (United States Federal Tax Identification Number: 82-0779546)</p>
+            <p data-test-label="mission-statement">Our mission: to help people learn to code for free. We accomplish this by creating thousands of videos, articles, and interactive coding lessons - all freely available to the public.</p>
+            <p data-test-label="donation-initiatives">Donations to freeCodeCamp go toward our education initiatives, and help pay for servers, services, and staff.</p>
+            <p class="footer-donation" data-test-label="donate-text">
+                You can <a href="https://www.freecodecamp.org/donate/" class="inline" rel="noopener noreferrer" target="_blank" >make a tax-deductible donation here</a>.
+            </p>
+        </div>
+        <div class="trending-guides" data-test-label="trending-guides">
+            <h2 id="trending-guides" class="col-header">Trending Guides</h2>
+            <ul class="trending-guides-articles" aria-labelledby="trending-guides">
+                <li>
+                    <a href="https://www.freecodecamp.org/news/how-to-delete-a-file-or-directory-in-linux/" rel="noopener noreferrer" target="_blank">Delete File in Linux
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/what-does-mean-in-python-operator-meaning-for-double-colon/" rel="noopener noreferrer" target="_blank">What is :: in Python?
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/python-get-current-directory/" rel="noopener noreferrer" target="_blank">Python PWD Equivalent
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/jsonobject-tostring-how-to-convert-json-to-a-string-in-java/" rel="noopener noreferrer" target="_blank">JSONObject.toString()
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/ssh-meaning-in-linux/" rel="noopener noreferrer" target="_blank">What is SSH in Linux?
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/maximum-integer-size-in-python/" rel="noopener noreferrer" target="_blank">Max int Size in Python
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/python-bytes-to-string-how-to-convert-a-bytestring/" rel="noopener noreferrer" target="_blank">Python Bytes to String
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/git-pull-remote-branch-how-to-fetch-remote-branches-in-git/" rel="noopener noreferrer" target="_blank">Git Pull Remote Branch
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/how-to-fix-merge-conflicts-in-git/" rel="noopener noreferrer" target="_blank">Fix Git Merge Conflicts
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/javascript-refresh-page-how-to-reload-a-page-in-js/" rel="noopener noreferrer" target="_blank">JavaScript Refresh Page
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/git-revert-how-to-reset-a-file-or-commit/" rel="noopener noreferrer" target="_blank">Git Revert
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/comments-in-json/" rel="noopener noreferrer" target="_blank">JSON Comments
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/what-is-java-used-for/" rel="noopener noreferrer" target="_blank">Java Use Cases
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/python-copy-file-copying-files-to-another-directory/" rel="noopener noreferrer" target="_blank">Python Copy File
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/how-to-copy-a-directory-in-linux-use-the-cp-command-to-copy-a-folder/" rel="noopener noreferrer" target="_blank">Linux cp Command
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/python-list-pop-how-to-pop-an-element-from-a-array/" rel="noopener noreferrer" target="_blank">Python list.pop()
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/how-to-add-numbers-in-javascript-arrays/" rel="noopener noreferrer" target="_blank">JS Sum of an Array
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/python-split-string-how-to-split-a-string-into-a-list-or-array-in-python/" rel="noopener noreferrer" target="_blank">Python Split String
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/call-vs-put-vs-post-http-request-methods-explained/" rel="noopener noreferrer" target="_blank">HTTP Request Methods
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/strcmp-in-c-how-to-compare-strings-in-c/" rel="noopener noreferrer" target="_blank">Compare Strings in C
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/what-does-the-dollar-sign-mean-in-javascript/" rel="noopener noreferrer" target="_blank">What Does $ Mean in JS?
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/python-range-function-example/" rel="noopener noreferrer" target="_blank">Python range() Function
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/how-to-iterate-over-rows-with-pandas-loop-through-a-dataframe/" rel="noopener noreferrer" target="_blank">Pandas Iterate Over Rows
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/how-to-initialize-a-java-list/" rel="noopener noreferrer" target="_blank">Initialize a List in Java
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/check-if-string-is-empty-or-null-javascript/" rel="noopener noreferrer" target="_blank">Check for Empty String JS
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/how-to-initialize-an-arraylist-in-java-with-values/" rel="noopener noreferrer" target="_blank">Initialize ArrayList Java
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/how-to-delete-an-environment-in-conda/" rel="noopener noreferrer" target="_blank">Delete Environment in Conda
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/how-to-pretty-print-json-in-python/" rel="noopener noreferrer" target="_blank">Pretty Print JSON in Python
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/what-does-the-dollar-sign-mean-in-python/" rel="noopener noreferrer" target="_blank">What Does $ Mean in Python?
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/news/how-to-check-if-a-list-is-empty-in-python/" rel="noopener noreferrer" target="_blank">Check for Empty List Python
+                    </a>
+                </li>
+            </ul>
+            <div class="spacer" style="padding: 15px 0;"></div>
+            <div>
+                <h2 id="mobile-app" class="col-header">
+                    Mobile App
+                </h2>
+                <div class="min-h-[1px] px-[15px] md:w-2/3 md:ml-[16.6%]">
+                    <ul aria-labelledby="mobile-app" class="mobile-app-container">
+                        <li>
+                            <a href="https://apps.apple.com/us/app/freecodecamp/id6446908151?itsct=apps_box_link&itscg=30200" rel="noopener noreferrer" target="_blank">
+                                <img
+                                    src="https://cdn.freecodecamp.org/platform/universal/apple-store-badge.svg"
+                                    lang="en"
+                                    alt="Download on the App Store"
+                                />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://play.google.com/store/apps/details?id=org.freecodecamp" rel="noopener noreferrer" target="_blank">
+                                <img
+                                    src="https://cdn.freecodecamp.org/platform/universal/google-play-badge.svg"
+                                    lang="en"
+                                    alt="Get it on Google Play"
+                                />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='footer-bottom'>
+        <h2 class="col-header" data-test-label="our-nonprofit">Our Charity</h2>
+        <div class="our-nonprofit">
+            <a href="https://www.freecodecamp.org/news/about/" rel="noopener noreferrer" target="_blank" data-test-label="about">
+                About
+            </a>
+            <a href="https://www.linkedin.com/school/free-code-camp/people/" rel="noopener noreferrer" target="_blank" data-test-label="alumni">
+                Alumni Network
+            </a>
+            <a href="https://github.com/freeCodeCamp/" rel="noopener noreferrer" target="_blank" data-test-label="open-source">
+                Open Source
+            </a>
+            <a href="https://www.freecodecamp.org/news/shop/" rel="noopener noreferrer" target="_blank" data-test-label="shop">
+                Shop
+            </a>
+            <a href="https://www.freecodecamp.org/news/support/" rel="noopener noreferrer" target="_blank" data-test-label="support">
+                Support
+            </a>
+            <a href="https://www.freecodecamp.org/news/sponsors/" rel="noopener noreferrer" target="_blank" data-test-label="sponsors">
+                Sponsors
+            </a>
+            <a href="https://www.freecodecamp.org/news/academic-honesty-policy/" rel="noopener noreferrer" target="_blank" data-test-label="honesty">
+                Academic Honesty
+            </a>
+            <a href="https://www.freecodecamp.org/news/code-of-conduct/" rel="noopener noreferrer" target="_blank" data-test-label="coc">
+                Code of Conduct
+            </a>
+            <a href="https://www.freecodecamp.org/news/privacy-policy/" rel="noopener noreferrer" target="_blank" data-test-label="privacy">
+                Privacy Policy
+            </a>
+            <a href="https://www.freecodecamp.org/news/terms-of-service/" rel="noopener noreferrer" target="_blank" data-test-label="tos">
+                Terms of Service
+            </a>
+            <a href="https://www.freecodecamp.org/news/copyright-policy/" rel="noopener noreferrer" target="_blank" data-test-label="copyright">
+                Copyright Policy
+            </a>
+        </div>
+    </div>
+</footer>
+
+        </div>
+
+        
+        
+        
+
+        <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5D6RKKP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+        
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon='{"rayId":"8626048aff6a6d79","version":"2024.2.4","token":"bdb993c6dde44e178aabd9555e75e4f4"}' crossorigin="anonymous"></script>
+</body>
+</html>

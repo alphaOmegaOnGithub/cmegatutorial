@@ -1,0 +1,1005 @@
+ 1002  a2query -s
+ 1003  systemctl status nova*
+ 
+ 1004  cat /etc/os-release
+ 
+ 1005  systemctl status NetworkManager
+ 1006  cd /etc/network/interfaces
+ 1007  cd /etc/network/interface
+ 1008  cd /etc/networks
+ 
+ 1009  cd /etc/network/interfaces.d/
+ 1010  ls
+ 1011  cd ..
+ 1012  ls
+ 1013  ls interfaces.d
+ 1014  ls interfaces
+ 1015  cat interfaces
+ 1016  su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
+ 1017  openstack compute service list --service nova-compute
+ 1018  . admin-openrc 
+ 1019  openstack compute service list --service nova-compute
+ 1020  virsh list
+ 1021  nano /etc/nova/nova-compute.conf 
+ 1022  nano /etc/nova/nova.conf
+ 1023  nova hypervisor-show 1
+ 1024  . admin-openrc 
+ 1025  nova hypervisor-show 1|grep hypervisor_type
+ 1026  cd /var/lib/nova/instances/4bb0ffe7-54b9-4594-b49d-9618a9d75326/
+ 1027  ls
+ 1028  grep KVM console.log
+ 1029  nano /etc/cinder/cinder.conf
+ 1030  lsblk
+ 1031  vgdisplay vg_data01
+ 1032  . admin-openrc 
+ 1033  openstack host list
+ 1034  openstack host show astplsm01
+ 1035  lsblk
+ 1036  vgdisplay vg_data01
+ 1037  nano /etc/cinder/cinder.conf
+ 1038  keystone
+ 1039  openstack keystone
+ 1040  source keystonerc_admin
+ 1041  nova show d040adc1-d63b-4451-b401-e6d350e7ef5a
+ 1042  . admin-openrc 
+ 1043  nova show d040adc1-d63b-4451-b401-e6d350e7ef5a
+ 1044  lsblk
+ 1045  du
+ 1046  nova show d040adc1-d63b-4451-b401-e6d350e7ef5a
+ 1047  sudo du /var/* -shc
+ 1048  sudo du /dev/* -shc
+ 1049  fdisk -l
+ 1050  ls
+ 1051  nano /etc/nova/nova.conf 
+ 1052  . admin-openrc 
+ 1053  nova hypervisor-stats
+ 1054  nova hypervisor
+ 1055  openstack hypervisor stats show
+ 1056  cd /opt/
+ 1057  ls
+ 1058  cd ..
+ 1059  ls
+ 1060  cd /etc/cinder/
+ 1061  ls
+ 1062  cd ..
+ 1063  nano /etc/nova/nova.conf 
+ 1064  nano /etc/lvm/lvm.conf 
+ 1065  nano /etc/cinder/cinder.conf
+ 1066  cd /var/lib/cinder/
+ 1067  ls
+ 1068  cd volumes/
+ 1069  l
+ 1070  nano /etc/cinder/cinder.conf
+ 1071  lvdisplay
+ 1072  lsblk
+ 1073  nova hypeervisor-list
+ 1074  nova hypervisor-list
+ 1075  cinder df
+ 1076  cinder --help
+ 1077  cinder list
+ 1078  cinder get-pools --detail
+ 1079  openstack show host
+ 1080  openstack host list
+ 1081  openstack host show astplsm01
+ 1082  nano /etc/apache2/sites-available/keystone.conf 
+ 1083  ls
+ 1084  nano horizon/openstack_dashboard/local/local_settings.py
+ 1085  a2ensite horizon.conf 
+ 1086  systemctl restart apache2
+ 1087  nano /etc/keystone/keystone.conf 
+ 1088  nano admin-openrc 
+ 1089  . admin-openrc 
+ 1090  openstack server list
+ 1091  nano /etc/keystone/keystone.conf 
+ 1092  nano admin-openrc 
+ 1093  . admin-openrc 
+ 1094  openstack server list
+ 1095  nano admin-openrc 
+ 1096  openstack server list
+ 1097  systemctl status keystone
+ 1098  openstack user list
+ 1099  openstack --os-auth-url http://controller:5000/v3   --os-project-domain-name Default --os-user-domain-name Default \
+ 1100  openstack --os-auth-url https://controller:5000/v3   --os-project-domain-name Default --os-user-domain-name Default   --os-project-name admin --os-username admin token issue
+ 1101  systemctl restart keystone
+ 1102  openstack user list
+ 1103  . admin-openrc 
+ 1104  openstack user list
+ 1105  nano admin-openrc 
+ 1106  keystone-manage bootstrap --bootstrap-password 5mvQr9b --bootstrap-admin-url https://controller:5000/v3/  --bootstrap-internal-url https://controller:5000/v3/   --bootstrap-public-url https://controller:5000/v3/  --bootstrap-region-id RegionOne
+ 1107  service apache2 restart
+ 1108  openstack user list
+ 1109  openstack server list
+ 1110  openstack user list
+ 1111  nano /etc/glance/glance-api.conf 
+ 1112  service glance-api restart
+ 1113  openstack image list
+ 1114  systemctl status glance-api
+ 1115  openstack image list
+ 1116  . admin-openrc 
+ 1117  openstack image list
+ 1118  nano /etc/glance/glance-api
+ 1119  nano /etc/glance/glance-api.conf 
+ 1120  systemctl status glance-api
+ 1121  systemctl restart glance-api.service 
+ 1122  openstack image list
+ 1123  openstack user list
+ 1124  nano /etc/glance/glance-api.conf 
+ 1125  systemctl restart glance-api.service 
+ 1126  openstack image list
+ 1127  nano /etc/nova/nova-compute.conf 
+ 1128  nano /etc/nova/nova.conf 
+ 1129  openstack server list
+ 1130  service nova-api rstart
+ 1131  service nova-api restart
+ 1132  openstack server list
+ 1133  systemctl status nova-api
+ 1134  nano /etc/nova/nova.conf 
+ 1135  service nova-scheduler restart
+ 1136  service nova-conductor restart
+ 1137  service nova-novncproxy restart
+ 1138  service nova-api restart
+
+ 1139  openstack server list
+ 1140  nano /etc/neutron/neutron.conf 
+ 1141  service nova-api restart
+ 1142  service neutron-server restart
+ 1143  service neutron-linuxbridge-agent restart
+ 1144  service neutron-dhcp-agent restart
+ 1145  service neutron-metadata-agent restart
+ 1146  service neutron-l3-agent restart
+
+ 1147  openstack server list
+ 1148  nano /etc/cinder/cinder.conf
+ 1149  service nova-api restart
+ 1150  service cinder-scheduler restart
+ 1151  service apache2 restart
+ 1152  service tgt restart
+ 1153  service cinder-volume restart
+ 1154  openstack volume list
+ 1155  ls
+ 1156  cd horizon/
+ 1157  ls
+ 1158  nano openstack_dashboard/local/local_settings.py
+ 1159  nano /etc/apache2/sites-available/horizon.conf 
+ 1160  cd /etc/apache2/sites-available/
+ 1161  l
+ 1162  ls
+ 1163  cp horizon.conf backup_horizon.conf
+ 1164  ls
+ 1165  cd ~
+ 1166  ls
+ 1167  cd h
+ 1168  cd horizon/
+ 1169  nano /etc/apache2/sites-available/backup_horizon.conf 
+ 1170  ./manage.py make_web_conf --apache --ssl --sslkey=/etc/ssl/private/apache-selfsigned.key --sslcert=/etc/ssl/certs/apache-selfsigned.crt > /etc/apache2/sites-available/horizon.conf
+ 1171  nano /etc/apache2/sites-available/horizon.conf 
+ 1172  cd /etc/apache2/sites-available/horizon.conf
+ 1173  cd /etc/apache2/sites-available/
+ 1174  ls
+ 1175  nano backup_horizon.conf 
+ 1176  nano horizon.conf 
+ 1177  nano backup_horizon.conf 
+ 1178  nano horizon.conf 
+ 1179  a2ensite horizon
+ 1180  systemctl restart apache2
+ 1181  systemctl status apache2.service 
+ 1182  nano /etc/apache2/sites-available/horizon.conf 
+ 1183  systemctl status apache2.service 
+ 1184  systemctl restart apache2
+ 1185  cd ~/horizon/
+ 1186  ./manage.py collectstatic
+ 1187  ./manage.py compress
+ 1188  sudo a2ensite horizon
+ 1189  sudo service apache2 restart
+ 1190  nano openstack_dashboard/local/local_settings.py
+ 1191  nano /etc/apache2/sites-enabled/horizon.conf
+ 1192  cd /usr/share/horizon/
+ 1193  ls
+ 1194  cd horizon/
+ 1195  ls
+ 1196  cd ..
+ 1197  nano openstack_dashboard/local/local_settings.py
+ 1198  systemctl restart apache2
+ 1199  openstack nova list
+ 1200  openstack host list
+ 1201  openstack compute service list --service nova-compute
+ 1202  su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
+ 1203  openstack compute service list --service nova-compute
+ 1204  nano  /etc/keystone/keystone.conf 
+ 1205  nano /var/log/nova/nova-api.log
+ 1206  nano /etc/nova/nova-compute.conf 
+ 1207  nano /etc/nova/nova.conf 
+ 1208  systemctl restart nova-compute
+ 1209  systemctl restart nova-api
+ 1210  systemctl restart nova-scheduler
+ 1211  openstack compute service list --service nova-compute
+ 1212  su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
+ 1213  openstack compute service list --service nova-compute
+ 1214  nano /var/log/nova/nova-api.log
+ 1215  systemctl restart nova-compute
+ 1216  service nova-conductor restart
+ 1217  service nova-novncproxy restart
+ 1218  service nova-api restart
+ 1219  service nova-scheduler restart
+ 1220  nano /var/log/nova/nova-conductor.log
+ 1221  nova-conuctor --config-dir
+ 1222  nova-conudctor --config-dir
+ 1223  nova-conductor --config-dir
+ 1224  nano /etc/nova/nova.conf 
+ 1225  systemctl restart nova-conductor.service 
+ 1226  openstack compute service list --service nova-compute
+ 1227  nano /etc/nova/nova.conf 
+ 1228  service nova-api restart
+ 1229  service nova-scheduler restart
+ 1230  service nova-conductor restart
+ 1231  service nova-novncproxy restart
+ 1232  nano /etc/nova/nova.conf 
+ 1233  openstack compute service list --service nova-compute
+ 1234  nano /var/log/nova/nova-conductor.log
+ 1235  su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
+ 1236  nano /var/log/nova/nova-conductor.log
+ 1237  nova service-list
+ 1238  nano /var/log/nova/nova-scheduler.log
+ 1239  service apache2 restart
+ 1240  openstack compute service list --service nova-compute
+ 1241  . admin-openrc 
+ 1242  openstack compute service list --service nova-compute
+ 1243  nano /etc/nova/nova-compute.conf 
+ 1244  nano /etc/nova/nova-compute
+ 1245  nano /var/log/nova/nova-scheduler.log
+ 1246  nano /etc/nova/nova.conf 
+ 1247  nano /var/log/keystone/
+ 1248  nano /var/log/keystone/keystone-manage.log
+ 1249  nano /var/log/keystone/keystone-wsgi-public.log
+ 1250  oslopolicy-policy-generator
+ 1251  oslopolicy-policy-update
+ 1252  oslopolicy-policy-upgrade
+ 1253  nano /var/log/nova/nova-conductor.log
+ 1254  nano /var/log/nova/nova-scheduler.log
+ 1255  systemctl restart nova-scheduler.service 
+ 1256  nano /var/log/nova/nova-scheduler.log
+ 1257  nano /etc/nova/nova.conf 
+ 1258  nano /var/log/nova/nova-scheduler.log
+ 1259  nano /etc/nova/nova.conf 
+ 1260  nano /var/log/nova/nova-api.log
+ 1261  nano /var/log/nova/nova-conductor.log
+ 1262  nano /var/log/nova/nova-scheduler.log
+ 1263  openstack server show
+ 1264  . admin-openrc 
+ 1265  openstack server lit
+ 1266  openstack server list
+ 1267  nano admin-openrc 
+ 1268  . admin-openrc 
+ 1269  openstack server list
+ 1270  su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
+ 1271  openstack compute service list
+ 1272  openstack catalog list
+ 1273  openstack image list
+ 1274  nova-status upgrade check
+ 1275  nano /var/log/nova/nova-scheduler.log
+ 1276  nano /etc/nova/nova.conf 
+ 1277  systemctl restart nova-compute.service 
+ 1278  systemctl restart nova-conductor.service 
+ 1279  systemctl restart nova-scheduler.service 
+ 1280  systemctl restart nova-api.service 
+ 1281  nano /var/log/keystone/keystone-manage.log
+ 1282  nano /var/log/keystone/keystone-wsgi-public.log
+ 1283  systemctl restart apache2.service 
+ 1284  systemctl restart nova-compute.service 
+ 1285  . admin-openrc 
+ 1286  openstack server list
+ 1287  openstack image list
+ 1288  nano
+ 1289  nano /etc/keystone/keystone.conf 
+ 1290  nano /etc/apache2/sites-available/keystone.conf 
+ 1291  systemctl restart apache2
+ 1292  nano admin-openrc 
+ 1293  keystone-manage bootstrap --bootstrap-password 5mvQr9b   --bootstrap-admin-url http://controller:5000/v3/ --bootstrap-internal-url http://controller:5000/v3/   --bootstrap-public-url http://controller:5000/v3/   --bootstrap-region-id RegionOne
+ 1294  service apache2 restart
+ 1295  nano /etc/glance/glance-api.conf 
+ 1296  service glance-api restart
+ 1297  nano /etc/placement/placement.conf 
+ 1298  nano /etc/glance/glance-api.conf 
+ 1299  nano /etc/placement/placement.conf 
+ 1300  service apache2 restart
+ 1301  su -s /bin/sh -c "placement-manage db sync" placement
+ 1302  nano /etc/keystone/keystone.conf 
+ 1303  nano /etc/apache2/sites-available/keystone.conf 
+ 1304  systemctl restart apache2
+ 1305  keystone-manage bootstrap --bootstrap-password 5mvQr9b   --bootstrap-admin-url https://controller:5000/v3/ --bootstrap-internal-url https://controller:5000/v3/   --bootstrap-public-url https://controller:5000/v3/   --bootstrap-region-id RegionOne
+ 1306  systemctl restart apache2
+ 1307  systemctl status nova-api.service 
+ 1308  nano admin-openrc 
+ 1309  openstack user list
+ 1310  systemctl restart nova-api
+ 1311  openstack server list
+ 1312  nano /var/log/nova/nova-api.log
+ 1313  nano /etc/nova/nova.conf 
+ 1314  systemctl restart nova-api
+ 1315  systemctl restart nova-compute
+ 1316  systemctl restart nova-scheduler.service 
+ 1317  systemctl restart nova-conductor.service 
+ 1318  su -s /bin/sh -c "placement-manage db sync" placement
+ 1319  service apache2 restart
+ 1320  . admin-openrc 
+ 1321  openstack server list
+ 1322  nano /var/log/nova/nova-compute.log
+ 1323  nano /var/log/neutron/neutron-linuxbridge-agent.log
+ 1324  nano /var/log/neutron/neutron-dhcp-agent.log
+ 1325  nano /var/log/neutron/neutron-server.log
+ 1326  nano /var/log/nova/nova-compute.log
+ 1327  nano /var/log/nova/nova-conductor.log
+ 1328  nano /var/log/neutron/neutron-server.log
+ 1329  service neutron-server restart
+ 1330  service neutron-linuxbridge-agent restart
+ 1331  service neutron-dhcp-agent restart
+ 1332  service neutron-metadata-agent restart
+ 1333  service neutron-l3-agent restart
+ 1334  nano /var/log/nova/nova-compute.log
+ 1335  nano /var/log/nova/nova-conductor.log
+ 1336  nano /var/log/nova/nova-api.log
+ 1337  nano /var/log/nova/nova-compute.log
+ 1338  tail -f /var/log/neutron/*.log
+ 1339  ls
+ 1340  nano /var/log/neutron/neutron-linuxbridge-agent.log
+ 1341  nano /var/log/neutron/neutron-server.log
+ 1342  nano /etc/neutron/neutron.conf 
+ 1343  service nova-api restart
+ 1344  service neutron-server restart
+ 1345  service neutron-linuxbridge-agent restart
+ 1346  service neutron-dhcp-agent restart
+ 1347  service neutron-metadata-agent restart
+ 1348  service neutron-l3-agent restart
+ 1349  nano /etc/apache2/sites-available/horizon.conf 
+ 1350  service apache2 restart
+ 1351  systemctl status apache2
+ 1352  nano /etc/apache2/sites-available/horizon.conf 
+ 1353  systemctl status apache2
+ 1354  service apache2 restart
+ 1355  nano /etc/apache2/sites-available/horizon.conf 
+ 1356  service apache2 restart
+ 1357  nano /etc/apache2/sites-available/horizon.conf 
+ 1358  nano /etc/apache2/sites-available/000-default.conf 
+ 1359  nano /etc/apache2/sites-available/default-ssl.conf 
+ 1360  nano /etc/apache2/conf-available/
+ 1361  nano /etc/apache2/conf-available/security.conf #
+ 1362  nano /etc/apache2/sites-available/horizon.conf 
+ 1363  service apache2 restart
+ 1364  systemctl status apache2
+ 1365  nano /etc/apache2/sites-available/horizon.conf 
+ 1366  nano /etc/apache2/sites-available/
+ 1367  nano /etc/apache2/sites-available/000-default.conf 
+ 1368  a2list
+ 1369  a2query -s
+ 1370  apache2ctl -S
+ 1371  nano /etc/apache2/sites-available/horizon.conf 
+ 1372  nano /etc/nova/nova.conf 
+ 1373  nano /etc/neutron/neutron.conf 
+ 1374  nano /etc/placement/placement.conf 
+ 1375  nano /etc/apache2/sites-available/horizon.conf 
+ 1376  nano /etc/apache2/sites-available/keystone.conf 
+ 1377  nano /etc/nova/nova.conf 
+ 1378  systemctl restart nova-api.service 
+ 1379  systemctl restart nova-compute.service 
+ 1380  systemctl restart nova-scheduler.service 
+ 1381  systemctl restart nova-conductor.service 
+ 1382  nano /etc/nova/nova.conf 
+ 1383  nano /etc/neutron/neutron.conf 
+ 1384  systemctl restart neutron-*
+ 1385  nano /usr/share/horizon/openstack_dashboard/local/local_settings.py
+ 1386  nano /etc/apache2/sites-available/horizon.conf 
+ 1387  nano /etc/nova/nova.conf 
+ 1388  service nova-api restart
+ 1389  service nova-scheduler restart
+ 1390  service nova-conductor restart
+ 1391  service nova-novncproxy restart
+ 1392  systemctl status nova-novncproxy
+ 1393  nano /etc/apache2/sites-available/horizon.conf 
+ 1394  nano /etc/nova/nova.conf 
+ 1395  systemctl status nova-novncproxy
+ 1396  service nova-novncproxy restart
+ 1397  service nova-conductor restart
+ 1398  service nova-scheduler restart
+ 1399  service nova-api restart
+ 1400  systemctl status nova-novncproxy.service 
+ 1401  systemctl status nova-scheduler.service 
+ 1402  systemctl status nova-compute.service 
+ 1403  systemctl status nova-conductor.service
+ 1404  systemctl status nova-api.service 
+ 1405  nano /etc/nova/nova.conf 
+ 1406  systemctl restart nova-*
+ 1407  ls
+ 1408  cinder get-pools --detail
+ 1409  . admin-openrc 
+ 1410  cinder get-pools --detail
+ 1411  nova /etc/nova/nova.conf 
+ 1412  nano /etc/nova/nova.conf 
+ 1413  systemctl restart nova-*
+ 1414  systemctl status nova-scheduler
+ 1415  openstack endpoint show
+ 1416  openstack endpoint list
+ 1417  openstack endpoint set --url https://controller:8774/v2.1 2b92771f03614cc0aa456c213fcca8a4
+ 1418  openstack endpoint set --url https://controller:8774/v2.1 823d99636438413196a93c479cbe7073
+ 1419  openstack endpoint set --url https://controller:8774/v2.1 cf75d8e0c4cb48d79cdf0a568897e52b
+ 1420  openstack endpoint list
+ 1421  openstack endpoint set --url http://controller:8774/v2.1 cf75d8e0c4cb48d79cdf0a568897e52b
+ 1422  openstack endpoint set --url http://controller:8774/v2.1 823d99636438413196a93c479cbe7073
+ 1423  openstack endpoint set --url http://controller:8774/v2.1 2b92771f03614cc0aa456c213fcca8a4
+ 1424  openstack endpoint list
+ 1425  nano /etc/nova/nova-compute.conf 
+ 1426  nano /etc/nova/nova.conf 
+ 1427  systemclt restart nova-*
+ 1428  systemctl restart nova-*
+ 1429  nano /etc/nova/nova.conf 
+ 1430  openstack list endpoints
+ 1431  openstack endpoints list
+ 1432  openstack endpoint list
+ 1433  systemctl restart nova-*
+ 1434  openstack endpoint list
+ 1435  systemctl status nova-compute.service 
+ 1436  systemctl status nova-scheduler.service 
+ 1437  systemctl status nova-conductor.service 
+ 1438  systemctl status nova-api.service 
+ 1439  systemctl status nova-novncproxy.service 
+ 1440  nano /etc/nova/nova.conf 
+ 1441  openstack endpoint list
+ 1442  systemctl restart apache
+ 1443  systemctl restart apache2
+ 1444  service nova-api restart
+ 1445  service nova-scheduler restart
+ 1446  service nova-conductor restart
+ 1447  service nova-novncproxy restart
+ 1448  openstack endpoint show 2b92771f03614cc0aa456c213fcca8a4
+ 1449  openstack endpoint set --url http://controller:8774/v2.1 2b92771f03614cc0aa456c213fcca8a4
+ 1450  openstack endpoint set --url http://controller:8774/v2.1 823d99636438413196a93c479cbe7073
+ 1451  openstack endpoint set --url http://controller:8774/v2.1 cf75d8e0c4cb48d79cdf0a568897e52b
+ 1452  openstack endpoint list
+ 1453  openstack endpoint delete 2b92771f03614cc0aa456c213fcca8a4
+ 1454  openstack endpoint delete 823d99636438413196a93c479cbe7073
+ 1455  openstack endpoint delete cf75d8e0c4cb48d79cdf0a568897e52b
+ 1456  openstack endpoint create --region RegionOne compute public http://controller:8774/v2.1
+ 1457  openstack endpoint create --region RegionOne compute internal http://controller:8774/v2.1
+ 1458  openstack endpoint create --region RegionOne compute admin http://controller:8774/v2.1
+ 1459  openstack endpoint list
+ 1460  . admin-openrc 
+ 1461  openstack security group list
+ 1462  nano /etc/neutron/neutron.conf 
+ 1463  nano /etc/nova/nova.conf 
+ 1464  openstack security group list
+ 1465  openstack security group create standard --share
+ 1466  openstack security group list
+ 1467  openstack network rbac create --target-project * --action access_as_shared --type security_group 0d3fe37c-842b-4a85-80bf-adfd938e9a8a
+ 1468  openstack network rbac create --action access_as_shared --type security_group 0d3fe37c-842b-4a85-80bf-adfd938e9a8a
+ 1469  openstack network rbac create --action access_as_shared --target-all-projects --type security_group 0d3fe37c-842b-4a85-80bf-adfd938e9a8a
+ 1470  nano /etc/nova/nova.conf 
+ 1471  systemctl restart nova-*
+ 1472  nano /etc/nova/nova.conf 
+ 1473  nano /etc/apache2/sites-available/horizon.conf 
+ 1474  nano /etc/apache2/sites-available/placement-api.conf 
+ 1475  systemctl restart apache2
+ 1476  . admin-openrc 
+ 1477  openstack endpoint list
+ 1478  openstack endpoint set --url https://controller:8778 307c6cd8911e4bc0b339e59e4eaecc36
+ 1479  openstack endpoint set --url https://controller:8778 52fe15f09ad44eb1a764e6b313adfb62
+ 1480  openstack endpoint set --url https://controller:8778 b87eb60160214e77907d6d0cc849918d
+ 1481  openstack endpoint list
+ 1482  nano /etc/nova/nova.conf 
+ 1483  systemctl restart nova-*
+ 1484  nano /etc/nova/nova.conf 
+ 1485  systemctl restart nova-*
+ 1486  nano /etc/nova/nova.conf 
+ 1487  systemctl restart nova-*
+ 1488  openstack endpoint list
+ 1489  openstack endpoint set --url http://controller:8778 307c6cd8911e4bc0b339e59e4eaecc36
+ 1490  openstack endpoint set --url http://controller:8778 52fe15f09ad44eb1a764e6b313adfb62
+ 1491  openstack endpoint set --url http://controller:8778 b87eb60160214e77907d6d0cc849918d
+ 1492  openstack endpoint list
+ 1493  nano /etc/apache2/sites-available/placement-api.conf 
+ 1494  systemctl restart apache2
+ 1495  nano /etc/nova/nova.conf 
+ 1496  systemctl restart nova-conf
+ 1497  systemctl restart nova-
+ 1498  systemctl restart nova-*
+ 1499  cat admin-openrc 
+ 1500  nano /etc/nova/nova.conf 
+ 1501  nano /etc/ssl/
+ 1502  cd /etc/ssl
+ 1503  ls
+ 1504  apt list --upgradable
+ 1505  openssl gensra -out ipvs-as-ca-privkey.pem 2048
+ 1506  openssl genrsa -out ipvs-as-ca-privkey.pem 2048
+ 1507  ls
+ 1508  openssl req -new -x509 -key ipvs-as-ca-privkey.pem -out ipvs-as-cacert.pem -days 365
+ 1509  ls
+ 1510  ls certs
+ 1511  openssl req -newkey rsa:2048 -days 365 -nodes -keyout openstack-key.pem -out openstack-req.pem
+ 1512  ls
+ 1513  openssl rsa -in openstack-key.pem -out openstack-key.pem
+ 1514  openssl x509 -req -in openstack-req.pem -days 365 -CA ipvs-as-cacert.pem -CAkey ipvs-as-ca-privkey.pem -set_serial 01 -out openstack-cert.pem
+ 1515  nano /etc/nova/nova.conf 
+ 1516  ls
+ 1517  nano /etc/apache2/sites-available/horizon.conf 
+ 1518  /etc/ssl# ls
+ 1519  nano /etc/apache2/sites-available/horizon.conf 
+ 1520  systemctl restart apache2
+ 1521  cat ipvs-as-ca-privkey.pem 
+ 1522  -----BEGIN RSA PRIVATE KEY-----
+ 1523  MIIEowIBAAKCAQEA3FlY+2q1c/tYWIW8YVOWS0yzcM97+vqkjTU9sD2jznYXCgIP
+ 1524  s/1ru5ZYd4hdHLjK/QN0ozuneppwS1qpLVsxQrm23nKyrykSynSk0agY819NUBt0
+ 1525  zjevpAfN/CDmOawEi9jpUQHgdubJ2fVRQQQN3hegKi6qow33F5FMsny//RQiMsRK
+ 1526  CAoKy+5luEzoKIpsAkPx6Ac8S4Bt4UjpE0z70/VToNLG6JAHCVAF8tRrA2elQjAt
+ 1527  /bCpRJH5EqjeR4+4uOxngBOOcAs6M2NfV0aS0DdapUvVGrEqnsO8FGKlmD6nT4rj
+ 1528  oy1FETW8H3F41zGTLAiw79TCU8HDKqzaeTGmIQIDAQABAoIBADg6xK5D6NIUDdNp
+ 1529  LU1Y2z2T8SaUi/rcAynVsExNLoP9NpvjMsanoNpZ33GBZuFxdrtiKl2NV4u95XIV
+ 1530  TJ66arOwWK4jbt2sCZOIeJbX4qYYZ85Nc108cKHXLAVvD9EfyHk3fTKi2/j7o/7u
+ 1531  zzFcK33FYaXiCsFZSvjEp2HU29lk1JIIWRELGqnQtQLrsxtT7DX4k6qBmrPg6ERq
+ 1532  uJ/sElbevVFLR+4DCsBMXpNps0zqJsOCy+D+jsMm/m84veJgSxhDaMZhTnk5kPqu
+ 1533  pPj5aVQyLIgq3ekxcu9BnyPQ/yRbyVUDWWRzJKbqhuirV47o5Zj3yqgEOL5m/9FY
+ 1534  xvkARAECgYEA97mj0jSjcn9xRMKiGvIHmQbMFjbn5e6uU2EkhbpELmqUlY0iNjPQ
+ 1535  rwxisYurOqykYdBGyqLV9EKPN1T9jgbHL8s+zUXZrEXyXIoZE1mrc2dvrVL5lbjf
+ 1536  SOkaaKTpXuSP5qES1l1OPpIRt8K3x0OECZIx8aHrM5jIqFDY/E6Aj7ECgYEA47Wb
+ 1537  fd2+9BFKJIRCb4wAiPz8o74FuZe6ti/Dci+h9rJJGuZumjzv8rmG6QKOiwpy38yh
+ 1538  NUCcYRjx5PmgF3IZ0zDuTlY8v4f2DcilOk0bPZIeD39lMmaLV+7HqLS42SRMwoGT
+ 1539  0CtKGUM1rzRXO7yx0Nfnd/md3cxtaB33f5n1CXECgYEA7Y6hUdBWuVMLTPQUviBB
+ 1540  Nvc0uUzX30Ce/ahXfMId5iEg8bVRDIdt5J/M+RPGFVM/o+k2KdYztLQrYNVo/Uz0
+ 1541  sJmIVRNZ5YGCJEnuOAcyik2z45OBcpnBzcp0H8udW/l1IaZvSRBbG1e6E+1vjW/q
+ 1542  a789k8lBos4uBnLZUkL5uFECgYBM4lTN+sEux2exTLbh0vObTVBAOTjVoVV5jkb/
+ 1543  lvWoxinI22UcztZ1rg7PPf3DFJQU3JLR2C702edS2LYlNHFjzXGpIZUBVnbN0KF5
+ 1544  Pe+kqmFb+jfA/L6vwf/IBr0jFA6W3gl6kCNExFyr+5A4q02epkeRSsbyzMNkFDos
+ 1545  617BAQKBgHnARKThXavThxlQGg17ABPys438iddsgNdTQKsuFjV2RRcFtR/mONA5
+ 1546  VK1XzIfBqvh3zKbm5lPPNRssUA5Ju+Pf3vcwdr3ZaCWoVQa2EQmf80ntir3SaK1+
+ 1547  nCcu+sxlklt0CrR7fhmRMeWYW4KHOwgCKSoJZo6qEx+HrIbnmHP4
+ 1548  -----END RSA PRIVATE KEY-----
+ 1549  ls
+ 1550  nano ipvs-as-ca-cacert.pem
+ 1551  cat ipvs-as-cacert.pem 
+ 1552  nano ipvs-as-ca-c
+ 1553  nano ipvs-as-cacert.pem 
+ 1554  cat ipvs-as-ca-privkey.pem 
+ 1555  -----BEGIN RSA PRIVATE KEY-----
+ 1556  MIIEowIBAAKCAQEA3FlY+2q1c/tYWIW8YVOWS0yzcM97+vqkjTU9sD2jznYXCgIP
+ 1557  s/1ru5ZYd4hdHLjK/QN0ozuneppwS1qpLVsxQrm23nKyrykSynSk0agY819NUBt0
+ 1558  zjevpAfN/CDmOawEi9jpUQHgdubJ2fVRQQQN3hegKi6qow33F5FMsny//RQiMsRK
+ 1559  CAoKy+5luEzoKIpsAkPx6Ac8S4Bt4UjpE0z70/VToNLG6JAHCVAF8tRrA2elQjAt
+ 1560  /bCpRJH5EqjeR4+4uOxngBOOcAs6M2NfV0aS0DdapUvVGrEqnsO8FGKlmD6nT4rj
+ 1561  oy1FETW8H3F41zGTLAiw79TCU8HDKqzaeTGmIQIDAQABAoIBADg6xK5D6NIUDdNp
+ 1562  LU1Y2z2T8SaUi/rcAynVsExNLoP9NpvjMsanoNpZ33GBZuFxdrtiKl2NV4u95XIV
+ 1563  TJ66arOwWK4jbt2sCZOIeJbX4qYYZ85Nc108cKHXLAVvD9EfyHk3fTKi2/j7o/7u
+ 1564  zzFcK33FYaXiCsFZSvjEp2HU29lk1JIIWRELGqnQtQLrsxtT7DX4k6qBmrPg6ERq
+ 1565  uJ/sElbevVFLR+4DCsBMXpNps0zqJsOCy+D+jsMm/m84veJgSxhDaMZhTnk5kPqu
+ 1566  pPj5aVQyLIgq3ekxcu9BnyPQ/yRbyVUDWWRzJKbqhuirV47o5Zj3yqgEOL5m/9FY
+ 1567  xvkARAECgYEA97mj0jSjcn9xRMKiGvIHmQbMFjbn5e6uU2EkhbpELmqUlY0iNjPQ
+ 1568  rwxisYurOqykYdBGyqLV9EKPN1T9jgbHL8s+zUXZrEXyXIoZE1mrc2dvrVL5lbjf
+ 1569  SOkaaKTpXuSP5qES1l1OPpIRt8K3x0OECZIx8aHrM5jIqFDY/E6Aj7ECgYEA47Wb
+ 1570  fd2+9BFKJIRCb4wAiPz8o74FuZe6ti/Dci+h9rJJGuZumjzv8rmG6QKOiwpy38yh
+ 1571  NUCcYRjx5PmgF3IZ0zDuTlY8v4f2DcilOk0bPZIeD39lMmaLV+7HqLS42SRMwoGT
+ 1572  0CtKGUM1rzRXO7yx0Nfnd/md3cxtaB33f5n1CXECgYEA7Y6hUdBWuVMLTPQUviBB
+ 1573  Nvc0uUzX30Ce/ahXfMId5iEg8bVRDIdt5J/M+RPGFVM/o+k2KdYztLQrYNVo/Uz0
+ 1574  sJmIVRNZ5YGCJEnuOAcyik2z45OBcpnBzcp0H8udW/l1IaZvSRBbG1e6E+1vjW/q
+ 1575  a789k8lBos4uBnLZUkL5uFECgYBM4lTN+sEux2exTLbh0vObTVBAOTjVoVV5jkb/
+ 1576  lvWoxinI22UcztZ1rg7PPf3DFJQU3JLR2C702edS2LYlNHFjzXGpIZUBVnbN0KF5
+ 1577  Pe+kqmFb+jfA/L6vwf/IBr0jFA6W3gl6kCNExFyr+5A4q02epkeRSsbyzMNkFDos
+ 1578  617BAQKBgHnARKThXavThxlQGg17ABPys438iddsgNdTQKsuFjV2RRcFtR/mONA5
+ 1579  VK1XzIfBqvh3zKbm5lPPNRssUA5Ju+Pf3vcwdr3ZaCWoVQa2EQmf80ntir3SaK1+
+ 1580  nCcu+sxlklt0CrR7fhmRMeWYW4KHOwgCKSoJZo6qEx+HrIbnmHP4
+ 1581  -----END RSA PRIVATE KEY-----
+ 1582  ls
+ 1583  nano /etc/apache2/sites-available/horizon.conf 
+ 1584  nano /etc/apache2/sites-available/keystone.conf 
+ 1585  systemctl restart apache2
+ 1586  ls /etc/ssl
+ 1587  ls
+ 1588  nano /etc/nova/nova.conf 
+ 1589  systemctl restart nova-*
+ 1590  . admin-openrc 
+ 1591  openstack endpoint list
+ 1592  nano /etc/nova/nova.conf 
+ 1593  systemctl restart nova-*
+ 1594  nano /etc/nova/nova.conf 
+ 1595  cd /etc/ssl
+ 1596  ls -a
+ 1597  ls -l
+ 1598  cd certs
+ 1599  ls -l
+ 1600  cd ..
+ 1601  ls
+ 1602  ls -l
+ 1603  chown nova opens-key.pem
+ 1604  chown nova openstack-key.pem
+ 1605  ls -l
+ 1606  chown nova openstack-cert.pem 
+ 1607  ls -l
+ 1608  systemctl restart nova-*
+ 1609  cd ..
+ 1610  cd ~
+ 1611  ls
+ 1612  openstack . a
+ 1613  . admin-openrc 
+ 1614  openstack endpoint list
+ 1615  openstack endpoint set --url https://controller:8774/v2.1 1ffe0b326b4041cf9bd6cd704c9e5501
+ 1616  openstack endpoint set --url https://controller:8774/v2.1 aaa83a7f1d2f4605bea032d18d07165c
+ 1617  openstack endpoint set --url https://controller:8774/v2.1 c4d2898652304526a7429b9dfe374302
+ 1618  openstack endpoint list
+ 1619  nano /var/log/nova/nova-compute.log
+ 1620  nano /var/log/nova/nova-api.log
+ 1621  nano /var/log/nova/nova-conductor.log
+ 1622  nano /var/log/nova/nova-novncproxy.log
+ 1623  nano /var/log/apache2/openstack_dashboard-error.log
+ 1624  nano /etc/ssl/
+ 1625  cd /etc/ssl
+ 1626  ls
+ 1627  cp ipvs-as-cacert.pem /etc/pki/ca-trust/source/anchors/
+ 1628  ls
+ 1629  cp ipvs-as-ca-privkey.pem /usr/local/share/ca-certificates/ipvs-as-ca-privkey.crt
+ 1630  ls /usr/local/share/ca-certificates/
+ 1631  update-ca-certificates 
+ 1632  systemctl restart nova-*
+ 1633  openstack endpoint list
+ 1634  cd ~
+ 1635  openstack endpoint set --url http://controller:8774/v2.1 1ffe0b326b4041cf9bd6cd704c9e5501
+ 1636  openstack endpoint set --url http://controller:8774/v2.1 aaa83a7f1d2f4605bea032d18d07165c
+ 1637  openstack endpoint set --url http://controller:8774/v2.1 c4d2898652304526a7429b9dfe374302
+ 1638  openstack endpoint list
+ 1639  nano /etc/nova/nova.conf
+ 1640  systemctl restart nova-*
+ 1641  . admin-openrc 
+ 1642  openstack endpoint list
+ 1643  . demo-openrc 
+ 1644  openstack endpoint list
+ 1645  nano demo-openrc 
+ 1646  . demo-openrc 
+ 1647  openstack endpoint list
+ 1648  nano /etc/nova/nova.conf 
+ 1649  nano /var/log/nova/nova-compute.log
+ 1650  lsblk
+ 1651  cd ~
+ 1652  ls
+ 1653  nano /var/log/nova/nova-conductor.log
+ 1654  tail /var/log/nova/nova-conductor.log
+ 1655  grep /var/log/nova/nova-conductor.log -e "ERROR" | tail
+ 1656  grep /var/log/nova/nova-conductor.log -e "ERROR"
+ 1657  2022-10-25 12:48:58.954 2308137 ERROR nova.scheduler.utils [req-ce8a198f-4e7c-4dfc-9b9b-8743aebe2fd4 fa835cbb7167409dadff7ed5b1a67083 622e9aacd6434885b162d020a7745472 - default default] [instance: a51a9e7e-a746-4e33-a301-0409ecbbde9a] Error from last host: astplsm02 (node astplsm02.informatik.uni-stuttgart.de): ['Traceback (most recent call last):\n', '  File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 2489, in _build_and_run_instance\n    self.driver.spawn(context, instance, image_meta,\n', '  File "/usr/lib/python3/dist-packages/nova/virt/libvirt/driver.py", line 4329, in spawn\n    xml = self._get_guest_xml(context, instance, network_info,\n', '  File "/usr/lib/python3/dist-packages/nova/virt/libvirt/driver.py", line 7288, in _get_guest_xml\n    network_info_str = str(network_info)\n', '  File "/usr/lib/python3/dist-packages/nova/network/model.py", line 620, in __str__\n    return self._sync_wrapper(fn, *args, **kwargs)\n', '  File "/usr/lib/python3/dist-packages/nova/network/model.py", line 603, in _sync_wrapper\n    self.wait()\n', '  File "/usr/lib/python3/dist-packages/nova/network/model.py", line 635, in wait\n    self[:] = self._gt.wait()\n', '  File "/usr/lib/python3/dist-packages/eventlet/greenthread.py", line 181, in wait\n    return self._exit_event.wait()\n', '  File "/usr/lib/python3/dist-packages/eventlet/event.py", line 132, in wait\n    current.throw(*self._exc)\n', '  File "/usr/lib/python3/dist-packages/eventlet/greenthread.py", line 221, in main\n    result = function(*args, **kwargs)\n', '  File "/usr/lib/python3/dist-packages/nova/utils.py", line 656, in context_wrapper\n    return func(*args, **kwargs)\n', '  File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 1876, in _allocate_network_async\n    raise e\n', '  File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 1854, in _allocate_network_async\n    nwinfo = self.network_api.allocate_for_instance(\n', '  File "/usr/lib/python3/dist-packages/nova/network/neutron.py", line 1177, in allocate_for_instance\n    security_group_ids = self._process_security_groups(\n', '  File "/usr/lib/python3/dist-packages/nova/network/neutron.py", line 863, in _process_security_groups\n    raise exception.SecurityGroupNotFound(\n', 'nova.exception.SecurityGroupNotFound: Security group 0d3fe37c-842b-4a85-80bf-adfd938e9a8a not found.\n', '\nDuring handling of the above exception, another exception occurred:\n\n', 'Traceback (most recent call last):\n', '  File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 2312, in _do_build_and_run_instance\n    self._build_and_run_instance(context, instance, image,\n', '  File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 2585, in _build_and_run_instance\n    raise exception.RescheduledException(\n', 'nova.exception.RescheduledException: Build of instance a51a9e7e-a746-4e33-a301-0409ecbbde9a was re-scheduled: Security group 0d3fe37c-842b-4a85-80bf-adfd938e9a8a not found.\n']
+ 1658  2022-10-25 12:48:59.177 2308137 ERROR nova.volume.cinder [req-ce8a198f-4e7c-4dfc-9b9b-8743aebe2fd4 fa835cbb7167409dadff7ed5b1a67083 622e9aacd6434885b162d020a7745472 - default default] Show attachment failed for attachment 78845c63-3c58-488d-b3f7-c7866e91f7fd. Error: Volume attachment could not be found with filter: attachment_id = 78845c63-3c58-488d-b3f7-c7866e91f7fd. (HTTP 404) (Request-ID: req-e3f270f6-e53b-4529-ab4c-f4137770288b) Code: 404: cinderclient.exceptions.NotFound: Volume attachment could not be found with filter: attachment_id = 78845c63-3c58-488d-b3f7-c7866e91f7fd. (HTTP 404) (Request-ID: req-e3f270f6-e53b-4529-ab4c-f4137770288b)
+ 1659  2022-10-25 12:49:03.723 2308240 ERROR nova.scheduler.utils [req-ce8a198f-4e7c-4dfc-9b9b-8743aebe2fd4 fa835cbb7167409dadff7ed5b1a67083 622e9aacd6434885b162d020a7745472 - default default] [instance: a51a9e7e-a746-4e33-a301-0409ecbbde9a] Error from last host: asflex12 (node asflex12.informatik.uni-stuttgart.de): ['Traceback (most recent call last):\n', '  File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 2489, in _build_and_run_instance\n    self.driver.spawn(context, instance, image_meta,\n', '  File "/usr/lib/python3/dist-packages/nova/virt/libvirt/driver.py", line 4329, in spawn\n    xml = self._get_guest_xml(context, instance, network_info,\n', '  File "/usr/lib/python3/dist-packages/nova/virt/libvirt/driver.py", line 7288, in _get_guest_xml\n    network_info_str = str(network_info)\n', '  File "/usr/lib/python3/dist-packages/nova/network/model.py", line 620, in __str__\n    return self._sync_wrapper(fn, *args, **kwargs)\n', '  File "/usr/lib/python3/dist-packages/nova/network/model.py", line 603, in _sync_wrapper\n    self.wait()\n', '  File "/usr/lib/python3/dist-packages/nova/network/model.py", line 635, in wait\n    self[:] = self._gt.wait()\n', '  File "/usr/lib/python3/dist-packages/eventlet/greenthread.py", line 181, in wait\n    return self._exit_event.wait()\n', '  File "/usr/lib/python3/dist-packages/eventlet/event.py", line 132, in wait\n    current.throw(*self._exc)\n', '  File "/usr/lib/python3/dist-packages/eventlet/greenthread.py", line 221, in main\n    result = function(*args, **kwargs)\n', '  File "/usr/lib/python3/dist-packages/nova/utils.py", line 656, in context_wrapper\n    return func(*args, **kwargs)\n', '  File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 1876, in _allocate_network_async\n    raise e\n', '  File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 1854, in _allocate_network_async\n    nwinfo = self.network_api.allocate_for_instance(\n', '  File "/usr/lib/python3/dist-packages/nova/network/neutron.py", line 1177, in allocate_for_instance\n    security_group_ids = self._process_security_groups(\n', '  File "/usr/lib/python3/dist-packages/nova/network/neutron.py", line 863, in _process_security_groups\n    raise exception.SecurityGroupNotFound(\n', 'nova.exception.SecurityGroupNotFound: Security group 0d3fe37c-842b-4a85-80bf-adfd938e9a8a not found.\n', '\nDuring handling of the above exception, another exception occurred:\n\n', 'Traceback (most recent call last):\n', '  File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 2312, in _do_build_and_run_instance\n    self._build_and_run_instance(context, instance, image,\n', '  File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 2585, in _build_and_run_instance\n    raise exception.RescheduledException(\n', 'nova.exception.RescheduledException: Build of instance a51a9e7e-a746-4e33-a301-0409ecbbde9a was re-scheduled: Security group 0d3fe37c-842b-4a85-80bf-adfd938e9a8a not found.\n']
+ 1660  nano /var/log/nova/nova-scheduler.log
+ 1661  nano /var/log/nova/nova-conductor.log
+ 1662  nano /var/log/cinder/cinder-scheduler.log
+ 1663  nano /var/log/cinder/cinder-volume.log
+ 1664  grep /var/log/cinder/cinder-volume.log -e "ERROR"
+ 1665  . admin-openrc 
+ 1666  openstack security group list
+ 1667  sudo du -shc /var/*
+ 1668  lsblk
+ 1669  sudo du -shc /tmp/*
+ 1670  lsblk
+ 1671  cinder get-pools --detail
+ 1672  +-----------------------------+--------------------------------------------+
+ 1673  | Property                    | Value                                      |
+ 1674  +-----------------------------+--------------------------------------------+
+ 1675  | QoS_support                 | False                                      |
+ 1676  | allocated_capacity_gb       | 313                                        |
+ 1677  | backend_state               | up                                         |
+ 1678  | cacheable                   | True                                       |
+ 1679  | driver_version              | 3.0.0                                      |
+ 1680  | filter_function             | None                                       |
+ 1681  | free_capacity_gb            | 6693.65                                    |
+ 1682  | goodness_function           | None                                       |
+ 1683  | location_info               | LVMVolumeDriver:astplsm01:vg_data01:thin:0 |
+ 1684  | max_over_subscription_ratio | 20.0                                       |
+ 1685  | multiattach                 | True                                       |
+ 1686  | name                        | astplsm01@lvm#LVM                          |
+ 1687  | pool_name                   | LVM                                        |
+ 1688  | provisioned_capacity_gb     | 361.0                                      |
+ 1689  | reserved_percentage         | 0                                          |
+ 1690  | storage_protocol            | iSCSI                                      |
+ 1691  | thick_provisioning_support  | False                                      |
+ 1692  | thin_provisioning_support   | True                                       |
+ 1693  | timestamp                   | 2022-10-25T11:38:44.252972                 |
+ 1694  | total_capacity_gb           | 6796.27                                    |
+ 1695  | total_volumes               | 23                                         |
+ 1696  | vendor_name                 | Open Source                                |
+ 1697  | volume_backend_name         | LVM                                        |
+ 1698  +-----------------------------+--------------------------------------------+
+ 1699  nano /var/log/nova/nova-conductor.log
+ 1700  cd /usr/share/horizon/horizon/
+ 1701  nano login.html
+ 1702  ls
+ 1703  cd static
+ 1704  ls
+ 1705  cd ..
+ 1706  cd template
+ 1707  cd templates
+ 1708  ls
+ 1709  nano auth
+ 1710  cd auth/
+ 1711  ls
+ 1712  nano login.html
+ 1713  systemctl restart apache2
+ 1714  ls
+ 1715  cd ..
+ 1716  ls
+ 1717  ./manage.py collectstatic
+ 1718  cd ..
+ 1719  ls
+ 1720  ./manage.py collectstatic
+ 1721  ./manage.py compress
+ 1722  nano ./horizon/templates/auth/login.html 
+ 1723  ./manage.py collectstatic
+ 1724  ./manage.py compress
+ 1725  nano ./horizon/templates/auth/login.html 
+ 1726  ./manage.py collectstatic
+ 1727  ./manage.py compress
+ 1728  ls
+ 1729  cd os_wiki/
+ 1730  ls
+ 1731  cd ..
+ 1732  ls
+ 1733  docker list
+ 1734  docker --help
+ 1735  docker container list
+ 1736  ls
+ 1737  cd os_wiki/
+ 1738  ls
+ 1739  cd ..
+ 1740  ls
+ 1741  docker container list
+ 1742  docker ps -a | grep 5f38bf00a441
+ 1743  locate docker-compose.yml
+ 1744  nano /var/lib/docker/
+ 1745  cd /var/lib/docker/
+ 1746  ls
+ 1747  cclear
+ 1748  clear
+ 1749  docker container list
+ 1750  docker-compose run 5f38bf00a441 ls
+ 1751  docker exec -it 5f38bf00a441 ls
+ 1752  docker exec -it 5f38bf00a441 cd data
+ 1753  docker exec -it 5f38bf00a441 ls data
+ 1754  docker exec -it 5f38bf00a441 ls data/content
+ 1755  docker exec -it 5f38bf00a441 nano config.yml
+ 1756  docker exec -it 5f38bf00a441 vim config.yml
+ 1757  docker exec -it 5f38bf00a441 vi config.yml
+ 1758  docker cp /etc/ssl/openstack-cert.pem 5f38bf00a441:.
+ 1759  docker exec -it 5f38bf00a441 ls
+ 1760  docker exec -it 5f38bf00a441 pwd
+ 1761  docker cp /etc/ssl/openstack-cert.pem 5f38bf00a441:/wiki
+ 1762  docker exec -it 5f38bf00a441 ls
+ 1763  docker cp /etc/ssl/openstack-key.pem 5f38bf00a441:/wiki
+ 1764  docker exec -it 5f38bf00a441 ls
+ 1765  docker exec -it 5f38bf00a441 vi config.yml
+ 1766  docker container list
+ 1767  docker stop wiki
+ 1768  docker rm wiki
+ 1769  docker create --name=wiki -e DB_TYPE=postgres -e DB_HOST=db -e DB_PORT=5432 -e DB_PASS_FILE=/etc/wiki/.db-secret -v /etc/wiki/.db-secret:/etc/wiki/.db-secret:ro -e DB_USER=wiki -e DB_NAME=wiki -e UPGRADE_COMPANION=1 --restart=unless-stopped -h wiki --network=wikinet -p 80:3000 -p 443:3443 ghcr.io/requarks/wiki:2
+ 1770  docker start wiki
+ 1771  docker container list
+ 1772  docker image list
+ 1773  docker start wiki
+ 1774  docker rm wiki
+ 1775  docker create --name=wiki -e DB_TYPE=postgres -e DB_HOST=db -e DB_PORT=5432 -e DB_PASS_FILE=/etc/wiki/.db-secret -v /etc/wiki/.db-secret:/etc/wiki/.db-secret:ro -e DB_USER=wiki -e DB_NAME=wiki -e UPGRADE_COMPANION=1 --restart=unless-stopped -h wiki --network=wikinet -p 3000:3000 -p 3443:3443 ghcr.io/requarks/wiki:2
+ 1776  docker start wiki
+ 1777  nano /usr/share/horizon/horizon/templates/auth/login.html 
+ 1778  pwd
+ 1779  docker container list
+ 1780  ls /etc/ssl
+ 1781  clear
+ 1782  docker container list
+ 1783  docker stop wiki
+ 1784  docker rm wiki
+ 1785  touch wikijs_config
+ 1786  nano wikijs_config 
+ 1787  ls 
+ 1788  ls /etc/ssl
+ 1789  nano wikijs_config 
+ 1790  mv wikijs_config wikijs_config.yaml
+ 1791  mv wikijs_config wikijs_config.yml
+ 1792  mv wikijs_config.yaml wikijs_config.yml
+ 1793  docker run -d -p 3000:3000 --name wiki --restart unless-stopped -v wikijs_config.yml:/wiki/config.yml ghcr.io/requarks/wiki:2
+ 1794  ld
+ 1795  ls
+ 1796  docker run -d -p 3000:3000 --name wiki --restart unless-stopped -v ./wikijs_config.yml:/wiki/config.yml ghcr.io/requarks/wiki:2
+ 1797  pwd
+ 1798  ls
+ 1799  docker run -d -p 3000:3000 --name wiki --restart unless-stopped -v /root/wikijs_config.yml:/wiki/config.yml ghcr.io/requarks/wiki:2
+ 1800  docker container list
+ 1801  nano wikijs_config.yml 
+ 1802  docker stop wiki
+ 1803  docker remove wiki
+ 1804  docker delete wiki
+ 1805  docker rm wiki
+ 1806  docker container list
+ 1807  docker run -d -p 3000:3000 --name wiki --restart unless-stopped -e "DB_TYPE=postgres" -e "DB_HOST=db" -e "DB_PORT=5432" -e "DB_USER=wikijs" -e "DB_PASS=wikijsrocks" -e "DB_NAME=wiki" ghcr.io/requarks/wiki:2
+ 1808  docker container list
+ 1809  docker stop wiki
+ 1810  docker rm wiki
+ 1811  docker create --name=wiki -e DB_TYPE=postgres -e DB_HOST=db -e DB_PORT=5432 -e DB_PASS_FILE=/etc/wiki/.db-secret -v /etc/wiki/.db-secret:/etc/wiki/.db-secret:ro -e DB_USER=wiki -e DB_NAME=wiki -e UPGRADE_COMPANION=1 --restart=unless-stopped -h wiki --network=wikinet -p 3000:3000 -p 3443:3443 ghcr.io/requarks/wiki:2
+ 1812  docker container list
+ 1813  docker run wiki
+ 1814  docker image list
+ 1815  docker run wiki
+ 1816  docker start wiki
+ 1817  docker stop wiki
+ 1818  docker rm wiki
+ 1819  docker create --name=wiki -e DB_TYPE=postgres -e DB_HOST=db -e DB_PORT=5432 -e DB_PASS_FILE=/etc/wiki/.db-secret -v /etc/wiki/.db-secret:/etc/wiki/.db-secret:ro -e DB_USER=wiki -e DB_NAME=wiki -e UPGRADE_COMPANION=1 --restart=unless-stopped -h wiki --network=wikinet -v /root/wikijs_config.yml:/wiki/config.yml -p 3000:3000 -p 3443:3443 ghcr.io/requarks/wiki:2
+ 1820  docker start wiki
+ 1821  docker stop wiki
+ 1822  docker rm wiki
+ 1823  docker create --name=wiki -e DB_TYPE=postgres -e DB_HOST=db -e DB_PORT=5432 -e DB_PASS_FILE=/etc/wiki/.db-secret -v /etc/wiki/.db-secret:/etc/wiki/.db-secret:ro -e DB_USER=wiki -e DB_NAME=wiki -e UPGRADE_COMPANION=1 --restart=unless-stopped -h wiki --network=wikinet -p 3000:3000 -p 3443:3443 ghcr.io/requarks/wiki:2
+ 1824  docker start wiki
+ 1825  cd /etc/apache2/sites-available/
+ 1826  nano horizon.conf 
+ 1827  systemctl restart apache2
+ 1828  systemctl status apache2.service
+ 1829  nano horizon.conf 
+ 1830  ls
+ 1831  cd ..
+ 1832  ls
+ 1833  nano apache2.conf 
+ 1834  a2enmod proy
+ 1835  a2enmod proyy
+ 1836  a2enmod proxy
+ 1837  To activate the new configuration, you need to run:
+ 1838  a2enmod proxy_http
+ 1839  a2enmod proxy_ajp
+ 1840  a2enmod rewrite
+ 1841  a2enmod deflate
+ 1842  a2enmod headers
+ 1843  a2enmod proxy_balancer
+ 1844  a2enmod proxy_html
+ 1845  systemctl restart apache2
+ 1846  cd sites-available/
+ 1847  nano horizon.conf 
+ 1848  systemctl restart apache2
+ 1849  nano horizon.conf 
+ 1850  systemctl restart apache2
+ 1851  nano horizon.conf 
+ 1852  systemctl restart apache2
+ 1853  nano /var/log/neutron/neutron-dhcp-agent.log
+ 1854  nano /var/log/neutron/neutron-dhcp-agent.log.1
+ 1855  nano /var/log/neutron/neutron-dhcp-agent.log.2.gz 
+ 1856  nano /var/log/neutron/neutron-dhcp-agent.log
+ 1857  nano /var/log/nova/nova-scheduler.log
+ 1858  nano /var/log/nova/nova-scheduler.log.1
+ 1859  nano /var/log/nova/nova-conductor.log
+ 1860  nano /var/log/nova/nova-conductor.log.1
+ 1861  nano /var/log/nova/nova-compute.log
+ 1862  cd /var/lib/libvirt/images/u2204d01.qcow2
+ 1863  /var/lib/libvirt/images/
+ 1864  cd /var/lib/libvirt/images/
+ 1865  ls
+ 1866  ls -a
+ 1867  ls -d
+ 1868  ls -aw
+ 1869  ls -a
+ 1870  ls -l
+ 1871  chown nova u2204d01.qcow2 
+ 1872  ls -l
+ 1873  chown nova:nova  u2204d01.qcow2 
+ 1874  ls -a
+ 1875  ls l
+ 1876  ls -l
+ 1877  nano /var/log/neutron/neutron-dhcp-agent.log
+ 1878  nano /var/log/neutron/neutron-linuxbridge-agent.log
+ 1879  nano /var/log/neutron/neutron-l3-agent.log
+ 1880  ls -l
+ 1881  nano /var/log/nova/nova-compute.log
+ 1882  nano /usr/share/horizon/horizon/templates/auth/login.html 
+ 1883  cd /etc/ssl
+ 1884  ls
+ 1885  cd /etc/ssh
+ 1886  ls
+ 1887  cd /etc/ssl
+ 1888  ls
+ 1889  nano /var/log/nova/nova-compute.log
+ 1890  nano /var/log/nova/nova-api.log
+ 1891  nano /var/log/nova/nova-conductor.log
+ 1892  cat /var/log/nova/nova-conductor.log
+ 1893  ls
+ 1894  . admin-openrc 
+ 1895  openstack server list
+ 1896  . admin-openrc 
+ 1897  openstack server list
+ 1898  nano admin-openrc 
+ 1899  systemctl stop nova-compute
+ 1900  date
+ 1901  shutdown -h 11:55 "Maintenance, system will shut down at 11:55"
+ 1902  date
+ 1903  poweroff 
+ 1904  lsblk 
+ 1905  nano /var/log/neutron/neutron-dhcp-agent.log
+ 1906  nano /var/log/neutron/neutron-linuxbridge-cleanup.log
+ 1907  ip a
+ 1908  nano /var/log/nova/nova-compute.log
+ 1909  openstack network agent list
+ 1910  . admin-openrc 
+ 1911  openstack network agent list
+ 1912  nano admin-openrc 
+ 1913  openstack network agent list
+ 1914  . admin-openrc 
+ 1915  openstack network agent list
+ 1916  systemctl status nova-compute
+ 1917  openstack network agent list
+ 1918  ip a
+ 1919  ip a | grep -e "3c:ec:ef"
+ 1920  ip a | grep -e "3c:ec:ef" -c 3
+ 1921  ip a | grep -C 3 -e "3c:ec:ef"
+ 1922  nano /etc/libvirt/qemu.conf 
+ 1923  systemctl stop libvirtd.service
+ 1924  nano /etc/libvirt/qemu.conf 
+ 1925  systemctl start libvirtd.service
+ 1926  nano /etc/nova/nova-compute.conf 
+ 1927  nano /var/log/nova/nova-compute.log
+ 1928  openstack server list
+ 1929  openstack network list
+ 1930  openstack server add fixed ip tim-test3 external
+ 1931  ping 192.168.221.250
+ 1932  nano /var/log/neutron/neutron-dhcp-agent.log
+ 1933  nano /var/log/neutron/neutron-linuxbridge-
+ 1934  nano /var/log/neutron/neutron-linuxbridge-agent.log
+ 1935  nano /var/log/neutron/neutron-l3-agent.log
+ 1936  nano /var/log/neutron/neutron-server.log
+ 1937  ping 192.168.221.250
+ 1938  ping 192.168.221.209
+ 1939  nano /var/log/libvirt/qemu/instance-00000048.log 
+ 1940  nano /var/log/nova/nova-compute.log
+ 1941  nano /var/log/nova/nova-api.log
+ 1942  nano /var/log/nova/nova-conductor.log
+ 1943  nano /var/log/glance/
+ 1944  nano /var/log/glance/glance-api.log
+ 1945  nano /var/log/nova/nova-compute.log
+ 1946  nano /var/log/cinder/cinder-volume.log
+ 1947  nano /var/log/cinder/cinder-scheduler.log
+ 1948  nano /var/log/cinder/cinder-volume.log
+ 1949  nano /var/log/nova/nova-compute.log
+ 1950  nano /etc/cinder/cinder.conf
+ 1951  Invalid volume: Volume 4a00e585-77a7-4f28-9a97-ab0c40ec8f51 status must be available (HTTP 400) (Request-ID: req-3f951dcd-b783-4a14-9596-ef91d6b94404)
+ 1952  pcs resource restart openstack-cinder-volume
+ 1953  root@astplsm01:~# nano /etc/cinder/cinder.conf
+ 1954  systemctl restart openstack-cinder-scheduler
+ 1955  systemctl restart cinder-volume.service 
+ 1956  systemctl restart cinder-scheduler.service 
+ 1957  ping 192.168.221.133
+ 1958  ssh cirros@192.168.221.133
+ 1959  lsblk 
+ 1960  nano /var/log/nova/nova-compute.log
+ 1961  nano /var/log/neutron/neutron-server.log
+ 1962  nano /var/log/neutron/neutron-linuxbridge-agent.log
+ 1963  nano /var/log/neutron/neutron-l3-agent.log
+ 1964  ping 192.168.221.176
+ 1965  ping 192.168.221.226
+ 1966  nano /var/log/nova/nova-compute.log
+ 1967  . admin-openrc 
+ 1968  neutron router-list
+ 1969  neutron router-show  floating-ip-router
+ 1970  nano /var/log/nova/nova-compute.log
+ 1971  nano /var/log/nova/nova-api.log
+ 1972  nano /var/log/nova/nova-conductor.log
+ 1973  nano /var/log/nova/nova-scheduler.log
+ 1974  neutron subnet-list
+ 1975  neutron subnet-show internal-sub
+ 1976  neutron subnet-show new-internal-sub
+ 1977  ping 192.168.221.133
+ 1978  ssh cirros@192.168.221.133
+ 1979  nano /var/log/neutron/neutron-server.log
+ 1980  less /var/log/neutron/neutron-server.log
+ 1981  less /var/log/neutron/neutron-metadata-agent.log
+ 1982  less /var/log/neutron/neutron-l3-agent.log
+ 1983  less /var/log/neutron/neutron-dhcp-agent.log
+ 1984  . admin-openrc 
+ 1985  openstack quota show Pascal H.
+ 1986  openstack projectl ist
+ 1987  openstack project list
+ 1988  openstack quota show 622e9aacd6434885b162d020a7745472
+ 1989  nano /usr/share/horizon/horizon/templates/auth/login.html 
+ 1990  openstack quota set --ram 80000 622e9aacd6434885b162d020a7745472
+ 1991  ls
+ 1992  nano /usr/share/horizon/horizon/templates/auth/login.html 
+ 1993  . admin-openrc 
+ 1994  openstack project list
+ 1995  openstack quota show 622e9aacd6434885b162d020a7745472
+ 1996  openstack quota set cores 50 622e9aacd6434885b162d020a7745472
+ 1997  openstack quota set --cores 50 622e9aacd6434885b162d020a7745472
+ 1998  openstack quota set --ram 150000 622e9aacd6434885b162d020a7745472
+ 1999  openstack quota set --gigabytes 800 622e9aacd6434885b162d020a7745472
+ 2000  history 
+ 2001  history > sm01.root.hist.log

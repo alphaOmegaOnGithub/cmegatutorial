@@ -1,0 +1,2320 @@
+Script started on 2022-08-17 18:20:14+02:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="147" LINES="43"]
+0;schneiti@astplsm01: ~schneiti@astplsm01:~$ su tsudo -i
+[sudo] password for schneiti: 
+0;root@astplsm01: ~root@astplsm01:~# ip route show
+
+default via 129.69.209.254 dev eno1np0 onlink 
+129.69.209.0/24 dev eno1np0 proto kernel scope link src 129.69.209.168 
+192.168.122.0/24 dev virbr0 proto kernel scope link src 192.168.122.1 linkdown 
+192.168.209.128/25 dev eno2np1.137 proto kernel scope link src 192.168.209.143 
+
+0;root@astplsm01: ~root@astplsm01:~# ip route list
+default via 129.69.209.254 dev eno1np0 onlink 
+129.69.209.0/24 dev eno1np0 proto kernel scope link src 129.69.209.168 
+192.168.122.0/24 dev virbr0 proto kernel scope link src 192.168.122.1 linkdown 
+192.168.209.128/25 dev eno2np1.137 proto kernel scope link src 192.168.209.143 
+
+0;root@astplsm01: ~
+root@astplsm01:~# ip route add 192.168.221.128/26 5 dev eno1np eno2np1.139 1P
+
+0;root@astplsm01: ~root@astplsm01:~# K
+route -n
+Kernel IP routing table
+Destination Gateway Genmask Flags Metric RefUse Iface
+0.0.0.0 129.69.209.2540.0.0.0 UG000 eno1np0
+129.69.209.00.0.0.0 255.255.255.0 U 000 eno1np0
+192.168.122.0 0.0.0.0 255.255.255.0 U 000 virbr0
+192.168.209.128 0.0.0.0 255.255.255.128 U 000 eno2np1.137
+192.168.221.128 0.0.0.0 255.255.255.128 U 000 eno2np1.139
+0;root@astplsm01: ~root@astplsm01:~# openstack server so how provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+Missing value auth-url required for auth plugin password
+
+0;root@astplsm01: ~root@astplsm01:~# . demo-openrc 
+openstack server show provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++-----------------------------+----------------------------------------------------------+
+| Field | Value|
++-----------------------------+----------------------------------------------------------+
+| OS-DCF:diskConfig | MANUAL |
+| OS-EXT-AZ:availability_zone | nova |
+| OS-EXT-STS:power_state| Running|
+| OS-EXT-STS:task_state | None |
+| OS-EXT-STS:vm_state | active |
+| OS-SRV-USG:launched_at| 2022-08-17T15:50:22.000000 |
+| OS-SRV-USG:terminated_at| None |
+| accessIPv4||
+| accessIPv6||
+| addresses | provider=192.168.221.209 |
+| config_drive||
+| created | 2022-08-17T15:50:17Z |
+| flavor| m1.nano (0)|
+| hostId| 7d202bdf5a2861efda620dea606d1378ca9c613d4beea7495f7ac096 |
+| id| 944f6f9e-b31d-4662-a86b-b5d0fa0c25b7 |
+| image | cirros (567f2184-add7-4430-b247-a6a8b95dd56b)|
+| key_name| mykey|
+| name| provider-instance|
+| progress| 0|
+| project_id| 60d090e9f52e46f9bb19363b484115a6 |
+| properties||
+| security_groups | name='default' |
+| status| ACTIVE |
+| updated | 2022-08-17T15:50:22Z |
+| user_id | c68416ac784a4d5e8158d196167a53cd |
+| volumes_attached||
++-----------------------------+----------------------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kping 192.18 68.221.209
+PING 192.168.221.209 (192.168.221.209) 56(84) bytes of data.
+From 129.69.209.168 icmp_seq=1 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=2 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=3 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=4 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=5 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=6 Destination Host Unreachable
+^C
+--- 192.168.221.209 ping statistics ---
+7 packets transmitted, 0 received, +6 errors, 100% packet loss, time 6135ms
+pipe 4
+0;root@astplsm01: ~root@astplsm01:~# route -n
+Kernel IP routing table
+Destination Gateway Genmask Flags Metric RefUse Iface
+0.0.0.0 129.69.209.2540.0.0.0 UG000 eno1np0
+129.69.209.00.0.0.0 255.255.255.0 U 000 eno1np0
+192.168.122.0 0.0.0.0 255.255.255.0 U 000 virbr0
+192.168.209.128 0.0.0.0 255.255.255.128 U 000 eno2np1.137
+192.168.221.128 0.0.0.0 255.255.255.128 U 000 eno2np1.139
+0;root@astplsm01: ~root@astplsm01:~# openstack network show provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++---------------------------+--------------------------------------+
+| Field | Value|
++---------------------------+--------------------------------------+
+| admin_state_up| UP |
+| availability_zone_hints ||
+| availability_zones| nova |
+| created_at| 2022-08-17T15:27:20Z |
+| description ||
+| dns_domain| None |
+| id| 7b1c71d4-7a01-4f0e-a965-b7d23f2302ce |
+| ipv4_address_scope| None |
+| ipv6_address_scope| None |
+| is_default| None |
+| is_vlan_transparent | None |
+| mtu | 1500 |
+| name| provider |
+| port_security_enabled | True |
+| project_id| 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| provider:network_type | None |
+| provider:physical_network | None |
+| provider:segmentation_id| None |
+| qos_policy_id | None |
+| revision_number | 2|
+| router:external | External |
+| segments| None |
+| shared| True |
+| status| ACTIVE |
+| subnets | bc79f4df-76be-4b67-9ddf-480df07959be |
+| tags||
+| updated_at| 2022-08-17T15:38:29Z |
++---------------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Knwroqetow openstack net network list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+----------+--------------------------------------+
+| ID | Name | Subnets|
++--------------------------------------+----------+--------------------------------------+
+| 7b1c71d4-7a01-4f0e-a965-b7d23f2302ce | provider | bc79f4df-76be-4b67-9ddf-480df07959be |
++--------------------------------------+----------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# openstack subnetwork list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+openstack: 'subnetwork list' is not an openstack command. See 'openstack --help'.
+Did you mean one of these?
+network agent add network
+network agent add router
+network agent delete
+network agent list
+network agent remove network
+network agent remove router
+network agent set
+network agent show
+network auto allocated topology create
+network auto allocated topology delete
+network create
+network delete
+network flavor add profile
+network flavor create
+network flavor delete
+network flavor list
+network flavor profile create
+network flavor profile delete
+network flavor profile list
+network flavor profile set
+network flavor profile show
+network flavor remove profile
+network flavor set
+network flavor show
+network l3 conntrack helper create
+network l3 conntrack helper delete
+network l3 conntrack helper list
+network l3 conntrack helper set
+network l3 conntrack helper show
+network list
+network log create
+network log delete
+network log list
+network log set
+network log show
+network loggable resources list
+network meter create
+network meter delete
+network meter list
+network meter rule create
+network meter rule delete
+network meter rule list
+network meter rule show
+network meter show
+network onboard subnets
+network qos policy create
+network qos policy delete
+network qos policy list
+network qos policy set
+network qos policy show
+network qos rule create
+network qos rule delete
+network qos rule list
+network qos rule set
+network qos rule show
+network qos rule type list
+network qos rule type show
+network rbac create
+network rbac delete
+network rbac list
+network rbac set
+network rbac show
+network segment create
+network segment delete
+network segment list
+network segment range create
+network segment range delete
+network segment range list
+network segment range set
+network segment range show
+network segment set
+network segment show
+network service provider list
+network set
+network show
+network subport list
+network trunk create
+network trunk delete
+network trunk list
+network trunk set
+network trunk show
+network trunk unset
+network unset
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack trunk listnetwork trunk list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+The resource could not be found.
+Neutron server returns request_ids: ['req-22caac6e-1aa5-498f-afef-4c0bb6987cef']
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack network agent show
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+usage: openstack network agent show [-h] [-f {json,shell,table,value,yaml}] [-c COLUMN] [--noindent] [--prefix PREFIX] [--max-width <integer>]
+[--fit-width] [--print-empty]
+<network-agent>
+openstack network agent show: error: the following arguments are required: <network-agent>
+module 'cmd2' has no attribute 'exceptions'
+0;root@astplsm01: ~root@astplsm01:~# Kip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+inet 127.0.0.1/8 scope host lo
+ valid_lft forever preferred_lft forever
+2: eno1np0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:40 brd ff:ff:ff:ff:ff:ff
+inet 129.69.209.168/24 brd 129.69.209.255 scope global eno1np0
+ valid_lft forever preferred_lft forever
+3: eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+4: eno2np1.137@eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+inet 192.168.209.143/25 brd 192.168.209.255 scope global eno2np1.137
+ valid_lft forever preferred_lft forever
+5: eno2np1.139@eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brq7b1c71d4-7a state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+6: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+link/ether 52:54:00:74:f0:90 brd ff:ff:ff:ff:ff:ff
+inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+ valid_lft forever preferred_lft forever
+7: tap13cbdec8-30@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brq7b1c71d4-7a state UP group default qlen 1000
+link/ether 66:76:9f:96:56:59 brd ff:ff:ff:ff:ff:ff link-netns qdhcp-7b1c71d4-7a01-4f0e-a965-b7d23f2302ce
+8: brq7b1c71d4-7a: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+9: tapd2d4745d-7e: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brq7b1c71d4-7a state UNKNOWN group default qlen 1000
+link/ether fe:16:3e:a5:52:60 brd ff:ff:ff:ff:ff:ff
+0;root@astplsm01: ~root@astplsm01:~# openstack network list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+----------+--------------------------------------+
+| ID | Name | Subnets|
++--------------------------------------+----------+--------------------------------------+
+| 7b1c71d4-7a01-4f0e-a965-b7d23f2302ce | provider | bc79f4df-76be-4b67-9ddf-480df07959be |
++--------------------------------------+----------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# openstack network show po rovider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++---------------------------+--------------------------------------+
+| Field | Value|
++---------------------------+--------------------------------------+
+| admin_state_up| UP |
+| availability_zone_hints ||
+| availability_zones| nova |
+| created_at| 2022-08-17T15:27:20Z |
+| description ||
+| dns_domain| None |
+| id| 7b1c71d4-7a01-4f0e-a965-b7d23f2302ce |
+| ipv4_address_scope| None |
+| ipv6_address_scope| None |
+| is_default| None |
+| is_vlan_transparent | None |
+| mtu | 1500 |
+| name| provider |
+| port_security_enabled | True |
+| project_id| 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| provider:network_type | None |
+| provider:physical_network | None |
+| provider:segmentation_id| None |
+| qos_policy_id | None |
+| revision_number | 2|
+| router:external | External |
+| segments| None |
+| shared| True |
+| status| ACTIVE |
+| subnets | bc79f4df-76be-4b67-9ddf-480df07959be |
+| tags||
+| updated_at| 2022-08-17T15:38:29Z |
++---------------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack network show providerlistKip aKopenstack network agent showtrunk list3Psubnetwork list3Pnetwork listshow providerroute -nKping 192.168.221.209openstack server show provider-instance25P. demo-openrc openstack server show provider-instance25P. demo-openrc openstack server show provider-instanceroute -nKip route add 192.168.221.128/25 dev eno2np1.139listKshowexitKsu schneitiopenstack server show provider-instance19Pping 192.168.221.2096@ssh cirros@192.168.221.209openstack console url show provider-instanceserver listKcreate --flavor m1.nano --image cirros --nic net-id=7b1c71d4-7a01-4f0e-a965-b7d23f2302ce --security-group defaultt --key-name mykey provider-instanceAreate --flavor m1.nano --image cirros --nic net-id=7b1c71d4-7a01-4f0e-a965-b7d23f2302ce security-group default -2P-key-name mykey provider-instanceA create --flavor m1.nano --image cirros --nic net-id=7b1c71d4-7a01-4f0e-a965-b7d23f2302ce --security-group default2@ --key-name mykey provider-instanceAreate --flavor m1.nano --image cirros --nic net-id=7b1c71d4-7a01-4f0e-a965-b7d23f2302ce security-group default -2P-key-name mykey provider-instanceAcurity group listK
+KAroot@astplsm01:~# openstack security group list7Pnetwork list2Pimage list1@flavor list49@security group rule create --proto tcp --dst-port 22 default13Picmp defaultkeypair listKcreate --public-key ~/.ssh/id_rsa.pub mykey0;root@astplsm01: ~root@astplsm01:~# lsKssh-keygen -q -N ""lsKopenstack keypair create --public-key ~/.ssh/id_rsa.pub mykeylistK35@security group rule create --proto icmp default13@tcp --dst-port 22 default0;root@astplsm01: ~root@astplsm01:~# openstack flavor listK1Pimage list2@network list7@security group listrver create --flavor m1.nano --image cirros --nic net-id=7b1c71d4-7a01-4f0e-a965-b7d23f2302ce security-group default ---key-name mykey provider-instanceAcurity group listK
+KAroot@astplsm01:~# openstack security group list7Pnetwork list2Pimage list1@flavor list49@security group rule create --proto tcp --dst-port 22 default13Picmp defaultkeypair listKcreate --public-key ~/.ssh/id_rsa.pub mykey0;root@astplsm01: ~root@astplsm01:~# lsKssh-keygen -q -N ""6P. demo-openrcopenstack flavor create --id 0 --vcpus 1 --ram 64 --disk 1 m1.nano0;root@astplsm01: ~root@astplsm01:~# ip aKopenstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.249 --dns-nameserver 129.69.2111.1 --gateway 192.168.221.1 --subnet-range 192.168.221.128/25 provider1.1 --gateway 192.168.221.2@255 --subnet-range 192.168.221.128/25 providerA0;root@astplsm01: ~root@astplsm01:~# openstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.249 --dns-nameserver 129.69.21 KAroot@astplsm01:~# openstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.249 --dns-nameserver 129.69.2K
+KAroot@astplsm01:~# openstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.249 --dns-nameserver 129.69.2 show ^C
+0;root@astplsm01: ~root@astplsm01:~# openstack subnet show bc79f4df-76be-4b67-9ddf-480df07959be
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++----------------------+--------------------------------------+
+| Field| Value|
++----------------------+--------------------------------------+
+| allocation_pools | 192.168.221.130-192.168.221.249|
+| cidr | 192.168.221.128/25 |
+| created_at | 2022-08-17T15:38:29Z |
+| description||
+| dns_nameservers| 129.69.211.1 |
+| dns_publish_fixed_ip | None |
+| enable_dhcp| True |
+| gateway_ip | 192.168.221.1|
+| host_routes||
+| id | bc79f4df-76be-4b67-9ddf-480df07959be |
+| ip_version | 4|
+| ipv6_address_mode| None |
+| ipv6_ra_mode | None |
+| name | provider |
+| network_id | 7b1c71d4-7a01-4f0e-a965-b7d23f2302ce |
+| project_id | 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| revision_number| 0|
+| segment_id | None |
+| service_types||
+| subnetpool_id| None |
+| tags ||
+| updated_at | 2022-08-17T15:38:29Z |
++----------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kroute -n
+Kernel IP routing table
+Destination Gateway Genmask Flags Metric RefUse Iface
+0.0.0.0 129.69.209.2540.0.0.0 UG000 eno1np0
+129.69.209.00.0.0.0 255.255.255.0 U 000 eno1np0
+192.168.122.0 0.0.0.0 255.255.255.0 U 000 virbr0
+192.168.209.128 0.0.0.0 255.255.255.128 U 000 eno2np1.137
+192.168.221.128 0.0.0.0 255.255.255.128 U 000 eno2np1.139
+0;root@astplsm01: ~root@astplsm01:~# openstack server list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| ID | Name| Status | Networks | Image| Flavor|
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| 944f6f9e-b31d-4662-a86b-b5d0fa0c25b7 | provider-instance | ACTIVE | provider=192.168.221.209 | cirros | m1.nano |
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+0;root@astplsm01: ~root@astplsm01:~# openstack server stop provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack server list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+-------------------+---------+--------------------------+--------+---------+
+| ID | Name| Status| Networks | Image| Flavor|
++--------------------------------------+-------------------+---------+--------------------------+--------+---------+
+| 944f6f9e-b31d-4662-a86b-b5d0fa0c25b7 | provider-instance | SHUTOFF | provider=192.168.221.209 | cirros | m1.nano |
++--------------------------------------+-------------------+---------+--------------------------+--------+---------+
+0;root@astplsm01: ~root@astplsm01:~# opensack tack server delete provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack subnet list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+----------+--------------------------------------+--------------------+
+| ID | Name | Network| Subnet |
++--------------------------------------+----------+--------------------------------------+--------------------+
+| bc79f4df-76be-4b67-9ddf-480df07959be | provider | 7b1c71d4-7a01-4f0e-a965-b7d23f2302ce | 192.168.221.128/25 |
++--------------------------------------+----------+--------------------------------------+--------------------+
+0;root@astplsm01: ~root@astplsm01:~# openopenstack subnet delete provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+Failed to delete subnet with name or ID 'provider': HttpException: 403: Client Error for url: http://controller:9696/v2.0/subnets/bc79f4df-76be-4b67-9ddf-480df07959be, rule:delete_subnet is disallowed by policy
+1 of 1 subnets failed to delete.
+0;root@astplsm01: ~root@astplsm01:~# Kopes nstack network delete provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+Failed to delete network with name or ID 'provider': HttpException: 403: Client Error for url: http://controller:9696/v2.0/networks/7b1c71d4-7a01-4f0e-a965-b7d23f2302ce, rule:delete_network is disallowed by policy
+1 of 1 networks failed to delete.
+0;root@astplsm01: ~root@astplsm01:~# Koepnstack n openstack network list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+----------+--------------------------------------+
+| ID | Name | Subnets|
++--------------------------------------+----------+--------------------------------------+
+| 7b1c71d4-7a01-4f0e-a965-b7d23f2302ce | provider | bc79f4df-76be-4b67-9ddf-480df07959be |
++--------------------------------------+----------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# openstack network listdelete provider1Psubnet delete providerlistKerver delete provider-instancelistKstop provider-instancelistK13Proute -nopenstack subnet show bc79f4df-76be-4b67-9ddf-480df07959be27Pnetwork show providerlistKip aKopenstack network agent showtrunk list3Psubnetwork list3Pnetwork list3@subnetwork list3Pnetwork listshow providerroute -nKping 192.168.221.209openstack server show provider-instance25P. demo-openrc openstack server show provider-instanceroute -nKip route add 192.168.221.128/25 dev eno2np1.139listKshowexitKsu schneitiopenstack server show provider-instance19Pping 192.168.221.2096@ssh cirros@192.168.221.209openstack console url show provider-instanceserver listKcreate --flavor m1.nano --image cirros --nic net-id=7b1c71d4-7a01-4f0e-a965-b7d23f2302ce --security-group defaultt --key-name mykey provider-instanceAreate --flavor m1.nano --image cirros --nic net-id=7b1c71d4-7a01-4f0e-a965-b7d23f2302ce security-group default -2P-key-name mykey provider-instanceAcurity group listK
+KAroot@astplsm01:~# openstack security group list7Pnetwork list2Pimage list1@flavor list49@security group rule create --proto tcp --dst-port 22 default13Picmp defaultkeypair listKcreate --public-key ~/.ssh/id_rsa.pub mykey0;root@astplsm01: ~root@astplsm01:~# lsKssh-keygen -q -N ""6P. demo-openrcopenstack flavor create --id 0 --vcpus 1 --ram 64 --disk 1 m1.nano0;root@astplsm01: ~root@astplsm01:~# ip aKopenstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.249 --dns-nameserver 129.69.2111.1 --gateway 192.168.221.1 --subnet-range 192.168.221.128/25 provider1.1 --gateway 192.168.221.2@255 --subnet-range 192.168.221.128/25 providerA0;root@astplsm01: ~root@astplsm01:~# cat /etc/resolv.confK
+KAroot@astplsm01:~# cat /etc/resolv.confip aKopenstack network create--share --external --provider-physical-network provider --provider-network-type flat provider 1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P 1P1P-1P1P1P1P1P1P1P1P-1P1P1P1P1P1P1P1P1P1P1P 1P1P-1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P-1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1PrKopenstack network show provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++---------------------------+--------------------------------------+
+| Field | Value|
++---------------------------+--------------------------------------+
+| admin_state_up| UP |
+| availability_zone_hints ||
+| availability_zones| nova |
+| created_at| 2022-08-17T15:27:20Z |
+| description ||
+| dns_domain| None |
+| id| 7b1c71d4-7a01-4f0e-a965-b7d23f2302ce |
+| ipv4_address_scope| None |
+| ipv6_address_scope| None |
+| is_default| None |
+| is_vlan_transparent | None |
+| mtu | 1500 |
+| name| provider |
+| port_security_enabled | True |
+| project_id| 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| provider:network_type | None |
+| provider:physical_network | None |
+| provider:segmentation_id| None |
+| qos_policy_id | None |
+| revision_number | 2|
+| router:external | External |
+| segments| None |
+| shared| True |
+| status| ACTIVE |
+| subnets | bc79f4df-76be-4b67-9ddf-480df07959be |
+| tags||
+| updated_at| 2022-08-17T15:38:29Z |
++---------------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack network show providerlistKdelete provider1Psubnet delete provider1@network delete providerlistKshow providerKopenstack network
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+openstack: 'network' is not an openstack command. See 'openstack --help'.
+Did you mean one of these?
+network agent add network
+network agent add router
+network agent delete
+network agent list
+network agent remove network
+network agent remove router
+network agent set
+network agent show
+network auto allocated topology create
+network auto allocated topology delete
+network create
+network delete
+network flavor add profile
+network flavor create
+network flavor delete
+network flavor list
+network flavor profile create
+network flavor profile delete
+network flavor profile list
+network flavor profile set
+network flavor profile show
+network flavor remove profile
+network flavor set
+network flavor show
+network l3 conntrack helper create
+network l3 conntrack helper delete
+network l3 conntrack helper list
+network l3 conntrack helper set
+network l3 conntrack helper show
+network list
+network log create
+network log delete
+network log list
+network log set
+network log show
+network loggable resources list
+network meter create
+network meter delete
+network meter list
+network meter rule create
+network meter rule delete
+network meter rule list
+network meter rule show
+network meter show
+network onboard subnets
+network qos policy create
+network qos policy delete
+network qos policy list
+network qos policy set
+network qos policy show
+network qos rule create
+network qos rule delete
+network qos rule list
+network qos rule set
+network qos rule show
+network qos rule type list
+network qos rule type show
+network rbac create
+network rbac delete
+network rbac list
+network rbac set
+network rbac show
+network segment create
+network segment delete
+network segment list
+network segment range create
+network segment range delete
+network segment range list
+network segment range set
+network segment range show
+network segment set
+network segment show
+network service provider list
+network set
+network show
+network subport list
+network trunk create
+network trunk delete
+network trunk list
+network trunk set
+network trunk show
+network trunk unset
+network unset
+endpoint add project
+endpoint create
+endpoint delete
+endpoint group add project
+endpoint group create
+endpoint group delete
+endpoint group list
+endpoint group remove project
+endpoint group set
+endpoint group show
+endpoint list
+endpoint remove project
+endpoint set
+endpoint show
+0;root@astplsm01: ~root@astplsm01:~# net openstack network delete. admin-openrc 
+0;root@astplsm01: ~root@astplsm01:~# openstack network delete provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack subnet list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+
+0;root@astplsm01: ~root@astplsm01:~# openstack network create--share --external \
+> --provider-physical-network provider \
+> --provider-network-type flat providerr^C
+0;root@astplsm01: ~root@astplsm01:~# oeppenstack network create --share --external --provider-physical-network provider --provider-networkt .t-type flat provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++---------------------------+--------------------------------------+
+| Field | Value|
++---------------------------+--------------------------------------+
+| admin_state_up| UP |
+| availability_zone_hints ||
+| availability_zones||
+| created_at| 2022-08-17T17:10:08Z |
+| description ||
+| dns_domain| None |
+| id| a6fc39a4-2932-46ec-9538-f0d014eb0ab2 |
+| ipv4_address_scope| None |
+| ipv6_address_scope| None |
+| is_default| None |
+| is_vlan_transparent | None |
+| mtu | 1500 |
+| name| provider |
+| port_security_enabled | True |
+| project_id| 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| provider:network_type | flat |
+| provider:physical_network | provider |
+| provider:segmentation_id| None |
+| qos_policy_id | None |
+| revision_number | 1|
+| router:external | External |
+| segments| None |
+| shared| True |
+| status| ACTIVE |
+| subnets ||
+| tags||
+| updated_at| 2022-08-17T17:10:08Z |
++---------------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver ^C
+0;root@astplsm01: ~root@astplsm01:~# Knano /etc/resolv.conf
+?2004h?1049h22;0;0t1;43r(Bm4l?7h39;49m?1h=?1h=?25l39;49m(BmH2J41;67H(B0;7m[ Reading... ](Bm41;66H(B0;7m[ Read 3 lines ](BmH(B0;7mGNU nano 4.8 /etc/resolv.conf1;146H(Bm42d(B0;7m^G(Bm Get Help (B0;7m^O(Bm Write Out(B0;7m^W(Bm Where Is (B0;7m^K(Bm Cut Text (B0;7m^J(Bm Justify81G(B0;7m^C(Bm Cur Pos97G(B0;7mM-U(Bm Undo42;113H(B0;7mM-A(Bm Mark Text (B0;7mM-](Bm To Bracket43d(B0;7m^X(Bm Exit43;17H(B0;7m^R(Bm Read File(B0;7m^\(Bm Replace49G(B0;7m^U(Bm Paste Text (B0;7m^T(Bm To Spell (B0;7m^_(Bm Go To Line (B0;7mM-E(Bm Redo43;113H(B0;7mM-6(Bm Copy Text (B0;7m^Q(Bm Where Was41d2d39;49m(Bmsearch informatik.uni-stuttgart.de infra.informatik.uni-stuttgart.de3dnameserver 129.69.211.14dnameserver 129.69.215.52d?12l?25h?25l41dJ43d?12l?25h43;1H?1049l23;0;0t?1l>?2004l0;root@astplsm01: ~root@astplsm01:~# cat /etc/resolv.conf
+search informatik.uni-stuttgart.de infra.informatik.uni-stuttgart.de
+nameserver 129.69.211.1
+nameserver 129.69.215.5
+0;root@astplsm01: ~root@astplsm01:~# openstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver 129.69.21 1.1 --gateway 192.168.221.1 --subnet-range 192.18 68.221.128/25 provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++----------------------+--------------------------------------+
+| Field| Value|
++----------------------+--------------------------------------+
+| allocation_pools | 192.168.221.130-192.168.221.250|
+| cidr | 192.168.221.128/25 |
+| created_at | 2022-08-17T17:12:04Z |
+| description||
+| dns_nameservers| 129.69.211.1 |
+| dns_publish_fixed_ip | None |
+| enable_dhcp| True |
+| gateway_ip | 192.168.221.1|
+| host_routes||
+| id | c6b256d8-bea3-4eec-8d10-3ad61d556dea |
+| ip_version | 4|
+| ipv6_address_mode| None |
+| ipv6_ra_mode | None |
+| name | provider |
+| network_id | a6fc39a4-2932-46ec-9538-f0d014eb0ab2 |
+| project_id | 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| revision_number| 0|
+| segment_id | None |
+| service_types||
+| subnetpool_id| None |
+| tags ||
+| updated_at | 2022-08-17T17:12:04Z |
++----------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# K. demo-openrc 
+0;root@astplsm01: ~root@astplsm01:~# openstack server create --flavor m1.nano --image cirros --nicenet-id=^C
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack server create --flavor m1,na .nano --image cirros --nic net-id=a6fc39a4-2932-46ec-9538-f0d014eb0ab2 --security-grouo p default --key-name mykey provider-instnaceance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++-----------------------------+-----------------------------------------------+
+| Field | Value |
++-----------------------------+-----------------------------------------------+
+| OS-DCF:diskConfig | MANUAL|
+| OS-EXT-AZ:availability_zone | |
+| OS-EXT-STS:power_state| NOSTATE |
+| OS-EXT-STS:task_state | scheduling|
+| OS-EXT-STS:vm_state | building|
+| OS-SRV-USG:launched_at| None|
+| OS-SRV-USG:terminated_at| None|
+| accessIPv4| |
+| accessIPv6| |
+| addresses | |
+| adminPass | s4QARQoQe5Kx|
+| config_drive| |
+| created | 2022-08-17T17:13:45Z|
+| flavor| m1.nano (0) |
+| hostId| |
+| id| bef4ef80-f382-411e-b776-3858798992ad|
+| image | cirros (567f2184-add7-4430-b247-a6a8b95dd56b) |
+| key_name| mykey |
+| name| provider-instance |
+| progress| 0 |
+| project_id| 60d090e9f52e46f9bb19363b484115a6|
+| properties| |
+| security_groups | name='27fec9f5-3925-4a06-ad5e-29d4b0d19ba6' |
+| status| BUILD |
+| updated | 2022-08-17T17:13:45Z|
+| user_id | c68416ac784a4d5e8158d196167a53cd|
+| volumes_attached| |
++-----------------------------+-----------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack server list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| ID | Name| Status | Networks | Image| Flavor|
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| bef4ef80-f382-411e-b776-3858798992ad | provider-instance | ACTIVE | provider=192.168.221.247 | cirros | m1.nano |
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+0;root@astplsm01: ~root@astplsm01:~# ping 192.168.221.246 7
+PING 192.168.221.247 (192.168.221.247) 56(84) bytes of data.
+From 129.69.209.168 icmp_seq=1 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=2 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=3 Destination Host Unreachable
+^C
+--- 192.168.221.247 ping statistics ---
+6 packets transmitted, 0 received, +3 errors, 100% packet loss, time 5104ms
+pipe 4
+0;root@astplsm01: ~root@astplsm01:~# openstack network list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+----------+--------------------------------------+
+| ID | Name | Subnets|
++--------------------------------------+----------+--------------------------------------+
+| a6fc39a4-2932-46ec-9538-f0d014eb0ab2 | provider | c6b256d8-bea3-4eec-8d10-3ad61d556dea |
++--------------------------------------+----------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# openstack network snhow prv ovider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+openstack: 'network snhow provider' is not an openstack command. See 'openstack --help'.
+Did you mean one of these?
+network agent add network
+network agent add router
+network agent delete
+network agent list
+network agent remove network
+network agent remove router
+network agent set
+network agent show
+network auto allocated topology create
+network auto allocated topology delete
+network create
+network delete
+network flavor add profile
+network flavor create
+network flavor delete
+network flavor list
+network flavor profile create
+network flavor profile delete
+network flavor profile list
+network flavor profile set
+network flavor profile show
+network flavor remove profile
+network flavor set
+network flavor show
+network l3 conntrack helper create
+network l3 conntrack helper delete
+network l3 conntrack helper list
+network l3 conntrack helper set
+network l3 conntrack helper show
+network list
+network log create
+network log delete
+network log list
+network log set
+network log show
+network loggable resources list
+network meter create
+network meter delete
+network meter list
+network meter rule create
+network meter rule delete
+network meter rule list
+network meter rule show
+network meter show
+network onboard subnets
+network qos policy create
+network qos policy delete
+network qos policy list
+network qos policy set
+network qos policy show
+network qos rule create
+network qos rule delete
+network qos rule list
+network qos rule set
+network qos rule show
+network qos rule type list
+network qos rule type show
+network rbac create
+network rbac delete
+network rbac list
+network rbac set
+network rbac show
+network segment create
+network segment delete
+network segment list
+network segment range create
+network segment range delete
+network segment range list
+network segment range set
+network segment range show
+network segment set
+network segment show
+network service provider list
+network set
+network show
+network subport list
+network trunk create
+network trunk delete
+network trunk list
+network trunk set
+network trunk show
+network trunk unset
+network unset
+endpoint add project
+endpoint create
+endpoint delete
+endpoint group add project
+endpoint group create
+endpoint group delete
+endpoint group list
+endpoint group remove project
+endpoint group set
+endpoint group show
+endpoint list
+endpoint remove project
+endpoint set
+endpoint show
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack network show provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++---------------------------+--------------------------------------+
+| Field | Value|
++---------------------------+--------------------------------------+
+| admin_state_up| UP |
+| availability_zone_hints ||
+| availability_zones| nova |
+| created_at| 2022-08-17T17:10:08Z |
+| description ||
+| dns_domain| None |
+| id| a6fc39a4-2932-46ec-9538-f0d014eb0ab2 |
+| ipv4_address_scope| None |
+| ipv6_address_scope| None |
+| is_default| None |
+| is_vlan_transparent | None |
+| mtu | 1500 |
+| name| provider |
+| port_security_enabled | True |
+| project_id| 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| provider:network_type | None |
+| provider:physical_network | None |
+| provider:segmentation_id| None |
+| qos_policy_id | None |
+| revision_number | 2|
+| router:external | External |
+| segments| None |
+| shared| True |
+| status| ACTIVE |
+| subnets | c6b256d8-bea3-4eec-8d10-3ad61d556dea |
+| tags||
+| updated_at| 2022-08-17T17:12:04Z |
++---------------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopensti ac s kk server list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| ID | Name| Status | Networks | Image| Flavor|
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| bef4ef80-f382-411e-b776-3858798992ad | provider-instance | ACTIVE | provider=192.168.221.247 | cirros | m1.nano |
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+0;root@astplsm01: ~root@astplsm01:~# ssh ssh cirros@203.0.113.103
+^C
+0;root@astplsm01: ~root@astplsm01:~# Kip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+inet 127.0.0.1/8 scope host lo
+ valid_lft forever preferred_lft forever
+2: eno1np0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:40 brd ff:ff:ff:ff:ff:ff
+inet 129.69.209.168/24 brd 129.69.209.255 scope global eno1np0
+ valid_lft forever preferred_lft forever
+3: eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+4: eno2np1.137@eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+inet 192.168.209.143/25 brd 192.168.209.255 scope global eno2np1.137
+ valid_lft forever preferred_lft forever
+5: eno2np1.139@eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brqa6fc39a4-29 state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+6: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+link/ether 52:54:00:74:f0:90 brd ff:ff:ff:ff:ff:ff
+inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+ valid_lft forever preferred_lft forever
+10: tap13c7c604-51@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brqa6fc39a4-29 state UP group default qlen 1000
+link/ether 86:5b:3a:5c:80:33 brd ff:ff:ff:ff:ff:ff link-netns qdhcp-a6fc39a4-2932-46ec-9538-f0d014eb0ab2
+11: brqa6fc39a4-29: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+12: tap72d8ae08-6c: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brqa6fc39a4-29 state UNKNOWN group default qlen 1000
+link/ether fe:16:3e:2c:b4:c4 brd ff:ff:ff:ff:ff:ff
+0;root@astplsm01: ~root@astplsm01:~# ping 192.168.221.247
+PING 192.168.221.247 (192.168.221.247) 56(84) bytes of data.
+From 129.69.209.168 icmp_seq=1 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=2 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=3 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=4 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=5 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=6 Destination Host Unreachable
+^C
+--- 192.168.221.247 ping statistics ---
+8 packets transmitted, 0 received, +6 errors, 100% packet loss, time 7146ms
+pipe 3
+0;root@astplsm01: ~root@astplsm01:~# openstack securitygroup list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+openstack: 'securitygroup list' is not an openstack command. See 'openstack --help'.
+Did you mean one of these?
+security group create
+security group delete
+security group list
+security group rule create
+security group rule delete
+security group rule list
+security group rule show
+security group set
+security group show
+security group unset
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack securitygroup list1@ 
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+---------+------------------------+----------------------------------+------+
+| ID | Name| Description| Project| Tags |
++--------------------------------------+---------+------------------------+----------------------------------+------+
+| 27fec9f5-3925-4a06-ad5e-29d4b0d19ba6 | default | Default security group | 60d090e9f52e46f9bb19363b484115a6 | [] |
++--------------------------------------+---------+------------------------+----------------------------------+------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack security group h show default
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Field | Value|
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| created_at| 2022-08-17T15:44:18Z |
+| description | Default security group |
+| id| 27fec9f5-3925-4a06-ad5e-29d4b0d19ba6 |
+| name| default|
+| project_id| 60d090e9f52e46f9bb19363b484115a6 |
+| revision_number | 3|
+| rules | created_at='2022-08-17T15:44:18Z', direction='ingress', ethertype='IPv4', id='1183b9b1-ca44-440e-a4f7-6dce07639ff2', normalized_cidr='0.0.0.0/0', protocol='icmp', remote_ip_prefix='0.0.0.0/0', standard_attr_id='15', tenant_id='60d090e9f52e46f9bb19363b484115a6', updated_at='2022-08-17T15:44:18Z'|
+| | created_at='2022-08-17T15:44:18Z', direction='egress', ethertype='IPv6', id='1a62a91f-91a4-486d-a5d8-9688c650cc13', standard_attr_id='14', tenant_id='60d090e9f52e46f9bb19363b484115a6', updated_at='2022-08-17T15:44:18Z' |
+| | created_at='2022-08-17T15:44:18Z', direction='ingress', ethertype='IPv4', id='2097c524-6d93-4d73-b7c1-74e082faf956', remote_group_id='27fec9f5-3925-4a06-ad5e-29d4b0d19ba6', standard_attr_id='11', tenant_id='60d090e9f52e46f9bb19363b484115a6', updated_at='2022-08-17T15:44:18Z'|
+| | created_at='2022-08-17T15:44:27Z', direction='ingress', ethertype='IPv4', id='65be6b8d-a8c6-4301-be79-e38618bcfea4', normalized_cidr='0.0.0.0/0', port_range_max='22', port_range_min='22', protocol='tcp', remote_ip_prefix='0.0.0.0/0', standard_attr_id='16', tenant_id='60d090e9f52e46f9bb19363b484115a6', updated_at='2022-08-17T15:44:27Z' |
+| | created_at='2022-08-17T15:44:18Z', direction='egress', ethertype='IPv4', id='6799b368-829f-44b0-98df-59cf9ce0f5b6', standard_attr_id='12', tenant_id='60d090e9f52e46f9bb19363b484115a6', updated_at='2022-08-17T15:44:18Z' |
+| | created_at='2022-08-17T15:44:18Z', direction='ingress', ethertype='IPv6', id='eb253a53-20c6-4e30-aea7-76ba03359796', remote_group_id='27fec9f5-3925-4a06-ad5e-29d4b0d19ba6', standard_attr_id='13', tenant_id='60d090e9f52e46f9bb19363b484115a6', updated_at='2022-08-17T15:44:18Z'|
+| stateful| True |
+| tags| [] |
+| updated_at| 2022-08-17T15:44:27Z |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# KK0;root@astplsm01: ~root@astplsm01:~# openstack security group rule create --proto icmp default
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+Error while executing command: ConflictException: 409, Security group rule already exists. Rule id is 1183b9b1-ca44-440e-a4f7-6dce07639ff2.
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack security group rule create --proto tcp --dst-port 22 default
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+Error while executing command: ConflictException: 409, Security group rule already exists. Rule id is 65be6b8d-a8c6-4301-be79-e38618bcfea4.
+0;root@astplsm01: ~root@astplsm01:~# K. demo-openrc 
+0;root@astplsm01: ~root@astplsm01:~# openstack security group rule create --proto icmp default
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+Error while executing command: ConflictException: 409, Security group rule already exists. Rule id is 1183b9b1-ca44-440e-a4f7-6dce07639ff2.
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack security group rule create --proto tcp --dst-port 22 default
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+Error while executing command: ConflictException: 409, Security group rule already exists. Rule id is 65be6b8d-a8c6-4301-be79-e38618bcfea4.
+0;root@astplsm01: ~root@astplsm01:~# Koe pensack server list
+
+Command 'opensack' not found, did you mean:
+
+command 'openstack' from deb python3-openstackclient (5.2.0-0ubuntu1)
+
+Try: apt install <deb name>
+
+0;root@astplsm01: ~root@astplsm01:~# openstack server list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| ID | Name| Status | Networks | Image| Flavor|
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| bef4ef80-f382-411e-b776-3858798992ad | provider-instance | ACTIVE | provider=192.168.221.247 | cirros | m1.nano |
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+0;root@astplsm01: ~root@astplsm01:~# . admin-openrc 
+0;root@astplsm01: ~root@astplsm01:~# openstack server list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+
+0;root@astplsm01: ~root@astplsm01:~# openstack network list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+----------+--------------------------------------+
+| ID | Name | Subnets|
++--------------------------------------+----------+--------------------------------------+
+| a6fc39a4-2932-46ec-9538-f0d014eb0ab2 | provider | c6b256d8-bea3-4eec-8d10-3ad61d556dea |
++--------------------------------------+----------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# . demo-openrc 
+0;root@astplsm01: ~root@astplsm01:~# openstack network list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+----------+--------------------------------------+
+| ID | Name | Subnets|
++--------------------------------------+----------+--------------------------------------+
+| a6fc39a4-2932-46ec-9538-f0d014eb0ab2 | provider | c6b256d8-bea3-4eec-8d10-3ad61d556dea |
++--------------------------------------+----------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# opes nstack s network show pro
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+Error while executing command: No Network found for pro
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack network show provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++---------------------------+--------------------------------------+
+| Field | Value|
++---------------------------+--------------------------------------+
+| admin_state_up| UP |
+| availability_zone_hints ||
+| availability_zones| nova |
+| created_at| 2022-08-17T17:10:08Z |
+| description ||
+| dns_domain| None |
+| id| a6fc39a4-2932-46ec-9538-f0d014eb0ab2 |
+| ipv4_address_scope| None |
+| ipv6_address_scope| None |
+| is_default| None |
+| is_vlan_transparent | None |
+| mtu | 1500 |
+| name| provider |
+| port_security_enabled | True |
+| project_id| 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| provider:network_type | None |
+| provider:physical_network | None |
+| provider:segmentation_id| None |
+| qos_policy_id | None |
+| revision_number | 2|
+| router:external | External |
+| segments| None |
+| shared| True |
+| status| ACTIVE |
+| subnets | c6b256d8-bea3-4eec-8d10-3ad61d556dea |
+| tags||
+| updated_at| 2022-08-17T17:12:04Z |
++---------------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack server show provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++-----------------------------+----------------------------------------------------------+
+| Field | Value|
++-----------------------------+----------------------------------------------------------+
+| OS-DCF:diskConfig | MANUAL |
+| OS-EXT-AZ:availability_zone | nova |
+| OS-EXT-STS:power_state| Running|
+| OS-EXT-STS:task_state | None |
+| OS-EXT-STS:vm_state | active |
+| OS-SRV-USG:launched_at| 2022-08-17T17:13:50.000000 |
+| OS-SRV-USG:terminated_at| None |
+| accessIPv4||
+| accessIPv6||
+| addresses | provider=192.168.221.247 |
+| config_drive||
+| created | 2022-08-17T17:13:45Z |
+| flavor| m1.nano (0)|
+| hostId| 7d202bdf5a2861efda620dea606d1378ca9c613d4beea7495f7ac096 |
+| id| bef4ef80-f382-411e-b776-3858798992ad |
+| image | cirros (567f2184-add7-4430-b247-a6a8b95dd56b)|
+| key_name| mykey|
+| name| provider-instance|
+| progress| 0|
+| project_id| 60d090e9f52e46f9bb19363b484115a6 |
+| properties||
+| security_groups | name='default' |
+| status| ACTIVE |
+| updated | 2022-08-17T17:13:50Z |
+| user_id | c68416ac784a4d5e8158d196167a53cd |
+| volumes_attached||
++-----------------------------+----------------------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kpingopenstack console url show provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++----------+-------------------------------------------------------------------------------------------+
+| Field| Value |
++----------+-------------------------------------------------------------------------------------------+
+| protocol | vnc |
+| type | novnc |
+| url| http://controller:6080/vnc_auto.html?path=%3Ftoken%3D4a5ce4f5-047b-421c-8c07-341b9e823e37 |
++----------+-------------------------------------------------------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# K^C
+0;root@astplsm01: ~root@astplsm01:~# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+inet 127.0.0.1/8 scope host lo
+ valid_lft forever preferred_lft forever
+2: eno1np0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:40 brd ff:ff:ff:ff:ff:ff
+inet 129.69.209.168/24 brd 129.69.209.255 scope global eno1np0
+ valid_lft forever preferred_lft forever
+3: eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+4: eno2np1.137@eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+inet 192.168.209.143/25 brd 192.168.209.255 scope global eno2np1.137
+ valid_lft forever preferred_lft forever
+5: eno2np1.139@eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brqa6fc39a4-29 state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+6: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+link/ether 52:54:00:74:f0:90 brd ff:ff:ff:ff:ff:ff
+inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+ valid_lft forever preferred_lft forever
+10: tap13c7c604-51@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brqa6fc39a4-29 state UP group default qlen 1000
+link/ether 86:5b:3a:5c:80:33 brd ff:ff:ff:ff:ff:ff link-netns qdhcp-a6fc39a4-2932-46ec-9538-f0d014eb0ab2
+11: brqa6fc39a4-29: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+12: tap72d8ae08-6c: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brqa6fc39a4-29 state UNKNOWN group default qlen 1000
+link/ether fe:16:3e:2c:b4:c4 brd ff:ff:ff:ff:ff:ff
+0;root@astplsm01: ~root@astplsm01:~# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+inet 127.0.0.1/8 scope host lo
+ valid_lft forever preferred_lft forever
+2: eno1np0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:40 brd ff:ff:ff:ff:ff:ff
+inet 129.69.209.168/24 brd 129.69.209.255 scope global eno1np0
+ valid_lft forever preferred_lft forever
+3: eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+4: eno2np1.137@eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+inet 192.168.209.143/25 brd 192.168.209.255 scope global eno2np1.137
+ valid_lft forever preferred_lft forever
+5: eno2np1.139@eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brqa6fc39a4-29 state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+6: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+link/ether 52:54:00:74:f0:90 brd ff:ff:ff:ff:ff:ff
+inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+ valid_lft forever preferred_lft forever
+10: tap13c7c604-51@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brqa6fc39a4-29 state UP group default qlen 1000
+link/ether 86:5b:3a:5c:80:33 brd ff:ff:ff:ff:ff:ff link-netns qdhcp-a6fc39a4-2932-46ec-9538-f0d014eb0ab2
+11: brqa6fc39a4-29: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+12: tap72d8ae08-6c: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brqa6fc39a4-29 state UNKNOWN group default qlen 1000
+link/ether fe:16:3e:2c:b4:c4 brd ff:ff:ff:ff:ff:ff
+0;root@astplsm01: ~root@astplsm01:~# openstack console url show provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++----------+-------------------------------------------------------------------------------------------+
+| Field| Value |
++----------+-------------------------------------------------------------------------------------------+
+| protocol | vnc |
+| type | novnc |
+| url| http://controller:6080/vnc_auto.html?path=%3Ftoken%3D77a1b830-d04a-4820-908e-395b39517723 |
++----------+-------------------------------------------------------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# K^C
+0;root@astplsm01: ~root@astplsm01:~# K0;root@astplsm01: ~root@astplsm01:~# openstack subnet list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+----------+--------------------------------------+--------------------+
+| ID | Name | Network| Subnet |
++--------------------------------------+----------+--------------------------------------+--------------------+
+| c6b256d8-bea3-4eec-8d10-3ad61d556dea | provider | a6fc39a4-2932-46ec-9538-f0d014eb0ab2 | 192.168.221.128/25 |
++--------------------------------------+----------+--------------------------------------+--------------------+
+0;root@astplsm01: ~root@astplsm01:~# openstack subnet show provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++----------------------+--------------------------------------+
+| Field| Value|
++----------------------+--------------------------------------+
+| allocation_pools | 192.168.221.130-192.168.221.250|
+| cidr | 192.168.221.128/25 |
+| created_at | 2022-08-17T17:12:04Z |
+| description||
+| dns_nameservers| 129.69.211.1 |
+| dns_publish_fixed_ip | None |
+| enable_dhcp| True |
+| gateway_ip | 192.168.221.1|
+| host_routes||
+| id | c6b256d8-bea3-4eec-8d10-3ad61d556dea |
+| ip_version | 4|
+| ipv6_address_mode| None |
+| ipv6_ra_mode | None |
+| name | provider |
+| network_id | a6fc39a4-2932-46ec-9538-f0d014eb0ab2 |
+| project_id | 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| revision_number| 0|
+| segment_id | None |
+| service_types||
+| subnetpool_id| None |
+| tags ||
+| updated_at | 2022-08-17T17:12:04Z |
++----------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack subnet
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+openstack: 'subnet' is not an openstack command. See 'openstack --help'.
+Did you mean one of these?
+subnet create
+subnet delete
+subnet list
+subnet pool create
+subnet pool delete
+subnet pool list
+subnet pool set
+subnet pool show
+subnet pool unset
+subnet set
+subnet show
+subnet unset
+secret container create
+secret container delete
+secret container get
+secret container list
+secret delete
+secret get
+secret list
+secret order create
+secret order delete
+secret order get
+secret order list
+secret store
+secret update
+0;root@astplsm01: ~root@astplsm01:~# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+inet 127.0.0.1/8 scope host lo
+ valid_lft forever preferred_lft forever
+2: eno1np0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:40 brd ff:ff:ff:ff:ff:ff
+inet 129.69.209.168/24 brd 129.69.209.255 scope global eno1np0
+ valid_lft forever preferred_lft forever
+3: eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+4: eno2np1.137@eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+inet 192.168.209.143/25 brd 192.168.209.255 scope global eno2np1.137
+ valid_lft forever preferred_lft forever
+5: eno2np1.139@eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brqa6fc39a4-29 state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+6: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+link/ether 52:54:00:74:f0:90 brd ff:ff:ff:ff:ff:ff
+inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+ valid_lft forever preferred_lft forever
+10: tap13c7c604-51@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brqa6fc39a4-29 state UP group default qlen 1000
+link/ether 86:5b:3a:5c:80:33 brd ff:ff:ff:ff:ff:ff link-netns qdhcp-a6fc39a4-2932-46ec-9538-f0d014eb0ab2
+11: brqa6fc39a4-29: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+12: tap72d8ae08-6c: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brqa6fc39a4-29 state UNKNOWN group default qlen 1000
+link/ether fe:16:3e:2c:b4:c4 brd ff:ff:ff:ff:ff:ff
+0;root@astplsm01: ~root@astplsm01:~# o openstack network subnet list
+o/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+----------+--------------------------------------+--------------------+
+| ID | Name | Network| Subnet |
++--------------------------------------+----------+--------------------------------------+--------------------+
+| c6b256d8-bea3-4eec-8d10-3ad61d556dea | provider | a6fc39a4-2932-46ec-9538-f0d014eb0ab2 | 192.168.221.128/25 |
++--------------------------------------+----------+--------------------------------------+--------------------+
+0;root@astplsm01: ~root@astplsm01:~# o openstack subnet show provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++----------------------+--------------------------------------+
+| Field| Value|
++----------------------+--------------------------------------+
+| allocation_pools | 192.168.221.130-192.168.221.250|
+| cidr | 192.168.221.128/25 |
+| created_at | 2022-08-17T17:12:04Z |
+| description||
+| dns_nameservers| 129.69.211.1 |
+| dns_publish_fixed_ip | None |
+| enable_dhcp| True |
+| gateway_ip | 192.168.221.1|
+| host_routes||
+| id | c6b256d8-bea3-4eec-8d10-3ad61d556dea |
+| ip_version | 4|
+| ipv6_address_mode| None |
+| ipv6_ra_mode | None |
+| name | provider |
+| network_id | a6fc39a4-2932-46ec-9538-f0d014eb0ab2 |
+| project_id | 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| revision_number| 0|
+| segment_id | None |
+| service_types||
+| subnetpool_id| None |
+| tags ||
+| updated_at | 2022-08-17T17:12:04Z |
++----------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack security- nano /etc/plneutron/plugins/ml2/
+linuxbridge_agent.inimacvtap_agent.iniml2_conf.ini openvswitch_agent.inisriov_agent.ini
+0;root@astplsm01: ~root@astplsm01:~# nano /etc/neutron/plugins/ml2/ml2_conf.ini 
+?2004h?1049h22;0;0t1;63r(Bm4l?7h39;49m?1h=?1h=?25l39;49m(BmH2J61;112H(B0;7m[ Reading... ](Bm61;110H(B0;7m[ Read 333 lines ](BmH(B0;7mGNU nano 4.8/etc/neutron/plugins/ml2/ml2_conf.ini1;236H(Bm62d(B0;7m^G(Bm Get Help19G(B0;7m^O(Bm Write Out37G(B0;7m^W(Bm Where Is55G(B0;7m^K(Bm Cut Text73G(B0;7m^J(Bm Justify62;91H(B0;7m^C(Bm Cur Pos62;109H(B0;7mM-U(Bm Undo62;127H(B0;7mM-A(Bm Mark Text (B0;7mM-](Bm To Bracket(B0;7mM-Q(Bm Previous181G(B0;7m^B(Bm Back62;199H(B0;7m^Left(Bm Prev Word (B0;7m^A(Bm Home63d(B0;7m^X(Bm Exit63;19H(B0;7m^R(Bm Read File37G(B0;7m^\(Bm Replace63;55H(B0;7m^U(Bm Paste Text (B0;7m^T(Bm To Spell91G(B0;7m^_(Bm Go To Line (B0;7mM-E(Bm Redo63;127H(B0;7mM-6(Bm Copy Text (B0;7m^Q(Bm Where Was163G(B0;7mM-W(Bm Next63;181H(B0;7m^F(Bm Forward63;199H(B0;7m^Right(Bm Next Word(B0;7m^E(Bm End61d2d(B0;1m32m[DEFAULT]4d(B0m36m#5d# From oslo.log6d#8d# If set to true, the logging level will be set to DEBUG instead of the default9d# INFO level. (boolean value)10d# Note: This option can be changed without restarting.11d#debug = false13d# The name of a logging configuration file. This file is appended to any14d# existing logging configuration files. For details about logging configuration15d# files, see the Python logging module documentation. Note that when logging16d# configuration files are used then all logging configuration is set in the17d# configuration file and other logging configuration options are ignored (for18d# example, log-date-format). (string value)19d# Note: This option can be changed without restarting.20d# Deprecated group/name - [DEFAULT]/log_config21d#log_config_append = <None>23d# Defines the format string for %%(asctime)s in log records. Default:24d# %(default)s . This option is ignored if log_config_append is set. (string25d# value)26d#log_date_format = %Y-%m-%d %H:%M:%S28d# (Optional) Name of log file to send logging output to. If no default is set,29d# logging will go to stderr as defined by use_stderr. This option is ignored if30d# log_config_append is set. (string value)31d# Deprecated group/name - [DEFAULT]/logfile32d#log_file = <None>34d# (Optional) The base directory used for relative log_filepaths. This option35d# is ignored if log_config_append is set. (string value)36d# Deprecated group/name - [DEFAULT]/logdir37d#log_dir = <None>39d# Uses logging handler designed to watch file system. When log file is moved or40d# removed this handler will open a new log file with specified path41d# instantaneously. It makes sense only if log_file option is specified and42d# Linux platform is used. This option is ignored if log_config_append is set.43d# (boolean value)44d#watch_log_file = false46d# Use syslog for logging. Existing syslog format is DEPRECATED and will be47d# changed later to honor RFC5424. This option is ignored if log_config_append48d# is set. (boolean value)49d#use_syslog = false51d# Enable journald for logging. If running in a systemd environment you may wish52d# to enable journal support. Doing so will use the journal native protocol53d# which includes structured metadata in addition to log messages.This option is54d# ignored if log_config_append is set. (boolean value)55d#use_journal = false57d# Syslog facility to receive log lines. This option is ignored if58d# log_config_append is set. (string value)59d#syslog_log_facility = LOG_USER2d39m(Bm?12l?25h?25l62;19H37G (B0;7mM-C(Bm Case Sens 73G62;91H(B0;7mM-B(Bm Backwards 62;127H15X62;142H(B0;7m^P(Bm Older25X62;181H(B0;7m^T(Bm Go To LineK63;2H(B0;7mC(Bm Cancel63;19H37G (B0;7mM-R(Bm Regexp26X63;91H(B0;7m^R(Bm Replace63;127H15X63;142H(B0;7m^N(Bm Newer 163G63;181H(B0;7mM-J(Bm FullJstifyK61d(B0;7mSearch:61;1H(Bm61;9H?12l?25h?25l(B0;7mp(Bm61;10H?12l?25h?25l(B0;7mo(Bm61;11H?12l?25h?25l(B0;7mr(Bm61;12H?12l?25h?25l(B0;7mt(Bm61;13H?12l?25h?25l(B0;7m_(Bm61;14H?12l?25h?25l(B0;7ms(Bm61;15H?12l?25h?25l(B0;7me(Bm61;16H?12l?25h?25l(B0;7mc(Bm61;17H?12l?25h?25lK62;19H(B0;7m^O(Bm Write Out37G(B0;7m^W(Bm Where Is (B0;7m^K(Bm Cut Text73G(B0;7m^J(Bm Justify62;91H(B0;7m^C(Bm Cur Pos(B0;7mM-U(Bm Undo62;127H(B0;7mM-A(Bm Mark Text (B0;7mM-](Bm To Bracket(B0;7mM-Q(Bm Previous181G(B0;7m^B(Bm Back (B0;7m^Left(Bm Prev Word (B0;7m^A(Bm Home63;2H(B0;7mX(Bm Exit63;19H(B0;7m^R(Bm Read File37G(B0;7m^\(Bm Replace(B0;7m^U(Bm Paste Text (B0;7m^T(Bm To Spell91G(B0;7m^_(Bm Go To Line (B0;7mM-E(Bm Redo63;127H(B0;7mM-6(Bm Copy Text (B0;7m^Q(Bm Where Was163G(B0;7mM-W(Bm Next63;181H(B0;7m^F(Bm Forward(B0;7m^Right(Bm Next Word(B0;7m^E(Bm End61d2d36m#fatal_deprecations = false4d39m(BmK5d(B0;1m32m[ml2]39m(BmK6dK8dK9dK10;2HK11d36m From neutron.ml212d#13d39m(BmK14;3H36mList of network type driver entrypoints to be loaded from the39m(BmK15;3H36mneutron.ml2.type_drivers namespace. (list value)39m(BmK16;2H36mtype_drivers = local,flat,vlan,gre,vxlan,geneve39m(BmK17dtype_drivers = flat,vlanK18;3H36mOrdered list of network_types to allocate as tenant networks. The default19;3Hvalue 'local' is useful for single-box testing but provides no connectivity20;3Hbetween hosts. (list value)39m(BmK21;2H36mtenant_network_types = local22d39m(Bmtenant_network_types =23dK24dK25;3H36mAn ordered list of networking mechanism driver entrypoints to be loaded from26d# the neutron.ml2.mechanism_drivers namespace. (list value)27d39m(Bmmechanism_drivers = linuxbridge28dK29;3H36mAn ordered list of extension driver entrypoints to be loaded from the39m(BmK30;3H36mneutron.ml2.extension_drivers namespace. For example: extension_drivers =31;3Hport_security,qos (list value)39m(BmK32dextension_drivers = port_security34;3H36mMaximum size of an IP packet (MTU) that can traverse the underlying physical35;3Hnetwork infrastructure without fragmentation when using an overlay/tunnel36;3Hprotocol. This option allows specifying a physical network MTU value that37d# differs from the default global_physnet_mtu value. (integer value)38d#path_mtu = 039d39m(BmK40;3H36mA list of mappings of physical networks to MTU values. The format of the41;3Hmapping is <physnet>:<mtu val>. This mapping allows specifying a physical42;3Hnetwork MTU value that differs from the default global_physnet_mtu value.39m(BmK43;4H36mlist39m(Bm3P44;2H36mphysical_network_mtus =46;3HDefault network type for external networks when no provider attributes are47;3Hspecified. By default it is None, which means that if provider attributes are48;3Hnot specified while creating external networks then they will have the same49d# type as tenant networks. Allowed values for external_network_type config50d# option depend on the network type values configured in type_drivers config51;3Hoption. (string value)39m(BmK52;2H36mexternal_network_type = <None>39m(BmK53dK54;3H36mIP version of all overlay (tunnel) network endpoints. Use a value of 4 for55d# IPv4 or 6 for IPv6. (integer value)56d#overlay_ip_version = 457d39m(BmK58dK59d(B0;1m32m[ml2_type_flat]39m(BmK31;3H?12l?25h?25l?12l?25h?25l32d?12l?25h?25l33d?12l?25h?25l34;2H?12l?25h?25l35d?12l?25h?25l36d?12l?25h?25l37d?12l?25h?25l38d?12l?25h?25l39d?12l?25h?25l40;2H?12l?25h?25l41d?12l?25h?25l42d?12l?25h?25l43d?12l?25h?25l44d?12l?25h?25l45d?12l?25h?25l46;2H?12l?25h?25l47d?12l?25h?25l48d?12l?25h?25l49d?12l?25h?25l50d?12l?25h?25l51d?12l?25h?25l52d?12l?25h?25l53d?12l?25h?25l54;2H?12l?25h?25l55d?12l?25h?25l56d?12l?25h?25l57d?12l?25h?25l58d?12l?25h?25l59;2H?12l?25h?25l60d?12l?25h?25l72;61r861d
+1;63r60;1H36m#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H36m# From neutron.ml2#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H36m#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H?12l?25h?25l72;61r861d
+1;63r60;1H36m# List of physical_network names with which flat networks can be created. Use#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H36m# default '*' to allow flat networks with arbitrary physical_network names. Use#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H36m# an empty list to disable flat networks. (list value)#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1Hflat_networks = providerf?12l?25h?25l72;61r861d
+1;63r60;1H?12l?25h?25l72;61r861d
+1;63r60;1H?12l?25h?25l72;61r861d
+1;63r60;1H(B0;1m32m[ml2_type_geneve][39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H?12l?25h?25l72;61r861d
+1;63r60;1H36m#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H36m# From neutron.ml2#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H36m#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H?12l?25h?25l72;61r861d
+1;63r60;1H36m# Comma-separated list of <vni_min>:<vni_max> tuples enumerating ranges of#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H36m# Geneve VNI IDs that are available for tenant network allocation. Note OVN#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H36m# does not use the actual values. (list value)#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H36m#vni_ranges =#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H?12l?25h?25l72;61r861d
+1;63r60;1H36m# The maximum allowed Geneve encapsulation header size (in bytes). Geneve#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H36m# header is extensible, this value is used to calculate the maximum MTU for#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H36m# Geneve-based networks. The default is 30, which is the size of the Geneve#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H36m# header without any additional option headers. Note the default is not enough#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H36m# for OVN which requires at least 38. (integer value)#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H36m#max_header_size = 30#39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H?12l?25h?25l72;61r861d
+1;63r60;1H?12l?25h?25l72;61r861d
+1;63r60;1H(B0;1m32m[ml2_type_gre][39m(Bm?12l?25h?25l72;61r861d
+1;63r60;1H?12l?25h?25l72;61r861d
+1;63r60;1H36m#39m(Bm?12l?25h?25l62dJ63d?12l?25h63;1H?1049l23;0;0t?1l>?2004l0;root@astplsm01: ~root@astplsm01:~# Kopenstack security group show default
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Field | Value|
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| created_at| 2022-08-17T15:44:18Z |
+| description | Default security group |
+| id| 27fec9f5-3925-4a06-ad5e-29d4b0d19ba6 |
+| name| default|
+| project_id| 60d090e9f52e46f9bb19363b484115a6 |
+| revision_number | 3|
+| rules | created_at='2022-08-17T15:44:18Z', direction='ingress', ethertype='IPv4', id='1183b9b1-ca44-440e-a4f7-6dce07639ff2', normalized_cidr='0.0.0.0/0', protocol='icmp', remote_ip_prefix='0.0.0.0/0', standard_attr_id='15', tenant_id='60d090e9f52e46f9bb19363b484115a6', updated_at='2022-08-17T15:44:18Z'|
+| | created_at='2022-08-17T15:44:18Z', direction='egress', ethertype='IPv6', id='1a62a91f-91a4-486d-a5d8-9688c650cc13', standard_attr_id='14', tenant_id='60d090e9f52e46f9bb19363b484115a6', updated_at='2022-08-17T15:44:18Z' |
+| | created_at='2022-08-17T15:44:18Z', direction='ingress', ethertype='IPv4', id='2097c524-6d93-4d73-b7c1-74e082faf956', remote_group_id='27fec9f5-3925-4a06-ad5e-29d4b0d19ba6', standard_attr_id='11', tenant_id='60d090e9f52e46f9bb19363b484115a6', updated_at='2022-08-17T15:44:18Z'|
+| | created_at='2022-08-17T15:44:27Z', direction='ingress', ethertype='IPv4', id='65be6b8d-a8c6-4301-be79-e38618bcfea4', normalized_cidr='0.0.0.0/0', port_range_max='22', port_range_min='22', protocol='tcp', remote_ip_prefix='0.0.0.0/0', standard_attr_id='16', tenant_id='60d090e9f52e46f9bb19363b484115a6', updated_at='2022-08-17T15:44:27Z' |
+| | created_at='2022-08-17T15:44:18Z', direction='egress', ethertype='IPv4', id='6799b368-829f-44b0-98df-59cf9ce0f5b6', standard_attr_id='12', tenant_id='60d090e9f52e46f9bb19363b484115a6', updated_at='2022-08-17T15:44:18Z' |
+| | created_at='2022-08-17T15:44:18Z', direction='ingress', ethertype='IPv6', id='eb253a53-20c6-4e30-aea7-76ba03359796', remote_group_id='27fec9f5-3925-4a06-ad5e-29d4b0d19ba6', standard_attr_id='13', tenant_id='60d090e9f52e46f9bb19363b484115a6', updated_at='2022-08-17T15:44:18Z'|
+| stateful| True |
+| tags| [] |
+| updated_at| 2022-08-17T15:44:27Z |
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Ki oe pensack tack network show provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++---------------------------+--------------------------------------+
+| Field | Value|
++---------------------------+--------------------------------------+
+| admin_state_up| UP |
+| availability_zone_hints ||
+| availability_zones| nova |
+| created_at| 2022-08-17T17:10:08Z |
+| description ||
+| dns_domain| None |
+| id| a6fc39a4-2932-46ec-9538-f0d014eb0ab2 |
+| ipv4_address_scope| None |
+| ipv6_address_scope| None |
+| is_default| None |
+| is_vlan_transparent | None |
+| mtu | 1500 |
+| name| provider |
+| port_security_enabled | True |
+| project_id| 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| provider:network_type | None |
+| provider:physical_network | None |
+| provider:segmentation_id| None |
+| qos_policy_id | None |
+| revision_number | 2|
+| router:external | External |
+| segments| None |
+| shared| True |
+| status| ACTIVE |
+| subnets | c6b256d8-bea3-4eec-8d10-3ad61d556dea |
+| tags||
+| updated_at| 2022-08-17T17:12:04Z |
++---------------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopestnstack network 
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+openstack: 'network' is not an openstack command. See 'openstack --help'.
+Did you mean one of these?
+network agent add network
+network agent add router
+network agent delete
+network agent list
+network agent remove network
+network agent remove router
+network agent set
+network agent show
+network auto allocated topology create
+network auto allocated topology delete
+network create
+network delete
+network flavor add profile
+network flavor create
+network flavor delete
+network flavor list
+network flavor profile create
+network flavor profile delete
+network flavor profile list
+network flavor profile set
+network flavor profile show
+network flavor remove profile
+network flavor set
+network flavor show
+network l3 conntrack helper create
+network l3 conntrack helper delete
+network l3 conntrack helper list
+network l3 conntrack helper set
+network l3 conntrack helper show
+network list
+network log create
+network log delete
+network log list
+network log set
+network log show
+network loggable resources list
+network meter create
+network meter delete
+network meter list
+network meter rule create
+network meter rule delete
+network meter rule list
+network meter rule show
+network meter show
+network onboard subnets
+network qos policy create
+network qos policy delete
+network qos policy list
+network qos policy set
+network qos policy show
+network qos rule create
+network qos rule delete
+network qos rule list
+network qos rule set
+network qos rule show
+network qos rule type list
+network qos rule type show
+network rbac create
+network rbac delete
+network rbac list
+network rbac set
+network rbac show
+network segment create
+network segment delete
+network segment list
+network segment range create
+network segment range delete
+network segment range list
+network segment range set
+network segment range show
+network segment set
+network segment show
+network service provider list
+network set
+network show
+network subport list
+network trunk create
+network trunk delete
+network trunk list
+network trunk set
+network trunk show
+network trunk unset
+network unset
+endpoint add project
+endpoint create
+endpoint delete
+endpoint group add project
+endpoint group create
+endpoint group delete
+endpoint group list
+endpoint group remove project
+endpoint group set
+endpoint group show
+endpoint list
+endpoint remove project
+endpoint set
+endpoint show
+0;root@astplsm01: ~root@astplsm01:~# openstack network show provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++---------------------------+--------------------------------------+
+| Field | Value|
++---------------------------+--------------------------------------+
+| admin_state_up| UP |
+| availability_zone_hints ||
+| availability_zones| nova |
+| created_at| 2022-08-17T17:10:08Z |
+| description ||
+| dns_domain| None |
+| id| a6fc39a4-2932-46ec-9538-f0d014eb0ab2 |
+| ipv4_address_scope| None |
+| ipv6_address_scope| None |
+| is_default| None |
+| is_vlan_transparent | None |
+| mtu | 1500 |
+| name| provider |
+| port_security_enabled | True |
+| project_id| 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| provider:network_type | None |
+| provider:physical_network | None |
+| provider:segmentation_id| None |
+| qos_policy_id | None |
+| revision_number | 2|
+| router:external | External |
+| segments| None |
+| shared| True |
+| status| ACTIVE |
+| subnets | c6b256d8-bea3-4eec-8d10-3ad61d556dea |
+| tags||
+| updated_at| 2022-08-17T17:12:04Z |
++---------------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack server list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| ID | Name| Status | Networks | Image| Flavor|
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| bef4ef80-f382-411e-b776-3858798992ad | provider-instance | ACTIVE | provider=192.168.221.247 | cirros | m1.nano |
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+0;root@astplsm01: ~root@astplsm01:~# i 9P(arg: 1) 3) 0;root@astplsm01: ~root@astplsm01:~# pppe9P(arg: 1) 3) 0;root@astplsm01: ~root@astplsm01:~# pppeopenstack server stop provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+0;root@astplsm01: ~root@astplsm01:~# Kl ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+inet 127.0.0.1/8 scope host lo
+ valid_lft forever preferred_lft forever
+2: eno1np0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:40 brd ff:ff:ff:ff:ff:ff
+inet 129.69.209.168/24 brd 129.69.209.255 scope global eno1np0
+ valid_lft forever preferred_lft forever
+3: eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+4: eno2np1.137@eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+inet 192.168.209.143/25 brd 192.168.209.255 scope global eno2np1.137
+ valid_lft forever preferred_lft forever
+5: eno2np1.139@eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brqa6fc39a4-29 state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+6: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+link/ether 52:54:00:74:f0:90 brd ff:ff:ff:ff:ff:ff
+inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+ valid_lft forever preferred_lft forever
+10: tap13c7c604-51@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brqa6fc39a4-29 state UP group default qlen 1000
+link/ether 86:5b:3a:5c:80:33 brd ff:ff:ff:ff:ff:ff link-netns qdhcp-a6fc39a4-2932-46ec-9538-f0d014eb0ab2
+11: brqa6fc39a4-29: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+0;root@astplsm01: ~root@astplsm01:~# openstack server delete provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack network delete provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+Failed to delete network with name or ID 'provider': HttpException: 403: Client Error for url: http://controller:9696/v2.0/networks/a6fc39a4-2932-46ec-9538-f0d014eb0ab2, rule:delete_network is disallowed by policy
+1 of 1 networks failed to delete.
+0;root@astplsm01: ~root@astplsm01:~# K. admin-openrc 
+0;root@astplsm01: ~root@astplsm01:~# openstack servernetwork delete provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+0;root@astplsm01: ~root@astplsm01:~# KK0;root@astplsm01: ~root@astplsm01:~# openstack network list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+
+0;root@astplsm01: ~root@astplsm01:~# openstack network listdelete provider18P. admin-openrc openstack network delete providerserver delete provider-instanceip aKopenstack server stop provider-instancelistKnetwork show providerKshow providersecurity group show defaultnano /etc/neutron/plugins/ml2/ml2_conf.ini 0;root@astplsm01: ~root@astplsm01:~# 13Popenstack subnet show providerlistKip aKopenstack subnet show providerlistKconsole url show provider-instance0;root@astplsm01: ~root@astplsm01:~# ip aKopenstack console url show provider-instance5Pserver show provider-instance8Pnetwork show providerK4Plist8P. demo-openrc openstack network list1Pserver list6P. admin-openrc openstack server list1Pack server list50@tack security group rule create --proto tcp --dst-port 22 default13Picmp default0;root@astplsm01: ~root@astplsm01:~# . demo-openrc Kopenstack security group rule create --proto tcp --dst-port 22 default13Picmp default20Pshow default8Plist1Pgroup list8Pping 192.168.221.247ip aKssh cirros@203.0.113.1033Popenstack server listnetwork show provider1@nhow providerlistKsnhow providerlistK2Pping 192.168.221.247openstack server listcreate --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# . demo-openrc Kopenstack server create --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# . demo-openrc Kopenstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver 129.69.2111.1 --gateway 192.168.221.1 --subnet-range 192.168.221.128/25 providerA0;root@astplsm01: ~root@astplsm01:~# cat /etc/resolv.confK
+KAroot@astplsm01:~# cat /etc/resolv.conf1@nano /etc/resolv.conf1Pcat /etc/resolv.confopenstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver 129.69.2111.1 --gateway 192.168.221.1 --subnet-range 192.168.221.128/25 providerA0;root@astplsm01: ~root@astplsm01:~# cat /etc/resolv.confK
+KAroot@astplsm01:~# cat /etc/resolv.conf1@nano /etc/resolv.confopenstack network create --share --external --provider-physical-network provider --provider-network-type flat provider --disable-pport-security
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++---------------------------+--------------------------------------+
+| Field | Value|
++---------------------------+--------------------------------------+
+| admin_state_up| UP |
+| availability_zone_hints ||
+| availability_zones||
+| created_at| 2022-08-17T17:51:00Z |
+| description ||
+| dns_domain| None |
+| id| 221f8deb-f096-49bb-bb3c-3ed271d943a9 |
+| ipv4_address_scope| None |
+| ipv6_address_scope| None |
+| is_default| None |
+| is_vlan_transparent | None |
+| mtu | 1500 |
+| name| provider |
+| port_security_enabled | False|
+| project_id| 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| provider:network_type | flat |
+| provider:physical_network | provider |
+| provider:segmentation_id| None |
+| qos_policy_id | None |
+| revision_number | 1|
+| router:external | External |
+| segments| None |
+| shared| True |
+| status| ACTIVE |
+| subnets ||
+| tags||
+| updated_at| 2022-08-17T17:51:00Z |
++---------------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack network create --share --external --provider-physical-network provider --provider-network-type flat provider --disable-pport-securityA1:~# openstack network listK
+KAroot@astplsm01:~# openstack network listdelete provider18P. admin-openrc openstack network delete providerserver delete provider-instanceip aKopenstack server stop provider-instancelistKnetwork show providerKshow providersecurity group show defaultnano /etc/neutron/plugins/ml2/ml2_conf.ini 0;root@astplsm01: ~root@astplsm01:~# 13Popenstack subnet show providerlistKip aKopenstack subnet listshow providerlistKip aKopenstack subnet show providerlistKconsole url show provider-instance0;root@astplsm01: ~root@astplsm01:~# ip aKopenstack console url show provider-instance5Pserver show provider-instance8Pnetwork show providerK4Plist8P. demo-openrc openstack network list1Pserver list6P. admin-openrc openstack server list1Pack server list50@tack security group rule create --proto tcp --dst-port 22 default13Picmp default0;root@astplsm01: ~root@astplsm01:~# . demo-openrc Kopenstack security group rule create --proto tcp --dst-port 22 default13Picmp default20Pshow default8Plist1Pgroup list8Pping 192.168.221.247ip aKssh cirros@203.0.113.1033Popenstack server listnetwork show provider1@nhow providerlistK2Pping 192.168.221.247openstack server listcreate --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# . demo-openrc Kopenstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver 129.69.2111.1 --gateway 192.168.221.1 --subnet-range 192.168.221.128/25 provider-1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P21P1P1P1P1P1P
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++----------------------+--------------------------------------+
+| Field| Value|
++----------------------+--------------------------------------+
+| allocation_pools | 192.168.221.130-192.168.221.250|
+| cidr | 192.168.221.128/25 |
+| created_at | 2022-08-17T17:51:43Z |
+| description||
+| dns_nameservers| 129.69.211.1 |
+| dns_publish_fixed_ip | None |
+| enable_dhcp| True |
+| gateway_ip | 192.168.221.129|
+| host_routes||
+| id | 3f65680c-7580-4650-84a2-8afe8307db57 |
+| ip_version | 4|
+| ipv6_address_mode| None |
+| ipv6_ra_mode | None |
+| name | provider |
+| network_id | 221f8deb-f096-49bb-bb3c-3ed271d943a9 |
+| project_id | 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| revision_number| 0|
+| segment_id | None |
+| service_types||
+| subnetpool_id| None |
+| tags ||
+| updated_at | 2022-08-17T17:51:43Z |
++----------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver 129.69.2111.1 --subnet-range 192.168.221.128/25 providerAnetwork create --share --external --provider-physical-network provider --provider-network-type flat provider --disable-port-securityKA1:~# openstack network listK
+KAroot@astplsm01:~# openstack network listdelete provider18P. admin-openrc openstack network delete providerserver delete provider-instanceip aKopenstack server stop provider-instancelistKnetwork show providerKshow providersecurity group show defaultnano /etc/neutron/plugins/ml2/ml2_conf.ini 0;root@astplsm01: ~root@astplsm01:~# 13Popenstack subnet show providerlistKip aKopenstack subnet show providerlistKconsole url show provider-instance0;root@astplsm01: ~root@astplsm01:~# ip aKopenstack console url show provider-instance5Pserver show provider-instance8Pnetwork show providerKviderserver show provider-instance8Pnetwork show providerK4Plist8P. demo-openrc openstack network list1Pserver list6P. admin-openrc openstack server list1Pack server list50@tack security group rule create --proto tcp --dst-port 22 default13Picmp default0;root@astplsm01: ~root@astplsm01:~# . demo-openrc Kopenstack security group rule create --proto tcp --dst-port 22 default13Picmp default20Pshow default8Plist1Pgroup list8Pping 192.168.221.247ip aKssh cirros@203.0.113.1033Popenstack server listnetwork show provider1@nhow providerlistK2Pping 192.168.221.247openstack server listcreate --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+More than one SecurityGroup exists with the name 'default'.
+0;root@astplsm01: ~root@astplsm01:~# K. demo-openrc 
+0;root@astplsm01: ~root@astplsm01:~# . demo-openrc openstack server create --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++-----------------------------+-----------------------------------------------+
+| Field | Value |
++-----------------------------+-----------------------------------------------+
+| OS-DCF:diskConfig | MANUAL|
+| OS-EXT-AZ:availability_zone | |
+| OS-EXT-STS:power_state| NOSTATE |
+| OS-EXT-STS:task_state | scheduling|
+| OS-EXT-STS:vm_state | building|
+| OS-SRV-USG:launched_at| None|
+| OS-SRV-USG:terminated_at| None|
+| accessIPv4| |
+| accessIPv6| |
+| addresses | |
+| adminPass | 7NityryaFLBK|
+| config_drive| |
+| created | 2022-08-17T17:52:35Z|
+| flavor| m1.nano (0) |
+| hostId| |
+| id| 17238b8f-3978-409b-a977-71aeebd58ce6|
+| image | cirros (567f2184-add7-4430-b247-a6a8b95dd56b) |
+| key_name| mykey |
+| name| provider-instance |
+| progress| 0 |
+| project_id| 60d090e9f52e46f9bb19363b484115a6|
+| properties| |
+| security_groups | name='27fec9f5-3925-4a06-ad5e-29d4b0d19ba6' |
+| status| BUILD |
+| updated | 2022-08-17T17:52:35Z|
+| user_id | c68416ac784a4d5e8158d196167a53cd|
+| volumes_attached| |
++-----------------------------+-----------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kserver lopenstack server list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+-------------------+--------+----------+--------+---------+
+| ID | Name| Status | Networks | Image| Flavor|
++--------------------------------------+-------------------+--------+----------+--------+---------+
+| 17238b8f-3978-409b-a977-71aeebd58ce6 | provider-instance | ERROR|| cirros | m1.nano |
++--------------------------------------+-------------------+--------+----------+--------+---------+
+0;root@astplsm01: ~root@astplsm01:~# openstack server listcreate --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# openstack server listKKopenstack network list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+----------+--------------------------------------+
+| ID | Name | Subnets|
++--------------------------------------+----------+--------------------------------------+
+| 221f8deb-f096-49bb-bb3c-3ed271d943a9 | provider | 3f65680c-7580-4650-84a2-8afe8307db57 |
++--------------------------------------+----------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# openstack netwo server delete provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack server delete provider-instance19Pnetwork list1Pserver listcreate --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++-----------------------------+-----------------------------------------------+
+| Field | Value |
++-----------------------------+-----------------------------------------------+
+| OS-DCF:diskConfig | MANUAL|
+| OS-EXT-AZ:availability_zone | |
+| OS-EXT-STS:power_state| NOSTATE |
+| OS-EXT-STS:task_state | scheduling|
+| OS-EXT-STS:vm_state | building|
+| OS-SRV-USG:launched_at| None|
+| OS-SRV-USG:terminated_at| None|
+| accessIPv4| |
+| accessIPv6| |
+| addresses | |
+| adminPass | JQcB8rffWqxD|
+| config_drive| |
+| created | 2022-08-17T17:53:36Z|
+| flavor| m1.nano (0) |
+| hostId| |
+| id| 066baa3b-7122-49ea-bd07-f58b79df0bce|
+| image | cirros (567f2184-add7-4430-b247-a6a8b95dd56b) |
+| key_name| mykey |
+| name| provider-instance |
+| progress| 0 |
+| project_id| 60d090e9f52e46f9bb19363b484115a6|
+| properties| |
+| security_groups | name='27fec9f5-3925-4a06-ad5e-29d4b0d19ba6' |
+| status| BUILD |
+| updated | 2022-08-17T17:53:36Z|
+| user_id | c68416ac784a4d5e8158d196167a53cd|
+| volumes_attached| |
++-----------------------------+-----------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack server list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+-------------------+--------+----------+--------+---------+
+| ID | Name| Status | Networks | Image| Flavor|
++--------------------------------------+-------------------+--------+----------+--------+---------+
+| 066baa3b-7122-49ea-bd07-f58b79df0bce | provider-instance | ERROR|| cirros | m1.nano |
++--------------------------------------+-------------------+--------+----------+--------+---------+
+0;root@astplsm01: ~root@astplsm01:~# var &etc/etc/var/ c nano /etc/
+Display all 248 possibilities? (y or n)
+0;root@astplsm01: ~root@astplsm01:~# nano /etc/neutron/var/log/neutron/neutron- 9P(arg: 1) nano /var/log/neutron/(arg: 4) nano /var/log/neutron/0;root@astplsm01: ~root@astplsm01:~# nano /var/log/neutron/neutron9P(arg: 1) 4) 0;root@astplsm01: ~root@astplsm01:~# nano /var/log/neutron/neutronnano /var/log/neutron/neutron nova-n/nova-
+nova-api.lognova-compute.lognova-conductor.lognova-novncproxy.log nova-scheduler.log
+nova-api.log.1nova-compute.log.1nova-conductor.log.1nova-novncproxy.log.1 nova-scheduler.log.1
+nova-api.log.2.gz nova-compute.log.2.gz nova-conductor.log.2.gz nova-novncproxy.log.2.gznova-scheduler.log.2.gz
+nova-api.log.3.gz nova-compute.log.3.gz nova-conductor.log.3.gz nova-novncproxy.log.3.gznova-scheduler.log.3.gz
+nova-api.log.4.gz nova-compute.log.4.gz nova-conductor.log.4.gz nova-novncproxy.log.4.gznova-scheduler.log.4.gz
+0;root@astplsm01: ~root@astplsm01:~# nano /var/log/nova/nova-compute.log
+?2004h?1049h22;0;0t1;43r(Bm4l?7h39;49m?1h=?1h=?25l39;49m(BmH2J41;67H(B0;7m[ Reading... ](Bm41;65H(B0;7m[ Read 1554 lines ](BmH(B0;7mGNU nano 4.8/var/log/nova/nova-compute.log 1;146H(Bm42d(B0;7m^G(Bm Get Help (B0;7m^O(Bm Write Out(B0;7m^W(Bm Where Is (B0;7m^K(Bm Cut Text (B0;7m^J(Bm Justify81G(B0;7m^C(Bm Cur Pos97G(B0;7mM-U(Bm Undo42;113H(B0;7mM-A(Bm Mark Text (B0;7mM-](Bm To Bracket43d(B0;7m^X(Bm Exit43;17H(B0;7m^R(Bm Read File(B0;7m^\(Bm Replace49G(B0;7m^U(Bm Paste Text (B0;7m^T(Bm To Spell (B0;7m^_(Bm Go To Line (B0;7mM-E(Bm Redo43;113H(B0;7mM-6(Bm Copy Text (B0;7m^Q(Bm Where Was41d2d39;49m(Bm2022-08-17 07:26:58.634 1605134 WARNING amqp [-] Received method (60, 30) during closing channel 1. This method will be ignored3d2022-08-17 07:29:30.193 8107 INFO os_vif [-] Loaded VIF plugins: linux_bridge, noop, ovs4d2022-08-17 07:29:40.262 8107 WARNING nova.conductor.api [req-48863218-13cd-41aa-8436-64eb5deadade - - - - -] Timed out waiting for nova-conductor.(B0;7m>5;1H(Bm2022-08-17 07:29:40.280 8107 INFO nova.conductor.api [req-48863218-13cd-41aa-8436-64eb5deadade - - - - -] nova-conductor connection established su(B0;7m>6;1H(Bm2022-08-17 07:29:43.941 8107 INFO nova.virt.driver [req-48863218-13cd-41aa-8436-64eb5deadade - - - - -] Loading compute driver 'libvirt.LibvirtDri(B0;7m>7;1H(Bm2022-08-17 07:29:44.013 8107 INFO nova.compute.provider_config [req-48863218-13cd-41aa-8436-64eb5deadade - - - - -] No provider configs found in /(B0;7m>8;1H(Bm2022-08-17 07:29:44.063 8107 ERROR nova.db.main.api [req-5cba03bf-37e1-4c75-a895-7a38685c1ea7 - - - - -] No DB access allowed in nova-compute: F(B0;7m>9;5H(Bmresult = function(*args, **kwargs)10;3HFile "/usr/lib/python3/dist-packages/nova/utils.py", line 655, in context_wrapper11;5Hreturn func(*args, **kwargs)12;3HFile "/usr/lib/python3/dist-packages/nova/context.py", line 422, in gather_result13;5Hresult = fn(*args, **kwargs)14;3HFile "/usr/lib/python3/dist-packages/nova/db/main/api.py", line 162, in wrapper15;5Hreturn f(*args, **kwargs)16;3HFile "/usr/lib/python3/dist-packages/nova/objects/service.py", line 511, in _db_service_get_minimum_version17;5Hreturn db.service_get_minimum_version(context, binaries)18;3HFile "/usr/lib/python3/dist-packages/nova/db/main/api.py", line 221, in wrapper19;5H_check_db_access()20;3HFile "/usr/lib/python3/dist-packages/nova/db/main/api.py", line 171, in _check_db_access21;5Hstacktrace = ''.join(traceback.format_stack())23d2022-08-17 07:29:44.064 8107 ERROR nova.db.main.api [req-5cba03bf-37e1-4c75-a895-7a38685c1ea7 - - - - -] No DB access allowed in nova-compute: F(B0;7m>24;5H(Bmresult = function(*args, **kwargs)25;3HFile "/usr/lib/python3/dist-packages/nova/utils.py", line 655, in context_wrapper26;5Hreturn func(*args, **kwargs)27;3HFile "/usr/lib/python3/dist-packages/nova/context.py", line 422, in gather_result28;5Hresult = fn(*args, **kwargs)29;3HFile "/usr/lib/python3/dist-packages/nova/db/main/api.py", line 162, in wrapper30;5Hreturn f(*args, **kwargs)31;3HFile "/usr/lib/python3/dist-packages/nova/objects/service.py", line 511, in _db_service_get_minimum_version32;5Hreturn db.service_get_minimum_version(context, binaries)33;3HFile "/usr/lib/python3/dist-packages/nova/db/main/api.py", line 221, in wrapper34;5H_check_db_access()35;3HFile "/usr/lib/python3/dist-packages/nova/db/main/api.py", line 171, in _check_db_access36;5Hstacktrace = ''.join(traceback.format_stack())38d2022-08-17 07:29:44.064 8107 WARNING nova.objects.service [req-5cba03bf-37e1-4c75-a895-7a38685c1ea7 - - - - -] Failed to get minimum service versi(B0;7m>39;1H(Bm2022-08-17 07:29:44.064 8107 WARNING nova.objects.service [req-5cba03bf-37e1-4c75-a895-7a38685c1ea7 - - - - -] Failed to get minimum service versi(B0;7m>40;1H(Bm2022-08-17 07:29:44.067 8107 WARNING oslo_config.cfg [req-5cba03bf-37e1-4c75-a895-7a38685c1ea7 - - - - -] Deprecated: Option "auth_strategy" from (B0;7m>2;1H(Bm?12l?25h?25l2;12H19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>3;12H(Bm19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.driver.spawn(context, instance(B0;7m>4;12H(Bm19:53:38.194 330473 ERROR4;45Hmpute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/5;12H19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] xml = self._get_guest_xml(context, 6;12H19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/7;12H19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] network_info_str = str(network_info)8;12H19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/9d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return self._sync_wrapper(fn, *args(B0;7m>10;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>11;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.wait()12d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>13;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self[:] = self._gt.wait()14d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>15;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return self._exit_event.wait()16d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>17;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] current.throw(*self._exc)18d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>19;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] result = function(*args, **kwargs)20d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>21;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return func(*args, **kwargs)22d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>23;12H(Bm19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise eK24d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>25;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] nwinfo = self.network_api.allocate_(B0;7m>26;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>27;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] requests_and_created_ports = self._(B0;7m>28;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>29;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self._delete_ports(30d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>31;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.force_reraise()32d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>33;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise self.value34d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>35;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise exception.SecurityGroupCannot(B0;7m>36;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] nova.exception.SecurityGroupCannotBeApp(B0;7m>37;1H(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce]38;12H19:53:38.333 330473 INFO nova.compute.manager [req-d67570e5-947e-461b-b482-7262f54b532d c68416ac784a4d5e8158d196167a53cd 60d090e9f52e4639;12H19:53:38.466 330473 INFO nova.scheduler.client.report [req-d67570e5-947e-461b-b482-7262f54b532d c68416ac784a4d5e8158d196167a53cd 60d09040dK?12l?25h43;1H?1049l23;0;0t?1l>?1049h22;0;0t1;43r?12l?25h39;49m(Bm4l?7hH2J(B0;7mGNU nano 4.8/var/log/nova/nova-compute.log 2d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>3d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.driver.spawn(context, instance(B0;7m>4d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>5d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] xml = self._get_guest_xml(context, (B0;7m>6d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>7d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] network_info_str = str(network_info)8d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>9d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return self._sync_wrapper(fn, *args(B0;7m>10d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>11d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.wait()12d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>13d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self[:] = self._gt.wait()14d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>15d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return self._exit_event.wait()16d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>17d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] current.throw(*self._exc)18d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>19d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] result = function(*args, **kwargs)20d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>21d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return func(*args, **kwargs)22d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>23d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise e24d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>25d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] nwinfo = self.network_api.allocate_(B0;7m>26d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>27d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] requests_and_created_ports = self._(B0;7m>28d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>29d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self._delete_ports(30d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>31d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.force_reraise()32d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>33d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise self.value34d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>35d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise exception.SecurityGroupCannot(B0;7m>36d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] nova.exception.SecurityGroupCannotBeApp(B0;7m>37d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce]38d2022-08-17 19:53:38.333 330473 INFO nova.compute.manager [req-d67570e5-947e-461b-b482-7262f54b532d c68416ac784a4d5e8158d196167a53cd 60d090e9f52e46(B0;7m>39d(Bm2022-08-17 19:53:38.466 330473 INFO nova.scheduler.client.report [req-d67570e5-947e-461b-b482-7262f54b532d c68416ac784a4d5e8158d196167a53cd 60d090(B0;7m>41;65H[ Read 1554 lines ]42d^G(Bm Get Help (B0;7m^O(Bm Write Out(B0;7m^W(Bm Where Is (B0;7m^K(Bm Cut Text (B0;7m^J(Bm Justify81G(B0;7m^C(Bm Cur Pos97G(B0;7mM-U(Bm Undo42;113H(B0;7mM-A(Bm Mark Text (B0;7mM-](Bm To Bracket43d(B0;7m^X(Bm Exit43;17H(B0;7m^R(Bm Read File(B0;7m^\(Bm Replace49G(B0;7m^U(Bm Paste Text (B0;7m^T(Bm To Spell (B0;7m^_(Bm Go To Line (B0;7mM-E(Bm Redo43;113H(B0;7mM-6(Bm Copy Text (B0;7m^Q(Bm Where Was40d?2004h?1h=?1h=H2J(B0;7mGNU nano 4.8/var/log/nova/nova-compute.log 2d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>3d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.driver.spawn(context, instance(B0;7m>4d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>5d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] xml = self._get_guest_xml(context, (B0;7m>6d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>7d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] network_info_str = str(network_info)8d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>9d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return self._sync_wrapper(fn, *args(B0;7m>10d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>11d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.wait()12d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>13d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self[:] = self._gt.wait()14d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>15d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return self._exit_event.wait()16d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>17d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] current.throw(*self._exc)18d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>19d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] result = function(*args, **kwargs)20d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>21d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return func(*args, **kwargs)22d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>23d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise e24d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>25d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] nwinfo = self.network_api.allocate_(B0;7m>26d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>27d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] requests_and_created_ports = self._(B0;7m>28d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>29d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self._delete_ports(30d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>31d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.force_reraise()32d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>33d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise self.value34d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/(B0;7m>35d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise exception.SecurityGroupCannot(B0;7m>36d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] nova.exception.SecurityGroupCannotBeApp(B0;7m>37d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce]38d2022-08-17 19:53:38.333 330473 INFO nova.compute.manager [req-d67570e5-947e-461b-b482-7262f54b532d c68416ac784a4d5e8158d196167a53cd 60d090e9f52e46(B0;7m>39d(Bm2022-08-17 19:53:38.466 330473 INFO nova.scheduler.client.report [req-d67570e5-947e-461b-b482-7262f54b532d c68416ac784a4d5e8158d196167a53cd 60d090(B0;7m>41d(Bm1;61H(B0;7m/var/log/nova/nova-compute.log1;148H1;210H(Bm2;147Hnova/compute/manager.py", line 2489, in _build_and_run_instance3;147H, image_meta,4;147Hnova/virt/libvirt/driver.py", line 4329, in spawn5;147Hinstance, network_info,6;147Hnova/virt/libvirt/driver.py", line 7288, in _get_guest_xml8;147Hnova/network/model.py", line 620, in __str__9;147H, **kwargs)10;147Hnova/network/model.py", line 603, in _sync_wrapper12;147Hnova/network/model.py", line 635, in wait14;147Heventlet/greenthread.py", line 181, in wait16;147Heventlet/event.py", line 132, in wait18;147Heventlet/greenthread.py", line 221, in main20;147Hnova/utils.py", line 655, in context_wrapper22;147Hnova/compute/manager.py", line 1876, in _allocate_network_async24;147Hnova/compute/manager.py", line 1854, in _allocate_network_async25;147Hfor_instance(26;147Hnova/network/neutron.py", line 1204, in allocate_for_instance27;147Hcreate_ports_for_instance(28;147Hnova/network/neutron.py", line 1015, in _create_ports_for_instan(B0;7m>30;147H(Bmoslo_utils/excutils.py", line 227, in __exit__32;147Hoslo_utils/excutils.py", line 200, in force_reraise34;147Hnova/network/neutron.py", line 998, in _create_ports_for_instance35;147HBeApplied()36;147Hlied: Network requires port_security_enabled and subnet associat(B0;7m>38;147H(Bmf9bb19363b484115a6 - default default] [instance: 066baa3b-7122-4(B0;7m>39;147H(Bme9f52e46f9bb19363b484115a6 - default default] Deleted allocation(B0;7m>42;1H^G(Bm Get Help18G(B0;7m^O(Bm Write Out (B0;7m^W(Bm Where Is52G(B0;7m^K(Bm Cut Text69G(B0;7m^J(Bm Justify86G(B0;7m^C(Bm Cur Pos103G(B0;7mM-U(Bm Undo42;120H(B0;7mM-A(Bm Mark Text(B0;7mM-](Bm To Bracket (B0;7mM-Q(Bm Previous (B0;7m^B(Bm Back42;188H(B0;7m^Left(Bm Prev Word43d(B0;7m^X(Bm Exit43;18H(B0;7m^R(Bm Read File (B0;7m^\(Bm Replace52G(B0;7m^U(Bm Paste Text(B0;7m^T(Bm To Spell86G(B0;7m^_(Bm Go To Line(B0;7mM-E(Bm Redo43;120H(B0;7mM-6(Bm Copy Text(B0;7m^Q(Bm Where Was (B0;7mM-W(Bm Next43;171H(B0;7m^F(Bm Forward188G(B0;7m^Right(Bm Next Word41d?25lA?12l?25h?25l?12l?25h43;1H?1049l23;0;0t?1l>?1049h22;0;0t1;63r?12l?25h39;49m(Bm4l?7hH2J(B0;7mGNU nano 4.8/var/log/nova/nova-compute.log 2d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 2489, in _build_and_run_instance3d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.driver.spawn(context, instance, image_meta,4d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/virt/libvirt/driver.py", line 4329, in spawn5d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] xml = self._get_guest_xml(context, instance, network_info,6d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/virt/libvirt/driver.py", line 7288, in _get_guest_xml7d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] network_info_str = str(network_info)8d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/network/model.py", line 620, in __str__9d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return self._sync_wrapper(fn, *args, **kwargs)10d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/network/model.py", line 603, in _sync_wrapper11d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.wait()12d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/network/model.py", line 635, in wait13d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self[:] = self._gt.wait()14d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/eventlet/greenthread.py", line 181, in wait15d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return self._exit_event.wait()16d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/eventlet/event.py", line 132, in wait17d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] current.throw(*self._exc)18d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/eventlet/greenthread.py", line 221, in main19d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] result = function(*args, **kwargs)20d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/utils.py", line 655, in context_wrapper21d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return func(*args, **kwargs)22d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 1876, in _allocate_network_async23d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise e24d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 1854, in _allocate_network_async25d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] nwinfo = self.network_api.allocate_for_instance(26d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/network/neutron.py", line 1204, in allocate_for_instance27d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] requests_and_created_ports = self._create_ports_for_instance(28d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/network/neutron.py", line 1015, in _create_ports_for_instan(B0;7m>29d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self._delete_ports(30d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/oslo_utils/excutils.py", line 227, in __exit__31d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.force_reraise()32d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/oslo_utils/excutils.py", line 200, in force_reraise33d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise self.value34d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/network/neutron.py", line 998, in _create_ports_for_instance35d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise exception.SecurityGroupCannotBeApplied()36d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] nova.exception.SecurityGroupCannotBeApplied: Network requires port_security_enabled and subnet associat(B0;7m>37d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce]38d2022-08-17 19:53:38.333 330473 INFO nova.compute.manager [req-d67570e5-947e-461b-b482-7262f54b532d c68416ac784a4d5e8158d196167a53cd 60d090e9f52e46f9bb19363b484115a6 - default default] [instance: 066baa3b-7122-4(B0;7m>39d(Bm2022-08-17 19:53:38.466 330473 INFO nova.scheduler.client.report [req-d67570e5-947e-461b-b482-7262f54b532d c68416ac784a4d5e8158d196167a53cd 60d090e9f52e46f9bb19363b484115a6 - default default] Deleted allocation(B0;7m>42d^G(Bm Get Help18G(B0;7m^O(Bm Write Out (B0;7m^W(Bm Where Is52G(B0;7m^K(Bm Cut Text69G(B0;7m^J(Bm Justify86G(B0;7m^C(Bm Cur Pos103G(B0;7mM-U(Bm Undo42;120H(B0;7mM-A(Bm Mark Text(B0;7mM-](Bm To Bracket (B0;7mM-Q(Bm Previous (B0;7m^B(Bm Back42;188H(B0;7m^Left(Bm Prev Word43d(B0;7m^X(Bm Exit43;18H(B0;7m^R(Bm Read File (B0;7m^\(Bm Replace52G(B0;7m^U(Bm Paste Text(B0;7m^T(Bm To Spell86G(B0;7m^_(Bm Go To Line(B0;7mM-E(Bm Redo43;120H(B0;7mM-6(Bm Copy Text(B0;7m^Q(Bm Where Was (B0;7mM-W(Bm Next43;171H(B0;7m^F(Bm Forward188G(B0;7m^Right(Bm Next Word40d?2004h?1h=?1h=H2J(B0;7mGNU nano 4.8/var/log/nova/nova-compute.log 2d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 2489, in _build_and_run_instance3d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.driver.spawn(context, instance, image_meta,4d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/virt/libvirt/driver.py", line 4329, in spawn5d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] xml = self._get_guest_xml(context, instance, network_info,6d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/virt/libvirt/driver.py", line 7288, in _get_guest_xml7d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] network_info_str = str(network_info)8d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/network/model.py", line 620, in __str__9d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return self._sync_wrapper(fn, *args, **kwargs)10d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/network/model.py", line 603, in _sync_wrapper11d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.wait()12d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/network/model.py", line 635, in wait13d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self[:] = self._gt.wait()14d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/eventlet/greenthread.py", line 181, in wait15d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return self._exit_event.wait()16d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/eventlet/event.py", line 132, in wait17d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] current.throw(*self._exc)18d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/eventlet/greenthread.py", line 221, in main19d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] result = function(*args, **kwargs)20d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/utils.py", line 655, in context_wrapper21d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] return func(*args, **kwargs)22d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 1876, in _allocate_network_async23d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise e24d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/compute/manager.py", line 1854, in _allocate_network_async25d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] nwinfo = self.network_api.allocate_for_instance(26d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/network/neutron.py", line 1204, in allocate_for_instance27d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] requests_and_created_ports = self._create_ports_for_instance(28d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/network/neutron.py", line 1015, in _create_ports_for_instan(B0;7m>29d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self._delete_ports(30d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/oslo_utils/excutils.py", line 227, in __exit__31d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] self.force_reraise()32d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/oslo_utils/excutils.py", line 200, in force_reraise33d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise self.value34d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] File "/usr/lib/python3/dist-packages/nova/network/neutron.py", line 998, in _create_ports_for_instance35d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] raise exception.SecurityGroupCannotBeApplied()36d2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] nova.exception.SecurityGroupCannotBeApplied: Network requires port_security_enabled and subnet associat(B0;7m>37d(Bm2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce]38d2022-08-17 19:53:38.333 330473 INFO nova.compute.manager [req-d67570e5-947e-461b-b482-7262f54b532d c68416ac784a4d5e8158d196167a53cd 60d090e9f52e46f9bb19363b484115a6 - default default] [instance: 066baa3b-7122-4(B0;7m>39d(Bm2022-08-17 19:53:38.466 330473 INFO nova.scheduler.client.report [req-d67570e5-947e-461b-b482-7262f54b532d c68416ac784a4d5e8158d196167a53cd 60d090e9f52e46f9bb19363b484115a6 - default default] Deleted allocation(B0;7m>42d^G(Bm Get Help18G(B0;7m^O(Bm Write Out (B0;7m^W(Bm Where Is52G(B0;7m^K(Bm Cut Text69G(B0;7m^J(Bm Justify86G(B0;7m^C(Bm Cur Pos103G(B0;7mM-U(Bm Undo42;120H(B0;7mM-A(Bm Mark Text(B0;7mM-](Bm To Bracket (B0;7mM-Q(Bm Previous (B0;7m^B(Bm Back42;188H(B0;7m^Left(Bm Prev Word43d(B0;7m^X(Bm Exit43;18H(B0;7m^R(Bm Read File (B0;7m^\(Bm Replace52G(B0;7m^U(Bm Paste Text(B0;7m^T(Bm To Spell86G(B0;7m^_(Bm Go To Line(B0;7mM-E(Bm Redo43;120H(B0;7mM-6(Bm Copy Text(B0;7m^Q(Bm Where Was (B0;7mM-W(Bm Next43;171H(B0;7m^F(Bm Forward188G(B0;7m^Right(Bm Next Word61d1;93H(B0;7m /var/log/nova/nova-compute.log1;212H1;236H(Bm28;211Hce36;211Hed in order to apply secur(B0;7m>38;211H(Bm9ea-bd07-f58b79df0bce] Too(B0;7m>39;211H(Bms for instance 066baa3b-71(B0;7m>42;1H(BmK43dK62d(B0;7m^G(Bm Get Help19G(B0;7m^O(Bm Write Out37G(B0;7m^W(Bm Where Is55G(B0;7m^K(Bm Cut Text73G(B0;7m^J(Bm Justify62;91H(B0;7m^C(Bm Cur Pos62;109H(B0;7mM-U(Bm Undo62;127H(B0;7mM-A(Bm Mark Text (B0;7mM-](Bm To Bracket(B0;7mM-Q(Bm Previous181G(B0;7m^B(Bm Back62;199H(B0;7m^Left(Bm Prev Word (B0;7m^A(Bm Home63d(B0;7m^X(Bm Exit63;19H(B0;7m^R(Bm Read File37G(B0;7m^\(Bm Replace63;55H(B0;7m^U(Bm Paste Text (B0;7m^T(Bm To Spell91G(B0;7m^_(Bm Go To Line (B0;7mM-E(Bm Redo63;127H(B0;7mM-6(Bm Copy Text (B0;7m^Q(Bm Where Was163G(B0;7mM-W(Bm Next63;181H(B0;7m^F(Bm Forward63;199H(B0;7m^Right(Bm Next Word(B0;7m^E(Bm End61d?25l40d?12l?25h?25l?12l?25h?25lA?12l?25h?25l2?12l?25h?25l0?12l?25h?25l2?12l?25h?25l2?12l?25h?25l-?12l?25h?25l0?12l?25h?25l8?12l?25h?25lA?12l?25h?25lA?12l?25h?25lA?12l?25h?25l-?12l?25h?25l1?12l?25h?25l7?12l?25h?25l ?12l?25h?25l1?12l?25h?25l9?12l?25h?25l:?12l?25h?25l5?12l?25h?25l3?12l?25h?25l:?12l?25h?25l3?12l?25h?25l8?12l?25h?25l.?12l?25h?25l1?12l?25h?25l9?12l?25h?25l4?12l?25h?25l ?12l?25h?25l3?12l?25h?25l3?12l?25h?25l0?12l?25h?25l4?12l?25h?25l7?12l?25h?25l3?12l?25h?25l ?12l?25h?25lE?12l?25h?25lR?12l?25h?25lR?12l?25h?25lO?12l?25h?25lR?12l?25h?25l ?12l?25h?25ln?12l?25h?25lo?12l?25h?25lv?12l?25h?25la?12l?25h?25l.?12l?25h?25lc?12l?25h?25lo?12l?25h?25lm?12l?25h?25lp?12l?25h?25lu?12l?25h?25lt?12l?25h?25le?12l?25h?25l.?12l?25h?25lm?12l?25h?25la?12l?25h?25ln?12l?25h?25la?12l?25h?25lg?12l?25h?25le?12l?25h?25lr?12l?25h?25l ?12l?25h?25l[?12l?25h?25li?12l?25h?25ln?12l?25h?25ls?12l?25h?25lt?12l?25h?25la?12l?25h?25ln?12l?25h?25lc?12l?25h?25le?12l?25h?25l:?12l?25h?25l ?12l?25h?25l0?12l?25h?25l6?12l?25h?25l6?12l?25h?25lb?12l?25h?25la?12l?25h?25la?12l?25h?25l3?12l?25h?25lb?12l?25h?25l-?12l?25h?25l7?12l?25h?25l1?12l?25h?25l2?12l?25h?25l2?12l?25h?25l-?12l?25h?25l4?12l?25h?25l9?12l?25h?25le?12l?25h?25la?12l?25h?25l-?12l?25h?25lb?12l?25h?25ld?12l?25h?25l0?12l?25h?25l7?12l?25h?25l-?12l?25h?25lf?12l?25h?25l5?12l?25h?25l8?12l?25h?25lb?12l?25h?25l7?12l?25h?25l9?12l?25h?25ld?12l?25h?25lf?12l?25h?25l0?12l?25h?25lb?12l?25h?25lc?12l?25h?25le?12l?25h?25l]?12l?25h?25l ?12l?25h?25ln?12l?25h?25lo?12l?25h?25lv?12l?25h?25la?12l?25h?25l.?12l?25h?25le?12l?25h?25lx?12l?25h?25lc?12l?25h?25le?12l?25h?25lp?12l?25h?25lt?12l?25h?25li?12l?25h?25lo?12l?25h?25ln?12l?25h?25l.?12l?25h?25lS?12l?25h?25le?12l?25h?25lc?12l?25h?25lu?12l?25h?25lr?12l?25h?25li?12l?25h?25lt?12l?25h?25ly?12l?25h?25lG?12l?25h?25lr?12l?25h?25lo?12l?25h?25lu?12l?25h?25lp?12l?25h?25lC?12l?25h?25la?12l?25h?25ln?12l?25h?25ln?12l?25h?25lo?12l?25h?25lt?12l?25h?25lB?12l?25h?25le?12l?25h?25lA?12l?25h?25lp?12l?25h?25lp?12l?25h?25ll?12l?25h?25li?12l?25h?25le?12l?25h?25ld?12l?25h?25l:?12l?25h?25l ?12l?25h?25lN?12l?25h?25le?12l?25h?25lt?12l?25h?25lw?12l?25h?25lo?12l?25h?25lr?12l?25h?25lk?12l?25h?25l ?12l?25h?25lr?12l?25h?25le?12l?25h?25lq?12l?25h?25lu?12l?25h?25li?12l?25h?25lr?12l?25h?25le?12l?25h?25ls?12l?25h?25l ?12l?25h?25lp?12l?25h?25lo?12l?25h?25lr?12l?25h?25lt?12l?25h?25l_?12l?25h?25ls?12l?25h?25le?12l?25h?25lc?12l?25h?25lu?12l?25h?25lr?12l?25h?25li?12l?25h?25lt?12l?25h?25ly?12l?25h?25l_?12l?25h?25le?12l?25h?25ln?12l?25h?25la?12l?25h?25lb?12l?25h?25ll?12l?25h?25le?12l?25h?25ld?12l?25h?25l ?12l?25h?25la?12l?25h?25ln?12l?25h?25ld?12l?25h?25l ?12l?25h?25ls?12l?25h?25lu?12l?25h?25lb?12l?25h?25ln?12l?25h?25le?12l?25h?25lt?12l?25h?25l ?12l?25h?25la?12l?25h?25ls?12l?25h?25ls?12l?25h?25lo?12l?25h?25lc?12l?25h?25li?12l?25h?25la?12l?25h?25lt?12l?25h?25le?12l?25h?25ld?12l?25h?25l ?12l?25h?25li?12l?25h?25ln?12l?25h?25l ?12l?25h?25lo?12l?25h?25lr?12l?25h?25ld?12l?25h?25le?12l?25h?25lr?12l?25h?25l ?12l?25h?25lt?12l?25h?25lo?12l?25h?25l ?12l?25h?25la?12l?25h?25lp?12l?25h?25lp?12l?25h?25ll?12l?25h?25ly?12l?25h?25l ?12l?25h?25ls?12l?25h?25le?12l?25h?25lc?12l?25h?25l(B0;7m<(Bm security groups.K7G?12l?25h?25lr?12l?25h?25li?12l?25h?25lt?12l?25h?25ly?12l?25h?25l ?12l?25h?25lg?12l?25h?25l?12l?25h?25l?12l?25h?25l?12l?25h?25l?12l?25h?25l?12l?25h?25l?12l?25h?25l2022-08-17 19:53:38.194 330473 ERROR nova.compute.manager [instance: 066baa3b-7122-49ea-bd07-f58b79df0bce] nova.exception.SecurityGroupCannotBeApplied: Network requires port_security_enabled and subnet associated in order to apply secur(B0;7m>36;235H(Bm?12l?25h?25l?12l?25h?25l?12l?25h?25l?12l?25h?25l62dJ63d?12l?25h63;1H?1049l23;0;0t?1l>?2004l0;root@astplsm01: ~root@astplsm01:~# Kopenstack subet netnet list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+----------+--------------------------------------+--------------------+
+| ID | Name | Network| Subnet |
++--------------------------------------+----------+--------------------------------------+--------------------+
+| 3f65680c-7580-4650-84a2-8afe8307db57 | provider | 221f8deb-f096-49bb-bb3c-3ed271d943a9 | 192.168.221.128/25 |
++--------------------------------------+----------+--------------------------------------+--------------------+
+0;root@astplsm01: ~root@astplsm01:~# openstack subnet show provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++----------------------+--------------------------------------+
+| Field| Value|
++----------------------+--------------------------------------+
+| allocation_pools | 192.168.221.130-192.168.221.250|
+| cidr | 192.168.221.128/25 |
+| created_at | 2022-08-17T17:51:43Z |
+| description||
+| dns_nameservers| 129.69.211.1 |
+| dns_publish_fixed_ip | None |
+| enable_dhcp| True |
+| gateway_ip | 192.168.221.129|
+| host_routes||
+| id | 3f65680c-7580-4650-84a2-8afe8307db57 |
+| ip_version | 4|
+| ipv6_address_mode| None |
+| ipv6_ra_mode | None |
+| name | provider |
+| network_id | 221f8deb-f096-49bb-bb3c-3ed271d943a9 |
+| project_id | 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| revision_number| 0|
+| segment_id | None |
+| service_types||
+| subnetpool_id| None |
+| tags ||
+| updated_at | 2022-08-17T17:51:43Z |
++----------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack subnet show providerKopenstack server delete provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+No server with a name or ID of 'provider' exists.
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack . demo-openrc 
+0;root@astplsm01: ~root@astplsm01:~# openstack server list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+-------------------+--------+----------+--------+---------+
+| ID | Name| Status | Networks | Image| Flavor|
++--------------------------------------+-------------------+--------+----------+--------+---------+
+| 066baa3b-7122-49ea-bd07-f58b79df0bce | provider-instance | ERROR|| cirros | m1.nano |
++--------------------------------------+-------------------+--------+----------+--------+---------+
+0;root@astplsm01: ~root@astplsm01:~# openstack server list7P. demo-openrc openstack server listdelete - provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack server delete provider-instancelistK7P. demo-openrc openstack server delete provider2Pubnet show providerlistKnano /var/log/nova/nova-compute.log14Popenstack server listcreate --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance1P-1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++-----------------------------+-----------------------------------------------+
+| Field | Value |
++-----------------------------+-----------------------------------------------+
+| OS-DCF:diskConfig | MANUAL|
+| OS-EXT-AZ:availability_zone | |
+| OS-EXT-STS:power_state| NOSTATE |
+| OS-EXT-STS:task_state | scheduling|
+| OS-EXT-STS:vm_state | building|
+| OS-SRV-USG:launched_at| None|
+| OS-SRV-USG:terminated_at| None|
+| accessIPv4| |
+| accessIPv6| |
+| addresses | |
+| adminPass | 6wS8kGY3yD4L|
+| config_drive| |
+| created | 2022-08-17T17:56:07Z|
+| flavor| m1.nano (0) |
+| hostId| |
+| id| 04e39c0a-fadf-43a9-8150-e8aa186c8c56|
+| image | cirros (567f2184-add7-4430-b247-a6a8b95dd56b) |
+| key_name| mykey |
+| name| provider-instance |
+| progress| 0 |
+| project_id| 60d090e9f52e46f9bb19363b484115a6|
+| properties| |
+| security_groups | name='default'|
+| status| BUILD |
+| updated | 2022-08-17T17:56:07Z|
+| user_id | c68416ac784a4d5e8158d196167a53cd|
+| volumes_attached| |
++-----------------------------+-----------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Ki openstack server list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| ID | Name| Status | Networks | Image| Flavor|
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| 04e39c0a-fadf-43a9-8150-e8aa186c8c56 | provider-instance | ACTIVE | provider=192.168.221.170 | cirros | m1.nano |
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+0;root@astplsm01: ~root@astplsm01:~# ping 192.168.221.170
+PING 192.168.221.170 (192.168.221.170) 56(84) bytes of data.
+From 129.69.209.168 icmp_seq=1 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=2 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=3 Destination Host Unreachable
+^C
+--- 192.168.221.170 ping statistics ---
+5 packets transmitted, 0 received, +3 errors, 100% packet loss, time 4088ms
+pipe 4
+0;root@astplsm01: ~root@astplsm01:~# i route -n
+Kernel IP routing table
+Destination Gateway Genmask Flags Metric RefUse Iface
+0.0.0.0 129.69.209.2540.0.0.0 UG000 eno1np0
+129.69.209.00.0.0.0 255.255.255.0 U 000 eno1np0
+192.168.122.0 0.0.0.0 255.255.255.0 U 000 virbr0
+192.168.209.128 0.0.0.0 255.255.255.128 U 000 eno2np1.137
+192.168.221.128 0.0.0.0 255.255.255.128 U 000 eno2np1.139
+0;root@astplsm01: ~root@astplsm01:~# openstack cones nsole url show provider-is nstance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++----------+-------------------------------------------------------------------------------------------+
+| Field| Value |
++----------+-------------------------------------------------------------------------------------------+
+| protocol | vnc |
+| type | novnc |
+| url| http://controller:6080/vnc_auto.html?path=%3Ftoken%3D593b8d9d-3e8a-4fc2-9d80-73e8db2296ee |
++----------+-------------------------------------------------------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# K^C
+0;root@astplsm01: ~root@astplsm01:~# openstack serer ver rver list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| ID | Name| Status | Networks | Image| Flavor|
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| 04e39c0a-fadf-43a9-8150-e8aa186c8c56 | provider-instance | ACTIVE | provider=192.168.221.170 | cirros | m1.nano |
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+0;root@astplsm01: ~root@astplsm01:~# opensastack server stop provider-insantance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack server-delete 192.168.221.1 provider-instnace
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+No server with a name or ID of 'provider-instnace' exists.
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack server delete provider-instnaceance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+0;root@astplsm01: ~root@astplsm01:~# Kop. admin-openrc 
+0;root@astplsm01: ~root@astplsm01:~# openstack network delteete provider
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack network delete provider18P. admin-openrc openstack server delete provider-instancenace2Pstop provider-instancelistKconsole url show provider-instance0;root@astplsm01: ~root@astplsm01:~# route -nKping 192.168.221.170openstack server listcreate --flavor m1.nano --image cirros --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# openstack server delete provider-instanceKlistK7P. demo-openrc openstack server delete provider2Pubnet show providerlistKnano /var/log/nova/nova-compute.log14Popenstack server listcreate --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# openstack server delete provider-instanceK19Pnetwork list1Pserver listcreate --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# . demo-openrc Kopenstack server create --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# openstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver 129.69.211.1 --subnet-range 192.168.221.128/25 provider0;root@astplsm01: ~root@astplsm01:~# openstack 33Pnetwork create --share --external --provider-physical-network provider --provider-network-type flat provider --disable-port-security0;root@astplsm01: ~root@astplsm01:~# openstack network listKcreate --share --external --provider-physical-network provider --provider-network-type flat provider --disable-port-security-1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1P1PyK
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++---------------------------+--------------------------------------+
+| Field | Value|
++---------------------------+--------------------------------------+
+| admin_state_up| UP |
+| availability_zone_hints ||
+| availability_zones||
+| created_at| 2022-08-17T18:07:20Z |
+| description ||
+| dns_domain| None |
+| id| 446316ce-5d96-473b-8517-2a7468d2e132 |
+| ipv4_address_scope| None |
+| ipv6_address_scope| None |
+| is_default| None |
+| is_vlan_transparent | None |
+| mtu | 1500 |
+| name| provider |
+| port_security_enabled | True |
+| project_id| 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| provider:network_type | flat |
+| provider:physical_network | provider |
+| provider:segmentation_id| None |
+| qos_policy_id | None |
+| revision_number | 1|
+| router:external | External |
+| segments| None |
+| shared| True |
+| status| ACTIVE |
+| subnets ||
+| tags||
+| updated_at| 2022-08-17T18:07:20Z |
++---------------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack network create --share --external --provider-physical-network provider --provider-network-type flat provider 0;root@astplsm01: ~root@astplsm01:~# openstack network delete providerK18P. admin-openrc openstack server delete provider-instancenace2Pstop provider-instancelistKconsole url show provider-instance0;root@astplsm01: ~root@astplsm01:~# route -nKping 192.168.221.170openstack server listcreate --flavor m1.nano --image cirros --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# openstack server delete provider-instanceKlistK7P. demo-openrc openstack server delete provider2Pubnet show providerlistKnano /var/log/nova/nova-compute.log14Popenstack server listcreate --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# openstack server delete provider-instanceK19Pnetwork list1Pserver listcreate --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# . demo-openrc Kopenstack server create --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# openstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver 129.69.211.1 --subnet-range 192.168.221.128/25 provider0;root@astplsm01: ~root@astplsm01:~# openstack 33Pnetwork create --share --external --provider-physical-network provider --provider-network-type flat provider --disable-port-security0;root@astplsm01: ~root@astplsm01:~# openstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver 129.69.211.1 --subnet-range 192.168.221.128/25 provider0;root@astplsm01: ~root@astplsm01:~# openstack 33Pnetwork create --share --external --provider-physical-network provider --provider-network-type flat provider --disable-port-security0;root@astplsm01: ~root@astplsm01:~# openstack network listKdelete provider18P. admin-openrc openstack network delete providerserver delete provider-instanceip aKopenstack server stop provider-instancelistKnetwork show providerKshow providersecurity group show defaultnano /etc/neutron/plugins/ml2/ml2_conf.ini 0;root@astplsm01: ~root@astplsm01:~# 13Popenstack subnet show providerlistKip aKopenstack subnet show providerlistKconsole url show provider-instance0;root@astplsm01: ~root@astplsm01:~# ip aKopenstack console url show provider-instance5Pserver show provider-instance8Pnetwork show providerK4Plist8P. demo-openrc openstack network list1Pserver list6P. admin-openrc openstack server list1Pack server list50@tack security group rule create --proto tcp --dst-port 22 default13Picmp default0;root@astplsm01: ~root@astplsm01:~# . demo-openrc Kopenstack security group rule create --proto tcp --dst-port 22 default13Picmp default20Pshow default8Plist1Pgroup list8Pping 192.168.221.247ip aKssh cirros@203.0.113.1033Popenstack server listnetwork show provider1@nhow providerlistK2Pping 192.168.221.247openstack server listcreate --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# . demo-openrc Kopenstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver 129.69.211.1 --gateway 192.168.221.1 --subnet-range 192.168.221.128/25 provider0;root@astplsm01: ~root@astplsm01:~# cat /etc/resolv.confKopenstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver 129.69.211.1 --gateway 192.168.221.1 --subnet-range 192.168.221.128/25 provider.1P1@21@51@4
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++----------------------+--------------------------------------+
+| Field| Value|
++----------------------+--------------------------------------+
+| allocation_pools | 192.168.221.130-192.168.221.250|
+| cidr | 192.168.221.128/25 |
+| created_at | 2022-08-17T18:08:32Z |
+| description||
+| dns_nameservers| 129.69.211.1 |
+| dns_publish_fixed_ip | None |
+| enable_dhcp| True |
+| gateway_ip | 192.168.221.254|
+| host_routes||
+| id | 472af18f-9da7-4e5a-9a62-4dbfa3bf0796 |
+| ip_version | 4|
+| ipv6_address_mode| None |
+| ipv6_ra_mode | None |
+| name | provider |
+| network_id | 446316ce-5d96-473b-8517-2a7468d2e132 |
+| project_id | 156b09a6b22c4f6c8d3d29a1c439bcd5 |
+| revision_number| 0|
+| segment_id | None |
+| service_types||
+| subnetpool_id| None |
+| tags ||
+| updated_at | 2022-08-17T18:08:32Z |
++----------------------+--------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# K.ddemo-openrc 
+0;root@astplsm01: ~root@astplsm01:~# . demo-openrc openstack subnet create --network provider --allocation-pool start=192.168.221.130,end=192.168.221.250 --dns-nameserver 129.69.211.1 --gateway 192.168.221.254 --subnet-range 192.168.221.128/25 provider0;root@astplsm01: ~root@astplsm01:~# openstack 82Pnetwork create --share --external --provider-physical-network provider --provider-network-type flat provider 0;root@astplsm01: ~root@astplsm01:~# openstack network delete providerK18P. admin-openrc openstack server delete provider-instancenace2Pstop provider-instancelistKconsole url show provider-instance0;root@astplsm01: ~root@astplsm01:~# route -nKping 192.168.221.170openstack server listcreate --flavor m1.nano --image cirros --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# openstack server delete provider-instanceK49@create --flavor m1.nano --image cirros --key-name mykey provider-instancedelete provider-instanceKlistK7P. demo-openrc openstack server delete provider2Pubnet show providerlistKnano /var/log/nova/nova-compute.log14Popenstack server listcreate --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance0;root@astplsm01: ~root@astplsm01:~# openstack server delete provider-instanceK19Pnetwork listserver delete provider-instance74@create --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++-----------------------------+-----------------------------------------------+
+| Field | Value |
++-----------------------------+-----------------------------------------------+
+| OS-DCF:diskConfig | MANUAL|
+| OS-EXT-AZ:availability_zone | |
+| OS-EXT-STS:power_state| NOSTATE |
+| OS-EXT-STS:task_state | scheduling|
+| OS-EXT-STS:vm_state | building|
+| OS-SRV-USG:launched_at| None|
+| OS-SRV-USG:terminated_at| None|
+| accessIPv4| |
+| accessIPv6| |
+| addresses | |
+| adminPass | 7g8UX9Mh7VZy|
+| config_drive| |
+| created | 2022-08-17T18:08:54Z|
+| flavor| m1.nano (0) |
+| hostId| |
+| id| aad1a8e8-ec87-4741-9673-d34d7e040ac4|
+| image | cirros (567f2184-add7-4430-b247-a6a8b95dd56b) |
+| key_name| mykey |
+| name| provider-instance |
+| progress| 0 |
+| project_id| 60d090e9f52e46f9bb19363b484115a6|
+| properties| |
+| security_groups | name='27fec9f5-3925-4a06-ad5e-29d4b0d19ba6' |
+| status| BUILD |
+| updated | 2022-08-17T18:08:54Z|
+| user_id | c68416ac784a4d5e8158d196167a53cd|
+| volumes_attached| |
++-----------------------------+-----------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopw enstack server list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| ID | Name| Status | Networks | Image| Flavor|
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+| aad1a8e8-ec87-4741-9673-d34d7e040ac4 | provider-instance | ACTIVE | provider=192.168.221.213 | cirros | m1.nano |
++--------------------------------------+-------------------+--------+--------------------------+--------+---------+
+0;root@astplsm01: ~root@astplsm01:~# ping 192.168.221.213
+PING 192.168.221.213 (192.168.221.213) 56(84) bytes of data.
+^C
+--- 192.168.221.213 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2040ms
+
+0;root@astplsm01: ~root@astplsm01:~# openstack server show
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+usage: openstack server show [-h] [-f {json,shell,table,value,yaml}] [-c COLUMN] [--noindent] [--prefix PREFIX] [--max-width <integer>] [--fit-width] [--print-empty] [--diagnostics | --topology] <server>
+openstack server show: error: the following arguments are required: <server>
+module 'cmd2' has no attribute 'exceptions'
+0;root@astplsm01: ~root@astplsm01:~# openstack s console url show provieider-instance
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++----------+-------------------------------------------------------------------------------------------+
+| Field| Value |
++----------+-------------------------------------------------------------------------------------------+
+| protocol | vnc |
+| type | novnc |
+| url| http://controller:6080/vnc_auto.html?path=%3Ftoken%3D9ffbc8ca-4751-4516-8edd-88420189abdd |
++----------+-------------------------------------------------------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# K^C
+0;root@astplsm01: ~root@astplsm01:~# openstack console url show provider-instanceserver showK1Pping 192.168.221.213openstack server listcreate --flavor m1.nano --image cirros --security-group default --key-name mykey provider-instance2
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++-----------------------------+-----------------------------------------------+
+| Field | Value |
++-----------------------------+-----------------------------------------------+
+| OS-DCF:diskConfig | MANUAL|
+| OS-EXT-AZ:availability_zone | |
+| OS-EXT-STS:power_state| NOSTATE |
+| OS-EXT-STS:task_state | scheduling|
+| OS-EXT-STS:vm_state | building|
+| OS-SRV-USG:launched_at| None|
+| OS-SRV-USG:terminated_at| None|
+| accessIPv4| |
+| accessIPv6| |
+| addresses | |
+| adminPass | aNatCUUyKy2c|
+| config_drive| |
+| created | 2022-08-17T18:12:02Z|
+| flavor| m1.nano (0) |
+| hostId| |
+| id| 9aa9b0ce-42dc-4169-bc11-801b28ed87a2|
+| image | cirros (567f2184-add7-4430-b247-a6a8b95dd56b) |
+| key_name| mykey |
+| name| provider-instance2|
+| progress| 0 |
+| project_id| 60d090e9f52e46f9bb19363b484115a6|
+| properties| |
+| security_groups | name='27fec9f5-3925-4a06-ad5e-29d4b0d19ba6' |
+| status| BUILD |
+| updated | 2022-08-17T18:12:02Z|
+| user_id | c68416ac784a4d5e8158d196167a53cd|
+| volumes_attached| |
++-----------------------------+-----------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack server list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+--------------------+--------+--------------------------+--------+---------+
+| ID | Name | Status | Networks | Image| Flavor|
++--------------------------------------+--------------------+--------+--------------------------+--------+---------+
+| 9aa9b0ce-42dc-4169-bc11-801b28ed87a2 | provider-instance2 | ACTIVE | provider=192.168.221.248 | cirros | m1.nano |
+| aad1a8e8-ec87-4741-9673-d34d7e040ac4 | provider-instance| ACTIVE | provider=192.168.221.213 | cirros | m1.nano |
++--------------------------------------+--------------------+--------+--------------------------+--------+---------+
+0;root@astplsm01: ~root@astplsm01:~# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+inet 127.0.0.1/8 scope host lo
+ valid_lft forever preferred_lft forever
+2: eno1np0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:40 brd ff:ff:ff:ff:ff:ff
+inet 129.69.209.168/24 brd 129.69.209.255 scope global eno1np0
+ valid_lft forever preferred_lft forever
+3: eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+4: eno2np1.137@eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+inet 192.168.209.143/25 brd 192.168.209.255 scope global eno2np1.137
+ valid_lft forever preferred_lft forever
+5: eno2np1.139@eno2np1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brq446316ce-5d state UP group default qlen 1000
+link/ether 3c:ec:ef:c8:35:41 brd ff:ff:ff:ff:ff:ff
+6: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+link/ether 52:54:00:74:f0:90 brd ff:ff:ff:ff:ff:ff
+inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+ valid_lft forever preferred_lft forever
+16: tapd2c0fb1d-7f@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brq446316ce-5d state UP group default qlen 1000
+link/ether 0e:ca:4f:9e:41:73 brd ff:ff:ff:ff:ff:ff link-netns qdhcp-446316ce-5d96-473b-8517-2a7468d2e132
+17: brq446316ce-5d: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+link/ether 0e:ca:4f:9e:41:73 brd ff:ff:ff:ff:ff:ff
+18: tap038fa824-98: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brq446316ce-5d state UNKNOWN group default qlen 1000
+link/ether fe:16:3e:fe:7d:11 brd ff:ff:ff:ff:ff:ff
+19: tap2994a0e1-99: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master brq446316ce-5d state UNKNOWN group default qlen 1000
+link/ether fe:16:3e:28:82:bf brd ff:ff:ff:ff:ff:ff
+0;root@astplsm01: ~root@astplsm01:~# openstack console url show provider-instance2
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++----------+-------------------------------------------------------------------------------------------+
+| Field| Value |
++----------+-------------------------------------------------------------------------------------------+
+| protocol | vnc |
+| type | novnc |
+| url| http://controller:6080/vnc_auto.html?path=%3Ftoken%3D6b9f8a64-978c-4439-9823-b8925b707e62 |
++----------+-------------------------------------------------------------------------------------------+
+0;root@astplsm01: ~root@astplsm01:~# K^C
+0;root@astplsm01: ~root@astplsm01:~# ^C
+0;root@astplsm01: ~root@astplsm01:~# ping 192.168.221.254
+PING 192.168.221.254 (192.168.221.254) 56(84) bytes of data.
+From 129.69.209.168 icmp_seq=1 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=2 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=3 Destination Host Unreachable
+^C
+--- 192.168.221.254 ping statistics ---
+6 packets transmitted, 0 received, +3 errors, 100% packet loss, time 5121ms
+pipe 4
+0;root@astplsm01: ~root@astplsm01:~# ping 192.18 68.221.254
+PING 192.168.221.254 (192.168.221.254) 56(84) bytes of data.
+From 129.69.209.168 icmp_seq=1 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=2 Destination Host Unreachable
+From 129.69.209.168 icmp_seq=3 Destination Host Unreachable
+^C
+--- 192.168.221.254 ping statistics ---
+4 packets transmitted, 0 received, +3 errors, 100% packet loss, time 3050ms
+pipe 4
+0;root@astplsm01: ~root@astplsm01:~# o route -n
+Kernel IP routing table
+Destination Gateway Genmask Flags Metric RefUse Iface
+0.0.0.0 129.69.209.2540.0.0.0 UG000 eno1np0
+129.69.209.00.0.0.0 255.255.255.0 U 000 eno1np0
+192.168.122.0 0.0.0.0 255.255.255.0 U 000 virbr0
+192.168.209.128 0.0.0.0 255.255.255.128 U 000 eno2np1.137
+192.168.221.128 0.0.0.0 255.255.255.128 U 000 eno2np1.139
+0;root@astplsm01: ~root@astplsm01:~# K0;root@astplsm01: ~root@astplsm01:~# route del -net 192.168.221.128 gw 0.0.0.0 netmask 26655.255.255.128 dev eno2np1.139
+0;root@astplsm01: ~root@astplsm01:~# Kroute del -net 192.168.221.128 gw 0.0.0.0 netmask 255.255.255.128 dev eno2np1.1390;root@astplsm01: ~root@astplsm01:~# Kroute -n
+Kernel IP routing table
+Destination Gateway Genmask Flags Metric RefUse Iface
+0.0.0.0 129.69.209.2540.0.0.0 UG000 eno1np0
+129.69.209.00.0.0.0 255.255.255.0 U 000 eno1np0
+192.168.122.0 0.0.0.0 255.255.255.0 U 000 virbr0
+192.168.209.128 0.0.0.0 255.255.255.128 U 000 eno2np1.137
+0;root@astplsm01: ~root@astplsm01:~# ipping 192.168.221.254
+PING 192.168.221.254 (192.168.221.254) 56(84) bytes of data.
+64 bytes from 192.168.221.254: icmp_seq=1 ttl=255 time=25.1 ms
+64 bytes from 192.168.221.254: icmp_seq=2 ttl=255 time=0.577 ms
+64 bytes from 192.168.221.254: icmp_seq=3 ttl=255 time=33.4 ms
+64 bytes from 192.168.221.254: icmp_seq=4 ttl=255 time=0.576 ms
+64 bytes from 192.168.221.254: icmp_seq=5 ttl=255 time=32.3 ms
+64 bytes from 192.168.221.254: icmp_seq=6 ttl=255 time=0.585 ms
+^C
+--- 192.168.221.254 ping statistics ---
+6 packets transmitted, 6 received, 0% packet loss, time 5023ms
+rtt min/avg/max/mdev = 0.576/15.416/33.445/15.066 ms
+0;root@astplsm01: ~root@astplsm01:~# ssh cirros@192.15868.221.248
+The authenticity of host '192.168.221.248 (192.168.221.248)' can't be established.
+ECDSA key fingerprint is SHA256:OgYZH+ceqhwYdNDDozEUEo0BqG56Pavbd1o8NnIA31s.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.221.248' (ECDSA) to the list of known hosts.
+$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1
+link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+inet 127.0.0.1/8 scope host lo
+ valid_lft forever preferred_lft forever
+inet6 ::1/128 scope host 
+ valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000
+link/ether fa:16:3e:28:82:bf brd ff:ff:ff:ff:ff:ff
+inet 192.168.221.248/25 brd 192.168.221.255 scope global eth0
+ valid_lft forever preferred_lft forever
+inet6 fe80::f816:3eff:fe28:82bf/64 scope link 
+ valid_lft forever preferred_lft forever
+$ oprndJJJenstack server list
+-sh: openstack: not found
+$ exitConnection to 192.168.221.248 closed.
+0;root@astplsm01: ~root@astplsm01:~# Kopenstack server list
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
++--------------------------------------+--------------------+--------+--------------------------+--------+---------+
+| ID | Name | Status | Networks | Image| Flavor|
++--------------------------------------+--------------------+--------+--------------------------+--------+---------+
+| 9aa9b0ce-42dc-4169-bc11-801b28ed87a2 | provider-instance2 | ACTIVE | provider=192.168.221.248 | cirros | m1.nano |
+| aad1a8e8-ec87-4741-9673-d34d7e040ac4 | provider-instance| ACTIVE | provider=192.168.221.213 | cirros | m1.nano |
++--------------------------------------+--------------------+--------+--------------------------+--------+---------+
+0;root@astplsm01: ~root@astplsm01:~# K0;root@astplsm01: ~root@astplsm01:~# ping google.com
+PING google.com (142.250.184.206) 56(84) bytes of data.
+64 bytes from fra24s11-in-f14.1e100.net (142.250.184.206): icmp_seq=1 ttl=57 time=3.86 ms
+64 bytes from fra24s11-in-f14.1e100.net (142.250.184.206): icmp_seq=2 ttl=57 time=3.87 ms
+64 bytes from fra24s11-in-f14.1e100.net (142.250.184.206): icmp_seq=3 ttl=57 time=3.88 ms
+^C
+--- google.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+rtt min/avg/max/mdev = 3.861/3.869/3.878/0.007 ms
+0;root@astplsm01: ~root@astplsm01:~# exit
+logout
+0;schneiti@astplsm01: ~schneiti@astplsm01:~$ exit
+exit
+
+Script done on 2022-08-17 20:44:55+02:00 [COMMAND_EXIT_CODE="0"]

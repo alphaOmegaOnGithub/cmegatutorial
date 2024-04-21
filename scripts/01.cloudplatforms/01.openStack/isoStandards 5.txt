@@ -1,0 +1,12 @@
+ISO-14271 OAIS - Open Archive Information System (ISO, 2012)
+ISO-15489:2016  Records Management: Concepts and Principles
+ISO-15939:2017 Systems and software engineering — Measurement process
+ISO-16363:2012 Space data and information transfer systems — Audit and certification of trustworthy digital repositories
+ISO-18829:2017 Document management — Assessing ECM/EDRM implementations — Trustworthiness
+ISO-23081:2017 Information and documentation — Records management processes — Metadata for records — Part 1: Principles
+ISO-27000:2018 ISMS - Information Security Management Systems
+ISO-27001:2022 Information security, cybersecurity and privacy protection — Information security management systems — Requirements
+ISO-27002 ISO/IEC 27002:2022 Information security, cybersecurity and privacy protection  
+ISO-31000 Risk Management Guidelines Risk management - Guidelines (ISO 31000:2018)
+ISO-37301:2021 Compliance management systems — Requirements with guidance for use
+

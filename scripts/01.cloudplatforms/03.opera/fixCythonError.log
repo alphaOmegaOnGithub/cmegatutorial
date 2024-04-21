@@ -1,0 +1,244 @@
+    1  sudo vim /Etc/hosts
+    2  sudo vim /etc/hosts
+    3  cat /etc/hosts
+    4  sudo vim /etc/hosts
+    5  ping worker01 
+    6  ping worker1
+    7  sudo vim /etc/hosts
+    8  ping v02n02w01
+    9  ssh ubuadmin@v02n02w01
+   10  ssh-copy-id  ubuadmin@v02n02w01
+   11  ssh  ubuadmin@v02n02w01
+   12  ssh-copy-id  root@v02n02w01
+   13  ssh  root@v02n02w01
+   14  hostname
+   15  ip a
+   16  hostname -I 
+   17  exit
+   18  sudo apt update 
+   19  cat /etc/os-release 
+   20  sudo apt upgrade 
+   21  sudo apt install ca-certificates curl gnupg lsb-release -y
+   22  sudo mkdir -m 0755 -p /etc/apt/keyrings 
+   23  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg 
+   24  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+   25    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   26  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y 
+   27  sudo docker -version 
+   28  sudo apt install docker.io docker-compose 
+   29  sudo systemctl enable --now docker 
+   30  sudo systemctl status docker 
+   31  sudo groupadd docker 
+   32  sudo usermod -aG  docker ${USER}
+   33  su - cmadmin 
+   34  exit 
+   35  ping 192.168.138.221
+   36  ssh cmadmin@192.168.138.221
+   37  cat /etc/os-release 
+   38  history 
+   39  ping work01
+   40  ping work1
+   41  cat /etc/hosts
+   42  sudp vim /etc/hosts
+   43  sudo vim /etc/hosts
+   44  ping c02w01 
+   45  ssh  swarm --help 
+   46  docker 
+   47  sssh c02w01 
+   48  ssh c02w01 
+   49  ll .ssh 
+   50  ssh-copy-id cmadmin@c02w01
+   51  ssh cmadmin@c02w01
+   52  cat /etc/hosts
+   53  sudo vim /etc/hosts
+   54  cat /etc/hosts
+   55  ping 192.168.138.67
+   56  ssh ubuadmin@192.168.138.67
+   57  ssh-copy-key  ubuadmin@192.168.138.67
+   58  ssh-copy-id  ubuadmin@192.168.138.67
+   59  ssh ubuadmin@192.168.138.67
+   60  ssh-copy-id  cmadmin@192.168.138.67
+   61  ssh cmadmin@192.168.138.67
+   62  cat /etc/passwd
+   63  cat /etc/hosts
+   64  id
+   65  cat /etc/hosts
+   66  ansible 
+   67  python -v
+   68  python3 -v
+   69  python3 -V
+   70  sudo apt-get -y ansible  
+   71  sudo apt-get -y install ansible  
+   72  ansible --version
+   73  sudo vim /etc/ansible/hosts
+   74  ll /etc/ansible 
+   75  find /etc -name ansible 
+   76  sudo find /etc -name ansible 
+   77  mkdir -p /etc/ansible
+   78  sudo mkdir -p /etc/ansible
+   79  sudo vim /etc/ansible/hosts
+   80  ansible all -i hosts --list-hosts 
+   81  ansible all -i /etc/ansible/hosts --list-hosts 
+   82  sudo ansible all -i /etc/ansible/hosts --list-hosts 
+   83  sudo apr remove ansible 
+   84  sudo apt remove ansible 
+   85  sudo apt purge autoremove  
+   86  sudo apt --purge autoremove  
+   87  sudo apt update 
+   88  sudo apt upgrade
+   89  sudo apt -y install software-properties-common 
+   90  sudo apt-add repository ppa:ansible/ansible
+   91  sudo apt-add-repository ppa:ansible/ansible
+   92  sudo apt install ansible 
+   93  sudo apt-add-repository ppa:ansible/ansible 
+   94  sudo apt update 
+   95  sudo apt install python3-argcomplete
+   96  sudo activate-global-python-argcomplete3
+   97  sudo apt install python3-argcomplete 
+   98  sudo apt install python3
+   99  ansible --version 
+  100  sudo apt install ansible  
+  101  ansible-config  --version 
+  102  pip show -f ansible 
+  103  python3 
+  104  ansible-config init --disabled -t all > ansible.cfg
+  105  ll
+  106  vim ansible.cfg 
+  107  sudo mkdir -p /etc/ansible
+  108  sudo ansible-config init --disabled  > /etc/ansible/ansible.cfg
+  109  mv ansible.cfg ansible-full.cfg 
+  110  ll /etc/ansible/
+  111  cp ansible /etc/ansible/
+  112  sudo cp ansible.cfg /etc/ansible/
+  113  ll /etc/ansible/
+  114  ansible-config 
+  115  ansible-config list 
+  116  pip3 
+  117  sudo apt install python3-pip 
+  118  ansible --version
+  119  mv ansible.cfg ansible.def.cfg 
+  120  ansible --version
+  121  cat /etc/ansible/hosts 
+  122  ansible --help 
+  123  ansible --list-hosts
+  124  ansible -all --list-hosts 
+  125  ansible localhost -m setup 
+  126  sudo vim /etc/ansible/hosts 
+  127  ansible all -i /etc/ansible/hosts --list-hosts  
+  128  sudo vim /etc/ansible/hosts 
+  129  ansible all -i /etc/ansible/hosts --list-hosts   
+  130  ssh-copy-id root@192.168.138.66 
+  131  ssh-copy-id root@c02w01
+  132  ssh-copy-id root@c02w02
+  133  ssh c02w02
+  134  ssh-copy-id root@c02w02 
+  135  ansible all -i /etc/ansible/hosts --list-hosts    
+  136  sudo vim /etc/ansible/hosts 
+  137  ansible all -i /etc/ansible/hosts --list-hosts    
+  138  ansible all -i /etc/ansible/hosts -m ping all  
+  139  ansible -i /etc/ansible/hosts -m ping all  
+  140  sudo vim /etc/ansible/hosts 
+  141  ansible -i /etc/ansible/hosts -m ping all  
+  142  sudo vim /etc/ansible/hosts 
+  143  ansible -i /etc/ansible/hosts -m ping all  
+  144  cat /etc/hosts
+  145  sudo vim /etc/ansible/hosts 
+  146  cat /etc/hosts
+  147  ansible -i /etc/ansible/hosts -m ping all  
+  148  cat /etc/hosts
+  149  sudo vim /etc/ansible/hosts 
+  150  ansible -i /etc/ansible/hosts -m ping all  
+  151  ssh-copy-id root@c02mgr01
+  152  sudo -s 
+  153  sudo vim /etc/ansible/hosts 
+  154  ansible -i /etc/ansible/hosts -m ping all 
+  155  ssh-copy-id root@c02mgr01 
+  156  sudo -s  
+  157  ssh-copy-id root@c02mgr01
+  158  cat .ssh/authorized_keys 
+  159  ssh-copy-id cmadmin@c02mgr01
+  160  ssh cmadmin@c02mgr01
+  161  sudo -s  
+  162  ansible -i /etc/ansible/hosts -m ping all   
+  163  ansible -i hosts -m shell -a 'uptime' all
+  164  ansible  -m shell -a 'uptime' all
+  165  sudo vim /etc/ansible/hosts 
+  166  ansible  -m shell -a 'uptime' c02worker 
+  167  ansible  -m apt  -a 'update-cache=yes update ' c02worker 
+  168  ansible  -m apt  -a 'update-cache=yes ' c02worker 
+  169  ansible  -m shell -a 'date ' c02worker 
+  170  docker --version 
+  171  ansible-galaxy collection list
+  172  ansible-galaxy collection list | grep swarm 
+  173  ansible-galaxy collection install community.docker 
+  174  pip3 install docker 
+  175  pip  install docker 
+  176  apt install python3-docker 
+  177  sudo apt install python3-docker 
+  178  python3
+  179  docker ps 
+  180  docker ps -a 
+  181  docker container stop pedantic_jackson 
+  182  docker ps -a 
+  183  docker container remove pedantic_jackson  
+  184  docker ps -a 
+  185  ll
+  186  cd scripts/
+  187  ll
+  188  cat addPortainer.sh 
+  189  cat docker.stack.backend.yml 
+  190  history  
+  191  sudo -s 
+  192  ll /home/
+  193  ll
+  194  cat docker.monitor.stack.yml 
+  195  ll /var/lib/docker/
+  196  sudo ls -l /var/lib/docker/
+  197  sudo ls -l /var/lib/docker/volumes 
+  198  cat docker.monitor.stack.yml 
+  199  ll
+  200  mv docker.monitor.stack.yml docker.stack.monitor.yml 
+  201  ll
+  202  docker network
+  203  docker network ls 
+  204  ip '--json addr 
+  205  ip --json addr 
+  206  ip -o route list 
+  207  ip --online -6 route list table all 
+  208  ip --oneline -6 route list table all 
+  209  ip --oneline -4 route list table all 
+  210  docker swarm token 
+  211  docker swarm join-token 
+  212  docker nodel ls 
+  213  docker node ls 
+  214  docker network ls 
+  215  sudo update 
+  216  sudo apt-get update 
+  217  sudo apt install -y  python3-venv python3-wheel python-wheel-common 
+  218  cd ..
+  219  mkdir -p ~/opera && cd ~/opera 
+  220  ll
+  221  python3 -m venv .venv && . .venv/bin/activate
+  222  ll
+  223  pip 
+  224  pip list 
+  225  pip install opera
+  226  'kwargsq
+  227  ll
+  228  cd opera
+  229  ll
+  230  history 
+  231  python3 -m venv .venv && . .venv/bin/activate
+  232  pip install wheel 
+  233  pip install opera 
+  234  pip install --upgrade pip 
+  235  pip install opera 
+  236  pip -v install opera 
+  237  pip install "cython<3.0.0" wheel 
+  238  pip -v install opera 
+  239  cat /tmp/tmp59txztkw
+  240  pip install "pyyaml==5.4.1" --no-build-isolation 
+  241  pip install --upgrade pip 
+  242  pip install opera
+  243  history 
+  244  history > fixCythonError.log

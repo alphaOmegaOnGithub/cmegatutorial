@@ -1,0 +1,13 @@
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic-x64/ubuntu2204"
+  config.vm.hostname = "ubu2204t01"
+  config.vm.network :private_network,
+      :ip => "10.100.0.11",
+      :libvirt__network_name => "my-network"
+  config.vm.provider :libvirt do |v|
+    v.cpus=1
+    v.memory=1024
+    v.default_prefix="test"
+  end
+end

@@ -1,0 +1,1239 @@
+Script started on 2022-08-18 11:40:21+02:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="80" LINES="24"]
+]0;schneiti@astplsm01: ~schneiti@astplsm01:~$ sudo -i
+[sudo] password for schneiti: 
+]0;root@astplsm01: ~root@astplsm01:~# nano /et   /var/    etc/apache2/apache2.conf 
+[?2004h[?1049h[22;0;0t[1;24r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[22;34H(B[0;7m[ Reading... ](B[m[22;32H(B[0;7m[ Read 230 lines ](B[m[H(B[0;7m  GNU nano 4.8               /etc/apache2/apache2.conf                          [1;79H(B[m[23d(B[0;7m^G(B[m Get Help  (B[0;7m^O(B[m Write Out (B[0;7m^W(B[m Where Is  (B[0;7m^K(B[m Cut Text  (B[0;7m^J(B[m Justify   (B[0;7m^C(B[m Cur Pos[24d(B[0;7m^X(B[m Exit[14G(B[0;7m^R(B[m Read File (B[0;7m^\(B[m Replace   (B[0;7m^U(B[m Paste Text(B[0;7m^T(B[m To Spell  (B[0;7m^_(B[m Go To Line[22d[2d[39;49m[36m# This is the main Apache server configuration file.  It contains the[3d# configuration directives that give the server its instructions.[4d# See http://httpd.apache.org/docs/2.4/ for detailed information about[5d# the directives and /usr/share/doc/apache2/README.Debian about Debian specific[6d# hints.[7d#[9d[39m(B[mServerName controller[11d[36m#[12d# Summary of how the Apache 2 configuration works in Debian:[13d# The Apache 2 web server configuration in Debian is quite different to[14d# upstream's suggested way to configure the web server. This is because Debian's[15;1H# default Apache2 installation attempts to make adding and removing modules,[16d# virtual hosts, and extra configuration directives as flexible as possible, in[17d# order to make automating the changes and administering the server as easy as[18d# possible.[20d# It is split into several files forming the configuration hierarchy outlined[21d# below, all located in the /etc/apache2/ directory:[2d[39m(B[m[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[5d[?12l[?25h[?25l[6d[?12l[?25h[?25l[7d[?12l[?25h[?25l[8d[?12l[?25h[?25l[9d[?12l[?25h[?25l[10d[?12l[?25h[?25l[11d[?12l[?25h[?25l[12d[?12l[?25h[?25l[13d[?12l[?25h[?25l[14d[?12l[?25h[?25l[15d[?12l[?25h[?25l[16d[?12l[?25h[?25l[17d[?12l[?25h[?25l[18d[?12l[?25h[?25l[19d[?12l[?25h[?25l[20d[?12l[?25h[?25l[21d[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m#       /etc/apache2/[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m#       |-- apache2.conf[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m#       |       `--  ports.conf[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m#       |-- mods-enabled[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m#       |       |-- *.load[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#       |       `-- *.conf[39m(B[m[K[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#       |-- conf-enabled[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#       |       `-- *.conf[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m[41m       [49m[36m`-- sites-enabled[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#       [39m[41m        [49m[36m`-- *.conf[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# * apache2.conf is the main configuration file (this file). It puts the pieces[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#   together by including all remaining configuration files when starting up the[21;1H[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#   web server.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# * ports.conf is always included from the main configuration file. It is[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#   supposed to determine listening ports for incoming connections which can be[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#   customized anytime.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# * Configuration files in the mods-enabled/, conf-enabled/ and sites-enabled/[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#   directories contain particular configuration snippets which manage modules,[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#   global configuration fragments, or virtual host configurations,[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#   respectively.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#   They are activated by symlinking available configuration files from their[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#   respective *-available/ counterparts. These should be managed by using our[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#   helpers a2enmod/a2dismod, a2ensite/a2dissite and a2enconf/a2disconf. See[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#   their respective man pages for detailed information.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# * The binary is called apache2. Due to the use of environment variables, in[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#   the default configuration, apache2 needs to be started/stopped with[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#   /etc/init.d/apache2 or apache2ctl. Calling /usr/bin/apache2 directly will n[39m(B[0;7m>[21;1H(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#   work with the default configuration.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Global configuration[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d[2S[1;24r[20;1H[36m# ServerRoot: The top of the directory tree under which the server's[21d# configuration, error, and log files are kept.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# NOTE!  If you intend to place this on an NFS (or otherwise network)[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# mounted filesystem then please read the Mutex documentation (available[39m(B[m[?12l[?25h[?25l7[2;22r8[22d[2S[1;24r[20;1H[36m# at <URL:http://httpd.apache.org/docs/2.4/mod/core.html#mutex>);[21d# you will save yourself a lot of trouble.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Do NOT add a slash at the end of the directory path.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#ServerRoot "/etc/apache2"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# The accept serialization lock file MUST BE STORED ON A LOCAL DISK.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#Mutex file:${APACHE_LOCK_DIR} default[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# The directory where shm and other runtime files will be stored.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1HDefaultRuntimeDir ${APACHE_RUN_DIR}[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# PidFile: The file in which the server should record its process[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# identification number when it starts.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# This needs to be set in /etc/apache2/envvars[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1HPidFile ${APACHE_PID_FILE}[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Timeout: The number of seconds before receives and sends time out.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1HTimeout 300[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# KeepAlive: Whether or not to allow persistent connections (more than[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# one request per connection). Set to "Off" to deactivate.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1HKeepAlive On[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# MaxKeepAliveRequests: The maximum number of requests to allow[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# during a persistent connection. Set to 0 to allow an unlimited amount.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# We recommend you leave this number high, for maximum performance.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1HMaxKeepAliveRequests 100[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# KeepAliveTimeout: Number of seconds to wait for the next request from the[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# same client on the same connection.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1HKeepAliveTimeout 5[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# These need to be set in /etc/apache2/envvars[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1HUser ${APACHE_RUN_USER}[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1HGroup ${APACHE_RUN_GROUP}[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# HostnameLookups: Log the names of clients or just their IP addresses[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# e.g., www.apache.org (on) or 204.62.129.132 (off).[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# The default is off because it'd be overall better for the net if people[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# had to knowingly turn this feature on, since enabling it means that[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# each client request will result in AT LEAST one lookup request to the[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# nameserver.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1HHostnameLookups Off[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# ErrorLog: The location of the error log file.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# If you do not specify an ErrorLog directive within a <VirtualHost>[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# container, error messages relating to that virtual host will be[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# logged here.  If you *do* define an error logfile for a <VirtualHost>[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# container, that host's errors will be logged there and not here.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1HErrorLog ${APACHE_LOG_DIR}/error.log[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# LogLevel: Control the severity of messages logged to the error_log.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Available values: trace8, ..., trace1, debug, info, notice, warn,[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# error, crit, alert, emerg.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# It is also possible to configure the log level for particular modules, e.g.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# "LogLevel info ssl:warn"[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1HLogLevel warn[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Include module configuration:[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1HIncludeOptional mods-enabled/*.load[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1HIncludeOptional mods-enabled/*.conf[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Include list of ports to listen on[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1HInclude ports.conf[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# Sets the default security model of the Apache2 HTTPD server. It does[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# not allow access to the root filesystem outside of /usr/share and /var/www.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# The former is used by web applications packaged in Debian,[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# the latter may be used for local directories served by the web server. If[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# your system is serving content from a sub-directory in /srv you must allow[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m# access here, or in any related virtual host.[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H<Directory />[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;9HOptions FollowSymLinks[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;9HAllowOverride None[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;9HRequire all denied[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H</Directory>[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H<Directory /usr/share>[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;9HAllowOverride None[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;9HRequire all granted[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H</Directory>[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H<Directory /var/www/>[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;9HOptions Indexes FollowSymLinks[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;9HAllowOverride None[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;9HRequire all granted[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H</Directory>[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#<Directory /srv/>[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#       Options Indexes FollowSymLinks[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#       AllowOverride None[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#       Require all granted[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[36m#</Directory>[39m(B[m[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[11d[?12l[?25h[?25l[12d[?12l[?25h[?25l[13d[?12l[?25h[?25l[1;71H(B[0;7mModified(B[m[13;22r[13;1HM[1;24r[14;1H[?12l[?25h[?25l[13;22r[13;1HM[1;24r[15;1H[?12l[?25h[?25l[A[?12l[?25h[?25l<[?12l[?25h[?25l/[?12l[?25h[?25lD[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lc[?12l[?25h[?25lt[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25ly[?12l[?25h[?25l [?12l[?25h[?25l/[?12l[?25h[?25lv[?12l[?25h[?25la[?12l[?25h[?25lr[?12l[?25h[?25l/[?12l[?25h[?25lw[?12l[?25h[?25lw[?12l[?25h[?25lw[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[A[?12l[?25h[?25l[12;13H[?12l[?25h[?25l[Ai[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[6;13H[?12l[?25h[?25l[Ai[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H</Directory>[?12l[?25h[?25l7[2;21r8M[1;24r[2;9HRequire all denied[2;14H[?12l[?25h[?25l7[2;21r8M[1;24r[2;9HAllowOverride None[2;14H[?12l[?25h[?25l7[2;21r8M[1;24r[2;9HOptions FollowSymLinks[2;14H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H<Directory />[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H[36m# access here, or in any related virtual host.[2;14H[39m(B[m[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[36m# your system is serving content from a sub-directory in /srv you must allow[2;14H[39m(B[m[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[5d[?12l[?25h[?25l[6d[?12l[?25h[?25l[7d[?12l[?25h[?25l[8d[?12l[?25h[?25l[9d[?12l[?25h[?25l[10;14H[?12l[?25h[?25l[11d[?12l[?25h[?25l[12d[?12l[?25h[?25l[13d[?12l[?25h[?25l[14d[?12l[?25h[?25l[15;14H[?12l[?25h[?25l[16d[?12l[?25h[?25l[17d[?12l[?25h[?25l[18d[?12l[?25h[?25l[19d[?12l[?25h[?25l[20d[?12l[?25h[?25l[21;14H[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l[20;14H[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25lo[?12l[?25h[?25lt[?12l[?25h[?25l/[?12l[?25h[?25lh[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25li[?12l[?25h[?25lz[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25l>[?12l[?25h[?25l[21d[?12l[?25h[?25l[21;9H[?12l[?25h[?25lA[?12l[?25h[?25ll[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25lw[?12l[?25h[?25lO[?12l[?25h[?25lv[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25lr[?12l[?25h[?25li[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25lN[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l[21;9H[?12l[?25h[?25lR[?12l[?25h[?25le[?12l[?25h[?25lq[?12l[?25h[?25lu[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25l [?12l[?25h[?25lg[?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25ll[?12l[?25h[?25l [?12l[?25h[?25lg[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25ld[?12l[?25h[?25l7[2;22r8[22d
+[1;24r[21;1H[?12l[?25h[?25l<[?12l[?25h[?25l/[?12l[?25h[?25lD[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lc[?12l[?25h[?25lt[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25ly[?12l[?25h[?25l>[?12l[?25h[?25l[23d        (B[0;7mM-D(B[m DOS Format      (B[0;7mM-A(B[m Append          (B[0;7mM-B(B[m Backup File[24;2H(B[0;7mC(B[m Cancel           (B[0;7mM-M(B[m Mac Format      (B[0;7mM-P(B[m Prepend         (B[0;7m^T(B[m To Files[K[22d(B[0;7mFile Name to Write: /etc/apache2/apache2.conf                                   [22;1H(B[m[22;46H[?12l[?25h[?25l[22;33H[1K (B[0;7m[ Writing... ](B[m[K[1;71H(B[0;7m        (B[m[22;31H(B[0;7m[ Wrote 235 lines ](B[m[23;14H(B[0;7m^O(B[m Write Out (B[0;7m^W(B[m Where Is  (B[0;7m^K(B[m Cut Text  (B[0;7m^J(B[m Justify   (B[0;7m^C(B[m Cur Pos[24;2H(B[0;7mX(B[m Exit      (B[0;7m^R(B[m Read File (B[0;7m^\(B[m Replace   (B[0;7m^U(B[m Paste Text(B[0;7m^T(B[m To Spell  (B[0;7m^_(B[m Go To Line[22d[21;13H[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m#<Directory /srv/>[13G[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m#       Options Indexes FollowSymLinks[21;13H[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m#       AllowOverride None[21;13H[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m#       Require all granted[21;13H[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m#</Directory>[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m# AccessFileName: The name of the file to look for in each directory[21;13H[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m# for additional configuration directives.  See also the AllowOverride[21;13H[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m# directive.[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1HAccessFileName .htaccess[21;13H[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[?12l[?25h[?25l7[2;21r8
+[1;24r[21;1H[36m#[39m(B[m[?12l[?25h[?25l[A[?12l[?25h[?25l[19;13H[?12l[?25h[?25l[A[C[?12l[?25h[?25l[17;13H[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[22d[K[12d[?12l[?25h[?25l[A[?12l[?25h[?25l[10;13H[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[4;13H[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H</Directory /root/horizon>[2;13H[?12l[?25h[?25l7[2;22r8M[1;24r[2;1H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H</Directory>[?12l[?25h[?25l7[2;21r8M[1;24r[2;9HRequire all granted[2;13H[?12l[?25h[?25l7[2;21r8M[1;24r[2;9HAllowOverride None[2;13H[?12l[?25h[?25l7[2;21r8M[1;24r[2;9HOptions Indexes FollowSymLinks[2;13H[?12l[?25h[?25l7[2;21r8M[1;24r[2;1H<Directory /var/www/>[2;13H[?12l[?25h[?25l7[2;22r8[2T[1;24r[2;1H</Directory>[?12l[?25h[?25l[23d[J[24d[?12l[?25h[24;1H[?1049l[23;0;0t[?1l>[?2004l]0;root@astplsm01: ~root@astplsm01:~# [Knano /etc/apache2/apache2.conf                                a2ensite horizn on
+Site horizon already enabled
+]0;root@astplsm01: ~root@astplsm01:~# apache2         systemctl restart apache2
+Job for apache2.service failed because the control process exited with error code.
+See "systemctl status apache2.service" and "journalctl -xe" for details.
+]0;root@astplsm01: ~root@astplsm01:~# [Ksystemctl status apache2
+[?1h=[0;1;31m●[0m apache2.service - The Apache HTTP Server[m
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor prese[m[7m>[27m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Thu 2022-08-18 11:44:27 CEST; 8s [m[7m>[27m
+       Docs: https://httpd.apache.org/docs/2.4/[m
+    Process: 1009588 ExecStart=/usr/sbin/apachectl start [0;1;31m(code=exited, status=1[m[7m>[27m
+[m
+Aug 18 11:44:27 astplsm01 systemd[1]: Starting The Apache HTTP Server...[m
+Aug 18 11:44:27 astplsm01 apachectl[1009603]: apache2: Syntax error on line 179[m[7m>[27m
+Aug 18 11:44:27 astplsm01 apachectl[1009588]: Action 'start' failed.[m
+Aug 18 11:44:27 astplsm01 apachectl[1009588]: The Apache error log may have mor[m[7m>[27m
+Aug 18 11:44:27 astplsm01 systemd[1]: [0;1;39m[0;1;31m[0;1;39mapache2.service: Control process exited, [m[7m>[27m
+Aug 18 11:44:27 astplsm01 systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mapache2.service: Failed with result 'exit[m[7m>[27m
+Aug 18 11:44:27 astplsm01 systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start The Apache HTTP Server.[0m[m
+[7mlines 1-13/13 (END)[27m[K[K[?1l>]0;root@astplsm01: ~root@astplsm01:~# [Ksystm emctl restart apache2
+Job for apache2.service failed because the control process exited with error code.
+See "systemctl status apache2.service" and "journalctl -xe" for details.
+]0;root@astplsm01: ~root@astplsm01:~# [Kq [K]0;root@astplsm01: ~root@astplsm01:~# nano /va/ r/&lo   log/apache2/error.log
+[?2004h[?1049h[22;0;0t[1;24r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[22;45H(B[0;7m[ Reading... ](B[m[22;44H(B[0;7m[ Read 3 lines ](B[m[H(B[0;7m  GNU nano 4.8                          /var/log/apache2/error.log                                     [1;102H(B[m[23d(B[0;7m^G(B[m Get Help   (B[0;7m^O(B[m Write Out  (B[0;7m^W(B[m Where Is   (B[0;7m^K(B[m Cut Text   (B[0;7m^J(B[m Justify    (B[0;7m^C(B[m Cur Pos    (B[0;7mM-U(B[m Undo[24d(B[0;7m^X(B[m Exit[15G(B[0;7m^R(B[m Read File  (B[0;7m^\(B[m Replace    (B[0;7m^U(B[m Paste Text (B[0;7m^T(B[m To Spell   (B[0;7m^_(B[m Go To Line (B[0;7mM-E(B[m Redo[22d[2d[39;49m(B[m[Thu Aug 18 00:00:16.110599 2022] [mpm_event:notice] [pid 523433:tid 140152686672960] AH00489: Apache/(B[0;7m>[3;1H(B[m[Thu Aug 18 00:00:16.110645 2022] [core:notice] [pid 523433:tid 140152686672960] AH00094: Command line(B[0;7m>[4;1H(B[m[Thu Aug 18 11:44:27.152725 2022] [mpm_event:notice] [pid 523433:tid 140152686672960] AH00491: caught (B[0;7m>[2;1H(B[m[?12l[?25h[?25l[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[[?12l[?25h[?25lT[?12l[?25h[?25lh[?12l[?25h[?25lu[?12l[?25h[?25l [?12l[?25h[?25lA[?12l[?25h[?25lu[?12l[?25h[?25lg[?12l[?25h[?25l [?12l[?25h[?25l1[?12l[?25h[?25l8[?12l[?25h[?25l [?12l[?25h[?25l1[?12l[?25h[?25l1[?12l[?25h[?25l:[?12l[?25h[?25l4[?12l[?25h[?25l4[?12l[?25h[?25l:[?12l[?25h[?25l2[?12l[?25h[?25l7[?12l[?25h[?25l.[?12l[?25h[?25l1[?12l[?25h[?25l[22d[K[4;24H[?12l[?25h[?25l2[?12l[?25h[?25l7[?12l[?25h[?25l2[?12l[?25h[?25l5[?12l[?25h[?25l [?12l[?25h[?25l2[?12l[?25h[?25l02[?12l[?25h[?25l2[?12l[?25h[?25l][?12l[?25h[?25l [?12l[?25h[?25l[[?12l[?25h[?25lm[?12l[?25h[?25lp[?12l[?25h[?25lm[?12l[?25h[?25l_[?12l[?25h[?25le[?12l[?25h[?25lv[?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25l:n[?12l[?25h[?25lo[?12l[?25h[?25lti[?12l[?25h[?25lc[?12l[?25h[?25le[?12l[?25h[?25l][?12l[?25h[?25l [?12l[?25h[?25l[[?12l[?25h[?25lp[?12l[?25h[?25li[?12l[?25h[?25ld[?12l[?25h[?25l [?12l[?25h[?25l5[?12l[?25h[?25l2[?12l[?25h[?25l3[?12l[?25h[?25l4[?12l[?25h[?25l3[?12l[?25h[?25l3[?12l[?25h[?25l:[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25ld[?12l[?25h[?25l [?12l[?25h[?25l14[?12l[?25h[?25l0[?12l[?25h[?25l1[?12l[?25h[?25l5[?12l[?25h[?25l2[?12l[?25h[?25l6[?12l[?25h[?25l8[?12l[?25h[?25l6[?12l[?25h[?25l6[?12l[?25h[?25l7[?12l[?25h[?25l2[?12l[?25h[?25l9[?12l[?25h[?25l6[?12l[?25h[?25l0[?12l[?25h[?25l][?12l[?25h[?25l [?12l[?25h[?25lA[?12l[?25h[?25lH[?12l[?25h[?25l0[?12l[?25h[?25l0[?12l[?25h[?25l4[?12l[?25h[?25l9[?12l[?25h[?25l1[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25la[?12l[?25h[?25lug[?12l[?25h[?25lh[?12l[?25h[?25l(B[0;7m<(B[maught SIGTERM, shutting down[K[7G[?12l[?25h[?25l [?12l[?25h[?25lS[?12l[?25h[?25lI[?12l[?25h[?25lG[?12l[?25h[?25lT[?12l[?25h[?25lE[?12l[?25h[?25lR[?12l[?25h[?25lM[?12l[?25h[?25l,[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[Thu Aug 18 11:44:27.152725 2022] [mpm_event:notice] [pid 523433:tid 140152686672960] AH00491: caught (B[0;7m>[4;101H(B[m[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25li[?12l[?25h[?25l[3d[?12l[?25h[?25l4[?12l[?25h[?25l[23d[J[24d[?12l[?25h[24;1H[?1049l[23;0;0t[?1l>[?2004l]0;root@astplsm01: ~root@astplsm01:~# [Knano /var/log/apache2/error.logg           2/
+access.log                      keystone_access.log             placement_api_access.log.3.gz
+access.log.1                    keystone_access.log.1           placement_api_access.log.4.gz
+cinder.log                      keystone_access.log.2.gz        placement_api_access.log.5.gz
+cinder_error.log                keystone_access.log.3.gz        placement_api_access.log.6.gz
+error.log                       keystone_access.log.4.gz        placement_api_access.log.7.gz
+error.log.1                     keystone_access.log.5.gz        placement_api_access.log.8.gz
+error.log.2.gz                  keystone_access.log.6.gz        placement_api_error.log
+error.log.3.gz                  keystone_access.log.7.gz        placement_api_error.log.1
+error.log.4.gz                  keystone_access.log.8.gz        placement_api_error.log.2.gz
+error.log.5.gz                  openstack_dashboard-access.log  placement_api_error.log.3.gz
+error.log.6.gz                  openstack_dashboard-error.log   placement_api_error.log.4.gz
+error.log.7.gz                  other_vhosts_access.log         placement_api_error.log.5.gz
+error.log.8.gz                  placement_api_access.log        placement_api_error.log.6.gz
+keystone.log                    placement_api_access.log.1      placement_api_error.log.7.gz
+keystone.log.1                  placement_api_access.log.2.gz   placement_api_error.log.8.gz
+]0;root@astplsm01: ~root@astplsm01:~# nano /var/log/apache2/
+access.log                      keystone_access.log             placement_api_access.log.3.gz
+access.log.1                    keystone_access.log.1           placement_api_access.log.4.gz
+cinder.log                      keystone_access.log.2.gz        placement_api_access.log.5.gz
+cinder_error.log                keystone_access.log.3.gz        placement_api_access.log.6.gz
+error.log                       keystone_access.log.4.gz        placement_api_access.log.7.gz
+error.log.1                     keystone_access.log.5.gz        placement_api_access.log.8.gz
+error.log.2.gz                  keystone_access.log.6.gz        placement_api_error.log
+error.log.3.gz                  keystone_access.log.7.gz        placement_api_error.log.1
+error.log.4.gz                  keystone_access.log.8.gz        placement_api_error.log.2.gz
+error.log.5.gz                  openstack_dashboard-access.log  placement_api_error.log.3.gz
+error.log.6.gz                  openstack_dashboard-error.log   placement_api_error.log.4.gz
+error.log.7.gz                  other_vhosts_access.log         placement_api_error.log.5.gz
+error.log.8.gz                  placement_api_access.log        placement_api_error.log.6.gz
+keystone.log                    placement_api_access.log.1      placement_api_error.log.7.gz
+keystone.log.1                  placement_api_access.log.2.gz   placement_api_error.log.8.gz
+]0;root@astplsm01: ~root@astplsm01:~# nano /var/log/apache2/openstack_dashboard-error.log 
+[?2004h[?1049h[22;0;0t[1;24r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[22;45H(B[0;7m[ Reading... ](B[m[22;44H(B[0;7m[ Read 0 lines ](B[m[H(B[0;7m  GNU nano 4.8                /var/log/apache2/openstack_dashboard-error.log                           [1;102H(B[m[23d(B[0;7m^G(B[m Get Help   (B[0;7m^O(B[m Write Out  (B[0;7m^W(B[m Where Is   (B[0;7m^K(B[m Cut Text   (B[0;7m^J(B[m Justify    (B[0;7m^C(B[m Cur Pos    (B[0;7mM-U(B[m Undo[24d(B[0;7m^X(B[m Exit[15G(B[0;7m^R(B[m Read File  (B[0;7m^\(B[m Replace    (B[0;7m^U(B[m Paste Text (B[0;7m^T(B[m To Spell   (B[0;7m^_(B[m Go To Line (B[0;7mM-E(B[m Redo[22d[2d[39;49m(B[m[?12l[?25h[?25l[22d[J[24d[?12l[?25h[24;1H[?1049l[23;0;0t[?1l>[?2004l]0;root@astplsm01: ~root@astplsm01:~# [Knano /var/log/apache2/openstack_dashboard-error.log                               
+access.log                      keystone_access.log             placement_api_access.log.3.gz
+access.log.1                    keystone_access.log.1           placement_api_access.log.4.gz
+cinder.log                      keystone_access.log.2.gz        placement_api_access.log.5.gz
+cinder_error.log                keystone_access.log.3.gz        placement_api_access.log.6.gz
+error.log                       keystone_access.log.4.gz        placement_api_access.log.7.gz
+error.log.1                     keystone_access.log.5.gz        placement_api_access.log.8.gz
+error.log.2.gz                  keystone_access.log.6.gz        placement_api_error.log
+error.log.3.gz                  keystone_access.log.7.gz        placement_api_error.log.1
+error.log.4.gz                  keystone_access.log.8.gz        placement_api_error.log.2.gz
+error.log.5.gz                  openstack_dashboard-access.log  placement_api_error.log.3.gz
+error.log.6.gz                  openstack_dashboard-error.log   placement_api_error.log.4.gz
+error.log.7.gz                  other_vhosts_access.log         placement_api_error.log.5.gz
+error.log.8.gz                  placement_api_access.log        placement_api_error.log.6.gz
+keystone.log                    placement_api_access.log.1      placement_api_error.log.7.gz
+keystone.log.1                  placement_api_access.log.2.gz   placement_api_error.log.8.gz
+]0;root@astplsm01: ~root@astplsm01:~# nano /var/log/apache2/                      systemctl status apache2
+[?1h=[0;1;31m●[0m apache2.service - The Apache HTTP Server[m
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Thu 2022-08-18 11:44:40 CEST; 1min 9s ago[m
+       Docs: https://httpd.apache.org/docs/2.4/[m
+    Process: 1010158 ExecStart=/usr/sbin/apachectl start [0;1;31m(code=exited, status=1/FAILURE)[0m[m
+[m
+Aug 18 11:44:40 astplsm01 systemd[1]: Starting The Apache HTTP Server...[m
+Aug 18 11:44:40 astplsm01 apachectl[1010173]: apache2: Syntax error on line 179 of /etc/apache2/apache[m[7m>[27m
+Aug 18 11:44:40 astplsm01 apachectl[1010158]: Action 'start' failed.[m
+Aug 18 11:44:40 astplsm01 apachectl[1010158]: The Apache error log may have more information.[m
+Aug 18 11:44:40 astplsm01 systemd[1]: [0;1;39m[0;1;31m[0;1;39mapache2.service: Control process exited, code=exited, status=1/F[m[7m>[27m
+Aug 18 11:44:40 astplsm01 systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mapache2.service: Failed with result 'exit-code'.[0m[m
+Aug 18 11:44:40 astplsm01 systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start The Apache HTTP Server.[0m[m
+[7mlines 1-13/13 (END)[27m[K[K[?1l>]0;root@astplsm01: ~root@astplsm01:~# [Ksystemctl status apache2nano /var/log/apache2/openstack_dashboard-error.log ]0;root@astplsm01: ~root@astplsm01:~# [28Psystemctl status apache2[K[K]0;root@astplsm01: ~root@astplsm01:~# systemctl status apache2nano /var/log/apache2/openstack_dashboard-error.log error.log[K[6Psystemctl restart apache2nano /var/log/apache2/error.log[6Psystemctl restart apache2[1Pstatus apache2[1@restart apache2[9Pa2ensite horizonnano /etc/apache2/apache2.conf 
+[?2004h[?1049h[22;0;0t[1;50r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[48;88H(B[0;7m[ Reading... ](B[m[48;86H(B[0;7m[ Read 235 lines ](B[m[H(B[0;7m  GNU nano 4.8                                                                      /etc/apache2/apache2.conf                                                                                [1;188H(B[m[49d(B[0;7m^G(B[m Get Help[18G(B[0;7m^O(B[m Write Out     (B[0;7m^W(B[m Where Is[52G(B[0;7m^K(B[m Cut Text[69G(B[0;7m^J(B[m Justify[86G(B[0;7m^C(B[m Cur Pos[103G(B[0;7mM-U(B[m Undo[49;120H(B[0;7mM-A(B[m Mark Text    (B[0;7mM-](B[m To Bracket   (B[0;7mM-Q(B[m Previous     (B[0;7m^B(B[m Back[50d(B[0;7m^X(B[m Exit[50;18H(B[0;7m^R(B[m Read File     (B[0;7m^\(B[m Replace[52G(B[0;7m^U(B[m Paste Text    (B[0;7m^T(B[m To Spell[86G(B[0;7m^_(B[m Go To Line    (B[0;7mM-E(B[m Redo[50;120H(B[0;7mM-6(B[m Copy Text    (B[0;7m^Q(B[m Where Was     (B[0;7mM-W(B[m Next[50;171H(B[0;7m^F(B[m Forward[48d[2d[39;49m[36m# This is the main Apache server configuration file.  It contains the[3d# configuration directives that give the server its instructions.[4d# See http://httpd.apache.org/docs/2.4/ for detailed information about[5d# the directives and /usr/share/doc/apache2/README.Debian about Debian specific[6d# hints.[7d#[9d[39m(B[mServerName controller[11d[36m#[12d# Summary of how the Apache 2 configuration works in Debian:[13d# The Apache 2 web server configuration in Debian is quite different to[14d# upstream's suggested way to configure the web server. This is because Debian's[15d# default Apache2 installation attempts to make adding and removing modules,[16d# virtual hosts, and extra configuration directives as flexible as possible, in[17d# order to make automating the changes and administering the server as easy as[18d# possible.[20d# It is split into several files forming the configuration hierarchy outlined[21d# below, all located in the /etc/apache2/ directory:[22d#[23d#       /etc/apache2/[24d#       |-- apache2.conf[25d#       |       `--  ports.conf[26d#       |-- mods-enabled[27d#       |       |-- *.load[28d#       |       `-- *.conf[29d#       |-- conf-enabled[30d#       |       `-- *.conf[31d#[39m[41m       [49m[36m`-- sites-enabled[32d#       [39m[41m        [49m[36m`-- *.conf[33d#[34d#[35d# * apache2.conf is the main configuration file (this file). It puts the pieces[36d#   together by including all remaining configuration files when starting up the[37d#   web server.[38d#[39d# * ports.conf is always included from the main configuration file. It is[40d#   supposed to determine listening ports for incoming connections which can be[41d#   customized anytime.[42d#[43d# * Configuration files in the mods-enabled/, conf-enabled/ and sites-enabled/[44d#   directories contain particular configuration snippets which manage modules,[45d#   global configuration fragments, or virtual host configurations,[46d#   respectively.[47d#[2d[39m(B[m[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[5d[?12l[?25h[?25l[7d[?12l[?25h[?25l[8d[?12l[?25h[?25l[9d[?12l[?25h[?25l[10d[?12l[?25h[?25l[11d[?12l[?25h[?25l[12d[?12l[?25h[?25l[13d[?12l[?25h[?25l[14d[?12l[?25h[?25l[15d[?12l[?25h[?25l[16d[?12l[?25h[?25l[17d[?12l[?25h[?25l[18d[?12l[?25h[?25l[19d[?12l[?25h[?25l[20d[?12l[?25h[?25l[21d[?12l[?25h[?25l[22d[?12l[?25h[?25l[23d[?12l[?25h[?25l[24d[?12l[?25h[?25l[25d[?12l[?25h[?25l[26d[?12l[?25h[?25l[27d[?12l[?25h[?25l[48d[K[28d[?12l[?25h[?25l[29d[?12l[?25h[?25l[30d[?12l[?25h[?25l[32d[?12l[?25h[?25l[33d[?12l[?25h[?25l[35d[?12l[?25h[?25l[37d[?12l[?25h[?25l[38d[?12l[?25h[?25l[39d[?12l[?25h[?25l[40d[?12l[?25h[?25l[41d[?12l[?25h[?25l[42d[?12l[?25h[?25l[43d[?12l[?25h[?25l[44d[?12l[?25h[?25l[47d[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   They are activated by symlinking available configuration files from their[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   respective *-available/ counterparts. These should be managed by using our[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   helpers a2enmod/a2dismod, a2ensite/a2dissite and a2enconf/a2disconf. See[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   their respective man pages for detailed information.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# * The binary is called apache2. Due to the use of environment variables, in[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   the default configuration, apache2 needs to be started/stopped with[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   /etc/init.d/apache2 or apache2ctl. Calling /usr/bin/apache2 directly will not[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   work with the default configuration.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Global configuration[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# ServerRoot: The top of the directory tree under which the server's[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# configuration, error, and log files are kept.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# NOTE!  If you intend to place this on an NFS (or otherwise network)[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# mounted filesystem then please read the Mutex documentation (available[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# at <URL:http://httpd.apache.org/docs/2.4/mod/core.html#mutex>);[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# you will save yourself a lot of trouble.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Do NOT add a slash at the end of the directory path.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#ServerRoot "/etc/apache2"[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# The accept serialization lock file MUST BE STORED ON A LOCAL DISK.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#Mutex file:${APACHE_LOCK_DIR} default[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# The directory where shm and other runtime files will be stored.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HDefaultRuntimeDir ${APACHE_RUN_DIR}[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;1H[36m#[47d# PidFile: The file in which the server should record its process[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# identification number when it starts.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# This needs to be set in /etc/apache2/envvars[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HPidFile ${APACHE_PID_FILE}[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Timeout: The number of seconds before receives and sends time out.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HTimeout 300[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# KeepAlive: Whether or not to allow persistent connections (more than[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# one request per connection). Set to "Off" to deactivate.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HKeepAlive On[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# MaxKeepAliveRequests: The maximum number of requests to allow[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# during a persistent connection. Set to 0 to allow an unlimited amount.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;1H[36m# We recommend you leave this number high, for maximum performance.[47d#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HMaxKeepAliveRequests 100[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# KeepAliveTimeout: Number of seconds to wait for the next request from the[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# same client on the same connection.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HKeepAliveTimeout 5[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# These need to be set in /etc/apache2/envvars[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HUser ${APACHE_RUN_USER}[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HGroup ${APACHE_RUN_GROUP}[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# HostnameLookups: Log the names of clients or just their IP addresses[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# e.g., www.apache.org (on) or 204.62.129.132 (off).[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# The default is off because it'd be overall better for the net if people[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# had to knowingly turn this feature on, since enabling it means that[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# each client request will result in AT LEAST one lookup request to the[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# nameserver.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HHostnameLookups Off[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# ErrorLog: The location of the error log file.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# If you do not specify an ErrorLog directive within a <VirtualHost>[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# container, error messages relating to that virtual host will be[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# logged here.  If you *do* define an error logfile for a <VirtualHost>[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# container, that host's errors will be logged there and not here.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HErrorLog ${APACHE_LOG_DIR}/error.log[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# LogLevel: Control the severity of messages logged to the error_log.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Available values: trace8, ..., trace1, debug, info, notice, warn,[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# error, crit, alert, emerg.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# It is also possible to configure the log level for particular modules, e.g.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# "LogLevel info ssl:warn"[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HLogLevel warn[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Include module configuration:[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HIncludeOptional mods-enabled/*.load[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HIncludeOptional mods-enabled/*.conf[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Include list of ports to listen on[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HInclude ports.conf[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Sets the default security model of the Apache2 HTTPD server. It does[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# not allow access to the root filesystem outside of /usr/share and /var/www.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# The former is used by web applications packaged in Debian,[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# the latter may be used for local directories served by the web server. If[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# your system is serving content from a sub-directory in /srv you must allow[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# access here, or in any related virtual host.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H<Directory />[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HOptions FollowSymLinks[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HAllowOverride None[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HRequire all denied[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</Directory>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H<Directory /usr/share>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HAllowOverride None[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HRequire all granted[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</Directory>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H<Directory /var/www/>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HOptions Indexes FollowSymLinks[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HAllowOverride None[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HRequire all granted[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</Directory>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</Directory /root/horizon>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HAllowOverride None[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HRequire all granted[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</Directory>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#<Directory /srv/>[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#       Options Indexes FollowSymLinks[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#       AllowOverride None[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#       Require all granted[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#</Directory>[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# AccessFileName: The name of the file to look for in each directory[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# for additional configuration directives.  See also the AllowOverride[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# directive.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HAccessFileName .htaccess[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# The following lines prevent .htaccess and .htpasswd files from being[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# viewed by Web clients.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H<FilesMatch "^\.ht">[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HRequire all denied[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</FilesMatch>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H<Directory />[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# access here, or in any related virtual host.[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# your system is serving content from a sub-directory in /srv you must allow[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# the latter may be used for local directories served by the web server. If[39m(B[m[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[5d[?12l[?25h[?25l[6d[?12l[?25h[?25l[7d[?12l[?25h[?25l[8d[?12l[?25h[?25l[9d[?12l[?25h[?25l[10d[?12l[?25h[?25l[11d[?12l[?25h[?25l[12d[?12l[?25h[?25l[13d[?12l[?25h[?25l[14d[?12l[?25h[?25l[15d[?12l[?25h[?25l[16d[?12l[?25h[?25l[17d[?12l[?25h[?25l[18d[?12l[?25h[?25l[19d[?12l[?25h[?25l[20d[?12l[?25h[?25l[21d[?12l[?25h[?25l[22d[?12l[?25h[?25l<[?12l[?25h[?25l/[?12l[?25h[?25lD[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lc[?12l[?25h[?25lt[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25ly[?12l[?25h[?25l [?12l[?25h[?25l/[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25lo[?12l[?25h[?25lt[?12l[?25h[?25l/[?12l[?25h[?25lh[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25li[?12l[?25h[?25lz[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25l>[?12l[?25h[?25l[?12l[?25h[?25l[1;180H(B[0;7mModified(B[m[22;26H/>[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[23d[?12l[?25h[?25l[24d[?12l[?25h[?25l[A[?12l[?25h[?25l[?12l[?25h[?25l[A[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[1P[?12l[?25h[?25l[49;18H[30X[49;48H(B[0;7mM-D(B[m DOS Format [69G          [86G         (B[0;7mM-A(B[m Append      [49;120H[22X[49;142H(B[0;7mM-B(B[m Backup File[K[50;2H(B[0;7mC(B[m Cancel[50;18H[30X[50;48H(B[0;7mM-M(B[m Mac Format[18X[50;86H         (B[0;7mM-P(B[m Prepend     [50;120H[22X[50;142H(B[0;7m^T(B[m To Files[K[48d(B[0;7mFile Name to Write: /etc/apache2/apache2.conf                                                                                                                                                [48;1H(B[m[48;46H[?12l[?25h[?25l[48;87H[1K (B[0;7m[ Writing... ](B[m[K[1;180H(B[0;7m        (B[m[48;86H(B[0;7m[ Wrote 235 lines ](B[m[49;18H(B[0;7m^O(B[m Write Out     (B[0;7m^W(B[m Where Is      (B[0;7m^K(B[m Cut Text[69G(B[0;7m^J(B[m Justify[86G(B[0;7m^C(B[m Cur Pos       (B[0;7mM-U(B[m Undo[49;120H(B[0;7mM-A(B[m Mark Text    (B[0;7mM-](B[m To Bracket   (B[0;7mM-Q(B[m Previous     (B[0;7m^B(B[m Back[50;2H(B[0;7mX(B[m Exit  [50;18H(B[0;7m^R(B[m Read File     (B[0;7m^\(B[m Replace       (B[0;7m^U(B[m Paste Text    (B[0;7m^T(B[m To Spell[86G(B[0;7m^_(B[m Go To Line    (B[0;7mM-E(B[m Redo[50;120H(B[0;7mM-6(B[m Copy Text    (B[0;7m^Q(B[m Where Was     (B[0;7mM-W(B[m Next[50;171H(B[0;7m^F(B[m Forward[48d[22d<[?12l[?25h[?25l[48d[J[50d[?12l[?25h[50;1H[?1049l[23;0;0t[?1l>[?2004l]0;root@astplsm01: ~root@astplsm01:~# [Ka2ensite horizon
+Site horizon already enabled
+]0;root@astplsm01: ~root@astplsm01:~# systemctl restat rt apache2
+]0;root@astplsm01: ~root@astplsm01:~# [Ksystemctl status apache2
+[?1h=[0;1;32m●[0m apache2.service - The Apache HTTP Server[m
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)[m
+     Active: [0;1;32mactive (running)[0m since Thu 2022-08-18 11:47:22 CEST; 3s ago[m
+       Docs: https://httpd.apache.org/docs/2.4/[m
+    Process: 1011368 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)[m
+   Main PID: 1011384 (apache2)[m
+      Tasks: 4681 (limit: 629145)[m
+     Memory: 933.2M[m
+     CGroup: /system.slice/apache2.service[m
+             ├─1011384 /usr/sbin/apache2 -k start[m
+             ├─1011385 /usr/sbin/apache2 -k start[m
+             ├─1011386 /usr/sbin/apache2 -k start[m
+             ├─1011387 /usr/sbin/apache2 -k start[m
+             ├─1011388 /usr/sbin/apache2 -k start[m
+             ├─1011389 /usr/sbin/apache2 -k start[m
+             ├─1011390 /usr/sbin/apache2 -k start[m
+             ├─1011391 /usr/sbin/apache2 -k start[m
+             ├─1011392 /usr/sbin/apache2 -k start[m
+             ├─1011393 /usr/sbin/apache2 -k start[m
+             ├─1011394 /usr/sbin/apache2 -k start[m
+             ├─1011395 /usr/sbin/apache2 -k start[m
+             ├─1011396 /usr/sbin/apache2 -k start[m
+             ├─1011397 /usr/sbin/apache2 -k start[m
+             ├─1011398 /usr/sbin/apache2 -k start[m
+             ├─1011399 /usr/sbin/apache2 -k start[m
+             ├─1011400 /usr/sbin/apache2 -k start[m
+             ├─1011401 /usr/sbin/apache2 -k start[m
+             ├─1011402 /usr/sbin/apache2 -k start[m
+             ├─1011403 /usr/sbin/apache2 -k start[m
+             ├─1011404 /usr/sbin/apache2 -k start[m
+             ├─1011405 /usr/sbin/apache2 -k start[m
+             ├─1011406 /usr/sbin/apache2 -k start[m
+             ├─1011407 /usr/sbin/apache2 -k start[m
+             ├─1011408 /usr/sbin/apache2 -k start[m
+             ├─1011409 /usr/sbin/apache2 -k start[m
+             ├─1011410 /usr/sbin/apache2 -k start[m
+             ├─1011411 /usr/sbin/apache2 -k start[m
+             ├─1011412 /usr/sbin/apache2 -k start[m
+             ├─1011413 /usr/sbin/apache2 -k start[m
+             ├─1011414 /usr/sbin/apache2 -k start[m
+             ├─1011415 /usr/sbin/apache2 -k start[m
+             ├─1011416 /usr/sbin/apache2 -k start[m
+             ├─1011417 /usr/sbin/apache2 -k start[m
+             ├─1011418 /usr/sbin/apache2 -k start[m
+             ├─1011419 /usr/sbin/apache2 -k start[m
+             ├─1011420 /usr/sbin/apache2 -k start[m
+             ├─1011421 /usr/sbin/apache2 -k start[m
+             ├─1011422 /usr/sbin/apache2 -k start[m
+             ├─1011423 /usr/sbin/apache2 -k start[m
+[7mlines 1-49[27m[K[K[?1l>]0;root@astplsm01: ~root@astplsm01:~# [Knano /var/          cd /var/www/html/ap  in  
+]0;root@astplsm01: /var/www/htmlroot@astplsm01:/var/www/html# ls
+index.html
+]0;root@astplsm01: /var/www/htmlroot@astplsm01:/var/www/html# cat index.html 
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <!--
+    Modified from the Debian original for Ubuntu
+    Last updated: 2016-11-16
+    See: https://launchpad.net/bugs/1288690
+  -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Apache2 Ubuntu Default Page: It works</title>
+    <style type="text/css" media="screen">
+  * {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+  }
+
+  body, html {
+    padding: 3px 3px 3px 3px;
+
+    background-color: #D8DBE2;
+
+    font-family: Verdana, sans-serif;
+    font-size: 11pt;
+    text-align: center;
+  }
+
+  div.main_page {
+    position: relative;
+    display: table;
+
+    width: 800px;
+
+    margin-bottom: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 0px 0px 0px;
+
+    border-width: 2px;
+    border-color: #212738;
+    border-style: solid;
+
+    background-color: #FFFFFF;
+
+    text-align: center;
+  }
+
+  div.page_header {
+    height: 99px;
+    width: 100%;
+
+    background-color: #F5F6F7;
+  }
+
+  div.page_header span {
+    margin: 15px 0px 0px 50px;
+
+    font-size: 180%;
+    font-weight: bold;
+  }
+
+  div.page_header img {
+    margin: 3px 0px 0px 40px;
+
+    border: 0px 0px 0px;
+  }
+
+  div.table_of_contents {
+    clear: left;
+
+    min-width: 200px;
+
+    margin: 3px 3px 3px 3px;
+
+    background-color: #FFFFFF;
+
+    text-align: left;
+  }
+
+  div.table_of_contents_item {
+    clear: left;
+
+    width: 100%;
+
+    margin: 4px 0px 0px 0px;
+
+    background-color: #FFFFFF;
+
+    color: #000000;
+    text-align: left;
+  }
+
+  div.table_of_contents_item a {
+    margin: 6px 0px 0px 6px;
+  }
+
+  div.content_section {
+    margin: 3px 3px 3px 3px;
+
+    background-color: #FFFFFF;
+
+    text-align: left;
+  }
+
+  div.content_section_text {
+    padding: 4px 8px 4px 8px;
+
+    color: #000000;
+    font-size: 100%;
+  }
+
+  div.content_section_text pre {
+    margin: 8px 0px 8px 0px;
+    padding: 8px 8px 8px 8px;
+
+    border-width: 1px;
+    border-style: dotted;
+    border-color: #000000;
+
+    background-color: #F5F6F7;
+
+    font-style: italic;
+  }
+
+  div.content_section_text p {
+    margin-bottom: 6px;
+  }
+
+  div.content_section_text ul, div.content_section_text li {
+    padding: 4px 8px 4px 16px;
+  }
+
+  div.section_header {
+    padding: 3px 6px 3px 6px;
+
+    background-color: #8E9CB2;
+
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 112%;
+    text-align: center;
+  }
+
+  div.section_header_red {
+    background-color: #CD214F;
+  }
+
+  div.section_header_grey {
+    background-color: #9F9386;
+  }
+
+  .floating_element {
+    position: relative;
+    float: left;
+  }
+
+  div.table_of_contents_item a,
+  div.content_section_text a {
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  div.table_of_contents_item a:link,
+  div.table_of_contents_item a:visited,
+  div.table_of_contents_item a:active {
+    color: #000000;
+  }
+
+  div.table_of_contents_item a:hover {
+    background-color: #000000;
+
+    color: #FFFFFF;
+  }
+
+  div.content_section_text a:link,
+  div.content_section_text a:visited,
+   div.content_section_text a:active {
+    background-color: #DCDFE6;
+
+    color: #000000;
+  }
+
+  div.content_section_text a:hover {
+    background-color: #000000;
+
+    color: #DCDFE6;
+  }
+
+  div.validator {
+  }
+    </style>
+  </head>
+  <body>
+    <div class="main_page">
+      <div class="page_header floating_element">
+        <img src="/icons/ubuntu-logo.png" alt="Ubuntu Logo" class="floating_element"/>
+        <span class="floating_element">
+          Apache2 Ubuntu Default Page
+        </span>
+      </div>
+<!--      <div class="table_of_contents floating_element">
+        <div class="section_header section_header_grey">
+          TABLE OF CONTENTS
+        </div>
+        <div class="table_of_contents_item floating_element">
+          <a href="#about">About</a>
+        </div>
+        <div class="table_of_contents_item floating_element">
+          <a href="#changes">Changes</a>
+        </div>
+        <div class="table_of_contents_item floating_element">
+          <a href="#scope">Scope</a>
+        </div>
+        <div class="table_of_contents_item floating_element">
+          <a href="#files">Config files</a>
+        </div>
+      </div>
+-->
+      <div class="content_section floating_element">
+
+
+        <div class="section_header section_header_red">
+          <div id="about"></div>
+          It works!
+        </div>
+        <div class="content_section_text">
+          <p>
+                This is the default welcome page used to test the correct 
+                operation of the Apache2 server after installation on Ubuntu systems.
+                It is based on the equivalent page on Debian, from which the Ubuntu Apache
+                packaging is derived.
+                If you can read this page, it means that the Apache HTTP server installed at
+                this site is working properly. You should <b>replace this file</b> (located at
+                <tt>/var/www/html/index.html</tt>) before continuing to operate your HTTP server.
+          </p>
+
+
+          <p>
+                If you are a normal user of this web site and don't know what this page is
+                about, this probably means that the site is currently unavailable due to
+                maintenance.
+                If the problem persists, please contact the site's administrator.
+          </p>
+
+        </div>
+        <div class="section_header">
+          <div id="changes"></div>
+                Configuration Overview
+        </div>
+        <div class="content_section_text">
+          <p>
+                Ubuntu's Apache2 default configuration is different from the
+                upstream default configuration, and split into several files optimized for
+                interaction with Ubuntu tools. The configuration system is
+                <b>fully documented in
+                /usr/share/doc/apache2/README.Debian.gz</b>. Refer to this for the full
+                documentation. Documentation for the web server itself can be
+                found by accessing the <a href="/manual">manual</a> if the <tt>apache2-doc</tt>
+                package was installed on this server.
+
+          </p>
+          <p>
+                The configuration layout for an Apache2 web server installation on Ubuntu systems is as follows:
+          </p>
+          <pre>
+/etc/apache2/
+|-- apache2.conf
+|       `--  ports.conf
+|-- mods-enabled
+|       |-- *.load
+|       `-- *.conf
+|-- conf-enabled
+|       `-- *.conf
+|-- sites-enabled
+|       `-- *.conf
+          </pre>
+          <ul>
+                        <li>
+                           <tt>apache2.conf</tt> is the main configuration
+                           file. It puts the pieces together by including all remaining configuration
+                           files when starting up the web server.
+                        </li>
+
+                        <li>
+                           <tt>ports.conf</tt> is always included from the
+                           main configuration file. It is used to determine the listening ports for
+                           incoming connections, and this file can be customized anytime.
+                        </li>
+
+                        <li>
+                           Configuration files in the <tt>mods-enabled/</tt>,
+                           <tt>conf-enabled/</tt> and <tt>sites-enabled/</tt> directories contain
+                           particular configuration snippets which manage modules, global configuration
+                           fragments, or virtual host configurations, respectively.
+                        </li>
+
+                        <li>
+                           They are activated by symlinking available
+                           configuration files from their respective
+                           *-available/ counterparts. These should be managed
+                           by using our helpers
+                           <tt>
+                                a2enmod,
+                                a2dismod,
+                           </tt>
+                           <tt>
+                                a2ensite,
+                                a2dissite,
+                            </tt>
+                                and
+                           <tt>
+                                a2enconf,
+                                a2disconf
+                           </tt>. See their respective man pages for detailed information.
+                        </li>
+
+                        <li>
+                           The binary is called apache2. Due to the use of
+                           environment variables, in the default configuration, apache2 needs to be
+                           started/stopped with <tt>/etc/init.d/apache2</tt> or <tt>apache2ctl</tt>.
+                           <b>Calling <tt>/usr/bin/apache2</tt> directly will not work</b> with the
+                           default configuration.
+                        </li>
+          </ul>
+        </div>
+
+        <div class="section_header">
+            <div id="docroot"></div>
+                Document Roots
+        </div>
+
+        <div class="content_section_text">
+            <p>
+                By default, Ubuntu does not allow access through the web browser to
+                <em>any</em> file apart of those located in <tt>/var/www</tt>,
+                <a href="http://httpd.apache.org/docs/2.4/mod/mod_userdir.html" rel="nofollow">public_html</a>
+                directories (when enabled) and <tt>/usr/share</tt> (for web
+                applications). If your site is using a web document root
+                located elsewhere (such as in <tt>/srv</tt>) you may need to whitelist your
+                document root directory in <tt>/etc/apache2/apache2.conf</tt>.
+            </p>
+            <p>
+                The default Ubuntu document root is <tt>/var/www/html</tt>. You
+                can make your own virtual hosts under /var/www. This is different
+                to previous releases which provides better security out of the box.
+            </p>
+        </div>
+
+        <div class="section_header">
+          <div id="bugs"></div>
+                Reporting Problems
+        </div>
+        <div class="content_section_text">
+          <p>
+                Please use the <tt>ubuntu-bug</tt> tool to report bugs in the
+                Apache2 package with Ubuntu. However, check <a
+                href="https://bugs.launchpad.net/ubuntu/+source/apache2"
+                rel="nofollow">existing bug reports</a> before reporting a new bug.
+          </p>
+          <p>
+                Please report bugs specific to modules (such as PHP and others)
+                to respective packages, not to the web server itself.
+          </p>
+        </div>
+
+
+
+
+      </div>
+    </div>
+    <div class="validator">
+    </div>
+  </body>
+</html>
+
+]0;root@astplsm01: /var/www/htmlroot@astplsm01:/var/www/html# nano / /etc/aa p      etc/apache2/apache2.conf 
+[?2004h[?1049h[22;0;0t[1;50r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[48;88H(B[0;7m[ Reading... ](B[m[48;86H(B[0;7m[ Read 235 lines ](B[m[H(B[0;7m  GNU nano 4.8                                                                      /etc/apache2/apache2.conf                                                                                [1;188H(B[m[49d(B[0;7m^G(B[m Get Help[18G(B[0;7m^O(B[m Write Out     (B[0;7m^W(B[m Where Is[52G(B[0;7m^K(B[m Cut Text[69G(B[0;7m^J(B[m Justify[86G(B[0;7m^C(B[m Cur Pos[103G(B[0;7mM-U(B[m Undo[49;120H(B[0;7mM-A(B[m Mark Text    (B[0;7mM-](B[m To Bracket   (B[0;7mM-Q(B[m Previous     (B[0;7m^B(B[m Back[50d(B[0;7m^X(B[m Exit[50;18H(B[0;7m^R(B[m Read File     (B[0;7m^\(B[m Replace[52G(B[0;7m^U(B[m Paste Text    (B[0;7m^T(B[m To Spell[86G(B[0;7m^_(B[m Go To Line    (B[0;7mM-E(B[m Redo[50;120H(B[0;7mM-6(B[m Copy Text    (B[0;7m^Q(B[m Where Was     (B[0;7mM-W(B[m Next[50;171H(B[0;7m^F(B[m Forward[48d[2d[39;49m[36m# This is the main Apache server configuration file.  It contains the[3d# configuration directives that give the server its instructions.[4d# See http://httpd.apache.org/docs/2.4/ for detailed information about[5d# the directives and /usr/share/doc/apache2/README.Debian about Debian specific[6d# hints.[7d#[9d[39m(B[mServerName controller[11d[36m#[12d# Summary of how the Apache 2 configuration works in Debian:[13d# The Apache 2 web server configuration in Debian is quite different to[14d# upstream's suggested way to configure the web server. This is because Debian's[15d# default Apache2 installation attempts to make adding and removing modules,[16d# virtual hosts, and extra configuration directives as flexible as possible, in[17d# order to make automating the changes and administering the server as easy as[18d# possible.[20d# It is split into several files forming the configuration hierarchy outlined[21d# below, all located in the /etc/apache2/ directory:[22d#[23d#       /etc/apache2/[24d#       |-- apache2.conf[25d#       |       `--  ports.conf[26d#       |-- mods-enabled[27d#       |       |-- *.load[28d#       |       `-- *.conf[29d#       |-- conf-enabled[30d#       |       `-- *.conf[31d#[39m[41m       [49m[36m`-- sites-enabled[32d#       [39m[41m        [49m[36m`-- *.conf[33d#[34d#[35d# * apache2.conf is the main configuration file (this file). It puts the pieces[36d#   together by including all remaining configuration files when starting up the[37d#   web server.[38d#[39d# * ports.conf is always included from the main configuration file. It is[40d#   supposed to determine listening ports for incoming connections which can be[41d#   customized anytime.[42d#[43d# * Configuration files in the mods-enabled/, conf-enabled/ and sites-enabled/[44d#   directories contain particular configuration snippets which manage modules,[45d#   global configuration fragments, or virtual host configurations,[46d#   respectively.[47d#[2d[39m(B[m[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[5d[?12l[?25h[?25l[6d[?12l[?25h[?25l[7d[?12l[?25h[?25l[8d[?12l[?25h[?25l[9d[?12l[?25h[?25l[10d[?12l[?25h[?25l[11d[?12l[?25h[?25l[12d[?12l[?25h[?25l[13d[?12l[?25h[?25l[14d[?12l[?25h[?25l[15d[?12l[?25h[?25l[16d[?12l[?25h[?25l[17d[?12l[?25h[?25l[18d[?12l[?25h[?25l[19d[?12l[?25h[?25l[20d[?12l[?25h[?25l[21d[?12l[?25h[?25l[22d[?12l[?25h[?25l[23d[?12l[?25h[?25l[24d[?12l[?25h[?25l[25d[?12l[?25h[?25l[26d[?12l[?25h[?25l[27d[?12l[?25h[?25l[48d[K[28d[?12l[?25h[?25l[29d[?12l[?25h[?25l[30d[?12l[?25h[?25l[31d[?12l[?25h[?25l[32d[?12l[?25h[?25l[33d[?12l[?25h[?25l[34d[?12l[?25h[?25l[39d[?12l[?25h[?25l[40d[?12l[?25h[?25l[41d[?12l[?25h[?25l[42d[?12l[?25h[?25l[43d[?12l[?25h[?25l[47d[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;1H[36m#   They are activated by symlinking available configuration files from their[47d#   respective *-available/ counterparts. These should be managed by using our[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   helpers a2enmod/a2dismod, a2ensite/a2dissite and a2enconf/a2disconf. See[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   their respective man pages for detailed information.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;1H[36m#[47d# * The binary is called apache2. Due to the use of environment variables, in[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   the default configuration, apache2 needs to be started/stopped with[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   /etc/init.d/apache2 or apache2ctl. Calling /usr/bin/apache2 directly will not[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   work with the default configuration.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Global configuration[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;1H[36m#[47d[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[3S[1;50r[45;1H[36m#[46d# ServerRoot: The top of the directory tree under which the server's[47d# configuration, error, and log files are kept.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# NOTE!  If you intend to place this on an NFS (or otherwise network)[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[5S[1;50r[43;1H[36m# mounted filesystem then please read the Mutex documentation (available[44d# at <URL:http://httpd.apache.org/docs/2.4/mod/core.html#mutex>);[45d# you will save yourself a lot of trouble.[46d#[47d# Do NOT add a slash at the end of the directory path.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#ServerRoot "/etc/apache2"[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[3S[1;50r[46;1H[36m#[47d# The accept serialization lock file MUST BE STORED ON A LOCAL DISK.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[3S[1;50r[45;1H[36m#Mutex file:${APACHE_LOCK_DIR} default[47d#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[3S[1;50r[45;1H[36m# The directory where shm and other runtime files will be stored.[46d#[47d[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HDefaultRuntimeDir ${APACHE_RUN_DIR}[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# PidFile: The file in which the server should record its process[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# identification number when it starts.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[4S[1;50r[44;1H[36m# This needs to be set in /etc/apache2/envvars[45d#[46d[39m(B[mPidFile ${APACHE_PID_FILE}[47d[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Timeout: The number of seconds before receives and sends time out.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[4S[1;50r[44;1H[36m#[45d[39m(B[mTimeout 300[47d[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;1H[36m# KeepAlive: Whether or not to allow persistent connections (more than[47d# one request per connection). Set to "Off" to deactivate.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HKeepAlive On[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# MaxKeepAliveRequests: The maximum number of requests to allow[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# during a persistent connection. Set to 0 to allow an unlimited amount.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# We recommend you leave this number high, for maximum performance.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HMaxKeepAliveRequests 100[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;1H[36m# KeepAliveTimeout: Number of seconds to wait for the next request from the[47d# same client on the same connection.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HKeepAliveTimeout 5[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# These need to be set in /etc/apache2/envvars[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HUser ${APACHE_RUN_USER}[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HGroup ${APACHE_RUN_GROUP}[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# HostnameLookups: Log the names of clients or just their IP addresses[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# e.g., www.apache.org (on) or 204.62.129.132 (off).[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# The default is off because it'd be overall better for the net if people[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# had to knowingly turn this feature on, since enabling it means that[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# each client request will result in AT LEAST one lookup request to the[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[4S[1;50r[44;1H[36m# nameserver.[45d#[46d[39m(B[mHostnameLookups Off[47d[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# ErrorLog: The location of the error log file.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# If you do not specify an ErrorLog directive within a <VirtualHost>[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# container, error messages relating to that virtual host will be[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# logged here.  If you *do* define an error logfile for a <VirtualHost>[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# container, that host's errors will be logged there and not here.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;1HErrorLog ${APACHE_LOG_DIR}/error.log[47d[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;1H[36m#[47d# LogLevel: Control the severity of messages logged to the error_log.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Available values: trace8, ..., trace1, debug, info, notice, warn,[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# error, crit, alert, emerg.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# It is also possible to configure the log level for particular modules, e.g.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# "LogLevel info ssl:warn"[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HLogLevel warn[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;1H[36m# Include module configuration:[47d[39m(B[mIncludeOptional mods-enabled/*.load[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HIncludeOptional mods-enabled/*.conf[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Include list of ports to listen on[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;1HInclude ports.conf[47d[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Sets the default security model of the Apache2 HTTPD server. It does[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;1H[36m# not allow access to the root filesystem outside of /usr/share and /var/www.[47d# The former is used by web applications packaged in Debian,[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[3S[1;50r[45;1H[36m# the latter may be used for local directories served by the web server. If[46d# your system is serving content from a sub-directory in /srv you must allow[47d# access here, or in any related virtual host.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H<Directory />[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HOptions FollowSymLinks[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;9HAllowOverride None[47;9HRequire all denied[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</Directory>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;1H<Directory /usr/share>[47;9HAllowOverride None[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HRequire all granted[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</Directory>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H<Directory /var/www/>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HOptions Indexes FollowSymLinks[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;9HAllowOverride None[47;9HRequire all granted[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</Directory>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H<Directory /root/horizon/>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HAllowOverride None[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HRequire all granted[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</Directory>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#<Directory /srv/>[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#       Options Indexes FollowSymLinks[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#       AllowOverride None[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#       Require all granted[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#</Directory>[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# AccessFileName: The name of the file to look for in each directory[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# for additional configuration directives.  See also the AllowOverride[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# directive.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[38d[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[32d[?12l[?25h[?25l[A[?12l[?25h[?25l[32d[?12l[?25h[?25l[33d[?12l[?25h[?25l[34d[?12l[?25h[?25l[35d[?12l[?25h[?25l[36d[?12l[?25h[?25l[37d[?12l[?25h[?25l[38d[?12l[?25h[?25l[39d[?12l[?25h[?25l[40d[?12l[?25h[?25l[41d[?12l[?25h[?25l[42d[?12l[?25h[?25l[43d[?12l[?25h[?25l[44d[?12l[?25h[?25l[45d[?12l[?25h[?25l[46d[?12l[?25h[?25l[47d[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HAccessFileName .htaccess[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# The following lines prevent .htaccess and .htpasswd files from being[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# viewed by Web clients.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H<FilesMatch "^\.ht">[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HRequire all denied[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</FilesMatch>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# The following directives define some format nicknames for use with[39m(B[m[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[38d[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[30d[?12l[?25h[?25l[31d[?12l[?25h[?25l[32d[?12l[?25h[?25l[33d[?12l[?25h[?25l[34d[?12l[?25h[?25l[35d[?12l[?25h[?25l[36d[?12l[?25h[?25l[37d[?12l[?25h[?25l[38d[?12l[?25h[?25l[39d[?12l[?25h[?25l[40d[?12l[?25h[?25l[41d[?12l[?25h[?25l[42d[?12l[?25h[?25l[43d[?12l[?25h[?25l[44d[?12l[?25h[?25l[45d[?12l[?25h[?25l[46d[?12l[?25h[?25l[47d[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# a CustomLog directive.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# These deviate from the Common Log Format definitions in that they use %O[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# (the actual bytes sent including headers) instead of %b (the size of the[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# requested file), because the latter makes it impossible to detect partial[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# requests.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Note that the use of %{X-Forwarded-For}i instead of %h is not recommended.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Use mod_remoteip instead.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HLogFormat "%v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HLogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HLogFormat "%h %l %u %t \"%r\" %>s %O" common[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HLogFormat "%{Referer}i -> %U" referer[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HLogFormat "%{User-agent}i" agent[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Include of directories ignores editors' and dpkg's backup files,[39m(B[m[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HAllowOverride None[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H<Directory /root/horizon/>[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H</Directory>[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HRequire all granted[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HAllowOverride None[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HOptions Indexes FollowSymLinks[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H<Directory /var/www/>[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H</Directory>[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HRequire all granted[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HAllowOverride None[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H<Directory /usr/share>[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H</Directory>[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HRequire all denied[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HAllowOverride None[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HOptions FollowSymLinks[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H<Directory />[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# access here, or in any related virtual host.[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# your system is serving content from a sub-directory in /srv you must allow[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# the latter may be used for local directories served by the web server. If[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# The former is used by web applications packaged in Debian,[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# not allow access to the root filesystem outside of /usr/share and /var/www.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# Sets the default security model of the Apache2 HTTPD server. It does[39m(B[m[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[5d[?12l[?25h[?25l[6d[?12l[?25h[?25l[7d[?12l[?25h[?25l[8d[?12l[?25h[?25l[9d[?12l[?25h[?25l[10d[?12l[?25h[?25l[11d[?12l[?25h[?25l[12d[?12l[?25h[?25l[13d[?12l[?25h[?25l[14d[?12l[?25h[?25l[15d[?12l[?25h[?25l[16d[?12l[?25h[?25l[17d[?12l[?25h[?25l[18d[?12l[?25h[?25l[19d[?12l[?25h[?25l[20d[?12l[?25h[?25l[21d[?12l[?25h[?25l[22d[?12l[?25h[?25l[23d[?12l[?25h[?25l[24d[?12l[?25h[?25l[25d[?12l[?25h[?25l[26d[?12l[?25h[?25l[27d[?12l[?25h[?25l[28d[?12l[?25h[?25l[29d[?12l[?25h[?25l[30d[?12l[?25h[?25l[31d[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[1;180H(B[0;7mModified(B[m[28;48r[48;1H
+[1;50r[27;28H</Directory>[47d[36m#[27;28H[39m(B[m[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1Pl[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[8P[?12l[?25h[?25l[27;48r[48;1H
+[1;50r[26;27H</Directory>[47d<FilesMatch "^\.ht">[26;27H[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1Pr[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1Pl[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[8P[?12l[?25h[?25l[26;48r[48;1H
+[1;50r[25;27H</Directory>[47;9HRequire all denied[25;27H[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1Po[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25ltory>[K[?12l[?25h[?25lory>[K[?12l[?25h[?25lry>[K[?12l[?25h[?25ly>[K[?12l[?25h[?25l>[K[?12l[?25h[?25l[K[?12l[?25h[?25l[24;48r[48;1H
+[1;50r[47;1H</FilesMatch>[25d[?12l[?25h[?25l[24;48r[48;1H
+[1;50r[25;1H[?12l[?25h[?25l[49;18H[30X[49;48H(B[0;7mM-D(B[m DOS Format [69G          [86G         (B[0;7mM-A(B[m Append      [49;120H[22X[49;142H(B[0;7mM-B(B[m Backup File[K[50;2H(B[0;7mC(B[m Cancel[50;18H[30X[50;48H(B[0;7mM-M(B[m Mac Format[18X[50;86H         (B[0;7mM-P(B[m Prepend     [50;120H[22X[50;142H(B[0;7m^T(B[m To Files[K[48d(B[0;7mFile Name to Write: /etc/apache2/apache2.conf                                                                                                                                                [48;1H(B[m[48;46H[?12l[?25h[?25l[48;87H[1K (B[0;7m[ Writing... ](B[m[K[1;180H(B[0;7m        (B[m[48;86H(B[0;7m[ Wrote 230 lines ](B[m[49;18H(B[0;7m^O(B[m Write Out     (B[0;7m^W(B[m Where Is      (B[0;7m^K(B[m Cut Text[69G(B[0;7m^J(B[m Justify[86G(B[0;7m^C(B[m Cur Pos       (B[0;7mM-U(B[m Undo[49;120H(B[0;7mM-A(B[m Mark Text    (B[0;7mM-](B[m To Bracket   (B[0;7mM-Q(B[m Previous     (B[0;7m^B(B[m Back[50;2H(B[0;7mX(B[m Exit  [50;18H(B[0;7m^R(B[m Read File     (B[0;7m^\(B[m Replace       (B[0;7m^U(B[m Paste Text    (B[0;7m^T(B[m To Spell[86G(B[0;7m^_(B[m Go To Line    (B[0;7mM-E(B[m Redo[50;120H(B[0;7mM-6(B[m Copy Text    (B[0;7m^Q(B[m Where Was     (B[0;7mM-W(B[m Next[50;171H(B[0;7m^F(B[m Forward[48d[25d[?12l[?25h[?25l[48d[J[50d[?12l[?25h[50;1H[?1049l[23;0;0t[?1l>[?2004l]0;root@astplsm01: /var/www/htmlroot@astplsm01:/var/www/html# ss ystemctl restart apache2
+]0;root@astplsm01: /var/www/htmlroot@astplsm01:/var/www/html# cd ~
+]0;root@astplsm01: ~root@astplsm01:~# cd horizon/
+]0;root@astplsm01: ~/horizonroot@astplsm01:~/horizon# ls
+CONTRIBUTING.rst  MANIFEST.in       babel-djangojs.cfg  [0m[01;34mhorizon[0m                [01;34mopenstack_auth[0m       [01;34mplaybooks[0m            reno.yaml         setup.cfg  test-requirements.txt  tox.ini
+HACKING.rst       README.rst        bindep.txt          lower-constraints.txt  [01;34mopenstack_dashboard[0m  plugin-registry.csv  requirements.txt  setup.py   test-shim.js
+LICENSE           babel-django.cfg  [01;34mdoc[0m                 [01;32mmanage.py[0m              package.json         [01;34mreleasenotes[0m         [01;34mroles[0m             [01;34mstatic[0m     [01;34mtools[0m
+]0;root@astplsm01: ~/horizonroot@astplsm01:~/horizon# cd local
+-bash: cd: local: No such file or directory
+]0;root@astplsm01: ~/horizonroot@astplsm01:~/horizon# l ls
+CONTRIBUTING.rst  MANIFEST.in       babel-djangojs.cfg  [0m[01;34mhorizon[0m                [01;34mopenstack_auth[0m       [01;34mplaybooks[0m            reno.yaml         setup.cfg  test-requirements.txt  tox.ini
+HACKING.rst       README.rst        bindep.txt          lower-constraints.txt  [01;34mopenstack_dashboard[0m  plugin-registry.csv  requirements.txt  setup.py   test-shim.js
+LICENSE           babel-django.cfg  [01;34mdoc[0m                 [01;32mmanage.py[0m              package.json         [01;34mreleasenotes[0m         [01;34mroles[0m             [01;34mstatic[0m     [01;34mtools[0m
+]0;root@astplsm01: ~/horizonroot@astplsm01:~/horizon# cd openstack_a dashboard/
+]0;root@astplsm01: ~/horizon/openstack_dashboardroot@astplsm01:~/horizon/openstack_dashboard# s ls
+__init__.py  [0m[01;34mconf[0m                   [01;34mdashboards[0m         [01;34menabled[0m        horizon_wsgi.py  [01;34mlocale[0m      settings.py  [01;34mtemplatetags[0m       [01;34mthemes[0m   [01;34mutils[0m
+[01;34m__pycache__[0m  context_processors.py  defaults.py        exceptions.py  karma.conf.js    [01;34mmanagement[0m  [01;34mstatic[0m       [01;34mtest[0m               urls.py  views.py
+[01;34mapi[0m          [01;34mcontrib[0m                [01;34mdjango_pyscss_fix[0m  hooks.py       [01;34mlocal[0m            policy.py   [01;34mtemplates[0m    theme_settings.py  [01;34musage[0m    wsgi.py
+]0;root@astplsm01: ~/horizon/openstack_dashboardroot@astplsm01:~/horizon/openstack_dashboard# cd static/
+]0;root@astplsm01: ~/horizon/openstack_dashboard/staticroot@astplsm01:~/horizon/openstack_dashboard/static# ls
+[0m[01;34mapp[0m  [01;34mdashboard[0m  [01;34mjs[0m
+]0;root@astplsm01: ~/horizon/openstack_dashboard/staticroot@astplsm01:~/horizon/openstack_dashboard/static# cd ..
+]0;root@astplsm01: ~/horizon/openstack_dashboardroot@astplsm01:~/horizon/openstack_dashboard# sudo apt install apache2 libapache2-mod-wsgi
+Reading package lists... 0%Reading package lists... 100%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
+Reading state information... 0%Reading state information... 0%Reading state information... Done
+apache2 is already the newest version (2.4.41-4ubuntu3.12).
+libapache2-mod-wsgi is already the newest version (4.6.8-1ubuntu3.1).
+The following packages were automatically installed and are no longer required:
+  placement-common python3-placement
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 13 not upgraded.
+]0;root@astplsm01: ~/horizon/openstack_dashboardroot@astplsm01:~/horizon/openstack_dashboard# cd ..
+]0;root@astplsm01: ~/horizonroot@astplsm01:~/horizon# cd ..
+]0;root@astplsm01: ~root@astplsm01:~# pwd
+/root
+]0;root@astplsm01: ~root@astplsm01:~# su tim
+su: user tim does not exist
+]0;root@astplsm01: ~root@astplsm01:~# su schneiti
+]0;schneiti@astplsm01: /rootschneiti@astplsm01:/root$ cd ~
+]0;schneiti@astplsm01: ~schneiti@astplsm01:~$ sui as     asadmin
+su: user asadmin does not exist
+]0;schneiti@astplsm01: ~schneiti@astplsm01:~$ pwd
+/home/schneiti
+]0;schneiti@astplsm01: ~schneiti@astplsm01:~$ cd ..
+]0;schneiti@astplsm01: /homeschneiti@astplsm01:/home$ ls
+[0m[01;34mhirmerpl[0m  [01;34mmegaco[0m  [01;34mschneiti[0m
+]0;schneiti@astplsm01: /homeschneiti@astplsm01:/home$ cd ..
+]0;schneiti@astplsm01: /schneiti@astplsm01:/$ ls
+[0m[01;36mbin[0m  [01;34mboot[0m  [01;34mdev[0m  [01;34metc[0m  [01;34mhome[0m  [01;36mlib[0m  [01;36mlib32[0m  [01;36mlib64[0m  [01;36mlibx32[0m  [01;34mlost+found[0m  [01;34mmedia[0m  [01;34mmnt[0m  [01;34mopt[0m  [01;34mproc[0m  [01;34mroot[0m  [01;34mrun[0m  [01;36msbin[0m  [01;34msnap[0m  [01;34msrv[0m  [01;34msys[0m  [30;42mtmp[0m  [01;34musr[0m  [01;34mvar[0m
+]0;schneiti@astplsm01: /schneiti@astplsm01:/$ cd usr
+]0;schneiti@astplsm01: /usrschneiti@astplsm01:/usr$ ls
+[0m[01;34mbin[0m  [01;34metc[0m  [01;34mgames[0m  [01;34minclude[0m  [01;34mlib[0m  [01;34mlib32[0m  [01;34mlib64[0m  [01;34mlibexec[0m  [01;34mlibx32[0m  [01;34mlocal[0m  [01;34msbin[0m  [01;34mshare[0m  [01;34msrc[0m
+]0;schneiti@astplsm01: /usrschneiti@astplsm01:/usr$ cd share
+]0;schneiti@astplsm01: /usr/shareschneiti@astplsm01:/usr/share$ nano /etc7a /ap    /apache2/apache2.conf 
+[?2004h[?1049h[22;0;0t[1;50r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[48;73H(B[0;7m[ Directory '/etc/apache2' is not writable ](B[m[48;70H(B[0;1m[37m[41m[ File '/etc/apache2/apache2.conf' is unwritable ][39;49m(B[m[H(B[0;7m  GNU nano 4.8                                                                      /etc/apache2/apache2.conf                                                                                [1;188H(B[m[49d(B[0;7m^G(B[m Get Help[18G(B[0;7m^O(B[m Write Out     (B[0;7m^W(B[m Where Is[52G(B[0;7m^K(B[m Cut Text[69G(B[0;7m^J(B[m Justify[86G(B[0;7m^C(B[m Cur Pos[103G(B[0;7mM-U(B[m Undo[49;120H(B[0;7mM-A(B[m Mark Text    (B[0;7mM-](B[m To Bracket   (B[0;7mM-Q(B[m Previous     (B[0;7m^B(B[m Back[50d(B[0;7m^X(B[m Exit[50;18H(B[0;7m^R(B[m Read File     (B[0;7m^\(B[m Replace[52G(B[0;7m^U(B[m Paste Text    (B[0;7m^T(B[m To Spell[86G(B[0;7m^_(B[m Go To Line    (B[0;7mM-E(B[m Redo[50;120H(B[0;7mM-6(B[m Copy Text    (B[0;7m^Q(B[m Where Was     (B[0;7mM-W(B[m Next[50;171H(B[0;7m^F(B[m Forward[48d[2d[39;49m[36m# This is the main Apache server configuration file.  It contains the[3d# configuration directives that give the server its instructions.[4d# See http://httpd.apache.org/docs/2.4/ for detailed information about[5d# the directives and /usr/share/doc/apache2/README.Debian about Debian specific[6d# hints.[7d#[9d[39m(B[mServerName controller[11d[36m#[12d# Summary of how the Apache 2 configuration works in Debian:[13d# The Apache 2 web server configuration in Debian is quite different to[14d# upstream's suggested way to configure the web server. This is because Debian's[15d# default Apache2 installation attempts to make adding and removing modules,[16d# virtual hosts, and extra configuration directives as flexible as possible, in[17d# order to make automating the changes and administering the server as easy as[18d# possible.[20d# It is split into several files forming the configuration hierarchy outlined[21d# below, all located in the /etc/apache2/ directory:[22d#[23d#       /etc/apache2/[24d#       |-- apache2.conf[25d#       |       `--  ports.conf[26d#       |-- mods-enabled[27d#       |       |-- *.load[28d#       |       `-- *.conf[29d#       |-- conf-enabled[30d#       |       `-- *.conf[31d#[39m[41m       [49m[36m`-- sites-enabled[32d#       [39m[41m        [49m[36m`-- *.conf[33d#[34d#[35d# * apache2.conf is the main configuration file (this file). It puts the pieces[36d#   together by including all remaining configuration files when starting up the[37d#   web server.[38d#[39d# * ports.conf is always included from the main configuration file. It is[40d#   supposed to determine listening ports for incoming connections which can be[41d#   customized anytime.[42d#[43d# * Configuration files in the mods-enabled/, conf-enabled/ and sites-enabled/[44d#   directories contain particular configuration snippets which manage modules,[45d#   global configuration fragments, or virtual host configurations,[46d#   respectively.[47d#[2d[39m(B[m[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[5d[?12l[?25h[?25l[6d[?12l[?25h[?25l[7d[?12l[?25h[?25l[8d[?12l[?25h[?25l[9d[?12l[?25h[?25l[10d[?12l[?25h[?25l[11d[?12l[?25h[?25l[12d[?12l[?25h[?25l[13d[?12l[?25h[?25l[14d[?12l[?25h[?25l[15d[?12l[?25h[?25l[16d[?12l[?25h[?25l[17d[?12l[?25h[?25l[18d[?12l[?25h[?25l[19d[?12l[?25h[?25l[20d[?12l[?25h[?25l[21d[?12l[?25h[?25l[22d[?12l[?25h[?25l[23d[?12l[?25h[?25l[24d[?12l[?25h[?25l[25d[?12l[?25h[?25l[27d[?12l[?25h[?25l[48d[K[28d[?12l[?25h[?25l[29d[?12l[?25h[?25l[30d[?12l[?25h[?25l[31d[?12l[?25h[?25l[32d[?12l[?25h[?25l[33d[?12l[?25h[?25l[34d[?12l[?25h[?25l[35d[?12l[?25h[?25l[36d[?12l[?25h[?25l[37d[?12l[?25h[?25l[38d[?12l[?25h[?25l[39d[?12l[?25h[?25l[40d[?12l[?25h[?25l[41d[?12l[?25h[?25l[42d[?12l[?25h[?25l[43d[?12l[?25h[?25l[44d[?12l[?25h[?25l[45d[?12l[?25h[?25l[46d[?12l[?25h[?25l[47d[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   They are activated by symlinking available configuration files from their[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   respective *-available/ counterparts. These should be managed by using our[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   helpers a2enmod/a2dismod, a2ensite/a2dissite and a2enconf/a2disconf. See[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   their respective man pages for detailed information.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# * The binary is called apache2. Due to the use of environment variables, in[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   the default configuration, apache2 needs to be started/stopped with[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   /etc/init.d/apache2 or apache2ctl. Calling /usr/bin/apache2 directly will not[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#   work with the default configuration.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Global configuration[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# ServerRoot: The top of the directory tree under which the server's[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# configuration, error, and log files are kept.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# NOTE!  If you intend to place this on an NFS (or otherwise network)[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# mounted filesystem then please read the Mutex documentation (available[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# at <URL:http://httpd.apache.org/docs/2.4/mod/core.html#mutex>);[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# you will save yourself a lot of trouble.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Do NOT add a slash at the end of the directory path.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#ServerRoot "/etc/apache2"[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# The accept serialization lock file MUST BE STORED ON A LOCAL DISK.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#Mutex file:${APACHE_LOCK_DIR} default[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# The directory where shm and other runtime files will be stored.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HDefaultRuntimeDir ${APACHE_RUN_DIR}[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# PidFile: The file in which the server should record its process[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# identification number when it starts.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# This needs to be set in /etc/apache2/envvars[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HPidFile ${APACHE_PID_FILE}[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Timeout: The number of seconds before receives and sends time out.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HTimeout 300[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# KeepAlive: Whether or not to allow persistent connections (more than[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# one request per connection). Set to "Off" to deactivate.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HKeepAlive On[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# MaxKeepAliveRequests: The maximum number of requests to allow[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# during a persistent connection. Set to 0 to allow an unlimited amount.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# We recommend you leave this number high, for maximum performance.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HMaxKeepAliveRequests 100[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# KeepAliveTimeout: Number of seconds to wait for the next request from the[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# same client on the same connection.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HKeepAliveTimeout 5[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# These need to be set in /etc/apache2/envvars[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HUser ${APACHE_RUN_USER}[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HGroup ${APACHE_RUN_GROUP}[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# HostnameLookups: Log the names of clients or just their IP addresses[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# e.g., www.apache.org (on) or 204.62.129.132 (off).[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# The default is off because it'd be overall better for the net if people[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# had to knowingly turn this feature on, since enabling it means that[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# each client request will result in AT LEAST one lookup request to the[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# nameserver.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HHostnameLookups Off[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# ErrorLog: The location of the error log file.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# If you do not specify an ErrorLog directive within a <VirtualHost>[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# container, error messages relating to that virtual host will be[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# logged here.  If you *do* define an error logfile for a <VirtualHost>[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# container, that host's errors will be logged there and not here.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d[2S[1;50r[46;1HErrorLog ${APACHE_LOG_DIR}/error.log[47d[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# LogLevel: Control the severity of messages logged to the error_log.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Available values: trace8, ..., trace1, debug, info, notice, warn,[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# error, crit, alert, emerg.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# It is also possible to configure the log level for particular modules, e.g.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# "LogLevel info ssl:warn"[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HLogLevel warn[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Include module configuration:[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HIncludeOptional mods-enabled/*.load[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HIncludeOptional mods-enabled/*.conf[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Include list of ports to listen on[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HInclude ports.conf[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Sets the default security model of the Apache2 HTTPD server. It does[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# not allow access to the root filesystem outside of /usr/share and /var/www.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# The former is used by web applications packaged in Debian,[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# the latter may be used for local directories served by the web server. If[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# your system is serving content from a sub-directory in /srv you must allow[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# access here, or in any related virtual host.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H<Directory />[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HOptions FollowSymLinks[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HAllowOverride None[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HRequire all denied[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</Directory>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H<Directory /usr/share>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HAllowOverride None[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HRequire all granted[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</Directory>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H<Directory /var/www/>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HOptions Indexes FollowSymLinks[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HAllowOverride None[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HRequire all granted[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</Directory>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#<Directory /srv/>[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#       Options Indexes FollowSymLinks[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#       AllowOverride None[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#       Require all granted[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#</Directory>[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# AccessFileName: The name of the file to look for in each directory[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# for additional configuration directives.  See also the AllowOverride[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# directive.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HAccessFileName .htaccess[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# The following lines prevent .htaccess and .htpasswd files from being[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# viewed by Web clients.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H<FilesMatch "^\.ht">[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;9HRequire all denied[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H</FilesMatch>[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l[A[?12l[?25h[?25l[47d[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# The following directives define some format nicknames for use with[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# a CustomLog directive.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# These deviate from the Common Log Format definitions in that they use %O[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# (the actual bytes sent including headers) instead of %b (the size of the[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# requested file), because the latter makes it impossible to detect partial[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# requests.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Note that the use of %{X-Forwarded-For}i instead of %h is not recommended.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Use mod_remoteip instead.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HLogFormat "%v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HLogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HLogFormat "%h %l %u %t \"%r\" %>s %O" common[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HLogFormat "%{Referer}i -> %U" referer[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HLogFormat "%{User-agent}i" agent[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Include of directories ignores editors' and dpkg's backup files,[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# see README.Debian for details.[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Include generic snippets of statements[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HIncludeOptional conf-enabled/*.conf[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# Include the virtual host configurations:[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1HIncludeOptional sites-enabled/*.conf[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[36m# vim: syntax=apache ts=4 sw=4 sts=4 sr noet[39m(B[m[?12l[?25h[?25l7[2;48r8[48d
+[1;50r[47;1H[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m#</Directory>[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#       Require all granted[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#       AllowOverride None[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m#       Options Indexes FollowSymLinks[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#<Directory /srv/>[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H</Directory>[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HRequire all granted[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HAllowOverride None[?12l[?25h[?25l7[2;48r8M[1;50r[2;9HOptions Indexes FollowSymLinks[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H<Directory /var/www/>[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H</Directory>[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HRequire all granted[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HAllowOverride None[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H<Directory /usr/share>[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H</Directory>[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HRequire all denied[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HAllowOverride None[?12l[?25h[?25l7[2;47r8M[1;50r[2;9HOptions FollowSymLinks[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H<Directory />[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# access here, or in any related virtual host.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# your system is serving content from a sub-directory in /srv you must allow[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# the latter may be used for local directories served by the web server. If[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# The former is used by web applications packaged in Debian,[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# not allow access to the root filesystem outside of /usr/share and /var/www.[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# Sets the default security model of the Apache2 HTTPD server. It does[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1HInclude ports.conf[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# Include list of ports to listen on[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1HIncludeOptional mods-enabled/*.conf[?12l[?25h[?25l7[2;47r8M[1;50r[2;1HIncludeOptional mods-enabled/*.load[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# Include module configuration:[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1HLogLevel warn[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# "LogLevel info ssl:warn"[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# It is also possible to configure the log level for particular modules, e.g.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# error, crit, alert, emerg.[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# Available values: trace8, ..., trace1, debug, info, notice, warn,[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# LogLevel: Control the severity of messages logged to the error_log.[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1HErrorLog ${APACHE_LOG_DIR}/error.log[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# container, that host's errors will be logged there and not here.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# logged here.  If you *do* define an error logfile for a <VirtualHost>[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# container, error messages relating to that virtual host will be[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# If you do not specify an ErrorLog directive within a <VirtualHost>[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# ErrorLog: The location of the error log file.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1HHostnameLookups Off[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# nameserver.[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# each client request will result in AT LEAST one lookup request to the[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# had to knowingly turn this feature on, since enabling it means that[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# The default is off because it'd be overall better for the net if people[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# e.g., www.apache.org (on) or 204.62.129.132 (off).[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# HostnameLookups: Log the names of clients or just their IP addresses[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1HGroup ${APACHE_RUN_GROUP}[?12l[?25h[?25l7[2;47r8M[1;50r[2;1HUser ${APACHE_RUN_USER}[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# These need to be set in /etc/apache2/envvars[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1HKeepAliveTimeout 5[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# same client on the same connection.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# KeepAliveTimeout: Number of seconds to wait for the next request from the[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[?12l[?25h[?25l7[2;48r8M[1;50r[2;1HMaxKeepAliveRequests 100[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# We recommend you leave this number high, for maximum performance.[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# during a persistent connection. Set to 0 to allow an unlimited amount.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# MaxKeepAliveRequests: The maximum number of requests to allow[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;48r8M[1;50r[2;1HKeepAlive On[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# one request per connection). Set to "Off" to deactivate.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# KeepAlive: Whether or not to allow persistent connections (more than[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1HTimeout 300[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# Timeout: The number of seconds before receives and sends time out.[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1HPidFile ${APACHE_PID_FILE}[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# This needs to be set in /etc/apache2/envvars[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# identification number when it starts.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# PidFile: The file in which the server should record its process[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1HDefaultRuntimeDir ${APACHE_RUN_DIR}[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# The directory where shm and other runtime files will be stored.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#Mutex file:${APACHE_LOCK_DIR} default[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# The accept serialization lock file MUST BE STORED ON A LOCAL DISK.[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#ServerRoot "/etc/apache2"[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# Do NOT add a slash at the end of the directory path.[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# you will save yourself a lot of trouble.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# at <URL:http://httpd.apache.org/docs/2.4/mod/core.html#mutex>);[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# mounted filesystem then please read the Mutex documentation (available[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# NOTE!  If you intend to place this on an NFS (or otherwise network)[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# configuration, error, and log files are kept.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# ServerRoot: The top of the directory tree under which the server's[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# Global configuration[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#   work with the default configuration.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#   /etc/init.d/apache2 or apache2ctl. Calling /usr/bin/apache2 directly will not[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#   the default configuration, apache2 needs to be started/stopped with[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# * The binary is called apache2. Due to the use of environment variables, in[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m#   their respective man pages for detailed information.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#   helpers a2enmod/a2dismod, a2ensite/a2dissite and a2enconf/a2disconf. See[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#   respective *-available/ counterparts. These should be managed by using our[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#   They are activated by symlinking available configuration files from their[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m#   respectively.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#   global configuration fragments, or virtual host configurations,[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#   directories contain particular configuration snippets which manage modules,[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# * Configuration files in the mods-enabled/, conf-enabled/ and sites-enabled/[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#   customized anytime.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#   supposed to determine listening ports for incoming connections which can be[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# * ports.conf is always included from the main configuration file. It is[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m#   web server.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#   together by including all remaining configuration files when starting up the[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# * apache2.conf is the main configuration file (this file). It puts the pieces[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#       [39m[41m        [49m[36m`-- *.conf[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m[41m       [49m[36m`-- sites-enabled[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#       |       `-- *.conf[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#       |-- conf-enabled[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m#       |       `-- *.conf[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#       |       |-- *.load[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#       |-- mods-enabled[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#       |       `--  ports.conf[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#       |-- apache2.conf[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#       /etc/apache2/[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# below, all located in the /etc/apache2/ directory:[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# It is split into several files forming the configuration hierarchy outlined[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# possible.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# order to make automating the changes and administering the server as easy as[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# virtual hosts, and extra configuration directives as flexible as possible, in[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# default Apache2 installation attempts to make adding and removing modules,[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# upstream's suggested way to configure the web server. This is because Debian's[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# The Apache 2 web server configuration in Debian is quite different to[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m# Summary of how the Apache 2 configuration works in Debian:[39m(B[m[?12l[?25h[?25l7[2;48r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1HServerName controller[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m#[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# hints.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# the directives and /usr/share/doc/apache2/README.Debian about Debian specific[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# See http://httpd.apache.org/docs/2.4/ for detailed information about[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# configuration directives that give the server its instructions.[39m(B[m[?12l[?25h[?25l7[2;47r8M[1;50r[2;1H[36m# This is the main Apache server configuration file.  It contains the[39m(B[m[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[49d[J[50d[?12l[?25h[50;1H[?1049l[23;0;0t[?1l>[?2004l]0;schneiti@astplsm01: /usr/shareschneiti@astplsm01:/usr/share$ sudi   o -i
+[sudo] password for schneiti: 
+]0;root@astplsm01: ~root@astplsm01:~# l pwd
+/root
+]0;root@astplsm01: ~root@astplsm01:~# ls
+admin-openrc  cirros-0.4.0-x86_64-disk.img  demo-openrc  [0m[01;34mhorizon[0m
+]0;root@astplsm01: ~root@astplsm01:~# cd  cd ..
+]0;root@astplsm01: /root@astplsm01:/# ls
+[0m[01;36mbin[0m  [01;34mboot[0m  [01;34mdev[0m  [01;34metc[0m  [01;34mhome[0m  [01;36mlib[0m  [01;36mlib32[0m  [01;36mlib64[0m  [01;36mlibx32[0m  [01;34mlost+found[0m  [01;34mmedia[0m  [01;34mmnt[0m  [01;34mopt[0m  [01;34mproc[0m  [01;34mroot[0m  [01;34mrun[0m  [01;36msbin[0m  [01;34msnap[0m  [01;34msrv[0m  [01;34msys[0m  [30;42mtmp[0m  [01;34musr[0m  [01;34mvar[0m
+]0;root@astplsm01: /root@astplsm01:/# cd us  home
+]0;root@astplsm01: /homeroot@astplsm01:/home# ls
+[0m[01;34mhirmerpl[0m  [01;34mmegaco[0m  [01;34mschneiti[0m
+]0;root@astplsm01: /homeroot@astplsm01:/home# cd schneiti           nano /etc/apache2/apache2.conf 
+[?2004h[?1049h[22;0;0t[1;50r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[48;88H(B[0;7m[ Reading... ](B[m[48;86H(B[0;7m[ Read 230 lines ](B[m[H(B[0;7m  GNU nano 4.8                                                                      /etc/apache2/apache2.conf                                                                                [1;188H(B[m[49d(B[0;7m^G(B[m Get Help[18G(B[0;7m^O(B[m Write Out     (B[0;7m^W(B[m Where Is[52G(B[0;7m^K(B[m Cut Text[69G(B[0;7m^J(B[m Justify[86G(B[0;7m^C(B[m Cur Pos[103G(B[0;7mM-U(B[m Undo[49;120H(B[0;7mM-A(B[m Mark Text    (B[0;7mM-](B[m To Bracket   (B[0;7mM-Q(B[m Previous     (B[0;7m^B(B[m Back[50d(B[0;7m^X(B[m Exit[50;18H(B[0;7m^R(B[m Read File     (B[0;7m^\(B[m Replace[52G(B[0;7m^U(B[m Paste Text    (B[0;7m^T(B[m To Spell[86G(B[0;7m^_(B[m Go To Line    (B[0;7mM-E(B[m Redo[50;120H(B[0;7mM-6(B[m Copy Text    (B[0;7m^Q(B[m Where Was     (B[0;7mM-W(B[m Next[50;171H(B[0;7m^F(B[m Forward[48d[2d[39;49m[36m# This is the main Apache server configuration file.  It contains the[3d# configuration directives that give the server its instructions.[4d# See http://httpd.apache.org/docs/2.4/ for detailed information about[5d# the directives and /usr/share/doc/apache2/README.Debian about Debian specific[6d# hints.[7d#[9d[39m(B[mServerName controller[11d[36m#[12d# Summary of how the Apache 2 configuration works in Debian:[13d# The Apache 2 web server configuration in Debian is quite different to[14d# upstream's suggested way to configure the web server. This is because Debian's[15d# default Apache2 installation attempts to make adding and removing modules,[16d# virtual hosts, and extra configuration directives as flexible as possible, in[17d# order to make automating the changes and administering the server as easy as[18d# possible.[20d# It is split into several files forming the configuration hierarchy outlined[21d# below, all located in the /etc/apache2/ directory:[22d#[23d#       /etc/apache2/[24d#       |-- apache2.conf[25d#       |       `--  ports.conf[26d#       |-- mods-enabled[27d#       |       |-- *.load[28d#       |       `-- *.conf[29d#       |-- conf-enabled[30d#       |       `-- *.conf[31d#[39m[41m       [49m[36m`-- sites-enabled[32d#       [39m[41m        [49m[36m`-- *.conf[33d#[34d#[35d# * apache2.conf is the main configuration file (this file). It puts the pieces[36d#   together by including all remaining configuration files when starting up the[37d#   web server.[38d#[39d# * ports.conf is always included from the main configuration file. It is[40d#   supposed to determine listening ports for incoming connections which can be[41d#   customized anytime.[42d#[43d# * Configuration files in the mods-enabled/, conf-enabled/ and sites-enabled/[44d#   directories contain particular configuration snippets which manage modules,[45d#   global configuration fragments, or virtual host configurations,[46d#   respectively.[47d#[2d[39m(B[m[?12l[?25h[?25l[49;18H[20X[49;38H(B[0;7mM-C(B[m Case Sens            [69G      (B[0;7mM-B(B[m Backwards        [103G         (B[0;7m^P(B[m Older[29X[49;149H(B[0;7m^T(B[m Go To Line[K[50;2H(B[0;7mC(B[m Cancel[50;18H[20X[50;38H(B[0;7mM-R(B[m Regexp[27X[50;75H(B[0;7m^R(B[m Replace[27X[50;112H(B[0;7m^N(B[m Newer[29X[50;149H(B[0;7mM-J(B[m FullJstify[K[48d(B[0;7mSearch:                                                                                                                                                                                      [48;1H(B[m[48;9H[?12l[?25h[?25l(B[0;7mD(B[m[48;10H[?12l[?25h[?25l(B[0;7mi(B[m[48;11H[?12l[?25h[?25l(B[0;7mr(B[m[48;12H[?12l[?25h[?25l(B[0;7me(B[m[48;13H[?12l[?25h[?25l(B[0;7mc(B[m[48;14H[?12l[?25h[?25l(B[0;7mt(B[m[48;15H[?12l[?25h[?25l(B[0;7mo(B[m[48;16H[?12l[?25h[?25l(B[0;7mr(B[m[48;17H[?12l[?25h[?25l(B[0;7my(B[m[48;18H[?12l[?25h[?25l[K[49;18H(B[0;7m^O(B[m Write Out     (B[0;7m^W(B[m Where Is      (B[0;7m^K(B[m Cut Text[69G(B[0;7m^J(B[m Justify       (B[0;7m^C(B[m Cur Pos[103G(B[0;7mM-U(B[m Undo         (B[0;7mM-A(B[m Mark Text    (B[0;7mM-](B[m To Bracket   (B[0;7mM-Q(B[m Previous     (B[0;7m^B(B[m Back[50;2H(B[0;7mX(B[m Exit  [50;18H(B[0;7m^R(B[m Read File     (B[0;7m^\(B[m Replace       (B[0;7m^U(B[m Paste Text    (B[0;7m^T(B[m To Spell      (B[0;7m^_(B[m Go To Line    (B[0;7mM-E(B[m Redo         (B[0;7mM-6(B[m Copy Text    (B[0;7m^Q(B[m Where Was     (B[0;7mM-W(B[m Next [50;171H(B[0;7m^F(B[m Forward[48d[21;43H[?12l[?25h[?25l[49;18H[20X[49;38H(B[0;7mM-C(B[m Case Sens            [69G      (B[0;7mM-B(B[m Backwards        [103G         (B[0;7m^P(B[m Older[29X[49;149H(B[0;7m^T(B[m Go To Line[K[50;2H(B[0;7mC(B[m Cancel[50;18H[20X[50;38H(B[0;7mM-R(B[m Regexp[27X[50;75H(B[0;7m^R(B[m Replace[27X[50;112H(B[0;7m^N(B[m Newer[29X[50;149H(B[0;7mM-J(B[m FullJstify[K[48d(B[0;7mSearch [Directory]:                                                                                                                                                                          [48;1H(B[m[48;21H[?12l[?25h[?25l[K[49;18H(B[0;7m^O(B[m Write Out     (B[0;7m^W(B[m Where Is      (B[0;7m^K(B[m Cut Text[69G(B[0;7m^J(B[m Justify       (B[0;7m^C(B[m Cur Pos[103G(B[0;7mM-U(B[m Undo         (B[0;7mM-A(B[m Mark Text    (B[0;7mM-](B[m To Bracket   (B[0;7mM-Q(B[m Previous     (B[0;7m^B(B[m Back[50;2H(B[0;7mX(B[m Exit  [50;18H(B[0;7m^R(B[m Read File     (B[0;7m^\(B[m Replace       (B[0;7m^U(B[m Paste Text    (B[0;7m^T(B[m To Spell      (B[0;7m^_(B[m Go To Line    (B[0;7mM-E(B[m Redo         (B[0;7mM-6(B[m Copy Text    (B[0;7m^Q(B[m Where Was     (B[0;7mM-W(B[m Next [50;171H(B[0;7m^F(B[m Forward[48d[2;3H[36m  supposed to determine listening ports for incoming connections which can be[3;3H  customized anytime.[39m(B[m[K[4;2H[K[5;3H[36m* Configuration files in the mods-enabled/, conf-enabled/ and sites-enabled/[39m(B[m[K[6;3H[36m  directories contain particular configuration snippets which manage modules,[7d#   global configuration fragments, or virtual host configurations,[8d#   respectively.[9d#[39m(B[m[K[10d[36m#   They are activated by symlinking available configuration files from their[11d#   respective *-available/ counterparts. These should be managed by using our[12;3H  helpers a2enmod/a2dismod, a2ensite/a2dissite and a2enconf/a2disconf. See[13;3H  their respective man pages for detailed information.[39m(B[m[K[14;2H[K[15;3H[36m* The binary is called apache2. Due to the use of environment variables, in[16;3H  the default configuration, apache2 needs to be started/stopped with[39m(B[m[K[17;3H[36m  /etc/init.d/apache2 or apache2ctl. Calling /usr/bin/apache2 directly will not[18;3H  work with the default configuration.[20d[39m(B[m[K[21;3H[36mGlobal configuration[39m(B[m[K[23d[K[24;2H[K[25;3H[36mServerRoot: The top of the directory tree under which the server's[26;3Hconfiguration, error, and log files are kept.[27d#[39m(B[m[K[28;3H[36mNOTE!  If you intend to place this on an NFS (or otherwise network)[29;3Hmounted filesystem then please read the Mutex documentation (available[30;3Hat <URL:http://httpd.apache.org/docs/2.4/mod/core.html#mutex>);[31d# you will save yourself a lot of trouble.[32d#[39m(B[m[K[33d[36m Do NOT add a slash at the end of the directory path.[35d#ServerRoot "/etc/apache2"[39m(B[m[K[36d[K[37;2H[K[38d[36m The accept serialization lock file MUST BE STORED ON A LOCAL DISK.[39d#[39m(B[m[K[40d[36mMutex file:${APACHE_LOCK_DIR} default[39m(B[m[K[41d[K[43;3H[36mThe directory where shm and other runtime files will be stored.[39m(B[m[K[44;2H[K[45d[K[46dDefaultRuntimeDir ${APACHE_RUN_DIR}[47d[K[25;30H[?12l[?25h[?25l[49;18H[20X[49;38H(B[0;7mM-C(B[m Case Sens            [69G      (B[0;7mM-B(B[m Backwards        [103G         (B[0;7m^P(B[m Older[29X[49;149H(B[0;7m^T(B[m Go To Line[K[50;2H(B[0;7mC(B[m Cancel[50;18H[20X[50;38H(B[0;7mM-R(B[m Regexp[27X[50;75H(B[0;7m^R(B[m Replace[27X[50;112H(B[0;7m^N(B[m Newer[29X[50;149H(B[0;7mM-J(B[m FullJstify[K[48d(B[0;7mSearch [Directory]:                                                                                                                                                                          [48;1H(B[m[48;21H[?12l[?25h[?25l[K[49;18H(B[0;7m^O(B[m Write Out     (B[0;7m^W(B[m Where Is      (B[0;7m^K(B[m Cut Text[69G(B[0;7m^J(B[m Justify       (B[0;7m^C(B[m Cur Pos[103G(B[0;7mM-U(B[m Undo         (B[0;7mM-A(B[m Mark Text    (B[0;7mM-](B[m To Bracket   (B[0;7mM-Q(B[m Previous     (B[0;7m^B(B[m Back[50;2H(B[0;7mX(B[m Exit  [50;18H(B[0;7m^R(B[m Read File     (B[0;7m^\(B[m Replace       (B[0;7m^U(B[m Paste Text    (B[0;7m^T(B[m To Spell      (B[0;7m^_(B[m Go To Line    (B[0;7mM-E(B[m Redo         (B[0;7mM-6(B[m Copy Text    (B[0;7m^Q(B[m Where Was     (B[0;7mM-W(B[m Next [50;171H(B[0;7m^F(B[m Forward[48d[33;40H[?12l[?25h[?25l[49;18H[20X[49;38H(B[0;7mM-C(B[m Case Sens            [69G      (B[0;7mM-B(B[m Backwards        [103G         (B[0;7m^P(B[m Older[29X[49;149H(B[0;7m^T(B[m Go To Line[K[50;2H(B[0;7mC(B[m Cancel[50;18H[20X[50;38H(B[0;7mM-R(B[m Regexp[27X[50;75H(B[0;7m^R(B[m Replace[27X[50;112H(B[0;7m^N(B[m Newer[29X[50;149H(B[0;7mM-J(B[m FullJstify[K[48d(B[0;7mSearch [Directory]:                                                                                                                                                                          [48;1H(B[m[48;21H[?12l[?25h[?25l[K[49;18H(B[0;7m^O(B[m Write Out     (B[0;7m^W(B[m Where Is      (B[0;7m^K(B[m Cut Text[69G(B[0;7m^J(B[m Justify       (B[0;7m^C(B[m Cur Pos[103G(B[0;7mM-U(B[m Undo         (B[0;7mM-A(B[m Mark Text    (B[0;7mM-](B[m To Bracket   (B[0;7mM-Q(B[m Previous     (B[0;7m^B(B[m Back[50;2H(B[0;7mX(B[m Exit  [50;18H(B[0;7m^R(B[m Read File     (B[0;7m^\(B[m Replace       (B[0;7m^U(B[m Paste Text    (B[0;7m^T(B[m To Spell      (B[0;7m^_(B[m Go To Line    (B[0;7mM-E(B[m Redo         (B[0;7mM-6(B[m Copy Text    (B[0;7m^Q(B[m Where Was     (B[0;7mM-W(B[m Next [50;171H(B[0;7m^F(B[m Forward[48d[43;7H[?12l[?25h[?25l[49;18H[20X[49;38H(B[0;7mM-C(B[m Case Sens            [69G      (B[0;7mM-B(B[m Backwards        [103G         (B[0;7m^P(B[m Older[29X[49;149H(B[0;7m^T(B[m Go To Line[K[50;2H(B[0;7mC(B[m Cancel[50;18H[20X[50;38H(B[0;7mM-R(B[m Regexp[27X[50;75H(B[0;7m^R(B[m Replace[27X[50;112H(B[0;7m^N(B[m Newer[29X[50;149H(B[0;7mM-J(B[m FullJstify[K[48d(B[0;7mSearch [Directory]:                                                                                                                                                                          [48;1H(B[m[48;21H[?12l[?25h[?25l[K[49;18H(B[0;7m^O(B[m Write Out     (B[0;7m^W(B[m Where Is      (B[0;7m^K(B[m Cut Text[69G(B[0;7m^J(B[m Justify       (B[0;7m^C(B[m Cur Pos[103G(B[0;7mM-U(B[m Undo         (B[0;7mM-A(B[m Mark Text    (B[0;7mM-](B[m To Bracket   (B[0;7mM-Q(B[m Previous     (B[0;7m^B(B[m Back[50;2H(B[0;7mX(B[m Exit  [50;18H(B[0;7m^R(B[m Read File     (B[0;7m^\(B[m Replace       (B[0;7m^U(B[m Paste Text    (B[0;7m^T(B[m To Spell      (B[0;7m^_(B[m Go To Line    (B[0;7mM-E(B[m Redo         (B[0;7mM-6(B[m Copy Text    (B[0;7m^Q(B[m Where Was     (B[0;7mM-W(B[m Next [50;171H(B[0;7m^F(B[m Forward[48d[2dErrorLog ${APACHE_LOG_DIR}/error.log[K[3d[K[5;3H[36mLogLevel: Control the severity of messages logged to the error_log.[39m(B[m[K[6;3H[36mAvailable values: trace8, ..., trace1, debug, info, notice, warn,[39m(B[m[K[7;3H[36merror, crit, alert, emerg.[39m(B[m[K[8;3H[36mIt is also possible to configure the log level for particular modules, e.g.[9d# "LogLevel info ssl:warn"[10d#[39m(B[m[K[11dLogLevel warn[K[12d[K[13;3H[36mInclude module configuration:[39m(B[m[K[14dIncludeOptional mods-enabled/*.load[15dIncludeOptional mods-enabled/*.conf[K[16d[K[17;3H[36mInclude list of ports to listen on[39m(B[m[K[18dInclude ports.conf[K[21;3H[36mSets the default security model of the Apache2 HTTPD server. It does[22d# not allow access to the root filesystem outside of /usr/share and /var/www.[23d# The former is used by web applications packaged in Debian,[24d# the latter may be used for local directories served by the web server. If[25;3Hyour system is serving content from a sub-directory in /srv you must allow[26;3Haccess here, or in any related virtual host.[39m(B[m[K[27d<Directory />[28;8H[1K Options FollowSymLinks[K[29;8H[1K AllowOverride None[K[30;8H[1K Require all denied[K[31d</Directory>[K[32d[K[33d<Directory /usr/share>[K[34;8H[1K AllowOverride None[35;8H[1K Require all granted[36d</Directory>[37d[K[38d<Directory /var/www/>[K[39;8H[1K Options Indexes FollowSymLinks[40;8H[1K AllowOverride None[K[41;9HRequire all granted[42d</Directory>[43d[K[44;2H[36m<Directory /srv/>[45d#       Options Indexes FollowSymLinks[46d#       AllowOverride None[39m(B[m[K[47d[36m#       Require all granted[25;45H[39m(B[m[?12l[?25h[?25l[26d[?12l[?25h[?25l[27;14H[?12l[?25h[?25l[28;31H[?12l[?25h[?25l[29;27H[?12l[?25h[?25l[30d[?12l[?25h[?25l[A[?12l[?25h[?25l[30d[?12l[?25h[?25l[31;13H[?12l[?25h[?25l[32d[?12l[?25h[?25l[33;23H[?12l[?25h[?25l[34;27H[?12l[?25h[?25l[35dd[?12l[?25h[?25l[36;13H[?12l[?25h[?25l[37d[?12l[?25h[?25l[38;22H[?12l[?25h[?25l[39;39H[?12l[?25h[?25l[40;27H[?12l[?25h[?25l[1;180H(B[0;7mModified(B[m[40;26H [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lA[?12l[?25h[?25ll[?12l[?25h[?25ll[?12l[?25h[?25l[41d[?12l[?25h[?25l[42;13H[?12l[?25h[?25l[41;26H[?12l[?25h[?25le[?12l[?25h[?25l[49;18H[30X[49;48H(B[0;7mM-D(B[m DOS Format [69G          [86G         (B[0;7mM-A(B[m Append      [49;120H[22X[49;142H(B[0;7mM-B(B[m Backup File[K[50;2H(B[0;7mC(B[m Cancel[50;18H[30X[50;48H(B[0;7mM-M(B[m Mac Format[18X[50;86H         (B[0;7mM-P(B[m Prepend     [50;120H[22X[50;142H(B[0;7m^T(B[m To Files[K[48d(B[0;7mFile Name to Write: /etc/apache2/apache2.conf                                                                                                                                                [48;1H(B[m[48;46H[?12l[?25h[?25l[48;87H[1K (B[0;7m[ Writing... ](B[m[K[1;180H(B[0;7m        (B[m[48;86H(B[0;7m[ Wrote 230 lines ](B[m[49;18H(B[0;7m^O(B[m Write Out     (B[0;7m^W(B[m Where Is      (B[0;7m^K(B[m Cut Text[69G(B[0;7m^J(B[m Justify[86G(B[0;7m^C(B[m Cur Pos       (B[0;7mM-U(B[m Undo[49;120H(B[0;7mM-A(B[m Mark Text    (B[0;7mM-](B[m To Bracket   (B[0;7mM-Q(B[m Previous     (B[0;7m^B(B[m Back[50;2H(B[0;7mX(B[m Exit  [50;18H(B[0;7m^R(B[m Read File     (B[0;7m^\(B[m Replace       (B[0;7m^U(B[m Paste Text    (B[0;7m^T(B

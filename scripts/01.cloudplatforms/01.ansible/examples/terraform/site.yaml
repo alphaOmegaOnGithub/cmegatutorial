@@ -1,0 +1,50 @@
+---
+# Our first play. This play will run Terraform via the Terraform module
+# and build a dynamic inventory from its output
+- name: Run Terraform and build inventory dynamically
+  hosts: localhost
+  roles:
+  - terraform
+
+# Next, we build a local SSH configuration. This is not necessarily needed, but
+# makes it easy to SSH into the machines using their logical name
+- name: Build SSH configuration
+  hosts: localhost
+  roles:
+  - sshConfig
+
+# This play is only there to make sure that all machines are available before
+# we proceed
+- name: Wait for all machines to become ready
+  hosts: all
+  gather_facts: no
+  tasks:
+  - name: Wait for machine to become reachable
+    wait_for_connection:
+      delay: 10
+      sleep: 10
+
+# We are now ready to perform the actual installation steps.
+# First, there is a play for those installation steps common
+# to all groups
+- name: Install default user and firewall on all servers
+  hosts: all
+  become: yes
+  roles:
+  - firewall
+  - defaultUser
+
+#
+# Next, we execute the roles that are specific for each group
+#
+- name: Install web servers
+  hosts: web
+  become: yes
+  roles:
+  - webserver
+
+- name: Install DB servers
+  hosts: db
+  become: yes
+  roles:
+  - dbserver

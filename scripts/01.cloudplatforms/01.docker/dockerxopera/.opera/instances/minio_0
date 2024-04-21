@@ -1,0 +1,36 @@
+{
+  "tosca_name": {
+    "is_set": true,
+    "data": "minio"
+  },
+  "tosca_id": {
+    "is_set": true,
+    "data": "minio_0"
+  },
+  "state": {
+    "is_set": true,
+    "data": "error"
+  },
+  "component_version": {
+    "is_set": false,
+    "data": null
+  },
+  "admin_credential": {
+    "is_set": false,
+    "data": null
+  },
+  "minio_ip": {
+    "is_set": false,
+    "data": null
+  },
+  "minio_credentials": {
+    "is_set": true,
+    "data": {
+      "get_input": "minio_credentials"
+    }
+  },
+  "credentials": {
+    "is_set": false,
+    "data": null
+  }
+}

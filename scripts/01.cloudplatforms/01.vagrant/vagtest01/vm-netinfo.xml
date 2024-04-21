@@ -1,0 +1,31 @@
+<network connections='1' ipv6='yes'>
+  <name>vagrant-libvirt</name>
+  <uuid>7fa798bd-08f4-4806-b482-715949a689f2</uuid>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr1' stp='on' delay='0'/>
+  <mac address='52:54:00:e5:a1:ea'/>
+  <ip address='192.168.121.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.121.1' end='192.168.121.254'/>
+    </dhcp>
+  </ip>
+</network>
+
+ Expiry Time           MAC address         Protocol   IP address           Hostname     Client ID or DUID
+--------------------------------------------------------------------------------------------------------------------------------------------------
+ 2024-03-11 16:29:18   52:54:00:e0:3e:54   ipv4       192.168.121.197/24   ubu2204t01   ff:ed:10:bd:b8:00:02:00:00:ab:11:9a:e0:cd:27:fa:46:1b:52
+
+virbr1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.121.1  netmask 255.255.255.0  broadcast 192.168.121.255
+        ether 52:54:00:e5:a1:ea  txqueuelen 1000  (Ethernet)
+        RX packets 17984  bytes 1219434 (1.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 45846  bytes 98231758 (98.2 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+bridge name	bridge id		STP enabled	interfaces
+virbr1		8000.525400e5a1ea	yes		vnet1

@@ -1,0 +1,10 @@
+---
+# This yaml file contains inputs for service.yaml.
+
+#host_ip: localhost
+host_ip: 192.168.138.68
+linux_distro: ubuntu
+linux_release: yammy
+#minio_credentials: { access_key: minio_access_key, secret_key: minio_secret_key }
+minio_credentials: { access_key: test, secret_key: test }
+...

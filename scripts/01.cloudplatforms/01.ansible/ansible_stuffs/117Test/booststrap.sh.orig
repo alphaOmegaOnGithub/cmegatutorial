@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+apt-get update
+apt-get install -y apache2
+##
+
+if ! [ -L /etc/apache2/ ]; then
+  rm -rf /etc/apache2
+  mkdir -p /etc/apache2/sites-available
+  ln -fs  /home/cmadmin/vagrant/apache2/etc/apache2/sites-available  /tmp/sites-available
+  cp /tmp/sites-available/*  /etc/apache2/sites-available/
+fi
+#
+if ! [ -L /var/www ]; then
+  rm -rf /var/www
+  mkdir -p /var/www/virtual.host
+  ln -fs /home/cmadmin/vagrant/apache2/var/www/virtual.host /tmp/virtual.host
+  cp /tmp/virtual.host/* /var/www/virtual.host/
+fi
+#
+a2ensite virtual.host
+#
+systemctl reload apache2
+

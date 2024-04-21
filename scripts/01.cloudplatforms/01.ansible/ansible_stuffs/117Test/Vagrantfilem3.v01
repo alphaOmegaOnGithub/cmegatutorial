@@ -1,0 +1,59 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  
+  config.vm.define "vm1" do |vm1|
+    vm1.vm.box     = "generic-x64/ubuntu2204"
+    vm1.vm.box_url = "https://vagrantcloud.com/api/v2/vagrant/generic-x64/ubuntu2204"
+    vm1.vm.hostname = "vagabuntu01"
+    vm1.vm.provision :shell, path: "booststrap.sh"
+    vm1.vm.box_check_update = false
+    vm1.vm.network "forwarded_port", guest: 80, host: 9080 
+    vm1.vm.network "public_network",  :dev => "br0",:mode => "bridge", :type => "bridge", :ip => "192.168.138.231" 
+    #vm1.vm.synced_folder "./data", "/vagrant_data"
+    vm1.vm.provider :libvirt do |libvirt|
+	  libvirt.cpus = 8
+      libvirt.memory = 16384
+      libvirt.forward_ssh_port = true
+      libvirt.memorybacking :access, :mode => "shared"
+      # libvirt.storage :file, :size => '100G', :type => 'qcow2'
+    end  	
+  end
+  
+  config.vm.define "vm2" do |vm2|
+    vm2.vm.box      = "generic-x64/ubuntu2204"
+    vm2.vm.box_url  = "https://vagrantcloud.com/api/v2/vagrant/generic-x64/ubuntu2204"
+    vm2.vm.hostname = "vagabuntu02"
+    vm2.vm.provision :shell, path: "booststrap.sh"
+    vm2.vm.box_check_update = false
+    vm2.vm.network "forwarded_port", guest: 80, host: 9081 
+    vm2.vm.network "public_network",  :dev => "br0",:mode => "bridge", :type => "bridge", :ip => "192.168.138.232" 
+    vm2.vm.synced_folder "./data", "/vagrant_data"
+    vm2.vm.provider :libvirt do |libvirt|
+      libvirt.cpus = 8
+      libvirt.memory = 16384
+      libvirt.forward_ssh_port = true
+      libvirt.memorybacking :access, :mode => "shared"
+      # libvirt.storage :file, :size => '100G', :type => 'qcow2'
+    end  
+  end  
+  
+  config.vm.define "vm3" do |vm3|
+    vm3.vm.box = "generic-x64/ubuntu2204"
+    vm3.vm.box_url = "https://vagrantcloud.com/api/v2/vagrant/generic-x64/ubuntu2204"
+    vm3.vm.hostname = "vagabuntu03"
+    vm3.vm.provision :shell, path: "booststrap.sh"
+    vm3.vm.box_check_update = false
+    vm3.vm.network "forwarded_port", guest: 80, host: 9082 
+    vm3.vm.network "public_network",  :dev => "br0",:mode => "bridge", :type => "bridge", :ip => "192.168.138.232" 
+    vm3.vm.synced_folder "./data", "/vagrant_data"
+    vm3.vm.provider :libvirt do |libvirt|
+      libvirt.cpus = 8
+      libvirt.memory = 16384
+      libvirt.forward_ssh_port = true
+      libvirt.memorybacking :access, :mode => "shared"
+      # libvirt.storage :file, :size => '100G', :type => 'qcow2'
+    end  
+  end    
+end

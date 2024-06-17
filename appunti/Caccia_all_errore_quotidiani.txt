@@ -1,0 +1,61 @@
+!DISCLAMER!: Tutti i problemi individuati sono basati su opinioni PERSONALI e sull'idea che pochi giovani provino interesse nell'usare questi mezzi e più gente anziana ne faccia utilizzo. Cercando di immedesimarmi in quest'ultimi ho tentato di individuare quelle minime pecche che possono essere modificate in maniera tale da consentire una leggibilità/utilizzo più semplice a qualsiasi tipo di utente, indipendentemente da chi esso sia senza distinzioni di età o capacità intuitive.
+
+
+||Sito desktop de "L'Arena" problemi individuati:||
+
+- (ancora non abilitato per sfogliare il giornale, sezione "edizione digitale", non posso dare un'opinione).
+- Tasto "Accedi" circa nascosto, solitamente situato in alto a destra o evidenziato.
+- Spazi vuoti ai lati, se possibile cambiare layout/risoluzione per riempire la pagina.
+- Grandezza sito a 175% o messo al lato (o comunque con uno spazio ridotto) riempie tutta la pagina e cambia la grafica, forse migliore dal punto di vista grafico ma rendere più chiaro che l'icona della personcina in alto a destra serve per accedere non è una brutta idea. Inoltre scompaiono i bottoni per abbonarsi e i link a facebook, instagram e X.
+- Barra di progresso gialla in altro un pò occulta, si potrebbe ingrandire o rendere più chiara, però utile.
+- Tendina laterale (3 lineette) grande quanto quasi tutta la pagina, personalmente la renderei più compatta e con la possibilità di scrollare in giù per le varie opzioni.
+- Nella sezione "foto" se si vuole ingrandire un'immagine senza mettere a schermo intero è un pò scalibrato, non ingrandisce dove si clicca e si fa fatica a spostarsi. Inoltre ingrandisce troppo senza dare la possibilità di ingrandire a piacere secondo le proprie necessità.
+- Perchè quando clicco su certi link per gli argomenti in evidenza si aprono nella pagina stessa ed altri aprono una pagina nuova? (Es. filobus -> nuova pagina, titoli in testa -> pagina stessa).
+- 2 bottoni con l'icona "'A" che fanno la stessa cosa, ci si potrebbe limitare ad uno? Unica pagina dove non ce ne sono due è la home, ma lì è inutile. Nella versiona ridotta questo problema non c'è, il bottone per tornare alla home è singolo. Perchè non applicare la stessa grafica per tutto?
+- //su articoli il testo viene parzialmente coperto dall'effetto di dissipazione. (mi sono reso conto che questa cosa non è sbagliata perchè serve l'abbonamento per continuare a leggere).// <-- errore mio, non per forza una pecca del sito.
+- Esiste una modalità scura del sito?
+- Quando si apre la pagina/refresh la pubblicità iniziale non si toglie quando si scende con la rotellina del mouse, bisogna aspettare un pò prima che questa cosa si sistemi da sola. è un bug? Se non lo è la cosa può comportare ad un continuo refresh della pagina cercando di risolvere il problema portando in fine a chiudere il sito possibilmente. Solo quando si arriva al livello giusto del testo la pubblicità scompare di colpo.
+- Nella sezione film il testo grigio un pò troppo chiaro con lo sfondo bianco.
+- Certi link nella tendina laterale (quelli con testo nero) portano alla home, forse meglio togliere la possibilità a questi di essere cliccati.
+- Nella sezione "rubriche" (cliccata dalla tendina, testo nero) tutti i link alle rubriche sono duplicati. Si potrebbe lasciare solo i link grandi blu con magari allegata un'immagine per rendere più facile e veloce l'individuazione dell'argomento di interesse.
+- Nella sezione della tendina "iniziative" il pallone d'oro è duplicato.
+- Perchè la sezione dei media ha tema scuro a differenza di tutto il resto?
+- Nella sezione "magazine" quando si sfoglia un giornaletto le scritte sono poco leggibili, anche a schermo intero.
+- Nella sezione "cinema" quando si passa con il cursore sui bottoni "cerca per città" e "cambia provincia" (che si estendono), non si richiudono subito quando l'utente toglie il cursore.
+
+
+||Sito desktop del "Giornale di Vicenza" problemi individuati:||
+
+Stessi identici problemi dell'Arena se non per:
+- Scritta nera "rubriche" nella tendina non ha il problema che viene riscontrato su L'Arena ma porta alla home al posto di una schermata di selezione.
+- Link al Pallone d'oro non duplicato.
+
+
+||Sito desktop del quotidiano "Brescia Oggi" problemi individuati:||
+
+Stessi identici problemi dell'Arena se non per:
+- Scritta nera "rubriche" nella tendina non porta ad una schermata di selezione ma ad una pagina con un argomento non in lista e non presente altrove (da quello che ho trovato) che sarebbe "Futuro e Innovazione".
+
+
+||Sito desktop della "Gazzetta di Mantova" problemi individuati:||
+
+Stessi identici problemi dell'Arena se non per:
+- Link al Pallone d'oro non duplicato.
+- Icona per tornare alla home non duplicata.
+- Barra di ricerca nella tendina (non errore ma pregio a mio parere)
+- Sezione "rubriche" non duplicata.
+
+
+||Versioni app di tutti i quotidiani problemi individuati:||
+
+I prolemi riscontrati nelle versioni desktop persistono anche nell'App, essa però ha una grafica migliore e una leggibilità aumentata.
+- Nell'archivio se si cambia data per cercare giornali passati non cambia nulla, bug? Rimangono i giornali del mese ed anno presente (Questo problema persiste solo nell'app dell'Arena, nelle altre non c'è).
+- Nell'app della gazzetta di Mantova i bottoni situati nella parte inferiore dello schermo non rispettano lo stesso schema delle altre app, presentando un bottone per le news e cancellando quello per il sito.
+- Non intuitivo capire dove andare a reperire tutte le sezioni (per esempio arena sport) dalle app. Bisogna per forza prima cliccare un articolo per poi aprire la tendina e selezionare ciò che si desidera? (Sulla gazzetta di Mantova questo problema non persiste data la presenza del bottone per le news).
+
+
+
+RESOCONTO FINALE PERSONALE:
+
+Tutti i mezzi di accesso digitale ai quotidiani presentano pecche a livello grafico/interattivo di rilevanza dalle più insignificanti a certe che credo abbiano un certo peso, come per esempio l'archivio dell'app dell'Arena non funzionante. In generale, se si cerca un'informazione la si reperisce senza particolari difficoltà, ma l'aggiunta di qualche funzionalità extra o miglioramenti grafici credo che possano andare ad impattare in maniera positiva sullo sviluppo di questi mezzi digitali.
+

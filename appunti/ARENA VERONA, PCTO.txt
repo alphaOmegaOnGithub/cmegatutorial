@@ -1,0 +1,7 @@
+ARENA VERONA, PCTO
+
+Cosa ho fatto/visto:
+17/06:
+- Per gestione problemi servizio ticket
+- Introduzione alle console per la gestione dei dispositivi aziendali
+- NinjaOne sistema di monitoring per admin (tutto in uno): presenta possibilità di monitorare i dispositivi, controllarli da remoto, gestirne i software ecc...

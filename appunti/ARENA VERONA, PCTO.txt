@@ -9,3 +9,5 @@ Cosa ho fatto/visto:
 
 18/06:
 - Riunione cyber security
+- Testing finale delle app dei quotidiani
+- Apprendimento da youtube su come setuppare un server ubuntu per un prossimo progetto

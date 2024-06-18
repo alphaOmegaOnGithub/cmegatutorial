@@ -6,3 +6,6 @@ Cosa ho fatto/visto:
 - Introduzione alle console per la gestione dei dispositivi aziendali
 - NinjaOne sistema di monitoring per admin (tutto in uno): presenta possibilità di monitorare i dispositivi, controllarli da remoto, gestirne i software ecc... (link canale youtube con presentazioni https://www.youtube.com/@ninjaone8616)
 - Come parte software ho fatto più un lavoro pratico andando ad individuare i problemi dei siti e delle app dei quotidiani rispetto i miei gusti e le mie opinioni a riguardo.
+
+18/06:
+- Riunione cyber security

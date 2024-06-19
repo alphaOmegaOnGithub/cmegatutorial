@@ -14,3 +14,4 @@ Cosa ho fatto/visto:
 
 19/06:
 - Setup server ubuntu, affrontato nuovi problemi mai visti legati al firewall con successo
+- Nel cercare di finire il setup finale riscontrato problemi con i permessi, si sicuro ho sbagliato qualcosa. Cambiamenti non reversibili da quello che sono riuscito a capire quindi ho cancellato la VM e ne ho creata una nuova dove ho rifatto tutto.

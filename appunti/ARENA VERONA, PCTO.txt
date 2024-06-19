@@ -11,3 +11,6 @@ Cosa ho fatto/visto:
 - Riunione cyber security
 - Testing finale delle app dei quotidiani
 - Apprendimento da youtube su come setuppare un server ubuntu per un prossimo progetto
+
+19/06:
+- Setup server ubuntu, affrontato nuovi problemi mai visti legati al firewall con successo

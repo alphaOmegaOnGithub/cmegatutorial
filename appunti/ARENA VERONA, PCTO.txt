@@ -19,3 +19,4 @@ Cosa ho fatto/visto:
 20/06:
 - Seconda riunione cyber security
 - Settaggio pc per utente interno all'azienda, imparato come bypassare l'obbligo di inserire una rete durante l'installazione di windows 11
+- Installazione Postfix sul server ubuntu per iniziare a finalizzare il progetto di avere un sistema di posta interno all'azienda (probabilmente ci si metterà ancora un pò a finire tutto)

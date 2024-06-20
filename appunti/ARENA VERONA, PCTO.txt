@@ -18,4 +18,4 @@ Cosa ho fatto/visto:
 
 20/06:
 - Seconda riunione cyber security
-- Installazione Postfix sul server ubuntu per finalizzare il progetto di avere un sistema di posta interno all'azienda
+- Settaggio pc per utente interno all'azienda

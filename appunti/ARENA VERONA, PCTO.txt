@@ -20,3 +20,6 @@ Cosa ho fatto/visto:
 - Seconda riunione cyber security
 - Settaggio pc per utente interno all'azienda, imparato come bypassare l'obbligo di inserire una rete durante l'installazione di windows 11
 - Attività tecniche in azienda manuali, aiutato a collegare un pc all'ethernet che aveva problemi e sistemato una telecamera per una postazione
+
+21/06:
+- Installazione del servizio di posta sul server ubuntu

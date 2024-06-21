@@ -22,4 +22,4 @@ Cosa ho fatto/visto:
 - Attività tecniche in azienda manuali, aiutato a collegare un pc all'ethernet che aveva problemi e sistemato una telecamera per una postazione
 
 21/06:
-- Installazione del servizio di posta sul server ubuntu
+- Installazione del servizio di posta sul server ubuntu tentando di farlo funzionare solo sulla rete interna locale (è un casino per i firewall e per la documentazione errata/mancante)

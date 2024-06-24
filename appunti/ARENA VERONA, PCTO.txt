@@ -10,7 +10,7 @@ Cosa ho fatto/visto:
 18/06:
 - Riunione cyber security
 - Testing finale delle app dei quotidiani
-- Apprendimento da youtube su come setuppare un server ubuntu per un prossimo progetto
+- Apprendimento da youtube su come setuppare un server ubuntu virtuale per un prossimo progetto
 
 19/06:
 - Setup server ubuntu, affrontato nuovi problemi mai visti legati al firewall con successo
@@ -27,3 +27,4 @@ Cosa ho fatto/visto:
 24/06:
 - Formattazione 2 pc e abilitazione all'uso aziendale
 - Continuazione del progetto server di posta ubuntu
+- Settaggio di Debian 11.9 su un server fisico

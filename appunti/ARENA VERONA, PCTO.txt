@@ -26,5 +26,4 @@ Cosa ho fatto/visto:
 
 24/06:
 - Formattazione 2 pc e abilitazione all'uso aziendale
-- Continuazione del progetto server di posta ubuntu
 - Settaggio di Debian 11.9 su un server fisico

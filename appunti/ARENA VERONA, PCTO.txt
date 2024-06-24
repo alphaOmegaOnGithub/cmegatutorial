@@ -23,3 +23,7 @@ Cosa ho fatto/visto:
 
 21/06:
 - Installazione del servizio di posta sul server ubuntu tentando di farlo funzionare solo sulla rete interna locale (è un casino per i firewall e per la documentazione errata/mancante)
+
+24/06:
+- Formattazione 2 pc e abilitazione all'uso aziendale
+- Continuazione del progetto server di posta ubuntu

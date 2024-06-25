@@ -28,3 +28,7 @@ Cosa ho fatto/visto:
 - Formattazione 2 pc e abilitazione all'uso aziendale
 - Osservata risoluzione più o meno complessa per un problema con un'aplicazione aziendale
 - Settaggio di un server fisico con debian 11.9 (fatto per la prima volta una chiavetta bootabile, messo mani su un debian e settato un server fisico manualmente)
+
+25/06
+- Terza riunione corso cyber security 
+- Settaggio manuale dell'ip per la seconda interfaccia di rete del sever fisico

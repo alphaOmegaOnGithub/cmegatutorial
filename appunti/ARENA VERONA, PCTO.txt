@@ -32,3 +32,6 @@ Cosa ho fatto/visto:
 25/06
 - Terza riunione corso cyber security 
 - Settaggio manuale dell'ip per la seconda interfaccia di rete del sever fisico
+
+26/06
+- formattazione pc per clienti (con problemi perchè un portatile non legge il suo disco)

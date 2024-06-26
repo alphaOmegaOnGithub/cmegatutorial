@@ -36,3 +36,4 @@ Cosa ho fatto/visto:
 26/06
 - Formattazione pc per clienti (con problemi perchè un portatile non legge il suo disco)
 - Osservato come un mio collega ha sistemato un'applicazione aziendale per il giornale e l'accesso per un dipendente addetto al web designing interagendo anche personalmente in questa attività di problem solving
+- Montaggio del server configurato in precedenza da me

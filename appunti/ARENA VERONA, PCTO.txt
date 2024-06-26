@@ -34,4 +34,5 @@ Cosa ho fatto/visto:
 - Settaggio manuale dell'ip per la seconda interfaccia di rete del sever fisico
 
 26/06
-- formattazione pc per clienti (con problemi perchè un portatile non legge il suo disco)
+- Formattazione pc per clienti (con problemi perchè un portatile non legge il suo disco)
+- Osservato come un mio collega ha sistemato un'applicazione aziendale per il giornale interagendo anche personalmente in questa attività di problem solving

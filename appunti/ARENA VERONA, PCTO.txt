@@ -42,3 +42,7 @@ Cosa ho fatto/visto:
 - Preparazione da zero di un pc per un dipendente esterno
 - Osservo risoluzione problemi
 - Montaggio di docking station per 3 utenti
+
+28/06
+- Preparazione di altri pc
+- Montaggio di una GPU nuova per un pc dedicato al rendering grafico

@@ -29,20 +29,24 @@ Cosa ho fatto/visto:
 - Osservata risoluzione più o meno complessa per un problema con un'aplicazione aziendale
 - Settaggio di un server fisico con debian 11.9 (fatto per la prima volta una chiavetta bootabile, messo mani su un debian e settato un server fisico manualmente)
 
-25/06
+25/06:
 - Terza riunione corso cyber security 
 - Settaggio manuale dell'ip per la seconda interfaccia di rete del sever fisico
 
-26/06
+26/06:
 - Formattazione pc per clienti (con problemi perchè un portatile non legge il suo disco)
 - Osservato come un mio collega ha sistemato un'applicazione aziendale per il giornale e l'accesso per un dipendente addetto al web designing interagendo anche personalmente in questa attività di problem solving
 - Montaggio del server configurato in precedenza da me
 
-27/06
+27/06:
 - Preparazione da zero di un pc per un dipendente esterno
 - Osservo risoluzione problemi
 - Montaggio di docking station per 3 utenti
 
-28/06
+28/06:
 - Preparazione di altri pc
 - Montaggio di una GPU nuova per un pc dedicato al rendering grafico
+
+01/07:
+- Introduzione approfondita del sistema pubblicitario dell'arena e di tutta la parte software dietro di essa
+- Settaggio pc per dipendenti

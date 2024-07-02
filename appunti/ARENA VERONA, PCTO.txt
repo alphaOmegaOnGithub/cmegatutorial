@@ -51,3 +51,7 @@ Cosa ho fatto/visto:
 - Introduzione approfondita del sistema pubblicitario dell'arena e di tutta la parte software dietro di essa
 - Settaggio pc per dipendenti
 - Introduzione a Microsoft 365
+
+02/07:
+- inizio lettura libro scrum
+- completamento installazione software sui pc nuovi

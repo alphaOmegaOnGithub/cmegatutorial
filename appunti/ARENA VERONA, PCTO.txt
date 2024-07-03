@@ -55,3 +55,8 @@ Cosa ho fatto/visto:
 02/07:
 - inizio lettura libro scrum
 - completamento installazione software sui pc nuovi
+
+03/07:
+- setup e imballaggio pc nuovi
+- risoluzione problema di connessione via cavo con un iPhone
+- visione video e lettura della teoria dietro al metodo scrum

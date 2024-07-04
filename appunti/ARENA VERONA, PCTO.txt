@@ -53,10 +53,14 @@ Cosa ho fatto/visto:
 - Introduzione a Microsoft 365
 
 02/07:
-- inizio lettura libro scrum
+- inizio lettura libro "Scrum"
 - completamento installazione software sui pc nuovi
 
 03/07:
 - setup e imballaggio pc nuovi
 - risoluzione problema di connessione via cavo con un iPhone
 - visione video e lettura della teoria dietro al metodo scrum
+
+04/07:
+- conclusione settaggio altri pc per dipendenti
+- continuazione della lettura del libro "Scrum"

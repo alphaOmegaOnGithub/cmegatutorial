@@ -1,5 +1,4 @@
 # ARENA VERONA, PCTO
-
 # Cosa ho fatto/visto:
 ## 17/06:
 - Per gestione problemi servizio ticket

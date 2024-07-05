@@ -64,6 +64,6 @@
 - Continuazione della lettura del libro "Scrum"
 - Aiuto tecnico individuale
 
-## 05/05:
+## 05/07:
 - Settaggio 3 pc aziendali
 - Lettura libro "Scrum"

@@ -63,3 +63,7 @@
 - Conclusione settaggio altri pc per dipendenti
 - Continuazione della lettura del libro "Scrum"
 - Aiuto tecnico individuale
+
+## 05/05:
+- Settaggio 3 pc aziendali
+- Lettura libro "Scrum"

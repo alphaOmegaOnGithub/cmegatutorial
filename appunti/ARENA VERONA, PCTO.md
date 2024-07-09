@@ -78,4 +78,4 @@
 - Cerco documentazione per PostfixAdmin
 - Reset di un pc problematico
 - Lettura libro "Scrum"
-- Aggiunta di 8GB di memoira ad un laptop (prima volta che vedo smontato un portatile)
+- Osservo aggiunta di 8GB di memoria ad un laptop (prima volta che vedo smontato un portatile)

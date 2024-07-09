@@ -72,3 +72,7 @@
 - Lettura libro "Scrum"
 - Prove di invio email sul server ubuntu settato per postfix, cerchiamo soluzioni agli errori senza successo
 - Lavoro excel per confrontare un database nuovo ad uno recente per la migrazione degli utenti
+
+## 09/07:
+- Montaggio docking station individuale per 2 postazioni
+- 

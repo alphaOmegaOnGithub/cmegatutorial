@@ -75,4 +75,7 @@
 
 ## 09/07:
 - Montaggio docking station individuale per 2 postazioni
-- 
+- Cerco documentazione per PostfixAdmin
+- Reset di un pc problematico
+- Lettura libro "Scrum"
+- Aggiunta di 8GB di memoira ad un laptop (prima volta che vedo smontato un portatile)

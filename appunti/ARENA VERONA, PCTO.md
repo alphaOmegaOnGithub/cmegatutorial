@@ -79,3 +79,6 @@
 - Reset di un pc problematico
 - Lettura libro "Scrum"
 - Osservo aggiunta di 8GB di memoria ad un laptop (prima volta che vedo smontato un portatile)
+
+## 10/07:
+- Mappatura manuale delle stampanti di tutti i piani della sede

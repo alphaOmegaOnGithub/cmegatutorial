@@ -82,3 +82,4 @@
 
 ## 10/07:
 - Mappatura manuale delle stampanti di tutti i piani della sede
+- Montaggio ssd da 1TB in un laptop aziendale

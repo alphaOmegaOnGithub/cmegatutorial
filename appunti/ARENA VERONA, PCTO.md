@@ -83,3 +83,8 @@
 ## 10/07:
 - Mappatura manuale delle stampanti di tutti i piani della sede
 - Montaggio ssd da 1TB in un laptop aziendale
+
+## 11/07:
+- Spostata postazione per una dipendente con collegamento alla stampante
+- Settaggio nuovi pc aziendali
+- Conclusione temporanea del progetto di Postfix su Ubuntu
